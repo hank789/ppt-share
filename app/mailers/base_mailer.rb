@@ -6,5 +6,5 @@ class BaseMailer < ActionMailer::Base
   default_url_options[:host] = Setting.domain
 
   layout 'mailer'
-  helper :topics, :users
+  helper :users
 end

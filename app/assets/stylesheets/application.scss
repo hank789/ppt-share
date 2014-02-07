@@ -1,5 +1,7 @@
 /*
  *= require bootstrap
+ *= require custom
+ *= require font-awesome.min
  *= require wikistyle
  *= require jquery.chosen
  *= require highlight
@@ -15,6 +17,12 @@ html {
   background:#eee image-url('bg.png') bottom left repeat;
 }
 body { background:none; font-family: Arial,Helvetica,sans-serif;}
+.container {
+ 	border-left: 1px solid #CACACA;
+  border-right: 1px solid #CACACA;
+	padding: 0;
+	position: relative;
+}
 
 code { background:none; }
 
@@ -262,4 +270,205 @@ button.lang {
 .footer_buttons {
   width: 130px;
   padding-bottom: 15px;
+}
+.no-right-panel #header {
+  margin: 0 !important;
+}
+#header {
+	background-color: #ECECEC;
+	background-image: linear-gradient(to bottom, #F3F3F3, #E2E2E2);
+	background-repeat: repeat-x;
+	display: block;
+	height: 49px;
+	padding: 0 13px 0 0;
+	position: relative;
+	#logo a {
+		height: auto;
+    background: image_url('text_logo.png') left top no-repeat;
+		height: 100%;
+    display: block;
+    border: 0px;
+    background-size: 123px 29px;
+    &:hover {
+      opacity: 0.9;
+    }
+    &:active {
+      opacity: 0.5;
+    }
+  }
+	& > *:first-child, aside {
+		width: 220px;
+	}
+	& > div {
+	  display: inline-block;
+	  float: left;
+	  height: 49px;
+	  vertical-align: middle;
+	}
+}
+#logo-group > span {
+	display: inline-block;
+  float: left;
+  height: 39px;
+}
+#header a#activity {
+	-moz-user-select: none;
+	background-color: #F8F8F8;
+	background-image: -moz-linear-gradient(center top , #F8F8F8, #F1F1F1);
+	border: 1px solid #C6C6C6;
+	border-radius: 2px;
+	color: #C4BAB6;
+	cursor: default !important;
+	display: inline-block;
+	font-size: 19px;
+	font-weight: bold;
+	height: 30px;
+	margin: 10px 0 0;
+	padding: 2px;
+	position: relative;
+	text-align: center;
+	text-decoration: none !important;
+	width: 30px;
+}
+#header a#activity:hover {
+  border: 1px solid #C6C6C6;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08) inset;
+  cursor: pointer !important;
+  transition: all 0s ease 0s;
+}
+#header a .badge {
+  background: none repeat scroll 0 0 #2A89C9;
+  border-radius: 50%;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.07) inset;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: normal;
+  padding: 2px 4px 3px;
+  position: absolute;
+  right: -5px;
+  text-align: center;
+  top: -5px;
+}
+#logo {
+  display: inline-block;
+  margin-left: 9px;
+  margin-top: 13px;
+  width: 175px;
+}
+.header-search {
+  position: relative;
+	margin-right: 70px;
+	.pull-right {
+		margin-left: 6px;
+	}
+	& > input[type="text"] {
+	  -moz-appearance: none;
+	  -moz-box-sizing: border-box;
+	  background: none repeat scroll 0 0 #FFFFFF;
+	  border-color: #C6C6C6;
+	  border-radius: 0;
+	  border-style: solid;
+	  border-width: 1px;
+	  color: #404040;
+	  display: block;
+	  font: 13px/16px 'Open Sans',Helvetica,Arial,sans-serif;
+	  height: 30px;
+	  margin-top: 10px;
+	  min-width: 300px;
+	  outline: medium none;
+	  padding: 8px 10px;
+	  width: 100%;
+	}
+	& > button {
+	  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	  border: medium none;
+	  color: #6D6A69;
+	  font-size: 17px;
+	  height: 30px;
+	  line-height: 30px;
+	  margin: 0;
+	  padding: 0;
+	  position: absolute;
+	  right: 0;
+	  top: 10px;
+	  width: 30px;
+	  z-index: 2;
+	}
+}
+.btn-header.pull-right {
+	margin-left: 6px;
+}
+.btn-header {
+	a > span {
+  	display: inline-block;
+  	font-size: 13px;
+	  font-weight: normal;
+	  height: 30px;
+  	line-height: 30px;
+	}
+}
+#userbar {
+	display: inline-block;
+	padding: 7px 13px 0;
+	position: relative;
+	& > span {
+  	display: block;
+	}
+	& > *:first-child {
+ 	 	color: #C7C5BE;
+  	display: block;
+ 	 	font-size: 10px;
+		font-weight: bold;
+  	padding-left: 0;
+  	text-align: left;
+  	text-shadow: 0 0 1px #FFFFFF;
+  	text-transform: uppercase;
+	}
+	.label {
+		background: none;
+	}
+}
+#userbar-selector {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: medium none;
+	color: #787878;
+	cursor: pointer;
+	font-size: 14px;
+	max-width: 97%;
+	padding: 0;
+	text-align: left;
+	white-space: nowrap;
+	&:hover {
+		color: #333333;
+	}
+}
+.open > .dropdown-menu {
+	animation-name: flipInX;
+}
+.open > .dropdown-menu {
+	animation-duration: 0.4s;
+	animation-fill-mode: both;
+}
+#login-header-space {
+	display: block;
+	float: right;
+	line-height: 43px;
+	text-align: right;
+	vertical-align: middle;
+}
+#login-header-space > *:first-child {
+	font-size: 13px;
+	font-weight: 400;
+	margin-right: 14px;
+	vertical-align: -3px;
+}
+#login-header-space .btn {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#login-header-space > * {
+	display: inline-block;
 }

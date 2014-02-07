@@ -21,7 +21,22 @@
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
   <%= yield :node_feed_link %>
 </head>
-<body data-offset="50" data-controller-name="<%= controller_name %>">
+<body data-offset="50" data-controller-name="<%= controller_name %>" class="no-right-panel container" style="min-height: 800px;">  
+	<header id="header">
+		<div id="logo-group">
+			<span id="logo">
+				<a href="/" class="site-logo"></a>
+			</span>
+		</div>
+		<div class="pull-right">
+			<%= render "common/user_nav" %>
+			<form class="header-search pull-right" action="search" method="get">
+				<input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" />
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+	</header>
+
       <%= yield %>
 
   <% if not mobile? %>
