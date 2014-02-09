@@ -1,13 +1,16 @@
 <% if current_user %> 
 <div class="btn-header pull-right">
-<span class="pull-left">
-<a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
-	<!-- <i class="icon-user"></i> -->
-		<%= user_avatar_tag(current_user, :activity, :link => false) %>
+	<span class="pull-left">
+		<a href=""><i class="icon-plus"></i></a>
+	</span>
+	<span class="pull-left">
+		<a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
+			<!-- <i class="icon-user"></i> -->
+			<%= user_avatar_tag(current_user, :activity, :link => false) %>
 
-		<b class="badge bounceIn animated"><%= unread_notify_count %></b>
-</a>
-</span>
+			<b class="badge bounceIn animated"><%= unread_notify_count %></b>
+		</a>
+	</span>
 <div id="userbar" class="dropdown">
 	<span class="label">Login as:</span>
 	<span id="userbar-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">
@@ -26,9 +29,6 @@
 
 </div>
 </div>
-<% if mobile? %>
-<span class="pull-right"><%= link_to("发帖", new_topic_path, :class => "btn btn-small btn-primary") %></span>
-<% end %>
 <% else %>
 	<span id="login-header-space">
 		<h4 class="hidden-mobile">
