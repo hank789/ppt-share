@@ -335,6 +335,10 @@ button.lang {
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08) inset;
   cursor: pointer !important;
   transition: all 0s ease 0s;
+	& > img {
+		width: 24px;
+		height: 24px;
+	}
 }
 #header a .badge {
   background: none repeat scroll 0 0 #2A89C9;
@@ -474,4 +478,97 @@ button.lang {
 }
 #login-header-space > * {
 	display: inline-block;
+}
+#logo-group *, .login-info, .login-info *, #activity *, .minified .menu-item-parent {
+	-moz-box-sizing: content-box;
+}
+nav ul {
+	font-size: 13px;
+	line-height: 0.5em;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: 100%;
+	li a {
+		color: #A8A8A8;
+		display: block;
+		font-size: 14px;
+		font-weight: normal;
+		line-height: normal;
+		padding: 10px 10px 10px 11px;
+		text-decoration: none !important;
+		&:focus {
+			color: #C9C9C9;
+		}
+		&:hover {
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+		& > i {
+			display: inline-block;
+			margin-right: 5px;
+			position: relative;
+			text-align: center;
+			width: 15px;
+		}
+	}
+	span.menu-item-parent {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+}
+#main {
+	display: block;
+	margin-left: 220px;
+	margin-right: 220px;
+	min-height: 500px;
+	padding: 0;
+}
+.no-right-panel #main {
+	margin-right: 0;
+}
+.no-right-panel #right-panel {
+	display: none;
+	right: -233px;
+}
+#ribbon {
+	background: none repeat scroll 0 0 #474544;
+	min-height: 40px;
+	padding: 0 13px;
+	position: relative;
+}
+#ribbon .breadcrumb {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	display: inline-block;
+	margin: 0;
+	padding: 11px 34px 11px 0 !important;
+	vertical-align: top;
+}
+#ribbon .breadcrumb a, #ribbon .breadcrumb {
+	color: #BBBBBB !important;
+	text-decoration: none !important;
+}
+#ribbon .breadcrumb > .active, #ribbon .breadcrumb li:last-child {
+	color: #E4E4E4;
+}
+.fixed-ribbon #ribbon {
+	left: 220px;
+	position: fixed;
+	right: 0;
+	top: 49px;
+	z-index: 999;
+}
+.container.fixed-ribbon #ribbon {
+	left: 590px;
+	width: 944px;
+}
+.fixed-ribbon #content {
+	padding-top: 50px;
+}
+#content {
+	left: 0;
+	padding: 10px 14px;
+	position: relative;
 }

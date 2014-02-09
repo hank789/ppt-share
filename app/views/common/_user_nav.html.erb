@@ -2,7 +2,9 @@
 <div class="btn-header pull-right">
 <span class="pull-left">
 <a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
-		<i class="icon-user"></i>
+	<!-- <i class="icon-user"></i> -->
+		<%= user_avatar_tag(current_user, :activity, :link => false) %>
+
 		<b class="badge bounceIn animated"><%= unread_notify_count %></b>
 </a>
 </span>

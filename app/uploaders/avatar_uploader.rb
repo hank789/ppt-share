@@ -4,6 +4,11 @@ class AvatarUploader < BaseUploader
     process :resize_to_fill => [48, 48]
   end
 
+	version :activity do
+    process :resize_to_fill => [48, 48]
+  end
+
+
   version :small do
     process :resize_to_fill => [16, 16]
   end

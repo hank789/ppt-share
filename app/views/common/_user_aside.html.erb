@@ -1,0 +1,11 @@
+<% if current_user %> 
+<div class="login-info">
+	<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
+		<%= user_avatar_tag(current_user, :activity, :link => false) %>
+
+		<a id="show-shortcut" href="javascript:void(0);">
+			<%= current_user.name %>	<i class="icon-user-md"></i>
+		</a> 
+	</span>
+</div>
+<% end %>
