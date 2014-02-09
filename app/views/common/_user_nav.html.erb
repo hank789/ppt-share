@@ -2,7 +2,7 @@
 <div class="btn-header pull-right">
 <span class="pull-left">
 <a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
-		<i class="fa fa-user"></i>
+		<i class="icon-user"></i>
 		<b class="badge bounceIn animated"><%= unread_notify_count %></b>
 </a>
 </span>
@@ -10,7 +10,7 @@
 	<span class="label">Login as:</span>
 	<span id="userbar-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">
 		<%= current_user.login %>
-  	<i class="fa fa-angle-down"></i>
+  	<i class="icon-angle-down"></i>
 	</span>
 	<%= render_list :class => "dropdown-menu" do |li|
     li << link_to(t("menu.my_home_page"), user_path(current_user.login) )

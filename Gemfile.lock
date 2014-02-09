@@ -172,6 +172,9 @@ GEM
     faye-websocket (0.4.6)
       eventmachine (>= 0.12.0)
     ffi (1.0.11)
+    font-awesome-sass-rails (3.0.2.2)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     fuubar (1.2.1)
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
@@ -414,6 +417,7 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   faye-rails (= 1.0.0)
+  font-awesome-sass-rails
   fuubar
   garelic (= 0.0.2)
   god
