@@ -49,11 +49,11 @@ class User
   field :state, :type => Integer, :default => 1
   field :guest, :type => Mongoid::Boolean, :default => false
   field :tagline
-  field :topics_count, :type => Integer, :default => 0
+  field :slides_count, :type => Integer, :default => 0
   field :replies_count, :type => Integer, :default => 0
   # 用户密钥，用于客户端验证
   field :private_token
-  field :favorite_topic_ids, :type => Array, :default => []
+  field :favorite_slide_ids, :type => Array, :default => []
 
   mount_uploader :avatar, AvatarUploader
 
@@ -62,7 +62,7 @@ class User
   index :location => 1
   index({private_token: 1},{ sparse: true })
 
-  #has_many :topics, :dependent => :destroy
+  has_many :slides, :dependent => :destroy
   #has_many :notes
   has_many :replies, :dependent => :destroy
   embeds_many :authorizations
@@ -89,7 +89,7 @@ class User
   has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
   has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
 
-  scope :hot, desc(:replies_count, :topics_count)
+  scope :hot, desc(:replies_count, :slides_count)
 
   def email=(val)
     self.email_md5 = Digest::MD5.hexdigest(val || "")

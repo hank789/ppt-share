@@ -72,7 +72,7 @@ RubyChina::Application.routes.draw do
   get "users" => "users#index", as: 'users'
   resources :users, :path => "" do
     member do
-      get :topics
+			get :slides
       get :favorites
       get :notes
     end
