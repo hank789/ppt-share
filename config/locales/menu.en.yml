@@ -77,8 +77,12 @@
     nodes: "Nodes"
     sites: "Sites"
     my_home_page: "My home page"
+    my_space: "My Space"
+    my_folders: "My Folders"
+    uploads: "My Uploadeds"
+    collections: "My Collections"
     edit_account_path: "Account Profile"
-    likes: "Favorites"
+    likes: "My Favourites"
   comments:
     create_comment: "Comment"
     no_comment: "No Comment at the moment"

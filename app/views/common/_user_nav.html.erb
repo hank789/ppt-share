@@ -18,13 +18,17 @@
   	<i class="icon-angle-down"></i>
 	</span>
 	<%= render_list :class => "dropdown-menu" do |li|
-    li << link_to(t("menu.my_home_page"), user_path(current_user.login) )
+		li << link_to(content_tag(:i, "", :class => "icon-home") + " #{t("menu.my_home_page")}", user_path(current_user.login) )
+		li << link_to(content_tag(:i, "", :class => "icon-folder-close") + " #{t("menu.my_folders")}", user_path(current_user.login))
     unless params[:controller].match(/cpanel/)
-      li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
-			li << link_to(content_tag(:i, " My Slides", :class => "icon-hdd"), slides_user_path(current_user.login))
-      li << link_to(t("menu.likes"), favorites_user_path(current_user.login))
-      li << link_to(t("menu.cpanel"), "/cpanel") if admin?
+			li << ['', class: 'divider']
+			li << link_to(content_tag(:i,"", :class => "icon-hdd") + " #{t("menu.uploads")}", slides_user_path(current_user.login))
+			li << link_to(content_tag(:i,"", :class => "icon-bookmark") + " #{t("menu.collections")}", slides_user_path(current_user.login))
+			li << link_to(content_tag(:i, "", :class => "icon-heart") + " #{t("menu.likes")}", favorites_user_path(current_user.login))
     end
+			li << ['', class: 'divider']
+      li << link_to(t("menu.cpanel"), "/cpanel") if admin?
+      li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
   	  li << link_to(t("common.logout"), destroy_user_session_path, method: "delete" )
   end %>
 
