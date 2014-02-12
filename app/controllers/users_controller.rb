@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => "auth_unbind"
   before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :slides, :favorites,:notes]
+  before_filter :find_user, :only => [:show, :slides, :likes, :collections]
   caches_action :index, :expires_in => 2.hours, :layout => false
 
   def index
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def show
     # 排除掉几个非技术的节点
     #without_node_ids = [21,22,23,31,49,51,57,25]
-    #@topics = @user.topics.without_node_ids(without_node_ids).high_likes.limit(20)
-    #@replies = @user.replies.only(:topic_id,:body_html,:created_at).recent.includes(:topic).limit(10)
+    #@slides = @user.slides.without_node_ids(without_node_ids).high_likes.limit(20)
+    #@replies = @user.replies.only(:slide_id,:body_html,:created_at).recent.includes(:slide).limit(10)
     set_seo_meta("#{@user.login}")
     drop_breadcrumb(@user.login)
   end
@@ -26,18 +26,18 @@ class UsersController < ApplicationController
     drop_breadcrumb(t("slides.title"))
   end
 
-  def favorites
-    #@topics = Topic.where(:_id.in => @user.favorite_topic_ids).paginate(:page => params[:page], :per_page => 30)
+	def likes
+    @slides = Slide.where(:_id.in => @user.like_slide_ids).paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
-    drop_breadcrumb(t("users.menu.favorites"))
+    drop_breadcrumb(t("users.menu.likes"))
+	end
+
+  def collections 
+    @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 30)
+    drop_breadcrumb(@user.login, user_path(@user.login))
+    drop_breadcrumb(t("users.menu.collections"))
   end
   
-  def notes
-    @notes = @user.notes.published.recent.paginate(:page => params[:page], :per_page => 30)
-    drop_breadcrumb(@user.login, user_path(@user.login))
-    drop_breadcrumb(t("users.menu.notes"))
-  end
-
   def auth_unbind
     provider = params[:provider]
     if current_user.authorizations.count <= 1

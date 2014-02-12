@@ -36,6 +36,7 @@ class Slide
 
 	index :onwer => 1
 	index :user_id => 1
+	index :likes_count => 1
 
   validates_presence_of :onwer, :title, :body#, :node_id
 

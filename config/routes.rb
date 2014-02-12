@@ -38,6 +38,7 @@ RubyChina::Application.routes.draw do
  	resources :slides do
 		member do 
 			post :reply
+			post :favorite
 			post :download
 		end
 		collection do
@@ -73,7 +74,8 @@ RubyChina::Application.routes.draw do
   resources :users, :path => "" do
     member do
 			get :slides
-      get :favorites
+      get :likes
+			get :collections
       get :notes
     end
   end

@@ -33,6 +33,8 @@
       recent_reply_topics: "最近回帖"
       like: "喜欢"
       profile: "个人信息"
-      favorites: "收藏"
+      slides: "我上传的"
+      collections: "我收藏的"
+      likes: "我喜欢的"
       notes: "记事本"
 

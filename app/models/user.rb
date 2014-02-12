@@ -54,6 +54,7 @@ class User
   # 用户密钥，用于客户端验证
   field :private_token
   field :favorite_slide_ids, :type => Array, :default => []
+  field :like_slide_ids, :type => Array, :default => []
 
   mount_uploader :avatar, AvatarUploader
 
@@ -226,31 +227,32 @@ class User
     authorizations.create(:provider => provider , :uid => uid )
   end
 
-  # 是否读过 topic 的最近更新
-  def topic_read?(topic)
+  # 是否读过 slide 的最近更新
+  def slide_read?(slide)
     # 用 last_reply_id 作为 cache key ，以便不热门的数据自动被 Memcached 挤掉
-    last_reply_id = topic.last_reply_id || -1
-    Rails.cache.read("user:#{self.id}:topic_read:#{topic.id}") == last_reply_id
+    last_reply_id = slide.last_reply_id || -1
+    Rails.cache.read("user:#{self.id}:slide_read:#{slide.id}") == last_reply_id
   end
 
-  # 将 topic 的最后回复设置为已读
-  def read_topic(topic)
-    return if topic.blank?
-    return if self.topic_read?(topic)
+  # 将 slide 的最后回复设置为已读
+  def read_slide(slide)
+    return if slide.blank?
+    return if self.slide_read?(slide)
 
-    self.notifications.unread.any_of({:mentionable_type => 'Topic', :mentionable_id => topic.id},
-                                     {:mentionable_type => 'Reply', :mentionable_id.in => topic.reply_ids},
-                                     {:reply_id.in => topic.reply_ids}).update_all(read: true)
+    self.notifications.unread.any_of({:mentionable_type => 'Slide', :mentionable_id => slide.id},
+                                     {:mentionable_type => 'Reply', :mentionable_id.in => slide.reply_ids},
+                                     {:reply_id.in => slide.reply_ids}).update_all(read: true)
 
     # 处理 last_reply_id 是空的情况
-    last_reply_id = topic.last_reply_id || -1
-    Rails.cache.write("user:#{self.id}:topic_read:#{topic.id}", last_reply_id)
+    last_reply_id = slide.last_reply_id || -1
+    Rails.cache.write("user:#{self.id}:slide_read:#{slide.id}", last_reply_id)
   end
 
   # 收藏东西
   def like(likeable)
     return false if likeable.blank?
     return false if likeable.liked_by_user?(self)
+		self.push(like_slide_ids: likeable.id)
     likeable.push(liked_user_ids: self.id)
     likeable.inc(likes_count: 1)
     likeable.touch
@@ -260,25 +262,26 @@ class User
   def unlike(likeable)
     return false if likeable.blank?
     return false if not likeable.liked_by_user?(self)
+		self.pull(like_slide_ids: likeable.id)
     likeable.pull(liked_user_ids: self.id)
     likeable.inc(likes_count: -1)
     likeable.touch
   end
 
   # 收藏话题
-  def favorite_topic(topic_id)
-    return false if topic_id.blank?
-    topic_id = topic_id.to_i
-    return false if self.favorite_topic_ids.include?(topic_id)
-    self.push(favorite_topic_ids: topic_id)
+  def favorite_slide(slide_id)
+    return false if slide_id.blank?
+    slide_id = slide_id.to_i
+    return false if self.favorite_slide_ids.include?(slide_id)
+    self.push(favorite_slide_ids: slide_id)
     true
   end
 
   # 取消对话题的收藏
-  def unfavorite_topic(topic_id)
-    return false if topic_id.blank?
-    topic_id = topic_id.to_i
-    self.pull(favorite_topic_ids: topic_id)
+  def unfavorite_slide(slide_id)
+    return false if slide_id.blank?
+    slide_id = slide_id.to_i
+    self.pull(favorite_slide_ids: slide_id)
     true
   end
 

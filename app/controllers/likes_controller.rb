@@ -17,14 +17,14 @@ class LikesController < ApplicationController
   def find_likeable
     @success = false
     @element_id = "likeable_#{params[:type]}_#{params[:id]}"
-    if not params[:type].in?(['Topic','Reply'])
+    if not params[:type].in?(['Slide','Reply'])
       render :text => "-1"
       return false
     end
 
     case params[:type].downcase
-    when "topic"
-      klass = Topic
+    when "slide"
+      klass = Slide
     when "reply"
       klass = Reply
     else

@@ -22,14 +22,14 @@
 		li << link_to(content_tag(:i, "", :class => "icon-folder-close") + " #{t("menu.my_folders")}", user_path(current_user.login))
     unless params[:controller].match(/cpanel/)
 			li << ['', class: 'divider']
-			li << link_to(content_tag(:i,"", :class => "icon-hdd") + " #{t("menu.uploads")}", slides_user_path(current_user.login))
-			li << link_to(content_tag(:i,"", :class => "icon-bookmark") + " #{t("menu.collections")}", slides_user_path(current_user.login))
-			li << link_to(content_tag(:i, "", :class => "icon-heart") + " #{t("menu.likes")}", favorites_user_path(current_user.login))
+			li << link_to(content_tag(:i,"", :class => "icon-upload-alt") + " #{t("menu.uploads")}", slides_user_path(current_user.login))
+			li << link_to(content_tag(:i,"", :class => "icon-bookmark") + " #{t("menu.collections")}", collections_user_path(current_user.login))
+			li << link_to(content_tag(:i, "", :class => "icon-heart") + " #{t("menu.likes")}", likes_user_path(current_user.login))
     end
 			li << ['', class: 'divider']
-      li << link_to(t("menu.cpanel"), "/cpanel") if admin?
-      li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
-  	  li << link_to(t("common.logout"), destroy_user_session_path, method: "delete" )
+			li << link_to(content_tag(:i, "", :class => "icon-dashboard") + " #{t("menu.cpanel")}", "/cpanel") if admin?
+			li << link_to(content_tag(:i, "", :class => "icon-wrench") + " #{t("menu.edit_account_path")}", edit_user_registration_path)
+			li << link_to(content_tag(:i, "", :class => "icon-signout") + " #{t("common.logout")}", destroy_user_session_path, method: "delete" )
   end %>
 
 </div>

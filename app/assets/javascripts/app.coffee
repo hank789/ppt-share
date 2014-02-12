@@ -23,6 +23,7 @@
 #= require notifier
 #= require form_storage
 #= require turbolinks
+#= require slides
 #= require_self
 
 window.App =
