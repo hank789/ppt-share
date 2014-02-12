@@ -1,7 +1,11 @@
 <% if current_user %> 
-<div class="btn-header pull-right">
-	<span class="pull-left">
-		<%= link_to content_tag(:i, "", :class => "icon-plus"), new_slide_url %>
+<div id="user-triggered" class="btn-header pull-right">
+	<span class="pull-left dropdown">
+		<%= link_to content_tag(:i, "", :class => "icon-angle-down"), "", "data-toggle" => "dropdown", :class => "popover-trigger-element dropdown-toggle icon-plus" %>
+		<%= render_list :class => "dropdown-menu" do |li| 
+			li << link_to(content_tag(:i, "", class:"icon-hdd") + " #{t("menu.add_slide")}", new_slide_url)
+			li << link_to(content_tag(:i, "", class:"icon-folder-close") + " #{t("menu.add_folder")}", new_folder_url)
+		end %>
 	</span>
 	<span class="pull-left">
 		<a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
@@ -18,8 +22,8 @@
   	<i class="icon-angle-down"></i>
 	</span>
 	<%= render_list :class => "dropdown-menu" do |li|
-		li << link_to(content_tag(:i, "", :class => "icon-home") + " #{t("menu.my_home_page")}", user_path(current_user.login) )
-		li << link_to(content_tag(:i, "", :class => "icon-folder-close") + " #{t("menu.my_folders")}", user_path(current_user.login))
+		li << link_to(content_tag(:i, "", :class => "icon-home") + " #{t("menu.my_home_page")}", user_path(current_user.login))
+		li << link_to(content_tag(:i, "", :class => "icon-folder-close") + " #{t("menu.my_folders")}", folders_user_path(current_user.login))
     unless params[:controller].match(/cpanel/)
 			li << ['', class: 'divider']
 			li << link_to(content_tag(:i,"", :class => "icon-upload-alt") + " #{t("menu.uploads")}", slides_user_path(current_user.login))

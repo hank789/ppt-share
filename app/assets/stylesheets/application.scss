@@ -679,3 +679,8 @@ ul.common-hits {
 		margin-bottom: 7px;
 	}
 }
+#user-triggered {
+	& > *:first-child > a > i {
+		padding: 0 15px 0 5px;
+	}
+}

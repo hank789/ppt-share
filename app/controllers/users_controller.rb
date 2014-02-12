@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => "auth_unbind"
   before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :slides, :likes, :collections]
+  before_filter :find_user, :only => [:show, :slides, :likes, :collections, :folders]
   caches_action :index, :expires_in => 2.hours, :layout => false
 
   def index
@@ -25,6 +25,13 @@ class UsersController < ApplicationController
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("slides.title"))
   end
+
+	def folders
+		@folders = @user.following_folders.recent.paginate(:page => params[:page], :per_page => 30)
+    drop_breadcrumb(@user.login, user_path(@user.login))
+    drop_breadcrumb(t("users.menu.folders"))
+  end
+
 
 	def likes
     @slides = Slide.where(:_id.in => @user.like_slide_ids).paginate(:page => params[:page], :per_page => 30)

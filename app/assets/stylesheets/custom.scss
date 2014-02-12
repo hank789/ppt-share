@@ -241,3 +241,7 @@ button.close {
 .dropdown-menu .divider {
   border: none;	
 }
+.dropdown.open .dropdown-toggle {
+	background: none;
+	color: #000 !important;
+}

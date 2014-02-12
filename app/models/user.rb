@@ -69,8 +69,19 @@ class User
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
+  
+  attr_accessor :password_confirmation
+  ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
 
-  def read_notifications(notifications)
+  validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
+
+  has_and_belongs_to_many :following_folders, :class_name => 'Folder', :inverse_of => :followers
+  has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
+  has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
+
+  scope :hot, desc(:replies_count, :slides_count)
+
+	def read_notifications(notifications)
     unread_ids = notifications.find_all{|notification| !notification.read?}.map(&:_id)
     if unread_ids.any?
       Notification::Base.where({
@@ -80,17 +91,6 @@ class User
       }).update_all(read: true, updated_at: Time.now)
     end
   end
-
-  attr_accessor :password_confirmation
-  ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
-
-  validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
-
-  #has_and_belongs_to_many :following_nodes, :class_name => 'Node', :inverse_of => :followers
-  has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
-  has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
-
-  scope :hot, desc(:replies_count, :slides_count)
 
   def email=(val)
     self.email_md5 = Digest::MD5.hexdigest(val || "")

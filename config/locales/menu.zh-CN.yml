@@ -81,6 +81,8 @@
     notes: "记事本"
     nodes: "节点"
     sites: "产品秀"
+    add_folder: "新建文件夹"
+    add_slide: "新建Slide"
     my_home_page: "我的主页"
     my_space: "我的空间"
     my_folders: "我的文件夹"

@@ -35,6 +35,8 @@ RubyChina::Application.routes.draw do
     end
   end
 
+	resources :folders
+
  	resources :slides do
 		member do 
 			post :reply
@@ -76,7 +78,7 @@ RubyChina::Application.routes.draw do
 			get :slides
       get :likes
 			get :collections
-      get :notes
+      get :folders
     end
   end
 
