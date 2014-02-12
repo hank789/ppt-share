@@ -16,22 +16,7 @@ class Ability
 			if !user.newbie?
 				can :create, Slide
 			end
-				
-
-      # Topic
-      if !user.newbie?
-        can :create, Topic
-      end
-      can :favorite, Topic
-      can :follow, Topic
-      can :unfollow,Topic
-      can :update, Topic do |topic|
-        (topic.user_id == user.id)
-      end
-      can :destroy, Topic do |topic|
-         (topic.user_id == user.id)
-      end
-
+      
       # Reply
       # 新手用户晚上禁止回帖，防 spam，可在面板设置是否打开
       if !(user.newbie? &&
@@ -44,32 +29,6 @@ class Ability
       end
       can :destroy, Reply do |reply|
         reply.user_id == user.id
-      end
-
-      # Note
-      can :create, Note
-      can :update, Note do |note|
-        note.user_id == user.id
-      end
-      can :destroy, Note do |note|
-        note.user_id == user.id
-      end
-      can :read, Note do |note|
-        note.user_id == user.id
-      end
-      can :read  , Note do |note|
-        note.publish == true
-      end
-
-      # Wiki
-      if user.has_role?(:wiki_editor)
-        can :create, Page
-        can :edit, Page do |page|
-          page.locked == false
-        end
-        can :update, Page do |page|
-          page.locked == false
-        end
       end
 
       # Photo
@@ -91,11 +50,6 @@ class Ability
         comment.user_id == comment.id
       end
 
-      # Site
-      if user.has_role?(:site_editor)
-        can :create, Site
-      end
-
       basic_read_only
     else
       # banned or unknown situation
@@ -107,23 +61,11 @@ class Ability
 
   protected
     def basic_read_only
-      can :read,Topic
-      can :feed,Topic
-      can :node,Topic
+      can :read,Slide
 
       can :read, Reply
 
-      can :read,  Page
-      can :recent, Page
-      can :preview, Page
-      can :comments, Page
-
-      can :preview, Note
-
       can :read, Photo
-      can :read, Site
-      can :read, Section
-      can :read, Node
       can :read, Comment
     end
 end
