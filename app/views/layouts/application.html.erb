@@ -17,9 +17,7 @@
   <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" />
   <%= raw SiteConfig.custom_head_html %>
   <%= csrf_meta_tag %>
-  <%= auto_discovery_link_tag(:rss,feed_topics_url,:title => '订阅最新帖') %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
-  <%= yield :node_feed_link %>
 </head>
 <body data-offset="50" data-controller-name="<%= controller_name %>" class="no-right-panel container" style="min-height: 800px;">  
 	<header id="header">
@@ -27,6 +25,11 @@
 			<span id="logo">
 				<a href="/" class="site-logo"></a>
 			</span>
+		</div>
+		<div class="btn-header">
+		<span class="pull-left">
+			<%= link_to content_tag(:i, " Slides", :class => "icon-hdd"), slides_url %>
+		</span>
 		</div>
 		<div class="pull-right">
 			<%= render "common/user_nav" %>
@@ -37,8 +40,11 @@
 		</div>
 	</header>
 
-      <%= yield %>
-
+	<div id="main" role="main">
+		<div id="content">
+			<%= yield %>
+		</div>
+	</div>
   <% if not mobile? %>
   <a class="go_top" href="#"><i class="icon icons_go_top"></i></a>
   <% end %>

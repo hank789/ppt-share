@@ -1,6 +1,8 @@
 /*
  *= require bootstrap
  *= require custom
+ *= require smart-form
+ *= require jarvis-widgets
  *= require _font-awesome 
  *= require wikistyle
  *= require jquery.chosen
@@ -168,8 +170,44 @@ form {
   color: #555;
 }
 #main { position:relative;}
-#main h1 { font-size:14px; line-height:26px; font-weight:bold; text-align:right; color:#333; margin-bottom:10px; }
-
+#main h1 { 
+	font-size: 24px;
+  letter-spacing: -1px;
+	margin: 10px 0; 
+}
+h1, h2, h3, h4 {
+	font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+	font-weight: 300;
+	margin: 0;
+}
+h3 {
+	display: block;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: normal;
+	margin: 20px 0;
+}
+.page-title {
+	margin: 12px 0 28px !important;
+	span {
+		color: #333333;
+		display: inline-block;
+		font-size: 16px;
+		vertical-align: 1px;
+	}
+}
+.semi-bold {
+	font-weight: 400 !important;
+}
+.well {
+	background: none repeat scroll 0 0 #FAFAFA;
+	border: 1px solid #DDDDDD;
+	box-shadow: 0 1px 1px #ECECEC;
+	position: relative;
+}
+.txt-color-blueDark {
+	color: #4C4F53 !important;
+}
 .topbar { position: static; margin-bottom:20px;}
 
 textarea.long { width:670px;}
@@ -426,9 +464,8 @@ button.lang {
 	& > *:first-child > a {
 	  -moz-user-select: none;
 		color: #6D6A69;
-		cursor: default !important;
 		display: inline-block;
-		font-size: 24px;
+		font-size: 18px;
 		font-weight: bold;
 		height: 30px;
 		margin: 10px 0 0;
@@ -442,7 +479,6 @@ button.lang {
 	}
 	& > *:first-child > a:hover {
 		color: #222222;
-		cursor: pointer;
 		transition: all 0s ease 0s;
 	}
 }
@@ -550,8 +586,6 @@ nav ul {
 }
 #main {
 	display: block;
-	margin-left: 220px;
-	margin-right: 220px;
 	min-height: 500px;
 	padding: 0;
 }
@@ -600,4 +634,48 @@ nav ul {
 	left: 0;
 	padding: 10px 14px;
 	position: relative;
+}
+.no-padding {
+	padding: 0 !important;
+}
+.bs-content {
+	background-color: #FFFFFF;
+	border-color: #DDDDDD;
+	border-radius: 4px 4px 0 0;
+	border-width: 1px;
+	box-shadow: none;
+	margin-left: 0;
+	margin-right: 0;
+	border-style: solid;
+	padding: 15px;
+	position: relative;
+}
+.item {
+	h3 > a {
+		color: #000000;
+	}
+ .meta {
+		margin-top: 10px;
+		span {
+			font-size: 12px !important;
+			line-height: 16px !important;
+			margin-right: 5px;
+			i {
+				font-size: 16px;
+				margin: 0 2px 0 0 !important;
+				padding-top: 4px !important;
+			}
+			a {
+			 	color: #000000;
+			}
+		}
+	}
+}
+ul.common-hits {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	> li {
+		margin-bottom: 7px;
+	}
 }

@@ -13,9 +13,11 @@ class Slide
 
 	field :onwer
   field :title
-  field :desc
-  field :desc_html
+  field :body
+  field :body_html
   field :private, :type => Mongoid::Boolean, :default => false
+	mount_uploader :slide, PhotoUploader 
+
 	field :slide
   field :replied_at , :type => DateTime
   field :replies_count, :type => Integer, :default => 0
@@ -32,7 +34,13 @@ class Slide
   #counter_cache :name => :node, :inverse_of => :topics
   has_many :replies, :dependent => :destroy
 
-  validates_presence_of :onwer, :title, :desc#, :node_id
+	index :onwer => 1
+	index :user_id => 1
+
+  validates_presence_of :onwer, :title, :body#, :node_id
+
+	counter :hits, :default => 0    
+	counter :downloads, :default => 0    
 
   #before_save :store_cache_fields
   #def store_cache_fields

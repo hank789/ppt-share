@@ -35,29 +35,16 @@ RubyChina::Application.routes.draw do
     end
   end
 
-  resources :nodes
-
-  get "topics/node:id" => "topics#node", as: 'node_topics'
-  get "topics/node:id/feed" => "topics#node_feed", as: 'feed_node_topics', defaults: { format: 'xml' }
-  get "topics/last" => "topics#recent", as: 'recent_topics'
-  resources :topics do
-    member do
-      post :reply
-      post :favorite
-      post :follow
-      post :unfollow
-      patch :suggest
-      delete :unsuggest
-    end
-    collection do
-      get :no_reply
-      get :popular
-      get :excellent
-      get :feed, defaults: { format: 'xml' }
-      post :preview
-    end
-    resources :replies
-  end
+ 	resources :slides do
+		member do 
+			post :reply
+			post :download
+		end
+		collection do
+			get :no_reply
+		end
+		resources :replies
+	end
 
   resources :photos
   resources :likes
@@ -68,29 +55,8 @@ RubyChina::Application.routes.draw do
     root :to => "home#index"
     resources :site_configs
     resources :replies
-    resources :topics do
-      member do
-        post :suggest
-        post :unsuggest
-        post :undestroy
-      end
-    end
-    resources :nodes
-    resources :sections
-    resources :site_sections
     resources :users
     resources :photos
-    resources :pages do
-      resources :versions, :controller => :page_versions do
-        member do
-          post :revert
-        end
-      end
-    end
-    resources :comments
-    resources :site_nodes
-		resources :site_attrs
-    resources :sites
     resources :locations
   end
 

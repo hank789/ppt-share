@@ -1,0 +1,59 @@
+<article ="col-sm-12">
+<div class="jarviswidget">
+<header role="heading">
+	<span class="widget-icon"> <i class="icon-plus"></i> </span>
+	<h2>上传Slide</h2>
+</header>
+<div role="content">
+<div class="widget-body no-padding">
+<%= simple_form_for @slide do |f| %>
+  <%= render "shared/error_messages", :target => @slide %>
+	<div class="row">
+		<div class="col col-4">
+			<%= f.input :slide%>	
+		</div>
+		<div class="col col-8">
+	<fieldset>
+		<div class="row">
+		<section class="col col-4">
+			<label class="label">Onwer </label>
+			<label class="select">
+				<select name="slide[onwer]">
+					<option value="<%= current_user.id %>">
+						<%= current_user.name %>
+					</option>
+				</select>
+			</label>
+		</section>
+		<section class="col col-8">
+			<label class="label">Slide 标题</label>
+			<label class="input">
+    		<%= f.text_field :title, :class => "span5", placeholder: "在这里填写标题" %>
+			</label>
+
+	</section>
+	</div>
+	<section>
+			<label class="label">Slide 描述</label>
+			<label class="textarea">
+    		<%= f.text_area :body, :class => "topic_editor closewarning" %>
+ 		 	</label>
+			<div class="note">
+				<strong>Note:</strong>
+				height of the textarea depends on the row attribute.
+			</div>
+		</section>
+		<section>
+		<%= f.collection_radio_buttons :private, [[1, '隐私'], [0, '公开']], :first, :last %>
+		</section>
+	</fieldset>
+</div>
+	</div>
+	<footer>
+    <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+	</footer>
+<% end %>
+</div>
+</div>
+</div>
+</article>

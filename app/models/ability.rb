@@ -12,6 +12,12 @@ class Ability
       # admin
       can :manage, :all
     elsif user.has_role?(:member)
+			# Slide
+			if !user.newbie?
+				can :create, Slide
+			end
+				
+
       # Topic
       if !user.newbie?
         can :create, Topic

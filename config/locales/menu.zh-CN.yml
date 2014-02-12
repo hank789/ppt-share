@@ -74,7 +74,7 @@
     create: 提交网站
   menu:
     slogan: "协作，分享，发现 Slides"
-    topics: "讨论区"
+    slides: "Slides"
     wiki: "知识库"
     users: "会员"
     cpanel: "后台"

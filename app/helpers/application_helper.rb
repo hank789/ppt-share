@@ -1,7 +1,7 @@
 # coding: utf-8
 require "redcarpet"
 module ApplicationHelper
-  def sanitize_topic(body)
+  def sanitize_slide(body)
     sanitize body, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strong em strike u a ul ol li span), :attributes => %w(href src class title alt target rel)
   end
 
@@ -24,10 +24,10 @@ module ApplicationHelper
   def controller_stylesheet_link_tag
     fname = ""
     case controller_name
-    when "users", "home", "topics", "pages", "notes"
+    when "users", "home", "slides"
       fname = "#{controller_name}.css"
     when "replies"
-      fname = "topics.css"
+      fname = "slides.css"
     end
     return "" if fname.blank?
     raw %(<link href="#{asset_path(fname)}" rel="stylesheet" data-turbolinks-track />)
@@ -36,10 +36,10 @@ module ApplicationHelper
   def controller_javascript_include_tag
     fname =
     case controller_name
-    when "pages","topics","notes"
+    when "pages","slides","notes"
       fname = "#{controller_name}.js"
     when "replies"
-      fname = "topics.js"
+      fname = "slides.js"
     end
     return "" if fname.blank?
     raw %(<script src="#{asset_path(fname)}" data-turbolinks-track></script>)
