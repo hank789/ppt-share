@@ -63,6 +63,7 @@ class User
   index :location => 1
   index({private_token: 1},{ sparse: true })
 
+	has_many :folders, :dependent => :destroy
   has_many :slides, :dependent => :destroy
   #has_many :notes
   has_many :replies, :dependent => :destroy

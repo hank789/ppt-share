@@ -17,13 +17,12 @@ class FoldersController < ApplicationController
 
   def show
     @folder =  Folder.find(params[:id])
-    @folder.hits.incr(1)
     set_seo_meta("查看 &raquo; #{t("menu.folders")}")
     drop_breadcrumb("查看")
   end
 
   def new
-    #@folder = current_user.folders.build
+    @folder = current_user.folders.build
     set_seo_meta("新建 &raquo; #{t("menu.folders")}")
     drop_breadcrumb(t("common.create"))
   end
@@ -35,7 +34,7 @@ class FoldersController < ApplicationController
   end
 
   def create
-    #@folder = current_user.folders.new(folder_params)
+    @folder = current_user.folders.new(folder_params)
     if @folder.save
       redirect_to(@folder, :notice => t("common.create_success"))
     else

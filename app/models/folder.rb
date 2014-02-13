@@ -3,12 +3,15 @@ class Folder
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel
+  include Mongoid::CounterCache
 
   field :name
   field :sort, :type => Integer, :default => 0
   field :slides_count, :type => Integer, :default => 0
 
   has_many :slides
+  belongs_to :user, :inverse_of => :folders
+  counter_cache :name => :user, :inverse_of => :folders
 
   validates_presence_of :name
   validates_uniqueness_of :name
