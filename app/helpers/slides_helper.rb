@@ -14,6 +14,14 @@ module SlidesHelper
     end
   end
 
+	def slide_download_tag(slide)
+		return "" if slide.blank?
+		return "" if slide.slide.blank?
+		title = raw "#{content_tag(:i, "", :class => "icon-download-alt")} <span>Download</span>"
+		#raw "<li>#{link_to(title, download_slide_path(slide.id), :onclick => "return Slides.download(this);", 'data-id' => slide.id, :class => "btn btn-large btn-success", :rel => "twipsy")}<a href='#{slide.slide}'>xxx</a></li>"
+		raw "<li><a href='#{slide.slide}?download' class='btn btn-large btn-success'>#{title}</a></li>"
+	end
+
   def slide_favorite_tag(slide)
     return "" if current_user.blank?
 		return "" if slide.blank? 

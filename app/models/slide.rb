@@ -15,7 +15,7 @@ class Slide
   field :body
   field :body_html
   field :private, :type => Mongoid::Boolean, :default => false
-	mount_uploader :slide, PhotoUploader 
+	mount_uploader :slide, SlideUploader 
 
 	field :slide
   field :replied_at , :type => DateTime

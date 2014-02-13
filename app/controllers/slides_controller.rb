@@ -56,9 +56,10 @@ class SlidesController < ApplicationController
   end
 
 	def download
+		
 		@slide = Slide.find(params[:id])
 		@slide.downloads.incr(1)
-		send_file "/var/www/info.php" 
+		send_file @slide.slide 
 		render :action => "index"
 	end
 
