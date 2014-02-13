@@ -12,9 +12,10 @@ class Ability
       # admin
       can :manage, :all
     elsif user.has_role?(:member)
-			# Slide
+			# Slide Folder
 			if !user.newbie?
 				can :create, Slide
+				can :create, Folder
 			end
       
       # Reply
