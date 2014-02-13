@@ -30,12 +30,15 @@ class Slide
 
   belongs_to :user, :inverse_of => :slides
   counter_cache :name => :user, :inverse_of => :slides
+  belongs_to :folder, :inverse_of => :folders
+  counter_cache :name => :folder, :inverse_of => :folders
   #belongs_to :node
   #counter_cache :name => :node, :inverse_of => :topics
   has_many :replies, :dependent => :destroy
 
 	index :onwer => 1
 	index :user_id => 1
+	index :folder_id => 1
 	index :likes_count => 1
 
   validates_presence_of :onwer, :title, :body#, :node_id

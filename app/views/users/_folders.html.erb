@@ -1,7 +1,8 @@
 <% folders.each do |folder| %>
 <div class="item col-xs-4">
-<div class="well">
-	<h3><%= folder.title %></h3>
+<div class="well bg-color-lighten">
+	<h3><%= folder.name%></h3>
+	<%= render "slides", :slides => folder.slides %>
 	<div class="meta">
 		<span></span>
 		<span class="pull-right"><i class="icon-group"></i> <%= folder.followers.count %></span>

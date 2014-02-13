@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
 	def folders
-		@folders = @user.following_folders.recent.paginate(:page => params[:page], :per_page => 30)
+		@folders = @user.folders.recent.paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.folders"))
   end
