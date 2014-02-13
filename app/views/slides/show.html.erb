@@ -1,7 +1,7 @@
 <div class="row">
 		<div class="col-xs-12">
 			<h1 class="page-title txt-color-blueDark">
-				<i class="icon-hdd"></i> 
+				<i class="icon-file"></i> 
 				My Slides	
 				<span>&gt; 
 			 	<%= @slide.title %> 
@@ -58,49 +58,4 @@
 
 			</div>	
 	<div>
-<div class="row">
-	<div class="col-xs-9">
-  <% if @replies.blank? %>
-    <div class="no_result">
-      <%= t("topics.no_replies") %>
-    </div>
-    <% else %>
-    <div id="replies" class="well">
-      <div class="total">
-        共收到 <b><%= @slide.replies_count %></b> 条回复
-      </div>
-      <div class="items">
-        <%= cache([@topic,params[:page],"raw:#{@show_raw}"]) do %>
-          <%= render :partial => "replies/reply", :collection => @replies %>
-        <% end %>
-      </div>
-      <%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %>
-    </div>
-  <% end %>
-
-  <% if current_user %>
-    <div id="reply" class="form well">
-      <% if can? :create, Reply %>
-        <%= render "editor_toolbar" %>
-        <%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide)) do |f| %>
-          <%= f.text_area :body,:class => "topic_editor span10", :rows => "4", :tabindex => "1" %>
-          <div class="submit_buttons">
-            <button type="submit" id="btn_reply" class="btn btn-primary" tabindex="2"><%= t("slides.submit_reply")%></button><br />
-            <span class="help-inline" title="或者 Command + Enter">Ctrl+Enter</span>
-          </div>
-
-          <span class="body helpblock">
-						<%#= render_cell :slides, :reply_help_block %> 
-          </span>
-        <% end %>
-      <% else %>
-        <div class="alert alert-info">
-          当前设置新手用户不能在 22:00 ~ 9:00 发帖。
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-      <%= render :partial => "slides/translation/need_login_to_reply" %>
-  <% end %>
-	</div>
 </div>

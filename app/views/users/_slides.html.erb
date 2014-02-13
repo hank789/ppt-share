@@ -1,5 +1,5 @@
 <% slides.each do |slide| %>
-<div class="item col-xs-4">
+<div class="item col-xs-4 draggable">
 <div class="well">
 	<h3><%= link_to(truncate(slide.title, :length => 100), slide_path(slide), :title => slide.title) %></h3>
 	<%= image_tag slide.slide, :style => "width: 100%" %>

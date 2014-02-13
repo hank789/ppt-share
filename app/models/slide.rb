@@ -11,7 +11,6 @@ class Slide
   include Redis::Objects
   include Mongoid::Mentionable
 
-	field :onwer
   field :title
   field :body
   field :body_html
@@ -36,12 +35,11 @@ class Slide
   #counter_cache :name => :node, :inverse_of => :topics
   has_many :replies, :dependent => :destroy
 
-	index :onwer => 1
 	index :user_id => 1
 	index :folder_id => 1
 	index :likes_count => 1
 
-  validates_presence_of :onwer, :title, :body#, :node_id
+  validates_presence_of :title, :body#, :node_id
 
 	counter :hits, :default => 0    
 	counter :downloads, :default => 0    

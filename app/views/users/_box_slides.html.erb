@@ -1,0 +1,7 @@
+<% slides.each do |slide| %>
+<div class="item col-xs-4 draggable">
+<div class="well">
+	<h3><i class="icon-file"></i> <%= link_to(truncate(slide.title, :length => 100), slide_path(slide), :title => slide.title) %></h3>
+</div>
+</div>
+<% end %>

@@ -16,12 +16,12 @@
 	<fieldset>
 		<div class="row">
 		<section class="col col-4">
-			<label class="label">Onwer </label>
+			<label class="label">文件夹</label>
 			<label class="select">
-				<select name="slide[onwer]">
-					<option value="<%= current_user.id %>">
-						<%= current_user.name %>
-					</option>
+				<select name="slide[folder_id]">
+					<% current_user.folders.each do |folder| %>
+						<option value="<%= folder.id %>"><%= folder.name %></option>
+					<% end %>
 				</select>
 			</label>
 		</section>
@@ -44,7 +44,7 @@
 			</div>
 		</section>
 		<section>
-		<%= f.collection_radio_buttons :private, [[1, '隐私'], [0, '公开']], :first, :last %>
+		<%#= f.collection_radio_buttons :private, [[1, '隐私'], [0, '公开']], :first, :last %>
 		</section>
 	</fieldset>
 </div>

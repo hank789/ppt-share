@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem "rails-i18n","0.1.8"
 gem "jquery-rails", "3.0.4"
+gem "pakunok"
 gem "rails_autolink", ">= 1.1.0"
 gem "md_emoji"
 gem 'exception_notification'

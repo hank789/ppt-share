@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require pakunok/jquery-ui/pack/draggable
 #= require jquery.turbolinks
 #= require bootstrap-transition
 #= require bootstrap-alert

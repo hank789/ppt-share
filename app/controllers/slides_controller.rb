@@ -206,6 +206,6 @@ class SlidesController < ApplicationController
   end
 
   def slide_params
-    params.require(:slide).permit(:title, :body, :onwer, :slide, :private)
+    params.require(:slide).permit(:folder_id, :title, :body, :slide, :private)
   end
 end

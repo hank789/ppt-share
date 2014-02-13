@@ -36,7 +36,7 @@ class FoldersController < ApplicationController
   def create
     @folder = current_user.folders.new(folder_params)
     if @folder.save
-			redirect_to(folders_user_path(current_user.login), :notice => t("common.create_success"))
+			redirect_to(workspace_user_path(current_user.login), :notice => t("common.create_success"))
     else
       render :action => "new"
     end

@@ -3,7 +3,7 @@
 	<span class="pull-left dropdown">
 		<%= link_to content_tag(:i, "", :class => "icon-angle-down"), "", "data-toggle" => "dropdown", :class => "popover-trigger-element dropdown-toggle icon-plus" %>
 		<%= render_list :class => "dropdown-menu" do |li| 
-			li << link_to(content_tag(:i, "", class:"icon-hdd") + " #{t("menu.add_slide")}", new_slide_url)
+			li << link_to(content_tag(:i, "", class:"icon-file") + " #{t("menu.add_slide")}", new_slide_url)
 			li << link_to(content_tag(:i, "", class:"icon-folder-close") + " #{t("menu.add_folder")}", new_folder_url)
 		end %>
 	</span>
