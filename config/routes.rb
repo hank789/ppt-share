@@ -78,7 +78,7 @@ RubyChina::Application.routes.draw do
 			get :slides
       get :likes
 			get :collections
-      get :folders
+      get :workspace
     end
   end
 

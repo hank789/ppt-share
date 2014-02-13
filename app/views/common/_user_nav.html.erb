@@ -23,7 +23,7 @@
 	</span>
 	<%= render_list :class => "dropdown-menu" do |li|
 		li << link_to(content_tag(:i, "", :class => "icon-home") + " #{t("menu.my_home_page")}", user_path(current_user.login))
-		li << link_to(content_tag(:i, "", :class => "icon-folder-close") + " #{t("menu.my_folders")}", folders_user_path(current_user.login))
+		li << link_to(content_tag(:i, "", :class => "icon-cloud") + " #{t("menu.my_workspace")}", workspace_user_path(current_user.login))
     unless params[:controller].match(/cpanel/)
 			li << ['', class: 'divider']
 			li << link_to(content_tag(:i,"", :class => "icon-upload-alt") + " #{t("menu.uploads")}", slides_user_path(current_user.login))
