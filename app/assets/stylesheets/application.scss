@@ -685,3 +685,9 @@ ul.common-hits {
 		padding: 0 15px 0 5px;
 	}
 }
+.nav-tabs > li.active > a {
+	border-top-width: 0 !important;
+	box-shadow: 0 -2px 0 #5384AF;
+	font-weight: bold;
+	margin-top: 1px !important;
+}
