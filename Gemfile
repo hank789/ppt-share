@@ -22,6 +22,7 @@ gem 'carrierwave', '0.6.2'
 #gem 'carrierwave-upyun', '0.1.5'
 gem 'carrierwave-qiniu'
 gem 'mini_magick','3.3', require: false
+gem 'dropzonejs-rails'
 
 # Mongoid 辅助插件
 gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9ccc337e66f'
@@ -118,4 +119,8 @@ end
 
 group :production do
   gem 'newrelic_rpm', "~> 3.6.8.168"
+end
+
+group :development do
+	gem 'debugger'
 end

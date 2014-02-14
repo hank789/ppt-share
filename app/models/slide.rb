@@ -15,7 +15,6 @@ class Slide
   field :body
   field :body_html
   field :private, :type => Mongoid::Boolean, :default => false
-	mount_uploader :slide, SlideUploader 
 
 	field :slide
   field :replied_at , :type => DateTime
@@ -33,13 +32,14 @@ class Slide
   counter_cache :name => :folder, :inverse_of => :folders
   #belongs_to :node
   #counter_cache :name => :node, :inverse_of => :topics
+  has_many :attachs, :dependent => :destroy
   has_many :replies, :dependent => :destroy
 
 	index :user_id => 1
 	index :folder_id => 1
 	index :likes_count => 1
 
-  validates_presence_of :title, :body#, :node_id
+  validates_presence_of :title#, :node_id
 
 	counter :hits, :default => 0    
 	counter :downloads, :default => 0    

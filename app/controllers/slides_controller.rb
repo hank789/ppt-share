@@ -108,15 +108,26 @@ class SlidesController < ApplicationController
   end
 
   def create
-    @slide = Slide.new(slide_params)
-    @slide.user_id = current_user.id
-    #@slide.node_id = params[:node] || slide_params[:node_id]
-
-    if @slide.save
-      redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
-    else
-      render :action => "new"
-    end
+	  if !params[:file].nil?	
+			@attach = Attach.new
+			@attach.file= params[:file]
+			@attach.save
+			#Attach.new({:url => @b}).save
+			render :text => @attach._id 
+		else
+    	@slide = Slide.new(slide_params)
+    	@slide.user_id = current_user.id
+			if @slide.save
+				@attach = Attach.find(@slide.slide)
+				if @attach.slide_id.nil?
+					@attach.slide_id = @slide._id
+					@attach.save
+				end
+      	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
+    	else
+      	render :action => "new"
+    	end
+		end
   end
 
   def preview

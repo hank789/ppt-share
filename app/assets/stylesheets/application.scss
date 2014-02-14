@@ -11,6 +11,7 @@
  *= require social-share-button
  *= require jquery.atwho
  *= require nprogress
+ *= require dropzone/dropzone
  *= require_tree ./sprites/
  *= require_self
  */
@@ -690,4 +691,9 @@ ul.common-hits {
 	box-shadow: 0 -2px 0 #5384AF;
 	font-weight: bold;
 	margin-top: 1px !important;
+}
+.dropzone {
+	background-color: #FAFCFD;
+	background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+	background-size: 16px 16px;
 }

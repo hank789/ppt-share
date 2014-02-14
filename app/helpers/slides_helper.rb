@@ -14,12 +14,20 @@ module SlidesHelper
     end
   end
 
+	def slide_play_tag(slide)
+		return "" if slide.blank?
+		return "" if slide.slide.blank?
+		@attach = Attach.find(slide.slide)
+		image_tag @attach.file		
+	end
+
 	def slide_download_tag(slide)
 		return "" if slide.blank?
 		return "" if slide.slide.blank?
+		@attach = Attach.find(slide.slide)
 		title = raw "#{content_tag(:i, "", :class => "icon-download-alt")} <span>Download</span>"
-		#raw "<li>#{link_to(title, download_slide_path(slide.id), :onclick => "return Slides.download(this);", 'data-id' => slide.id, :class => "btn btn-large btn-success", :rel => "twipsy")}<a href='#{slide.slide}'>xxx</a></li>"
-		raw "<li><a href='#{slide.slide}?download' class='btn btn-large btn-success'>#{title}</a></li>"
+		#raw "<li>#{link_to(title, download_slide_path(slide.id), :onclick => "return Slides.download(this);", 'data-id' => slide.id, :class => "btn btn-large btn-success", :rel => "twipsy")}<a href='#{attach.file}'>xxx</a></li>"
+		raw "<li><a href='#{@attach.file}?download' class='btn btn-large btn-success'>#{title}</a></li>"
 	end
 
   def slide_favorite_tag(slide)

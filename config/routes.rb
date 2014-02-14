@@ -36,7 +36,7 @@ RubyChina::Application.routes.draw do
   end
 
 	resources :folders
-
+	
  	resources :slides do
 		member do 
 			post :reply

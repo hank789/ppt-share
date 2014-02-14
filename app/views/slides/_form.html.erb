@@ -1,16 +1,15 @@
-<article ="col-sm-12">
-<div class="jarviswidget">
+<div id="upload_editor" class="jarviswidget">
 <header role="heading">
-	<span class="widget-icon"> <i class="icon-plus"></i> </span>
-	<h2>上传Slide</h2>
+	<span class="widget-icon"> <i class="icon-file"></i> </span>
+	<h2>基本信息</h2>
 </header>
 <div role="content">
-<div class="widget-body no-padding">
+<div class="widget-body">
 <%= simple_form_for @slide do |f| %>
+	<%= f.input :slide, :as => :hidden %>
   <%= render "shared/error_messages", :target => @slide %>
 	<div class="row">
 		<div class="col col-4">
-			<%= f.input :slide%>	
 		</div>
 		<div class="col col-8">
 	<fieldset>
@@ -56,4 +55,3 @@
 </div>
 </div>
 </div>
-</article>

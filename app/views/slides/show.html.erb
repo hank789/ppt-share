@@ -51,6 +51,7 @@
     	</div>
       <div class="body entry-content">
         <%= sanitize_slide @slide.body_html %>
+				<%= slide_play_tag(@slide) %>
 				<%= image_tag @slide.slide %>
       </div>
 
