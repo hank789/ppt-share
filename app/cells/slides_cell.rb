@@ -6,4 +6,9 @@ class SlidesCell < BaseCell
     render
   end
 
+	def carousel(opts = {})
+		@attach = Attach.find(opts[:attach_id])
+		render
+	end
+
 end

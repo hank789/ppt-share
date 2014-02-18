@@ -7,6 +7,7 @@ class Photo
   field :image
 
   belongs_to :user
+	belongs_to :attach
 
   ACCESSABLE_ATTRS = [:image]
 

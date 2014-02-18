@@ -19,6 +19,7 @@
 #= require jquery.html5-fileupload
 #= require social-share-button
 #= require jquery.atwho
+#= require jquery.flexslider
 #= require nprogress
 #= require emoji_list
 #= require faye

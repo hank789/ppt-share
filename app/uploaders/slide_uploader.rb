@@ -1,5 +1,7 @@
 # coding: utf-8
 class SlideUploader < BaseUploader
+	#cache store
+	after :cache, :docsplit
 
   # Override the filename of the uploaded files:
   def filename
@@ -12,7 +14,22 @@ class SlideUploader < BaseUploader
   end
 
 	def extension_white_list
-    %w(jpg jpeg gif png ppt)
-  end
+    %w(jpg jpeg gif png ppt) end
+
+	def move_to_cache
+	  true
+	end
+
+  def move_to_store
+		true
+	end
+
+	# Docsplit.extract_images(Rails.root.join(self.url))
+	def docsplit(args)
+		@model.cache_id = cache_id
+		# cache_path = Rails.root.join('public', 'uploads', 'tmp', cache_id).to_s 
+		# Docsplit.extract_images(path, :output => cache_path)
+		
+	end
 
 end

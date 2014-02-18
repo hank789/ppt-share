@@ -16,6 +16,7 @@ gem "rails_autolink", ">= 1.1.0"
 gem "md_emoji"
 gem 'exception_notification'
 gem "jbuilder", "~> 2.0.2"
+gem "flexslider"
 
 # 上传组件
 gem 'carrierwave', '0.6.2'
@@ -94,6 +95,9 @@ gem 'eventmachine', '1.0.3'
 gem "puma", "2.6.0"
 # Faye Server 需要
 gem 'thin', "1.5.0"
+
+# Doc split
+gem "docsplit", "~> 0.7.2"
 
 group :development, :test do
   gem 'capistrano', '2.9.0', require: false
