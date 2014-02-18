@@ -2,7 +2,7 @@
 <div class="item col-xs-4 draggable">
 <div class="well">
 	<h3><i class="icon-file"></i> <%= link_to(truncate(slide.title, :length => 100), slide_path(slide), :title => slide.title) %></h3>
-	<%= image_tag slide.slide, :style => "width: 100%" %>
+	<%= render_cell :slides, :carousel, :attach_id => slide.slide %>
 	<div class="meta">
 		<span><i class="icon-user"></i> <%= slide.user.name if !slide.user.nil? %></span>
 		<span class="pull-right"><i class="icon-download-alt"></i><%#= link_to content_tag(:i, "", :class => 'icon-download'), download_slide_path(slide.id), method: 'post' %> <%= slide.downloads %></span>
