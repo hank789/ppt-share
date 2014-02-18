@@ -54,6 +54,11 @@
     $('body').animate({ scrollTop: -1 },0);
     </script>
   <% end %>
+	<script type="text/javascript">
+		$(function () {
+			$('.flexslider').flexslider({});
+		});
+	</script>
   <script type="text/javascript" data-turbolinks-eval=false>
     ROOT_URL = "<%= root_url %>";
     FAYE_SERVER_URL = "<%= Setting.faye_server %>";

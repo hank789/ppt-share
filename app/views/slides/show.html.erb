@@ -37,6 +37,11 @@
 			<div class="row">
 				<div class="col-xs-9">
 					<%= render :partial => "slides/slide_info", :locals => { :slide => @slide} %> 
+					<div class="body entry-content">
+        		<%= sanitize_slide @slide.body_html %>
+						<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
+      		</div>
+
 				</div>
 				<div class="col-xs-3">	
 					<ul class="common-hits">
@@ -49,12 +54,7 @@
 					</ul>
 				</div>
     	</div>
-      <div class="body entry-content">
-        <%= sanitize_slide @slide.body_html %>
-				<%= slide_play_tag(@slide) %>
-				<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
-      </div>
-
+      
 			</div>	
 	<div>
 </div>

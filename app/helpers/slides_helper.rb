@@ -14,13 +14,6 @@ module SlidesHelper
     end
   end
 
-	def slide_play_tag(slide)
-		return "" if slide.blank?
-		return "" if slide.slide.blank?
-		@attach = Attach.find(slide.slide)
-		image_tag @attach.file		
-	end
-
 	def slide_download_tag(slide)
 		return "" if slide.blank?
 		return "" if slide.slide.blank?

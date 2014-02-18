@@ -1,6 +1,6 @@
 class DocsplitWorker
 	include Sidekiq::Worker
-	#sidekiq_options queue: "high"
+	sidekiq_options queue: "a"
 
 	def perform(attach_id)
 		attach = Attach.find(attach_id)
@@ -16,8 +16,8 @@ class DocsplitWorker
 			@photo = attach.photos.new
 			@photo.image = File.open(cache_path + "/" + item)
 			@photo.save
-			FileUtils.rm(cache_path + "/" + item)
+			#FileUtils.rm(cache_path + "/" + item)
 		end
-		Dir.rmdir(cache_path)
+		#Dir.rmdir(cache_path)
 	end
 end
