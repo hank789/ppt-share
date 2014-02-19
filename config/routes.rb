@@ -69,6 +69,10 @@ RubyChina::Application.routes.draw do
 
   mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 
+	require 'sidekiq/web'
+	# ...
+	mount Sidekiq::Web, at: '/sidekiq'
+
   # WARRING! 请保持 User 的 routes 在所有路由的最后，以便于可以让用户名在根目录下面使用，而又不影响到其他的 routes
   # 比如 http://saashow.com/huacnlee
   get "users/city/:id" => "users#city", as: 'location_users'

@@ -2,6 +2,8 @@
 #   sidekiq -C sidekiq.yml
 ---
 :verbose: false
+:pidfile: ./tmp/pids/sidekiq.pid  
+:logfile: ./log/sidekiq.log  
 :concurrency: 5
 :queues:
   - [a, 5]

@@ -17,6 +17,7 @@ module RubyChina
     config.autoload_paths += %W(#{config.root}/uploaders)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/grape)
+		config.autoload_paths += %W(#{Rails.root}/app/workers)  
 
     config.time_zone = 'Beijing'
 

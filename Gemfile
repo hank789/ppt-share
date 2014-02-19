@@ -126,5 +126,9 @@ group :production do
 end
 
 group :development do
+	# 监控sidekiq
+	gem 'sinatra', require: false  
+	gem 'slim' 
+	# Debugger
 	gem 'debugger'
 end
