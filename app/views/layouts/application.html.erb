@@ -43,6 +43,7 @@
 				</div>
 			</div>
 		</nav>
+		<%= render partial:"users/menu" if current_user %>
 		<%= notice_message %>   
 		<%= yield %>
 	<% else %>

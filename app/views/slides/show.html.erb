@@ -1,197 +1,130 @@
-<%= render :partial => "users/menu" %>
-
 <div class="listing-page-top tooltip-demo">
-	    <div class="container">
-					<h2><%= @slide.title %>
-	            <span class="pull-right">
-								<%= slide_download_tag(@slide) %>
-      					<%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
-	            </span>
-	        </h2>
-	        <p>
-	            <strong>
-	                用户:
-	            </strong>
-							<%= @slide.user.name %>&middot;
-	            <strong>
-	                上传于:
-	            </strong>
-							<%= @slide.created_at %>&middot;
-							<span class="label label-info">公开项目</span>&middot;
-	            <span class="label label-default">
-	                <i class="icon-eye-open">
-	                </i>
-									<%= @slide.hits %>
-	            </span>
-	            &middot;
-							<%= likeable_tag(@slide) %>
-							&middot;
-							<%= slide_favorite_tag(@slide) %>
-	        </p>
-	        <ul class="nav nav-tabs">
-	            <li class="active">
-	                <a href="#">
-	                    <i class="fa fa-bars">
-	                    </i>
-	                   幻灯片 
-	                </a>
-	            </li>
-	        </ul>
-	    </div>
-		</div>
+	<div class="container">
+		<h2>
+			<%= @slide.title %>
+	  	<span class="pull-right">
+				<%= slide_download_tag(@slide) %>
+      	<%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
+	    </span>
+	 	</h2>
+	 	<p>
+	    <strong>用户:</strong>
+			<%= @slide.user.name %>&middot;
+	    <strong>上传于:</strong>
+			<%= @slide.created_at %>&middot;
+			<span class="label label-info">公开项目</span>&middot;
+	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>&middot;
+			<%= likeable_tag(@slide) %>&middot;
+			<%= slide_favorite_tag(@slide) %>
+	  </p>
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a href="#"><i class="icon-facetime-video"></i> 幻灯片</a></li>
+	  </ul>
+	</div>
+</div>
 
 <!-- Begin page content -->
-        <div class="listing-page">
-
-
-            <div class="container">
-
-                <div class="row">
-
-
-
-
-                    <div class="col-md-6">
-
-                        <div class="group section-wrap upper" id="upper">
-                            <div class="wrap group">
-
-
-                                <div class="section-2 group">
-																	<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
-                                </div>
-                                <!-- /.section-2 -->
-                            </div>
-                            <!-- /.wrap -->
-                        </div>
-                        <!-- /#upper -->
-                    </div>
-
-
-
-
-
-                    <div class="col-md-6">
-                        <div class="panel panel-primary ">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">对幻灯片发表评论</h3>
-                            </div>
-                            <div class="panel-body">
-
-                                <div class="row">
-
-
-                                    <div class="col-lg-12">
-                                        <div class="media">
-                                            <a class="pull-left" href="#">
-																							<%= user_avatar_tag(@slide.user, :big) %> 
-                                            </a>
-                                            <div class="media-body">
-																							<h4 class="media-heading"><%= @slide.user.name %> <small> 拥有<%= @slide.user.slides.count %>组幻灯片</small></h4>
-                                                <h5><a href="">查看该上传者其它幻灯片</a></h5>
-                                                <hr style="margin:8px auto">
-
-                                                <span class="label label-primary">所属组织</span>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-
-																<%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
-																		<div class="form-group">
-                                        <label for="exampleInputEmail1">评分</label>
-																				<div><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
-                                    </div>
-                                    <label for="exampleInputEmail1">评论</label>
-
-																	 <%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
-																	 <br>
-                                    <button type="submit" class="btn btn-success">发布!</button>
-																 <% end %>  
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-
-
-
-
-                </div>
-
-
-
-                <ul id="myTab" class="nav nav-tabs">
-                    <li class="active"><a href="#profile" data-toggle="tab">Slide描述</a>
-                    </li>
-                    <li><a href="#history" data-toggle="tab">版本及变更历史</a>
-                    </li>
-										<li><a href="#comments" data-toggle="tab">评论 (<%= @slide.replies_count %>)</a>
-                    </li>
-
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="profile">
-        							<%= sanitize_slide @slide.body_html %>
-                    </div>
-                    <div class="tab-pane fade" id="history">
-                    </div>
-                    <div class="tab-pane fade" id="comments">
-											<div class="items">  
-											<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
-												<%= render :partial => "replies/reply", :collection => @replies %>                               
-											<% end %>          
-										 	</div>               
-											<%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %> 
-                    </div>
-            		</div>
+<div class="listing-page">
+	<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="group section-wrap upper" id="upper">
+        	<div class="wrap group">
+          	<div class="section-2 group">
+							<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
             </div>
+          		<!-- /.section-2 -->
+         	</div>
+        	<!-- /.wrap -->
         </div>
-
-
+      	<!-- /#upper -->
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-primary ">
+        	<div class="panel-heading">
+          	<h3 class="panel-title">对幻灯片发表评论</h3>
+          </div>
+        <div class="panel-body">
+     			<div class="row">
+          	<div class="col-lg-12">
+           		<div class="media">
+             		<a class="pull-left" href="#"><%= user_avatar_tag(@slide.user, :big) %></a>
+              	<div class="media-body">
+									<h4 class="media-heading"><%= @slide.user.name %> <small> 拥有<%= @slide.user.slides.count %>组幻灯片</small></h4>
+             			<h5><a href="">查看该上传者其它幻灯片</a></h5>
+              		<hr style="margin:8px auto">
+              		<span class="label label-primary">所属组织</span>
+            		</div>
+          		</div>
+        		</div>
+      		</div>
+				<%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
+					<div class="form-group">
+      			<label for="exampleInputEmail1">评分</label>
+						<div><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
+      			</div>
+     				<label for="exampleInputEmail1">评论</label>
+						<%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
+						<br>
+     				<button type="submit" class="btn btn-success">发布!</button>
+					<% end %>  
+    			</div>
+  			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#profile" data-toggle="tab">Slide描述</a></li>
+  <li><a href="#history" data-toggle="tab">版本及变更历史</a></li>
+	<li><a href="#comments" data-toggle="tab">评论 (<%= @slide.replies_count %>)</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="profile">
+		<%= sanitize_slide @slide.body_html %>
+  </div>
+	<div class="tab-pane fade" id="history">
+	</div>
+ 	<div class="tab-pane fade" id="comments">
+		<div class="items">  
+			<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
+				<%= render :partial => "replies/reply", :collection => @replies %>
+			<% end %>          
+		</div>               
+		<%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %> 
+  </div>
+</div>
 <script>
-        $(function () {
-            var $upper = $('#upper');
+$(function () {
+  var $upper = $('#upper');
+  $('#images').refineSlide({
+  	transition: 'fade',
+    onInit: function () {
+    	var slider = this.slider,
+      $triggers = $('.translist').find('> li > a');
+      $triggers.parent().find('a[href="#_' + this.slider.settings['transition'] + '"]').addClass('active');
 
-            $('#images').refineSlide({
-                transition: 'fade',
-                onInit: function () {
-                    var slider = this.slider,
-                        $triggers = $('.translist').find('> li > a');
+      $triggers.on('click', function (e) {
+      	e.preventDefault();
+        if (!$(this).find('.unsupported').length) {
+        	$triggers.removeClass('active');
+          $(this).addClass('active');
+          slider.settings['transition'] = $(this).attr('href').replace('#_', '');
+        }
+      });
 
-                    $triggers.parent().find('a[href="#_' + this.slider.settings['transition'] + '"]').addClass('active');
+      function support(result, bobble) {
+        var phrase = '';
+        if (!result) {
+          phrase = ' not';
+          $upper.find('div.bobble-' + bobble).addClass('unsupported');
+          $upper.find('div.bobble-js.bobble-css.unsupported').removeClass('bobble-css unsupported').text('JS');
+        }
+      }
 
-                    $triggers.on('click', function (e) {
-                        e.preventDefault();
-
-                        if (!$(this).find('.unsupported').length) {
-                            $triggers.removeClass('active');
-                            $(this).addClass('active');
-                            slider.settings['transition'] = $(this).attr('href').replace('#_', '');
-                        }
-                    });
-
-                    function support(result, bobble) {
-                        var phrase = '';
-
-                        if (!result) {
-                            phrase = ' not';
-                            $upper.find('div.bobble-' + bobble).addClass('unsupported');
-                            $upper.find('div.bobble-js.bobble-css.unsupported').removeClass('bobble-css unsupported').text('JS');
-                        }
-                    }
-
-                    support(this.slider.cssTransforms3d, '3d');
-                    support(this.slider.cssTransitions, 'css');
-                }
-            });
-        });
+      support(this.slider.cssTransforms3d, '3d');
+      support(this.slider.cssTransitions, 'css');
+    }
+  });
+});
 </script>

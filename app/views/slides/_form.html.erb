@@ -1,57 +1,29 @@
-<div id="upload_editor" class="jarviswidget">
-<header role="heading">
-	<span class="widget-icon"> <i class="icon-file"></i> </span>
-	<h2>基本信息</h2>
-</header>
-<div role="content">
-<div class="widget-body">
-<%= simple_form_for @slide do |f| %>
-	<%= f.input :slide, :as => :hidden %>
-  <%= render "shared/error_messages", :target => @slide %>
-	<div class="row">
-		<div class="col col-4">
-		</div>
-		<div class="col col-8">
-	<fieldset>
-		<div class="row">
-		<section class="col col-4">
-			<label class="label">文件夹</label>
-			<label class="select">
-				<select name="slide[folder_id]">
-					<% current_user.folders.each do |folder| %>
-						<option value="<%= folder.id %>"><%= folder.name %></option>
-					<% end %>
-				</select>
-			</label>
-		</section>
-		<section class="col col-8">
-			<label class="label">Slide 标题</label>
-			<label class="input">
-    		<%= f.text_field :title, :class => "span5", placeholder: "在这里填写标题" %>
-			</label>
-
-	</section>
-	</div>
-	<section>
-			<label class="label">Slide 描述</label>
-			<label class="textarea">
-    		<%= f.text_area :body, :class => "topic_editor closewarning" %>
- 		 	</label>
-			<div class="note">
-				<strong>Note:</strong>
-				height of the textarea depends on the row attribute.
-			</div>
-		</section>
-		<section>
-		<%#= f.collection_radio_buttons :private, [[1, '隐私'], [0, '公开']], :first, :last %>
-		</section>
-	</fieldset>
-</div>
-	</div>
-	<footer>
-    <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
-	</footer>
-<% end %>
-</div>
-</div>
+<div id="upload_editor" class="panel panel-primary ">
+	<div class="panel-heading"><h3 class="panel-title">对幻灯片发表评论</h3></div>
+  <div class="panel-body">
+  	<div class="row">
+      <div class="col-lg-12">
+      	<div class="media">
+         	<a class="pull-left" href="#"><%= user_avatar_tag(current_user, :big) %></a>
+          <div class="media-body">
+						<h4 class="media-heading"><%= current_user.name %> <small> 拥有<%= current_user.slides.count %>组幻灯片</small></h4>
+            <h5><a href="">查看该上传者其它幻灯片</a></h5>
+            <hr style="margin:8px auto">
+            <span class="label label-primary">所属组织</span>
+          </div>
+        </div>
+  		</div>
+   	</div>
+		<%= simple_form_for @slide do |f| %>
+			<%= f.input :slide, :as => :hidden %>
+			<div class="form-group">
+      	<label for="exampleInputEmail1">标题</label>
+				<%= f.text_field :title, class:"form-control" %>
+      </div>
+      <label for="exampleInputEmail1">描述</label>
+			<%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
+			<br>
+      <button type="submit" class="btn btn-success">创建</button>
+		<% end %>
+  </div>
 </div>
