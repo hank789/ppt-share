@@ -25,8 +25,15 @@ eos
 
 # Footer HTML
 SiteConfig.save_default("footer_html",<<-eos
-<p class="copyright">
- &copy; Ruby China Group.
+<ul class="list-inline">
+	<li><a href="/">Home</a></li>
+	<li><a href="#">Slides</a></li>
+	<li><a href="#">Terms</a></li>
+	<li><a href="#">Our Blog</a></li>
+	<li><a href="#">Contact Us</a></li>
+</ul>
+<p class="text-muted credit">
+&copy; 2014 <strong>MakeSlide</strong> · Powered by: <a href="http://dokec.com/">Dokec</a> 
 </p>
 eos
 )

@@ -1,6 +1,10 @@
 # coding: utf-8
 require "redcarpet"
 module ApplicationHelper
+	def orphan_navbar
+		!current_user && (['sessions/new', 'sessions/create', 'account/new', 'account/create', 'devise/passwords/new', 'devise/passwords/create'].include? "#{params[:controller]}/#{params[:action]}") 
+	end
+
   def sanitize_slide(body)
     sanitize body, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strong em strike u a ul ol li span), :attributes => %w(href src class title alt target rel)
   end

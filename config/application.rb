@@ -44,7 +44,7 @@ module RubyChina
     config.to_prepare {
       Devise::Mailer.layout "mailer"
     }
-    
+
     config.assets.precompile += %w(*.css *.js)
   end
 end

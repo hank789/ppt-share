@@ -1,49 +1,41 @@
 <% if current_user %> 
-<div id="user-triggered" class="btn-header pull-right">
-	<span class="pull-left dropdown">
-		<%= link_to content_tag(:i, "", :class => "icon-angle-down"), "", "data-toggle" => "dropdown", :class => "popover-trigger-element dropdown-toggle icon-plus" %>
-		<%= render_list :class => "dropdown-menu" do |li| 
-			li << link_to(content_tag(:i, "", class:"icon-file") + " #{t("menu.add_slide")}", new_slide_url)
-			li << link_to(content_tag(:i, "", class:"icon-folder-close") + " #{t("menu.add_folder")}", new_folder_url)
-		end %>
-	</span>
-	<span class="pull-left">
-		<a id="activity" class="activity-dropdown" href="<%= notifications_path %>" id="user_notifications_count">
-			<!-- <i class="icon-user"></i> -->
-			<%= user_avatar_tag(current_user, :activity, :link => false) %>
-
-			<b class="badge bounceIn animated"><%= unread_notify_count %></b>
-		</a>
-	</span>
-<div id="userbar" class="dropdown">
-	<span class="label">Login as:</span>
-	<span id="userbar-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">
-		<%= current_user.login %>
-  	<i class="icon-angle-down"></i>
-	</span>
-	<%= render_list :class => "dropdown-menu" do |li|
-		li << link_to(content_tag(:i, "", :class => "icon-home") + " #{t("menu.my_home_page")}", user_path(current_user.login))
-		li << link_to(content_tag(:i, "", :class => "icon-cloud") + " #{t("menu.my_workspace")}", workspace_user_path(current_user.login))
-    unless params[:controller].match(/cpanel/)
-			li << ['', class: 'divider']
-			li << link_to(content_tag(:i,"", :class => "icon-upload-alt") + " #{t("menu.uploads")}", slides_user_path(current_user.login))
-			li << link_to(content_tag(:i,"", :class => "icon-bookmark") + " #{t("menu.collections")}", collections_user_path(current_user.login))
-			li << link_to(content_tag(:i, "", :class => "icon-heart") + " #{t("menu.likes")}", likes_user_path(current_user.login))
-    end
-			li << ['', class: 'divider']
-			li << link_to(content_tag(:i, "", :class => "icon-dashboard") + " #{t("menu.cpanel")}", "/cpanel") if admin?
-			li << link_to(content_tag(:i, "", :class => "icon-wrench") + " #{t("menu.edit_account_path")}", edit_user_registration_path)
-			li << link_to(content_tag(:i, "", :class => "icon-signout") + " #{t("common.logout")}", destroy_user_session_path, method: "delete" )
-  end %>
-
-</div>
-</div>
+	<ul class="nav pull-right" id="userbar">
+		<li>
+	  	<div class="btn-group" style="padding-right: 16px">
+				<a class="btn btn-primary navbar-btn btn-sm" href="<%= new_slide_url %>"><i class="icon-upload-alt"></i> Upload slide</a>
+	  	</div>
+		</li>
+		</li>
+		  <%
+			  badge_class = ""
+		    badge_class = "badge-error" if unread_notify_count > 0
+		  %>
+	  <li<%= " class=active" if ["notifications"].index(params[:controller]) %>>
+		<a href="<%= notifications_path %>" id="user_notifications_count"><span class="<%= badge_class %>"><b class="icon-bell"></b> <%= unread_notify_count %></span></a>
+		</li>
+		<li class="dropdown" id="user_menu">
+			<%= link_to(sanitize("<b class='icon-user'></b> #{current_user.login} <b class='caret'></b>"), "#user_menu", :class => "dropdown-toggle", "data-toggle" => "dropdown") %>
+		    <%= render_list :class => "dropdown-menu" do |li|
+		      li << link_to(t("menu.my_home_page"), user_path(current_user.login) )
+					li << link_to(t("menu.my_workspace"), workspace_user_path(current_user.login))
+					li << ['', class: 'divider']
+					li << link_to(t("menu.uploads"), slides_user_path(current_user.login))
+					li << link_to(t("menu.collections"), collections_user_path(current_user.login))
+					li << link_to(t("menu.likes"), likes_user_path(current_user.login))
+					li << ['', class: 'divider']
+		      unless params[:controller].match(/cpanel/)
+		        li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
+		        li << link_to(t("menu.cpanel"), "/cpanel") if admin?
+		      end
+		      li << link_to(t("common.logout"), destroy_user_session_path, method: "delete" )
+		    end %>
+	  </li>
+	</ul>
 <% else %>
-	<span id="login-header-space">
-		<h4 class="hidden-mobile">
-			<%= link_to( "还没有帐号？", new_user_registration_path) %>
-		</h4> 
-		<a class="btn btn-danger" href="<%= new_user_session_path %>">登录</a> 
-	</span>
-
+	<p class="navbar-text pull-right">Already a user? <%= link_to( "Login", new_user_session_path, {:class=>"navbar-link"} ) %></p>
+	<div class="btn-toolbar pull-right">
+		<div class="btn-group">
+			<a class="btn btn-success navbar-btn btn-sm" href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> Create an account</a>
+		</div>
+	</div>
 <% end %>

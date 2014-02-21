@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require pakunok/jquery-ui/pack/draggable
 #= require jquery.turbolinks
+#= require sco.collapse
 #= require dropzone
 #= require bootstrap-transition
 #= require bootstrap-alert

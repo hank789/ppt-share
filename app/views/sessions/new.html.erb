@@ -1,35 +1,25 @@
-<% content_for :sitemap do %><span class="current">加入讨论区</span><% end %>
-<div class="content">
-    <div class="box">
-    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <fieldset>
-        <legend><%= t("common.login") %></legend>
-        <%= f.input :login, :input_html => { :style => "width:180px;" } %>
-        <%= f.input :password, :input_html => { :style => "width:180px;" } %>
-        <% if devise_mapping.rememberable? -%>
-        <div class="control-group checkbox optional">
-          <label class="checkbox optional control-label"></label>
-          <div class="controls">
-            <div class="inputs-list"><label for="user_remember_me"><%= f.check_box :remember_me, :style => "width:auto;" %> <%= t("common.remember_me") %></label></div>
-          </div>
-        </div>
-        <% end -%>
-        <div class="form-actions">
-          <%= f.submit t("common.login"), :class => "btn btn-primary", 'data-disable-with' => t("common.logining") %>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
+<div class="auth-unit-top">
+	<h3>Login</h3>
+	<p>to access your account</p>
 </div>
-<div class="sidebar">
-  <div class="box">
-    <h2>还没有帐号？</h2>
-    <%= render :partial => "devise/shared/links" %>
-  </div>
-  <div class="box">
-        <h2>用其他平台的帐号登录</h2>
-        <ul>
-          <li><%= link_to "Github", user_omniauth_authorize_path(:github) %> </li>
-        </ul>
-    </div>
+<div class="auth-unit-inner">
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "tooltip-demo", :role => "form"}) do |f| %>
+	<%= render "shared/error_messages", :target => resource %>
+	<div class="form-group">
+		<%= f.label :login %>
+		<%= f.input_field :login, :class => 'form-control', placeholder: "email@example.com" %>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputPassword1">Password <%= link_to( "forgot?", new_password_path(resource_name), {class:"pull-right"} ) %></label>
+		<%= f.input_field :password, :class => 'form-control', placeholder: "**********" %>
+	</div>
+<% if devise_mapping.rememberable? -%>
+	<div class="checkbox">
+		<label><%= f.check_box :remember_me, :style => "width:auto;" %>Remember Me</label>
+	</div>
+<% end %>
+	<button type="submit" class="btn btn-primary btn-block" id="message_trigger_err"><strong>Login</strong> to your account</button>
+<% end %>
 </div>
+<br>
+<a class="btn btn-success btn-block btn-lg" href="<%= new_registration_path(resource_name) %>"><strong>Sign up</strong> for free</a>

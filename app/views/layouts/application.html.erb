@@ -19,42 +19,52 @@
   <%= csrf_meta_tag %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 </head>
-<body data-offset="50" data-controller-name="<%= controller_name %>" class="no-right-panel container" style="min-height: 800px;">  
-	<header id="header">
-		<div id="logo-group">
-			<span id="logo">
-				<a href="/" class="site-logo"></a>
-			</span>
+<body>  
+	<div id="wrap">
+	<% if !orphan_navbar %>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="nav-header">
+					<button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-dashboard"></span> Make<span class="sec-brand">Slide.</span></a>
+				</div>
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<form role="search" class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" name="q" value="<%= params[:q] %>" placeholder="Search for..." class="form-control input-sm">
+						 </div>
+					</form>
+					<%= render "common/user_nav" %>
+				</div>
+			</div>
+		</nav>
+		<%= notice_message %>   
+		<%= yield %>
+	<% else %>
+		<div id="landing">
+			<div class="header-image">
+				<div class="container">
+					<div class="auth-unit">
+						<h3 class="text-brand"><span class="glyphicon glyphicon-dashboard"></span> Make<span class="sec-brand">Slide.</span></h3>
+					 	<%= notice_message %>   
+						<%= yield %>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="btn-header">
-		<span class="pull-left">
-			<%= link_to content_tag(:i, " Slides", :class => "icon-file"), slides_url %>
-		</span>
-		</div>
-		<div class="pull-right">
-			<%= render "common/user_nav" %>
-			<form class="header-search pull-right" action="search" method="get">
-				<input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" />
-				<button type="submit"><i class="icon-search"></i></button>
-			</form>
-		</div>
-	</header>
-
-	<div id="main" role="main">
-		<div id="content">
-			<%= yield %>
+	<% end %>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<%= raw SiteConfig.footer_html %>
 		</div>
 	</div>
-  <% if not mobile? %>
-  <a class="go_top" href="#"><i class="icon icons_go_top"></i></a>
-  <% end %>
-  <% if mobile? %>
-    <script type="text/javascript">
-    app_mobile = true;
-    $('body').animate({ scrollTop: -1 },0);
-    </script>
-  <% end %>
-	<script type="text/javascript">
+  <script type="text/javascript">
 		$(function () {
 			$('.flexslider').flexslider({
 				controlNav: false
