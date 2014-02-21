@@ -22,10 +22,9 @@ module UsersHelper
   def user_avatar_width_for_size(size)
     case size
       when :normal then 48
-			when :activity then 24
       when :small then 16
       when :large then 64
-      when :big then 120
+      when :big then 100
       else size
     end
   end
@@ -55,7 +54,7 @@ module UsersHelper
       img_src = "#{Setting.gravatar_proxy}/avatar/#{user.email_md5}.png?s=#{width * 2}&d=404"
       img = image_tag(img_src, :class => "uface", :style => "width:#{width}px;height:#{width}px;")
     else
-      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "media-object dp img-circle", :style => "width:#{width}px;height:#{width}px;")
     end
 
     if link

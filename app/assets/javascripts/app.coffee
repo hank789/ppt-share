@@ -4,6 +4,7 @@
 #= require jquery.turbolinks
 #= require sco.collapse
 #= require dynamo.min
+#= require jquery.refineslide
 #= require dropzone
 #= require bootstrap-transition
 #= require bootstrap-alert

@@ -19,8 +19,7 @@ module SlidesHelper
 		return "" if slide.slide.blank?
 		@attach = Attach.find(slide.slide)
 		title = raw "#{content_tag(:i, "", :class => "icon-download-alt")} <span>Download</span>"
-		#raw "<li>#{link_to(title, download_slide_path(slide.id), :onclick => "return Slides.download(this);", 'data-id' => slide.id, :class => "btn btn-large btn-success", :rel => "twipsy")}<a href='#{attach.file}'>xxx</a></li>"
-		raw "<li><a href='#{@attach.file}?download' class='btn btn-large btn-success'>#{title}</a></li>"
+		raw "<a href='#{@attach.file}?download' class='btn btn-large btn-success'>#{title}</a>"
 	end
 
   def slide_favorite_tag(slide)

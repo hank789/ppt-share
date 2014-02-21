@@ -1,5 +1,7 @@
 /*
  *= require bootstrap
+ *= require refineslide
+ *= require refineslide-theme-dark
  *= require _font-awesome 
  *= require jquery.chosen
  *= require highlight
@@ -63,6 +65,7 @@ body .top-form-inner {
     background-color: rgba(0, 0, 0, 0);
     border-top: medium none;
     min-height: 40px;
+		margin-top: 50px;
 }
 #top .navbar-nav {
     font-size: 12px;
@@ -132,6 +135,9 @@ body .top-form-inner {
     font-family: 'Montserrat',Arial,Helvetica,sans-serif;
     margin-bottom: 25px;
     padding: 0;
+		.flexslider {
+			margin-bottom: 0;
+		}
 }
 .right-sec h4.title {
     font-size: 12px;
@@ -340,10 +346,6 @@ body .top-form-inner {
 .navbar .nav > li > a:hover {
 		background-color: rgba(0, 0, 0, 0);
 		color: #000000;
-		text-decoration: none;
-}
-.navbar .nav .active > a, .navbar .nav .active > a:hover {
-		color: #D71900;
 		text-decoration: none;
 }
 .navbar .nav.pull-right {
