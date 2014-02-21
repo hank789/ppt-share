@@ -1,5 +1,86 @@
 <% if current_user %>
+<h1 style="text-align: center; margin: 50px 0 10px;">登录用户Dashboard</h1>
+<p class="lead" style="text-align: center">动态新闻，我的slides，关注的slides，人</p>
 <% else %>
-<h1 style="text-align: center; margin: 50px 0 10px;">Welcome to Makeslide</h1>
-<p class="lead" style="text-align: center">协作，分享，发现 Slides</p>
+<!-- /Header Section -->
+
+        <div id="landing">
+            <div class="header-image">
+                <div class="headline">
+
+
+                    <div class="container">
+
+                        <div class="header">
+                            <ul class="nav nav-pills pull-right">
+															<li><%= link_to("登录", new_user_session_path) %></li>
+															<li class="active"><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> 注册</a>
+                                </li>
+
+                            </ul>
+                            <h3 class="text-muted"><span class="glyphicon glyphicon-dashboard"></span> Make<span class="sec-brand">Slide.</span></h3>
+                        </div>
+
+                        <h1>只谈幻灯片，发现你所需，分享你所爱</h1>
+                        <p class="subline">超过 <strong>526,78<span class="dynamo" data-lines="3,4,5,6">2</span></strong> 组幻灯片已分享在这里</p>
+
+                        <h6 class="text-muted">点击“搜索”来探索幻灯片之美</h6>
+
+
+                    </div>
+                </div>
+
+
+                <div class="search-block">
+                    <div class="container">
+                        <form class="form-inline" role="form">
+
+
+                            <div class="row">
+                                <div class="col-lg-8 col-sm-8">
+
+																		<input type="text" name="q" value="<%= params[:q] %>" placeholder="关键词" class="form-control input-lg">
+                                </div>
+                                <!-- /.col-lg-6 -->
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="input-group">
+																				<input type="text" name="q" value="<%= params[:q] %>" placeholder="分类： PPT、KeyNotes..." class="form-control input-lg">
+                                        <span class="input-group-btn">
+        <a href="index.html" class="btn btn-success btn-lg">搜索</a>
+      </span>
+                                    </div>
+                                    <!-- /input-group -->
+
+                                </div>
+                                <!-- /.col-lg-6 -->
+                            </div>
+                            <!-- /.row -->
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /header-image -->
+        </div>
+
+        <!-- /Header Section -->
+<script type="text/javascript">
+$(function(){
+		var stickymenu = $("#wrap > .navbar-fixed-top:first-child");
+		var headerHeight = $("#landing .container  > .header:first-child").height() + 60;
+		stickymenu.hide();
+		function checkstickymenu(){
+			if($(window).scrollTop() > headerHeight)
+				stickymenu.show();
+			else
+				stickymenu.hide();
+		}
+		$(window).on('scroll', function(){
+			checkstickymenu();
+		})
+})
+
+</script>
 <% end %>
