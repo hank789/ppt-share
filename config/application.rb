@@ -45,6 +45,7 @@ module RubyChina
       Devise::Mailer.layout "mailer"
     }
 
+		config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w(*.css *.js)
   end
 end
