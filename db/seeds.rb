@@ -26,14 +26,14 @@ eos
 # Footer HTML
 SiteConfig.save_default("footer_html",<<-eos
 <ul class="list-inline">
-	<li><a href="/">Home</a></li>
-	<li><a href="#">Slides</a></li>
-	<li><a href="#">Terms</a></li>
-	<li><a href="#">Our Blog</a></li>
-	<li><a href="#">Contact Us</a></li>
+	<li><a href="/">首页</a></li>
+	<li><a href="#">条款</a></li>
+	<li><a href="#">关于</a></li>
+	<li><a href="#">博客</a></li>
+	<li><a href="#">联系</a></li>
 </ul>
 <p class="text-muted credit">
-&copy; 2014 <strong>MakeSlide</strong> · Powered by: <a href="http://dokec.com/">Dokec</a> 
+&copy; 2014 <strong>MakeSlide.com</strong> 
 </p>
 eos
 )
