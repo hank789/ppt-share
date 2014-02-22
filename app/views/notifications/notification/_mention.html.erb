@@ -4,7 +4,7 @@
 %>
   <%
     reply = notification.mentionable
-    topic = reply.topic
+    slide = reply.slide
   %>
   <td class="face">
     <%= user_avatar_tag(reply.user, :normal) %>
@@ -15,7 +15,7 @@
         <%= user_name_tag(reply.user) %>
       </span>
       在
-      <%= topic_title_tag(topic) %>
+      <%= slide_title_tag(slide) %>
       提及你：
       <% if !notification.read? %>
         <span class="new label label-warning">新</span>
@@ -27,28 +27,28 @@
       </div>
     <%- end -%>
   </td>
-<% when Topic %>
+<% when Slide %>
   <%
-    topic = notification.mentionable
+    slide = notification.mentionable
   %>
   <td class="face">
-    <%= user_avatar_tag(topic.user, :normal) %>
+    <%= user_avatar_tag(slide.user, :normal) %>
   </td>
   <td>
     <h3>
       <span class="user">
-        <%= user_name_tag(topic.user) %>
+        <%= user_name_tag(slide.user) %>
       </span>
       在
-      <%= topic_title_tag(topic) %>
+      <%= slide_title_tag(slide) %>
       提及你：
       <% if !notification.read? %>
         <span class="new label warning">新</span>
       <% end %>
     </h3>
-    <%- if topic.present? -%>
+    <%- if slide.present? -%>
       <div class="body md_body">
-        <%= sanitize_topic topic.body_html %>
+        <%= sanitize_slide slide.body_html %>
       </div>
     <%- end -%>
   </td>

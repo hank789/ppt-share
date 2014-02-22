@@ -1,8 +1,8 @@
 <%
   reply = notification.reply
-  topic = reply.topic
+  slide = reply.slide
   action_label = ""
-  if !owner?(topic)
+  if !owner?(slide)
     action_label = "关注"
   end
 %>
@@ -15,7 +15,7 @@
       <%= user_name_tag(reply.user) %>
     </span>
     回复了你<%= action_label %>的主题：
-    <%= topic_title_tag(topic) %>
+    <%= slide_title_tag(slide) %>
     <% if !notification.read? %>
       <span class="new label label-warning">新</span>
     <% end %>

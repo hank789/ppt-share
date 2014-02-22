@@ -1,5 +1,6 @@
 /*
  *= require bootstrap
+ *= require custom
  *= require refineslide
  *= require refineslide-theme-dark
  *= require _font-awesome 
@@ -429,6 +430,10 @@ body .top-form-inner {
 .nav-tabs > li.active > a:hover {
     background: none repeat scroll 0 0 #F8F8F8;
     cursor: pointer;
+}
+.navbar-fixed-top .badge-error {
+		color: #D71900;
+		font-weight: bolder;
 }
 .listing-page-top p {
     color: #635F5F;
