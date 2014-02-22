@@ -57,7 +57,7 @@
       <div class="col-md-6">
         <div class="panel panel-primary ">
         	<div class="panel-heading">
-          	<h3 class="panel-title">对幻灯片发表评论</h3>
+						<h3 class="panel-title"><i class="icon-reply"></i> 对幻灯片发表评论</h3>
           </div>
         <div class="panel-body">
      			<div class="row">
@@ -75,7 +75,7 @@
       		</div>
 				<%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
 					<div class="form-group">
-      			<label for="exampleInputEmail1">评分</label>
+      			<label for="exampleInputStar">评分</label>
 						<div><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
       			</div>
      				<label for="exampleInputEmail1">评论</label>

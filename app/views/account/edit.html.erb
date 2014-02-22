@@ -1,83 +1,113 @@
-<div class="content col-xs-9">
-  <div class="box">
-    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :enctype =>  "multipart/form-data" }) do |f| %>
-      <%= render "shared/error_messages", :target => resource if params[:by].blank? %>
-      <fieldset>
-        <legend><%= t("users.personal_information")%></legend>
-        <%= f.input :name %>
-        <%= f.input :avatar %>
-        <%= f.input :email, :input_html => { :class => "span4", :disabled => (!resource.email.blank?) } %>
-        <div class="control-group">
-          <div class="controls">
-            <label for="user_email_public" class="checkbox"><%= f.check_box :email_public %> 公开 Email</label>
-          </div>
-        </div>
-        <%= f.input :location, :input_html => { :class => "span3" } %>
-        <%= f.input :company, :input_html => { :class => "span3" } %>
-        <div class="control-group">
-          <%= f.label :github %>
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on">https://github.com/</span>
-              <%= f.text_field :github, :class => "small", :placeholder => "yourname" %>
-            </div>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :twitter %>
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on">http://twitter.com/</span>
-              <%= f.text_field :twitter, :class => "small", :placeholder => "yourname" %>
-            </div>
-          </div>
-        </div>
-        <%= f.input :website, :input_html => { :class => "xxlarge", :placeholder => "http://" } %>
-        <%= f.input :tagline, :input_html => { :class => "xxlarge" } %>
-        <%= f.input :bio, :as => :text, :input_html => { :class => "xxlarge", :rows => "6" } %>
-        <div class="form-actions">
-            <%= f.submit "更新资料", :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-  <div class="box">
-    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name,:by => :pwd), :html => { :method => :put }) do |f| %>
-      <%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
-      <fieldset>
-        <legend><%= t("users.edit_password")%></legend>
-        <input type="hidden" name="user[:by]" value="pwd" />
-        <%= f.input :current_password %>
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
-        <div class="form-actions">
-          <%= f.submit "修改密码", :class => "btn btn-success", 'data-disable-with' => t("common.saving") %>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-</div>
+<div class="listing-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="icon-wrench"></i> <%= t("users.personal_information")%></h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+          		<div class="col-lg-12">
+           			<div class="media">
+             			<a class="pull-left" href="#"><%= user_avatar_tag(@user, :big) %></a>
+              		<div class="media-body">
+										<h4 class="media-heading"><%= @user.name %> <small> 拥有<%= @user.slides.count %>组幻灯片</small></h4>
+										<h5><%= @user.tagline %></h5>
+              			<hr style="margin:8px auto">
+              			<span class="label label-primary">所属组织</span>
+            			</div>
+          			</div>
+        			</div>
+      			</div>
 
-<div class="col-xs-3">
-  <div class="box" style="text-align:center;">
-     <%= user_avatar_tag(@user, :big, :link => false) %> <br /><%= t("users.edit_on_gravatar") %> <a href="http://www.gravatar.com">gravatar.com</a>
-  </div>
-  
-  <div class="box">
-    <h2>密钥</h2>
-    <div class="content">
-      <div><textarea id="private_token" style="width:190px;height:20px;cursor:default;" readonly="readonly"><%= @user.private_token %></textarea></div>
-      <div class="buttons">
-        <a href="#" class="btn" id="update_private_token">更换一个</a> <span class="help-inline">用于三方应用验证</span>
-      </div>
-    </div>
-  </div>
-  <div class="box">
-    <h2><%= t("users.delete_my_account")%></h2>
-    <p><%= t("users.dont_like_it")%> <%= link_to(t("users.delete_this_account"), registration_path(resource_name), 'data-confirm' => "删除后无法恢复，你确定吗?", :class => "btn btn-danger", :method => :delete )%></p>
-  </div>
-</div>
+					<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :enctype =>  "multipart/form-data" }) do |f| %>
+      			<%= render "shared/error_messages", :target => resource if params[:by].blank? %>
+						<div class="form-group">
+							<%= f.label :name %>
+        			<%= f.input_field :name, class:'form-control' %>
+						</div>
+						<div class="form-group">
+							<%= f.label :avatar %>
+        			<%= f.input_field :avatar, class:'form-control' %>
+						</div>
+						<div class="form-group">
+							<%= f.label :email %>
+							<%= f.input_field :email, :disabled => (!resource.email.blank?), class:'form-control' %>
+						</div>
+						<div class="checkbox">
+							<label><%= f.check_box :email_public, :style => "width:auto;" %>公开 Email</label>
+						</div>
+						<div class="form-group">
+							<%= f.label :location %>
+							<%= f.input_field :location, class:'form-control' %>
+						</div>
+						<div class="form-group">
+							<%= f.label :company %>
+							<%= f.input_field :company, class:'form-control' %>
+						</div>
+						<div class="form-group"> 
+							<%= f.label :tagline %>
+							<%= f.input_field :tagline, class:'form-control' %>
+						</div>
+						<%= f.label :bio %>
+						<%= f.text_area :bio, :class=>'form-control', row:"5" %>
+						<br>
+      			<%= f.submit "更新资料", :class => "btn btn-success", 'data-disable-with' => t("common.saving") %>
+    			<% end %>
+  				</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="icon-edit"></i> <%= t("users.edit_password")%></h3>
+					</div>
+					<div class="panel-body">
+					<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name,:by => :pwd), :html => { :method => :put }) do |f| %>
+      			<%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
+						<div class="form-group">
+							<%= f.label :current_password %>
+							<%= f.input_field:current_password, class:"form-control" %>
+						</div>
+						<div class="form-group">
+							<%= f.label :password %>
+							<%= f.input_field:password, class:"form-control" %>
+						</div>
+						<div class="form-group">
+							<%= f.label :password_confirmation %>
+							<%= f.input_field:password_confirmation, class:"form-control" %>
+						</div>
+         		<%= f.submit "修改密码", :class => "btn btn-warning", 'data-disable-with' => t("common.saving") %>
+    			<% end %>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="icon-key"></i> 密钥</h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<textarea id="private_token" readonly="readonly" class="form-control"><%= @user.private_token %></textarea>
+						</div>
+    				<div>
+        			<a href="#" class="btn btn-default" id="update_private_token">更换一个</a> <span class="help-inline">用于三方应用验证</span>
+      			</div>
+					</div>
+				</div>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="icon-trash"></i> <%= t("users.delete_my_account")%></h3>
+					</div>
+					<div class="panel-body">
+						<p><%= t("users.dont_like_it")%> <%= link_to(t("users.delete_this_account"), registration_path(resource_name), 'data-confirm' => "删除后无法恢复，你确定吗?", :class => "btn btn-danger", :method => :delete )%></p>
 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <% content_for :scripts do %>
   <script type="text/javascript">
     $(document).ready(function(){
