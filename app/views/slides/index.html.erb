@@ -7,10 +7,7 @@
 		<div class="col-md-9 col-sm-8">
 			<div class="right-sec">
 				<div class="top">
-					<ul class="nav nav-tabs tooltip-demo">
-						<li class="active"><a href="#">All Listings  <strong><%= @slides.count %></strong></a></li>
-					  <li class="active pull-right"><a data-original-title="Grid View" title="" data-placement="top" data-toggle="tooltip" href="index.html"><span class="glyphicon glyphicon-th"></span></a></li>
-					</ul>
+					<%= render "node_info", node:@node %>
 				</div>
 				<div class="row">
 					<%= render :partial => "slides/slide", :collection => @slides %>
@@ -20,7 +17,9 @@
 	</div>
 	<hr>
 	<div class="text-center">
-		<%= will_paginate @slides, :inner_window => 2 %>
+		<div class="pagination">
+			<%= will_paginate @slides, :inner_window => 2, container:false %>
+		</div>
 	</div>
 	<hr>
 </div>

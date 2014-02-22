@@ -14,7 +14,7 @@ class SlidesController < ApplicationController
   end
 
   def feed
-    @slides = Topic.recent.without_body.limit(20).includes(:node,:user, :last_reply_user)
+    @slides = Slide.recent.without_body.limit(20).includes(:node,:user, :last_reply_user)
     render :layout => false
   end
 
@@ -34,7 +34,7 @@ class SlidesController < ApplicationController
 
   %w(no_reply popular).each do |name|
     define_method(name) do
-      @slides = Topic.send(name.to_sym).last_actived.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15, :total_entries => 1500)
+      @slides = Slide.send(name.to_sym).last_actived.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15)
       drop_breadcrumb(t("slides.slide_list.#{name}"))
       set_seo_meta([t("slides.slide_list.#{name}"),t("menu.slides")].join(" &raquo; "))
       render :action => "index"
@@ -42,14 +42,14 @@ class SlidesController < ApplicationController
   end
 
   def recent
-    @slides = Topic.recent.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15, :total_entries => 1500)
+    @slides = Slide.recent.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15, :total_entries => 1500)
     drop_breadcrumb(t("slides.slide_list.recent"))
     set_seo_meta([t("slides.slide_list.recent"),t("menu.slides")].join(" &raquo; "))
     render :action => "index"
   end
 
   def excellent
-    @slides = Topic.excellent.recent.fields_for_list.includes(:user).paginate(page: params[:page], per_page: 15, total_entries: 500)
+    @slides = Slide.excellent.recent.fields_for_list.includes(:user).paginate(page: params[:page], per_page: 15, total_entries: 500)
     drop_breadcrumb(t("slides.slide_list.excellent"))
     set_seo_meta([t("slides.slide_list.excellent"),t("menu.slides")].join(" &raquo; "))
     render :action => "index"
@@ -100,7 +100,7 @@ class SlidesController < ApplicationController
   end
 
   def edit
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @node = @slide.node
     drop_breadcrumb("#{@node.name}", node_slides_path(@node.id))
     drop_breadcrumb t("slides.edit_slide")
@@ -139,7 +139,7 @@ class SlidesController < ApplicationController
   end
 
   def update
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     if @slide.lock_node == false || current_user.admin?
       # 锁定接点的时候，只有管理员可以修改节点
       @slide.node_id = slide_params[:node_id]
@@ -160,7 +160,7 @@ class SlidesController < ApplicationController
   end
 
   def destroy
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @slide.destroy_by(current_user)
     redirect_to(slides_path, :notice => t("slides.delete_slide_success"))
   end
@@ -175,25 +175,25 @@ class SlidesController < ApplicationController
   end
 
   def follow
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @slide.push_follower(current_user.id)
     render :text => "1"
   end
 
   def unfollow
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @slide.pull_follower(current_user.id)
     render :text => "1"
   end
 
   def suggest
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @slide.update_attributes(excellent: 1)
     redirect_to @slide, success: "加精成功。"
   end
 
   def unsuggest
-    @slide = Topic.find(params[:id])
+    @slide = Slide.find(params[:id])
     @slide.update_attribute(:excellent,0)
     redirect_to @slide, success: "加精已经取消。"
   end

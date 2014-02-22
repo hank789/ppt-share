@@ -10,15 +10,9 @@
     <%= simple_format(node.summary) %>
   </div>
 <% else %>
-  <div class="sorts">
-    <span class="lb">查看:</span>
-    <ul>
-      <li<%= " class=active" if action_name == "index"  %>><%= link_to "默认", topics_path %></li> /
-      <li<%= " class=active" if action_name == "popular"  %>>
-        <%= link_to raw("<i class='icon small_liked'></i> 优质帖子"), popular_topics_path, :class => "popular" %>
-      </li> /
-      <li<%= " class=active" if action_name == "no_reply"  %>><%= link_to "无人问津", no_reply_topics_path, :rel => 'nofollow' %></li> /
-      <li<%= " class=active" if action_name == "recent"  %>><%= link_to "最新创建", recent_topics_path, :rel => 'nofollow' %></li>
-    </ul>
-  </div>
+	<ul class="nav nav-tabs tooltip-demo">
+		<li<%= " class=active" if action_name == "index" %>><%= link_to "All listing", slides_path %></li>
+		<li<%= " class=active" if action_name == "popular" %>><%= link_to raw("<i class='icon small_liked'></i> Most popular"), popular_slides_path, class:"popular" %></li>
+		<li class="active pull-right"><a data-original-title="Grid View" title="" data-placement="top" data-toggle="tooltip" href="#"><span class="glyphicon glyphicon-th"></span></a></li>
+	</ul>
 <% end %>

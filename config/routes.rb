@@ -45,6 +45,7 @@ RubyChina::Application.routes.draw do
 		end
 		collection do
 			get :no_reply
+			get :popular
 		end
 		resources :replies
 	end

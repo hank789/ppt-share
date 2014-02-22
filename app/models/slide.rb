@@ -49,7 +49,9 @@ class Slide
 	counter :downloads, :default => 0    
 
 	# scopes
+	scope :fields_for_list, -> { without(:body,:body_html) }
 	scope :last_actived, desc(:last_active_mark) 
+	scope :popular, -> { where(:likes_count.gt => 5) }
 
   #before_save :store_cache_fields
   #def store_cache_fields
