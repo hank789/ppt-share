@@ -89,9 +89,9 @@ window.Slides =
       $("abbr.timeago",$("#replies .total")).timeago()
       $("#new_reply textarea").val('')
       $("#preview").text('')
-      App.notice(msg,'#reply')
+      App.notice(msg,'#new_reply')
     else
-      App.alert(msg,'#reply')
+      App.alert(msg,'#new_reply')
     $("#new_reply textarea").focus()
     $('#btn_reply').button('reset')
 

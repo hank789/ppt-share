@@ -19,7 +19,7 @@
   <%= csrf_meta_tag %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 </head>
-<body>  
+<body data-offset="50" data-controller-name="<%= controller_name %>">  
 	<div id="wrap">
 	<% if !orphan_navbar %>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">

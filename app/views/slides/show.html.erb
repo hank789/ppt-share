@@ -1,3 +1,18 @@
+<% content_for :scripts do %>
+	<script type="text/javascript"> 
+		Slides.replies_per_page = <%= @per_page %>;
+		$(document).ready(function(){
+		<% if admin? %>
+			$("#replies .reply a.edit").css('display','inline-block');
+			<% elsif current_user %>
+			$("#replies .reply a.edit[data-uid='<%= current_user.id %>']").css('display','inline-block');
+		<% end %>
+		<% if current_user && !@user_liked_reply_ids.blank? %>
+			Slides.checkRepliesLikeStatus([<%= @user_liked_reply_ids.join(",") %>]);
+		<% end %>
+		})
+	</script>
+<% end %>
 <div class="listing-page-top tooltip-demo">
 	<div class="container">
 		<h2>
@@ -75,7 +90,7 @@
 		<ul id="myTab" class="nav nav-tabs">
   		<li class="active"><a href="#profile" data-toggle="tab">Slide描述</a></li>
   		<li><a href="#history" data-toggle="tab">版本及变更历史</a></li>
-			<li><a href="#comments" data-toggle="tab">评论 (<%= @slide.replies_count %>)</a></li>
+			<li><a href="#replies" data-toggle="tab">评论 (<b><%= @slide.replies_count %></b>)</a></li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
   		<div class="tab-pane fade in active" id="profile">
@@ -83,7 +98,7 @@
   		</div>
 			<div class="tab-pane fade" id="history">
 			</div>
- 			<div class="tab-pane fade" id="comments">
+ 			<div class="tab-pane fade" id="replies">
 				<div class="items">  
 					<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
 						<%= render :partial => "replies/reply", :collection => @replies %>

@@ -17,6 +17,7 @@ class Slide
   field :private, :type => Mongoid::Boolean, :default => false
 
 	field :slide
+	field :last_reply_id, :type => Integer
   field :replied_at , :type => DateTime
   field :replies_count, :type => Integer, :default => 0
   # 回复过的人的 ids 列表
@@ -25,6 +26,8 @@ class Slide
   #field :node_name
   # 精华贴 0 否， 1 是
   field :excellent, type: Integer, default: 0
+ 	# 用于排序的标记
+	field :last_active_mark, :type => Integer  
 
   belongs_to :user, :inverse_of => :slides
   counter_cache :name => :user, :inverse_of => :slides
@@ -38,11 +41,15 @@ class Slide
 	index :user_id => 1
 	index :folder_id => 1
 	index :likes_count => 1
+	index :last_active_mark => -1  
 
   validates_presence_of :title#, :node_id
 
 	counter :hits, :default => 0    
 	counter :downloads, :default => 0    
+
+	# scopes
+	scope :last_actived, desc(:last_active_mark) 
 
   #before_save :store_cache_fields
   #def store_cache_fields
@@ -52,6 +59,11 @@ class Slide
   #def auto_space_with_title
   #  self.title.auto_space!
   #end
+
+	before_create :init_last_active_mark_on_create
+	def init_last_active_mark_on_create 
+	  self.last_active_mark = Time.now.to_i
+	end
 
   def push_follower(uid)
     return false if uid == self.user_id
@@ -69,8 +81,8 @@ class Slide
     self.last_active_mark = Time.now.to_i if self.created_at > 1.month.ago
     self.replied_at = Time.now
     self.last_reply_id = reply.id 
-    self.last_reply_user_id = reply.user_id
-    self.last_reply_user_login = reply.user.try(:login) || nil
+    # self.last_reply_user_id = reply.user_id
+    # self.last_reply_user_login = reply.user.try(:login) || nil
     self.save
   end
 

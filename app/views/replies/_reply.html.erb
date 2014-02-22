@@ -20,7 +20,7 @@
         <span class="opts">
           <% if !reply.deleted? %>
             <%= likeable_tag(reply, :cache => true) %>
-            <%= link_to("", edit_slide_reply_path(@slide,reply), :class => "edit icon small_edit", 'data-uid' => reply.user_id, :title => "修改回帖")%>
+            <%#= link_to("", edit_slide_reply_path(@slide,reply), :class => "edit icon small_edit", 'data-uid' => reply.user_id, :title => "修改回帖")%>
             <%= link_to("", "#", 'data-floor' => floor, 'data-login' => reply.user_login,
                 :title => t("slides.reply_this_floor"), :class => "icon small_reply" )
             %>
