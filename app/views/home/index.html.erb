@@ -32,7 +32,7 @@
 
                 <div class="search-block">
                     <div class="container">
-                        <form class="form-inline" role="form">
+                        <form action="/search" class="form-inline" role="form" method="get">
 
 
                             <div class="row">
@@ -45,7 +45,7 @@
                                     <div class="input-group">
 																				<input type="text" name="q" value="<%= params[:q] %>" placeholder="分类： PPT、KeyNotes..." class="form-control input-lg">
                                         <span class="input-group-btn">
-        <a href="index.html" class="btn btn-success btn-lg">搜索</a>
+        <button type="submit" class="btn btn-success btn-lg">搜索</button>
       </span>
                                     </div>
                                     <!-- /input-group -->
