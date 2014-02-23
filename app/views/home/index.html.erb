@@ -1,6 +1,5 @@
 <% if current_user %>
-<h1 style="text-align: center; margin: 50px 0 10px;">登录用户Dashboard</h1>
-<p class="lead" style="text-align: center">动态新闻，我的slides，关注的slides，人</p>
+	<%= render :partial =>  "users/news_feed" %>
 <% else %>
 <!-- /Header Section -->
 
