@@ -66,6 +66,9 @@ body .top-form-inner {
 		margin-top: 50px;
 }
 #top .navbar-nav {
+		& > li.first >a {
+			border-left: 1px solid #DADADA;
+		}
     font-size: 12px;
     font-weight: 400;
     text-transform: uppercase;
