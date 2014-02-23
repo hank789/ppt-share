@@ -1,5 +1,13 @@
-<ul id="images" class="rs-slider">
+<% if @attach.photos.blank? %>
+	<div class="document_thumb">	
+		<i class="icon-refresh icon-spin icon-large"></i>
+	</div>
+<% else %>
+<div class="flexslider">
+<ul class="slides">
 	<% @attach.photos.each do |item| %>
-   <li class="group"><%= image_tag item.image %></li>
+   <li><%= image_tag item.image %></li>
  	<% end %>
 </ul>
+</div>
+<% end %>
