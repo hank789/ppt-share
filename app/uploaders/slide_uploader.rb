@@ -14,7 +14,7 @@ class SlideUploader < BaseUploader
   end
 
 	def extension_white_list
-    %w(ppt) end
+    %w(ppt pdf key) end
 
 	def move_to_cache
 	  true
