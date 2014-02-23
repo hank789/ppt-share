@@ -65,6 +65,7 @@ class User
 
 	has_many :folders, :dependent => :destroy
   has_many :slides, :dependent => :destroy
+	has_many :attachs, :dependent => :destroy
   #has_many :notes
   has_many :replies, :dependent => :destroy
   embeds_many :authorizations

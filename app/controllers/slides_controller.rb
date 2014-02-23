@@ -94,6 +94,12 @@ class SlidesController < ApplicationController
     fresh_when(:etag => [@slide,@has_followed,@has_favorited,@replies,@node,@show_raw])
   end
 
+	def attachs
+		@slide = Slide.without_body.find(params[:id])
+		set_seo_meta("#{@slide.title} &raquo; #{t("menu.slides")}")
+    drop_breadcrumb t("slides.read_slide")
+	end 
+
   def new
     drop_breadcrumb t("slides.new_slide")
     set_seo_meta("#{t("slides.new_slide")} &raquo; #{t("menu.slides")}")
@@ -109,7 +115,7 @@ class SlidesController < ApplicationController
 
   def create
 	  if !params[:file].nil?	
-			@attach = Attach.new
+			@attach = current_user.attachs.new
 			@attach.file= params[:file]
 			@attach.save
 			#Attach.new({:url => @b}).save

@@ -237,12 +237,22 @@
 	font-size: 60px;
 	vertical-align: middle;
 }
-.right-sec .slide-item {
+.slide-item {
 	height: 300px;
 	.flexslider, .document_thumb {
 		box-shadow: none;
 	}
 	.document_thumb {
 		line-height: 179px;
+	}
+	.thumbnail {
+    border-radius: 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+    font-family: 'Montserrat',Arial,Helvetica,sans-serif;
+    margin-bottom: 25px;
+    padding: 0;
+		.flexslider {
+			margin-bottom: 0;
+		}
 	}
 }

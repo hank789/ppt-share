@@ -1,6 +1,7 @@
 # coding: utf-8
 class Attach
   include Mongoid::Document
+  include Mongoid::CounterCache
 	include Mongoid::Timestamps
 	include Mongoid::BaseModel
 
@@ -11,6 +12,8 @@ class Attach
 
 	mount_uploader :file, SlideUploader
 
+	belongs_to :user
+	counter_cache :name => :user, :inverse_of => :attaches
 	belongs_to :slide
 	has_many :photos
 

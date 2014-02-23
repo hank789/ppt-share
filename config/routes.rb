@@ -42,6 +42,7 @@ RubyChina::Application.routes.draw do
 			post :reply
 			post :favorite
 			get :download
+			get :attachs
 		end
 		collection do
 			get :no_reply

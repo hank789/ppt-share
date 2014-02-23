@@ -1,0 +1,38 @@
+<div class="listing-page-top tooltip-demo">
+	<div class="container">
+		<h2>
+			<%= @slide.title %>
+	  	<span class="pull-right">
+				<%= slide_download_tag(@slide) %>
+      	<%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
+	    </span>
+	 	</h2>
+	 	<p>
+	    <strong>用户:</strong>
+			<%= @slide.user.name %>&middot;
+	    <strong>上传于:</strong>
+			<%= @slide.created_at %>&middot;
+			<span class="label label-info">公开项目</span>&middot;
+	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>&middot;
+			<%= likeable_tag(@slide) %>&middot;
+			<%= slide_favorite_tag(@slide) %>
+	  </p>
+	  <ul class="nav nav-tabs">
+			<li><%= link_to raw("<i class='icon-facetime-video'></i> 幻灯片"), slide_url(@slide) %></li>
+			<li class="active"><%= link_to raw("<i class='icon-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
+			<li><%= link_to raw("<i class='icon-upload-alt'></i> 上传新版"), "#", title:"comming soon..." %></li>
+			<% if owner?(@slide) or admin? %>
+			<li class="pull-right"><a href="#" title="coming soon..."><i class="icon-tasks"></i> Create Task</a></li>
+			<% end %>
+	  </ul>
+	</div>
+</div>
+
+<!-- Begin page content -->
+<div class="listing-page">
+	<div class="container">
+		<ul class="media-list">
+			<%= render :partial => "attachs/attach", :collection => @slide.attachs %>
+    </ul>
+	</div>
+</div>

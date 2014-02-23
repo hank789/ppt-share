@@ -1,0 +1,19 @@
+<li class="media premium-item">
+	<% if attach.photos.blank? %>
+	<div class="document_thumb col-md-3 pull-left">	
+		<i class="icon-refresh icon-spin icon-large"></i>
+	</div>
+<% else %>
+	<div class="flexslider col-md-3 pull-left">
+		<ul class="slides">
+			<% attach.photos.each do |item| %>
+   		<li><%= image_tag item.image %></li>
+ 			<% end %>
+		</ul>
+	</div>
+<% end %>
+	<div class="media-body">
+		<h4>版本一 <span class="label label-info">发布</span> <a class="btn btn-danger btn-sm  pull-right" title="coming soon...">Delete</a></h4>
+		<%= attach.user.login %>上传于<%= attach.created_at %>
+	</div>
+</li>
