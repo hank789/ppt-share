@@ -51,7 +51,7 @@ class Slide
 	# scopes
 	scope :fields_for_list, -> { without(:body,:body_html) }
 	scope :last_actived, desc(:last_active_mark) 
-	scope :popular, -> { where(:likes_count.gt => 5) }
+	scope :popular, -> { where(:likes_count.gt => 0) }
 
   #before_save :store_cache_fields
   #def store_cache_fields

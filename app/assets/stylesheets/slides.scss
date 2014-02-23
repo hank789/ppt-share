@@ -237,9 +237,12 @@
 	font-size: 60px;
 	vertical-align: middle;
 }
-.right-sec .flexslider, .right-sec .document_thumb {
-	box-shadow: none;
-}
-.right-sec .document_thumb {
-	line-height: 179px;
+.right-sec .slide-item {
+	height: 300px;
+	.flexslider, .document_thumb {
+		box-shadow: none;
+	}
+	.document_thumb {
+		line-height: 179px;
+	}
 }
