@@ -1,31 +1,31 @@
 <%= render "shared/error_messages", :target => resource %>
 <div class="auth-unit-top">
-	<h3>Sign up</h3>
-	<p>it's free to join</p>
+	<h3><%= t("common.register") %></h3>
+	<p><%= t("users.free_to_join_description") %></p>
 </div>
 <div class="auth-unit-inner">
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "tooltip-demo", :role => "form"}) do |f| %>
 	<div class="form-group">
 		<%= f.label :login %>
-		<%= f.input_field :login, :class => 'form-control', placeholder: "automarket" %>
+		<%= f.input_field :login, :class => 'form-control', placeholder: "" %>
 	</div>
 	<div class="form-group">
 		<%= f.label :email%>
 		<%= f.input_field :email, :class => 'form-control', placeholder: "email.example.com" %>
 	</div>
 	<div class="checkbox">
-		<label><%= f.check_box :email_public, :style => "width:auto;", :checked => true %>公开邮箱?</label>
+		<label><%= f.check_box :email_public, :style => "width:auto;", :checked => true %><%= t('mongoid.attributes.user.email_public') %></label>
 	</div>
 	<div class="form-group">
 		<%= f.label :password %>
-		<%= f.input_field :password, :class => 'form-control', placeholder: "**********" %>
+		<%= f.input_field :password, :class => 'form-control', placeholder: "" %>
 	</div>
 	<div class="form-group">
 		<%= f.label :password_confirmation %>
-		<%= f.input_field :password_confirmation, :class => 'form-control', placeholder: "**********" %>
+		<%= f.input_field :password_confirmation, :class => 'form-control', placeholder: "" %>
 	</div>
-	<button type="submit" class="btn btn-block btn-success" id="message_trigger_ok">Sign up</button>
+	<button type="submit" class="btn btn-block btn-success" id="message_trigger_ok"><%= t("common.register") %></button>
 <% end %>
 </div>
 <br>
-<a class="btn btn-primary btn-block btn-lg" href="<%= new_session_path(resource_name) %>"><strong>Login</strong> to your account</a>
+<a class="btn btn-primary btn-block btn-lg" href="<%= new_session_path(resource_name) %>"><%= t("users.already_have_account") %><strong><%= t("common.login") %></strong></a>

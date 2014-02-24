@@ -29,3 +29,6 @@ solr/pids/
 bin/
 tags
 chromedriver.log
+
+/vendor/
+/.idea/
