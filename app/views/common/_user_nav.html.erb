@@ -25,10 +25,10 @@
 	  </li>
 	</ul>
 <% else %>
-	<p class="navbar-text pull-right">Already a user? <%= link_to( "Login", new_user_session_path, {:class=>"navbar-link"} ) %></p>
+	<p class="navbar-text pull-right"><%= t("users.already_have_account") %> <%= link_to(t("common.login"), new_user_session_path, {:class=>"navbar-link"} ) %></p>
 	<div class="btn-toolbar pull-right">
 		<div class="btn-group">
-			<a class="btn btn-success navbar-btn btn-sm" href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> Create an account</a>
+			<a class="btn btn-success navbar-btn btn-sm" href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span><%= t("users.register_user") %></a>
 		</div>
 	</div>
 <% end %>

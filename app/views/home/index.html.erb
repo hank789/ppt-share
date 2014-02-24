@@ -12,8 +12,8 @@
 
                         <div class="header">
                             <ul class="nav nav-pills pull-right">
-															<li><%= link_to("登录", new_user_session_path) %></li>
-															<li class="active"><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> 注册</a>
+															<li><%= link_to(t("common.login"), new_user_session_path) %></li>
+															<li class="active"><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> <%= t("common.register") %></a>
                                 </li>
 
                             </ul>
@@ -102,7 +102,7 @@
             <div class="container">
 
                 <div class="featurette animated slideInLeft">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="assets/img/s-1.jpg">
+                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="assets/demo.jpg">
                     <h2 class="featurette-heading">社交化 <span class="text-muted">的幻灯片发现</span></h2>
                     <p class="lead">MakeSlide引用了社交化的概念，可以关注用户，了解其动态。并可以发布隐私幻灯片时选择公开范围，使得部分隐私幻灯片可以在局部圈子进行交流分享。</p>
                 </div>
@@ -110,7 +110,7 @@
                 <hr class="featurette-divider">
 
                 <div class="featurette animated slideInRight">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-left animated fade" src="assets/img/s-2.jpg">
+                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-left animated fade" src="assets/demo.jpg">
                     <h2 class="featurette-heading">协作化 <span class="text-muted">的幻灯片管理</span></h2>
                     <p class="lead">组织概念的引入，方便团队协作化的管理幻灯片，及时了解进度和分享成果。同时还具有项目管理的其他功能，比如任务管理、版本管理、动态通知、里程碑管理等。</p>
                 </div>
@@ -118,7 +118,7 @@
                 <hr class="featurette-divider">
 
                 <div class="featurette animated slideInLeft">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="assets/img/s-3.jpg">
+                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="assets/demo.jpg">
                     <h2 class="featurette-heading">采集化 <span class="text-muted">的幻灯片生成</span></h2>
                     <p class="lead">采集可以针对单一一张幻灯片，以及具体的图片。对于前者还提供分类和调整顺序功能，便于用户快速生成幻灯片结构，从而提高只做幻灯片的速度</p>
                 </div>
