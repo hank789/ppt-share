@@ -6,7 +6,7 @@
 	<%= render "shared/error_messages", :target => resource %>
 	<div class="form-group">
         <label class="string required control-label" for="user_login"><%= t("mongoid.attributes.user.login") %></label>
-		<%= f.input_field :login, :class => 'form-control', placeholder: "email@example.com" %>
+		<%= f.input_field :login, :class => 'form-control', placeholder: "Name or Email" %>
 	</div>
 	<div class="form-group">
 		<label for="exampleInputPassword1"><%= t("mongoid.attributes.user.password") %> <%= link_to( t("users.forget_password"), new_password_path(resource_name), {class:"pull-right"} ) %></label>
