@@ -1,6 +1,6 @@
 defaults: &defaults
   app_name: "Makeslide"
-  foot_html: "&copy; Makeslide"
+  foot_html: "&copy; Makeslide."
   domain: "makeslide.com"
   admin_emails:
     - "admin@admin.com"
