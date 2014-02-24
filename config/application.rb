@@ -46,7 +46,8 @@ module RubyChina
     }
 
 		config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += %w(*.css *.js)
+    config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
+		 mobile.css home.css)
   end
 end
 
