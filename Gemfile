@@ -125,10 +125,11 @@ group :production do
   gem 'newrelic_rpm', "~> 3.6.8.168"
 end
 
+# 监控sidekiq
+gem 'sinatra', require: false  
+gem 'slim' 
+
 group :development do
-	# 监控sidekiq
-	gem 'sinatra', require: false  
-	gem 'slim' 
 	# Debugger
 	gem 'debugger'
 end
