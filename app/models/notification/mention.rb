@@ -15,11 +15,11 @@ class Notification::Mention < Notification::Base
   
   def content_path
     case self.mentionable_type.downcase
-    when "topic"
-      url_helpers.topic_path(self.mentionable_id)
+    when "slide"
+      url_helpers.slide_path(self.mentionable_id)
     when "reply"
       return "" if self.mentionable.blank?
-      url_helpers.topic_path(self.mentionable.topic_id)
+      url_helpers.slide_path(self.mentionable.slide_id)
     else
       ""
     end
