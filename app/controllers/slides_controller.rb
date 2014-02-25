@@ -117,17 +117,22 @@ class SlidesController < ApplicationController
 	  if !params[:file].nil?	
 			@attach = current_user.attachs.new
 			@attach.file= params[:file]
-			@attach.save
+			if @attach.save
 			#Attach.new({:url => @b}).save
-			render :text => @attach._id 
+				render :text => @attach._id 
+			else render :text => false 
+			end
 		else
     	@slide = Slide.new(slide_params)
+			@slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
     	@slide.user_id = current_user.id
 			if @slide.save
-				@attach = Attach.find(@slide.slide)
-				if @attach.slide_id.nil?
-					@attach.slide_id = @slide._id
-					@attach.save
+				if !@slide.slide.blank?
+					@attach = Attach.find(@slide.slide)
+					if @attach.slide_id.nil?
+						@attach.slide_id = @slide._id
+						@attach.save
+					end
 				end
       	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
     	else

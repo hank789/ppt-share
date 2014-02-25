@@ -1,6 +1,11 @@
-<% if @attach.photos.blank? %>
+<% if @attach.nil? || @attach.photos.blank? %>
 	<div class="document_thumb">	
-		<i class="icon-refresh icon-spin icon-large"></i>
+		<i class="<%= if @attach.nil? 
+										'icon-bolt'
+									else
+										'icon-refresh icon-spin'
+									end %> icon-large">
+		</i>
 	</div>
 <% else %>
 <div class="flexslider">

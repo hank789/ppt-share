@@ -47,7 +47,7 @@ module RubyChina
 
 		# config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
-		 mobile.css home.css dropzone/dropzone.css)
+		 mobile.css home.css)
 		config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end
 end
