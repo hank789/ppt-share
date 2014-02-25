@@ -137,59 +137,7 @@
                 <h2 class="text-center">本周 <small>热门幻灯片</small></h2>
                 <hr>
 
-                <ul class="grid">
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-globe"></i><a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-map-marker"></i> <a href="#">Nulla non metus auctor </a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-heart-o"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-comments-o"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-thumbs-o-up"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h5><i class="fa fa-search"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-
-                        <div>
-                            <h5><i class="fa fa-camera"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-
-                            <h5><i class="fa fa-cloud"></i> <a href="#">Donec ullamcorper nulla</a></h5>
-                            <p>onec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-                        </div>
-                    </li>
-                </ul>
+              <%= render :partial => "slides/slide", :collection => @slides %>
 
             </div>
         </div>
