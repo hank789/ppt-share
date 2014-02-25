@@ -136,9 +136,9 @@
             <div class="container">
                 <h2 class="text-center">本周 <small>热门幻灯片</small></h2>
                 <hr>
-
-              <%= render :partial => "slides/slide", :collection => @slides %>
-
+              <div class="row">
+              <%= render :partial => "slides/slide", :collection => @slides , :locals => {:slides_col_md => @slides_col_md} %>
+              </div>
             </div>
         </div>
 
