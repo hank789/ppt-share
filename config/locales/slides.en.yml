@@ -6,3 +6,4 @@
     reply_success: "Reply Success"
     reply_this_floor: "Reply this floor"
     create_slide_success: "Slide Create Success"
+    create_slide_description: "Only upload PowerPoint, Keynote, PDF files, upload speed depends on the file size, if the file is large, please be patient. Message appears when the input box on the right, on behalf of the upload is complete."
