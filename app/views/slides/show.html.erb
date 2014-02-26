@@ -38,7 +38,6 @@
 	    <li class="active"><a href="#"><i class="icon-facetime-video"></i> 幻灯片</a></li>
 			<% if owner?(@slide) or admin? %>
 			<li><%= link_to raw("<i class='icon-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
-			<li><%= link_to raw("<i class='icon-upload-alt'></i> 上传新版"), "#", title:"comming soon..." %></li>
 			<% end %>
 			<li class="active pull-right"><a href="#"><i class="icon-comment"></i> 发表评论</a></li>
 	  </ul>

@@ -20,7 +20,6 @@
 	  <ul class="nav nav-tabs">
 			<li><%= link_to raw("<i class='icon-facetime-video'></i> 幻灯片"), slide_url(@slide) %></li>
 			<li class="active"><%= link_to raw("<i class='icon-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
-			<li><%= link_to raw("<i class='icon-upload-alt'></i> 上传新版"), "#", title:"comming soon..." %></li>
 			<% if owner?(@slide) or admin? %>
 			<li class="pull-right"><a href="#" title="coming soon..."><i class="icon-tasks"></i> Create Task</a></li>
 			<% end %>
