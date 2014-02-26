@@ -99,6 +99,8 @@ gem 'thin', "1.5.0"
 # Doc split
 gem "docsplit", "~> 0.7.2"
 
+gem 'public_activity'
+
 group :development, :test do
   gem 'capistrano', '2.9.0', require: false
   gem 'rvm-capistrano', require: false

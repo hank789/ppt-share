@@ -1,6 +1,10 @@
 # coding: utf-8
 class HomeController < ApplicationController
   def index
+    if current_user.present?
+      redirect_to(home_user_url(current_user.login));
+    end
+
     drop_breadcrumb("首页", root_path)
     set_seo_meta("#{t("menu.slogan")}")
     @slides = Slide.high_likes.last_week_created.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 8)

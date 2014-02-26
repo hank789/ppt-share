@@ -2,6 +2,12 @@
 require "digest/md5"
 class Reply
   include Mongoid::Document
+  include PublicActivity::Model
+  tracked :owner => proc {|controller, model| controller.current_user},
+          :params => {
+              :summary => proc {|controller, model| model.body},
+              :slide_id => proc {|controller, model| model.slide_id}
+          }
   include Mongoid::Timestamps
   include Mongoid::BaseModel
   include Mongoid::CounterCache

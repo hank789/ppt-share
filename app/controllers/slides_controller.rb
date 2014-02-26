@@ -132,7 +132,8 @@ class SlidesController < ApplicationController
 					if @attach.slide_id.nil?
 						@attach.slide_id = @slide._id
 						@attach.save
-					end
+          end
+          @slide.create_activity :create, owner: current_user
 				end
       	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
     	else

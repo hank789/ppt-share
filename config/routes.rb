@@ -87,6 +87,7 @@ RubyChina::Application.routes.draw do
       get :likes
 			get :collections
       get :workspace
+      get :home
     end
   end
 

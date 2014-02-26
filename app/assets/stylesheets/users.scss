@@ -64,3 +64,24 @@ table.node_topics {
     .desc { font-size:12px; color:#888; }
   }
 }
+
+.activity {
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.activity .body {
+  overflow: hidden;
+  padding: 0 0 1em;
+}
+.activity .body .title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 0 0.25em;
+}
+.activity .body .details .avatar {
+  border: 1px solid #D0D0D0;
+  float: left;
+  line-height: 0;
+  margin-right: 0.7em;
+  padding: 2px;
+}

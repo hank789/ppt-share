@@ -1,5 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+  hide_action :current_user
   protect_from_forgery
   helper_method :unread_notify_count
 

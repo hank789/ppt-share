@@ -52,6 +52,9 @@ module SlidesHelper
   end
 
   def slide_title_tag(slide)
+    if slide.is_a?(Integer)
+      slide= Slide.find(slide);
+    end
     return t("slides.slide_was_deleted") if slide.blank?
     link_to(slide.title, slide_path(slide), :title => slide.title)
   end

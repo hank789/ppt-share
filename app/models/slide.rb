@@ -1,6 +1,9 @@
 # coding: utf-8
 require "auto-space"
-class Slide 
+class Slide
+  include Mongoid::Document
+  include PublicActivity::Common
+  #tracked except: :update, :owner => proc {|controller, model| controller.current_user}
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel
