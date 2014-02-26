@@ -33,4 +33,15 @@ class AttachsController < ApplicationController
 
 	end
 
+	def carousel
+		render :text => 1
+		@attach = Attach.find(params[:id])
+	  #respond_to do |format|
+		format.json { render :json => {:success => true, :html => (render_to_string 'attachs/carousel.html.erb')} }
+		format.html { }
+		#end
+		#box = render_cell :slides, :carousel, params[:id]
+		#render :text => box.to_s
+	end
+
 end
