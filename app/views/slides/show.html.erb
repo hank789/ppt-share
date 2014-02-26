@@ -24,13 +24,12 @@
 	 	</h2>
 	 	<p>
 	    <strong>用户:</strong>
-			<%= @slide.user.name %>&middot;
+			<%= @slide.user.name %>
 	    <strong>上传于:</strong>
-			<%= @slide.created_at %>&middot;
-			<span class="label label-info">公开项目</span>&middot;
-	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>&middot;
-			<%= likeable_tag(@slide) %>&middot;
-			<%= slide_favorite_tag(@slide) %>
+			<%= @slide.created_at %>
+			<span class="label label-info">公开项目</span>
+	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>
+			<%= likeable_tag(@slide) %><%= slide_favorite_tag(@slide) %>
 	  </p>
 	  <ul class="nav nav-tabs">
 	    <li class="active"><a href="#"><i class="icon-facetime-video"></i> 幻灯片</a></li>

@@ -33,7 +33,7 @@ module SlidesHelper
       link_title = "取消收藏"
     end
 		favorite_label = raw "#{icon} <span>#{link_title}</span>"
-    raw "<li>#{link_to(favorite_label, "#", :onclick => "return Slides.favorite(this);", 'data-id' => slide.id, :class => "btn", :title => link_title, :rel => "twipsy")}</li>"
+    raw "#{link_to(favorite_label, "#", :onclick => "return Slides.favorite(this);", 'data-id' => slide.id, :class => "btn", :title => link_title, :rel => "twipsy")}"
   end
 
   def slide_follow_tag(slide)
