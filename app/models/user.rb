@@ -18,6 +18,8 @@ class User
   # Email 是否公开
   field :email_public, :type => Mongoid::Boolean
   field :encrypted_password, :type => String, :default => ""
+  # 关注过的人的 ids 列表
+  field :follower_ids, :type => Array, :default => []
 
   validates_presence_of :email
 
@@ -342,5 +344,18 @@ class User
 
   def ensure_private_token!
     self.update_private_token if self.private_token.blank?
+  end
+
+  def push_follower(uid)
+    return false if uid == self.id
+    return false if self.follower_ids.include?(uid)
+    self.push(follower_ids: uid)
+    true
+  end
+
+  def pull_follower(uid)
+    return false if uid == self.id
+    self.pull(follower_ids: uid)
+    true
   end
 end

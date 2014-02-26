@@ -79,6 +79,18 @@ class UsersController < ApplicationController
     drop_breadcrumb(@location.name)
   end
 
+  def follow
+    @user = User.find(params[:id])
+    @user.push_follower(current_user.id)
+    render :text => "1"
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    @user.pull_follower(current_user.id)
+    render :text => "1"
+  end
+
   protected
   def find_user
     # 处理 login 有大写字母的情况

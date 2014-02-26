@@ -29,6 +29,7 @@
 #= require form_storage
 #= require turbolinks
 #= require slides
+#= require users
 #= require_self
 
 window.App =

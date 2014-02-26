@@ -93,4 +93,18 @@ module UsersHelper
     end
   end
 
+  def user_follow_tag(follower_user)
+    return "" if current_user.blank?
+    return "" if follower_user.blank?
+    return "" if current_user.id.equal?(follower_user.id)
+    icon = content_tag(:i, "", :class => "icon small_follow")
+    link_title = "关注"
+    if current_user and follower_user.follower_ids.include?(current_user.id)
+      icon = content_tag(:i, "", :class => "icon small_followed")
+      link_title = "取消关注"
+    end
+    follow_label = raw "#{icon} <span>#{link_title}</span>"
+    raw "#{link_to(follow_label, "#", :onclick => "return Users.follow(this);", 'data-id' => follower_user.id, :class => "btn", :title => link_title, :rel => "twipsy")}"
+  end
+
 end
