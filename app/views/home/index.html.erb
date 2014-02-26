@@ -1,3 +1,6 @@
+<% if current_user.present? %>
+    <%= render :partial =>  "users/home" %>
+<% else %>
 <!-- /Header Section -->
 
         <div id="landing">
@@ -62,7 +65,7 @@
         </div>
 
 <!-- /Header Section -->
-                
+
 <!-- Section 1 -->
 
         <div class="section secondary">
@@ -125,8 +128,8 @@
             </div>
         </div>
 
-        <!-- /Section 2 --> 
-        
+        <!-- /Section 2 -->
+
         <!-- Section 3 -->
 
         <div class="sec-features">
@@ -161,4 +164,4 @@ $(function(){
 })
 
 </script>
-
+<% end %>
