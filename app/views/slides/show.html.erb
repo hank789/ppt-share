@@ -18,6 +18,9 @@
 		<h2>
 			<%= @slide.title %>
 	  	<span class="pull-right">
+			<% if owner?(@slide) or admin? %>
+				<%= link_to raw("<i class='icon-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-large btn-default" %>
+			<% end %>
 				<%= slide_download_tag(@slide) %>
       	<%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
 	    </span>
@@ -38,9 +41,6 @@
 			<li><%= link_to raw("<i class='icon-upload-alt'></i> 上传新版"), "#", title:"comming soon..." %></li>
 			<% end %>
 			<li class="active pull-right"><a href="#"><i class="icon-comment"></i> 发表评论</a></li>
-			<% if owner?(@slide) or admin? %>
-			<li class="pull-right"><a href="#" title="coming soon..."><i class="icon-tasks"></i> Create Task</a></li>
-			<% end %>
 	  </ul>
 	</div>
 </div>

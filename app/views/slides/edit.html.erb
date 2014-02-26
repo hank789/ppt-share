@@ -1,10 +1,12 @@
-<div class="content">
-  <div class="box">
-     <%= render "form" %>
+<div class="listing-page">
+	<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+				<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
+      </div>
+      <div class="col-md-6">
+				<%= render 'form' %>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="sidebar">
-  <%= render "sidebar_box_node_new_topic" %>
-  <%= render "sidebar_box_new_topic_tip" %>
 </div>

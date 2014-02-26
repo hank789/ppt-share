@@ -56,7 +56,6 @@ class SlidesController < ApplicationController
   end
 
 	def download
-		
 		@slide = Slide.find(params[:id])
 		@slide.downloads.incr(1)
 		send_file @slide.slide 
@@ -107,40 +106,29 @@ class SlidesController < ApplicationController
 
   def edit
     @slide = Slide.find(params[:id])
-    @node = @slide.node
-    drop_breadcrumb("#{@node.name}", node_slides_path(@node.id))
     drop_breadcrumb t("slides.edit_slide")
     set_seo_meta("#{t("slides.edit_slide")} &raquo; #{t("menu.slides")}")
   end
 
   def create
-	  if !params[:file].nil?	
-			@attach = current_user.attachs.new
-			@attach.file= params[:file]
-			if @attach.save
-			#Attach.new({:url => @b}).save
-				render :text => @attach._id 
-			else render :text => false 
+   	@slide = Slide.new(slide_params)
+		@slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
+    @slide.user_id = current_user.id
+		if @slide.save
+			if !@slide.slide.blank?
+				@attach = Attach.find(@slide.slide)
+				if @attach.slide_id.nil?
+					@attach.slide_id = @slide._id
+					@attach.save
+        end
+        @slide.create_activity :create, owner: current_user
 			end
+     	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
 		else
-    	@slide = Slide.new(slide_params)
-			@slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
-    	@slide.user_id = current_user.id
-			if @slide.save
-				if !@slide.slide.blank?
-					@attach = Attach.find(@slide.slide)
-					if @attach.slide_id.nil?
-						@attach.slide_id = @slide._id
-						@attach.save
-          end
-          @slide.create_activity :create, owner: current_user
-				end
-      	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
-    	else
-      	render :action => "new"
-    	end
-		end
-  end
+			@attach_id = slide_params[:slide]
+    	render :action => "new"
+    end
+	end
 
   def preview
     @body = params[:body]
@@ -152,15 +140,6 @@ class SlidesController < ApplicationController
 
   def update
     @slide = Slide.find(params[:id])
-    if @slide.lock_node == false || current_user.admin?
-      # 锁定接点的时候，只有管理员可以修改节点
-      @slide.node_id = slide_params[:node_id]
-
-      if current_user.admin? && @slide.node_id_changed?
-        # 当管理员修改节点的时候，锁定节点
-        @slide.lock_node = true
-      end
-    end
     @slide.title = slide_params[:title]
     @slide.body = slide_params[:body]
 

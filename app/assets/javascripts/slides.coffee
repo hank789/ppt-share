@@ -174,6 +174,24 @@ window.Slides =
       $("i",el).attr("class", "icon small_followed")
     false
 
+  download : (el) ->
+    attach_id = $(el).data("id")
+    $.ajax
+      url : "/attachs/#{attach_id}/download"
+      type : "GET"
+      success : (data) ->
+        alert(data)
+    false
+
+  carousel : (attach_id) -> 
+    $.ajax
+      url : "/attachs/#{attach_id}/carsouel"
+      type : "POST"
+      success : (data) ->
+        $("#upload_landing").remove()
+      failure : (e) ->
+        alert(e)
+
   submitTextArea : (el) ->
     if $(el.target).val().trim().length > 0
       $("#reply > form").submit()
