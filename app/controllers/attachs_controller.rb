@@ -1,6 +1,17 @@
 class AttachsController < ApplicationController
-  load_and_authorize_resource :only => [:destroy]
+  load_and_authorize_resource :only => [:create, :destroy]
 	#require 'open-uri'
+	
+	def create
+			@attach = current_user.attachs.new
+			@attach.file= params[:file]
+			if @attach.save
+			#Attach.new({:url => @b}).save
+				render :text => @attach._id 
+			else 
+				render :text => false 
+			end
+	end 
 
 	def download
 		unless current_user

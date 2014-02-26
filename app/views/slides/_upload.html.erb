@@ -1,7 +1,7 @@
 <div id="upload_landing" class="group section-wrap upper" id="upper">
 <div class="wrap group">
 <div class="section-2 group">
-	<%= simple_form_for @slide, :html => { id:"uploadDropzone", :class => "dropzone" } do |f|  %>
+	<%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone" } do |f|  %>
 	<% end %>
 <script type="text/javascript">
 $(function() {

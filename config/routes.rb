@@ -2,22 +2,7 @@ RubyChina::Application.routes.draw do
   require 'api'
   require "api_v2"
   
-  resources :sites
-  resources :pages, :path => "wiki" do
-    collection do
-      get :recent
-      post :preview
-    end
-    member do
-      get :comments
-    end
-  end
   resources :comments
-  resources :notes do
-    collection do
-      post :preview
-    end
-  end
   root :to => "home#index"
 
   devise_for :users, :path => "account", :controllers => {
@@ -50,7 +35,7 @@ RubyChina::Application.routes.draw do
 		resources :replies
 	end
 
-	resources :attachs, :only => [:destroy] do
+	resources :attachs, :only => [:create, :destroy] do
 		member do
 			get :download
 		end

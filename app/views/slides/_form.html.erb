@@ -1,6 +1,7 @@
 <div id="upload_editor" class="panel panel-primary ">
 	<div class="panel-heading"><h3 class="panel-title"><%= params[:action]=='edit'? "修改幻灯片项目信息" : "填写幻灯片项目信息" %></h3></div>
-  <div class="panel-body">
+  <div class="panel-body">		
+		<%= render "shared/error_messages", :target => @slide %>
   	<div class="row">
       <div class="col-lg-12">
       	<div class="media">

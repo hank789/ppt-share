@@ -44,6 +44,7 @@ class Slide
 	index :last_active_mark => -1  
 
   validates_presence_of :title#, :node_id
+	validates_uniqueness_of :title, :scope => [:user_id]
 
 	counter :hits, :default => 0    
 	counter :downloads, :default => 0    
