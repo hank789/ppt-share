@@ -41,7 +41,6 @@ RubyChina::Application.routes.draw do
 		member do 
 			post :reply
 			post :favorite
-			get :download
 			get :attachs
 		end
 		collection do
@@ -49,6 +48,12 @@ RubyChina::Application.routes.draw do
 			get :popular
 		end
 		resources :replies
+	end
+
+	resources :attachs, :only => [:destroy] do
+		member do
+			get :download
+		end
 	end
 
   resources :photos

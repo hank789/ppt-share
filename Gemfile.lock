@@ -471,6 +471,7 @@ DEPENDENCIES
   pakunok
   postmark-rails (= 0.4.1)
   puma (= 2.6.0)
+  qiniu-rs
   quiet_assets (~> 1.0.2)
   rails (= 4.0.2)
   rails-i18n (= 0.1.8)

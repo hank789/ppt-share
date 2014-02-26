@@ -56,7 +56,6 @@ class SlidesController < ApplicationController
   end
 
 	def download
-		
 		@slide = Slide.find(params[:id])
 		@slide.downloads.incr(1)
 		send_file @slide.slide 
