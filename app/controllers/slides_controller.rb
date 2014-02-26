@@ -106,8 +106,6 @@ class SlidesController < ApplicationController
 
   def edit
     @slide = Slide.find(params[:id])
-    @node = @slide.node
-    drop_breadcrumb("#{@node.name}", node_slides_path(@node.id))
     drop_breadcrumb t("slides.edit_slide")
     set_seo_meta("#{t("slides.edit_slide")} &raquo; #{t("menu.slides")}")
   end
@@ -150,15 +148,6 @@ class SlidesController < ApplicationController
 
   def update
     @slide = Slide.find(params[:id])
-    if @slide.lock_node == false || current_user.admin?
-      # 锁定接点的时候，只有管理员可以修改节点
-      @slide.node_id = slide_params[:node_id]
-
-      if current_user.admin? && @slide.node_id_changed?
-        # 当管理员修改节点的时候，锁定节点
-        @slide.lock_node = true
-      end
-    end
     @slide.title = slide_params[:title]
     @slide.body = slide_params[:body]
 

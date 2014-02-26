@@ -39,7 +39,7 @@
 			<% end %>
 			<li class="active pull-right"><a href="#"><i class="icon-comment"></i> 发表评论</a></li>
 			<% if owner?(@slide) or admin? %>
-			<li class="pull-right"><a href="#" title="coming soon..."><i class="icon-tasks"></i> Create Task</a></li>
+				<li class="pull-right"><%= link_to raw("<i class='icon-edit'></i> 修改项目信息"), edit_slide_url(@slide.id) %></li>
 			<% end %>
 	  </ul>
 	</div>
