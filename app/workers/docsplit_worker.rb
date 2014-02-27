@@ -3,7 +3,7 @@ class DocsplitWorker
 	sidekiq_options :queue => 'a', :retry => true
 
 	def perform(attach_id)
-		attach = Attach.find(attach_id)
+		attach = Attach.find(attach_id.to_s)
 		cache_path = Rails.root.join('public', 'uploads', 'tmp', attach.cache_id).to_s
 	  Dir.foreach(cache_path) do |item|
 			next if item == '.' or item == '..'
