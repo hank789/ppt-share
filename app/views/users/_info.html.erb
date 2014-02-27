@@ -12,6 +12,7 @@
         <% if admin? %>
           <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
         <% end %>
+        <%= user_follow_tag(@user) %>
       </li>
       <li>
         <label>ID:</label>

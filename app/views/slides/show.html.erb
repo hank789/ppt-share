@@ -27,7 +27,7 @@
 	 	</h2>
 	 	<p>
 	    <strong>用户:</strong>
-			<%= @slide.user.name %>
+          <%= user_name_tag(@slide.user) %>
 	    <strong>上传于:</strong>
 			<%= @slide.created_at %>
 			<span class="label label-info">公开项目</span>
