@@ -35,7 +35,7 @@ RubyChina::Application.routes.draw do
 		resources :replies
 	end
 
-	resources :attachs, :only => [:create, :destroy] do
+	resources :attachs, :except => :index do
 		member do
 			get :download
 		end

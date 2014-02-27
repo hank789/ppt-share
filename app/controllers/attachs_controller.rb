@@ -1,5 +1,6 @@
 class AttachsController < ApplicationController
-  load_and_authorize_resource :only => [:create, :destroy]
+  # load_and_authorize_resource :only => [:create, :destroy]
+  before_filter :require_user
 	#require 'open-uri'
 	
 	def create
