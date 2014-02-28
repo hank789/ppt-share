@@ -83,7 +83,8 @@ class Reply
     end
 
     # 给关注者发通知
-    attach.follower_ids.each do |uid|
+    slide = Slide.find_by_id(attach.slide_id)
+    slide.follower_ids.each do |uid|
       # 排除同一个回复过程中已经提醒过的人
       next if notified_user_ids.include?(uid)
       # 排除回帖人

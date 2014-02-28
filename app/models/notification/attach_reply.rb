@@ -1,7 +1,6 @@
 # coding: utf-8
 class Notification::AttachReply < Notification::Base
-  belongs_to :attach
-  
+  belongs_to :reply
   delegate :body, :to => :reply, :prefix => true, :allow_nil => true
   
   def notify_hash

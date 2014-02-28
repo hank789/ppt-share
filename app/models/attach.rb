@@ -39,4 +39,11 @@ class Attach
     self.save
   end
 
+  # 所有的回复编号
+  def reply_ids
+    Rails.cache.fetch([self,"reply_ids"]) do
+      self.replies.only(:_id).map(&:_id)
+    end
+  end
+
 end
