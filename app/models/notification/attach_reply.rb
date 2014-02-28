@@ -1,6 +1,6 @@
 # coding: utf-8
-class Notification::SlideReply < Notification::Base
-  belongs_to :reply
+class Notification::AttachReply < Notification::Base
+  belongs_to :attach
   
   delegate :body, :to => :reply, :prefix => true, :allow_nil => true
   
@@ -15,6 +15,6 @@ class Notification::SlideReply < Notification::Base
   
   def content_path
     return "" if self.reply.blank?
-    url_helpers.slide_path(self.reply.slide_id)
+    url_helpers.slide_path(self.reply.attach.slide.id)
   end
 end

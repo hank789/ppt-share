@@ -69,18 +69,19 @@ class SlidesController < ApplicationController
     #@show_raw = params[:raw] == "1"
 
     @per_page = Reply.per_page
+		@in_attach = Attach.find(@slide.slide)
     # 默认最后一页
-    params[:page] = @slide.last_page_with_per_page(@per_page) if params[:page].blank?
+    params[:page] = @slide.last_page_with_per_page(@in_attach.replies_count, @per_page) if params[:page].blank?
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
-    @replies = @slide.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
+    @replies = @in_attach.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
 		# TODO 
     if current_user
       # 找出用户 like 过的 Reply，给 JS 处理 like 功能的状态
       @user_liked_reply_ids = []
       @replies.each { |r| @user_liked_reply_ids << r.id if r.liked_user_ids.include?(current_user.id) }
       # 通知处理
-      current_user.read_slide(@slide)
+      current_user.read_attach(@in_attach)
       # 是否关注过
       @has_followed = @slide.follower_ids.include?(current_user.id)
       # 是否收藏

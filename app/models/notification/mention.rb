@@ -19,7 +19,7 @@ class Notification::Mention < Notification::Base
       url_helpers.slide_path(self.mentionable_id)
     when "reply"
       return "" if self.mentionable.blank?
-      url_helpers.slide_path(self.mentionable.slide_id)
+      url_helpers.slide_path(self.mentionable.attach.slide_id)
     else
       ""
     end

@@ -32,13 +32,13 @@ RubyChina::Application.routes.draw do
 			get :no_reply
 			get :popular
 		end
-		resources :replies
 	end
 
 	resources :attachs, :except => :index do
 		member do
 			get :download
 		end
+		resources :replies
 	end
 
   resources :photos

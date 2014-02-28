@@ -12,7 +12,6 @@ class Slide
   include Mongoid::Likeable
   include Mongoid::MarkdownBody
   include Redis::Objects
-  include Mongoid::Mentionable
 
   field :title
   field :body
@@ -20,9 +19,6 @@ class Slide
   field :private, :type => Mongoid::Boolean, :default => false
 
 	field :slide
-	field :last_reply_id, :type => Integer
-  field :replied_at , :type => DateTime
-  field :replies_count, :type => Integer, :default => 0
   # 回复过的人的 ids 列表
   field :follower_ids, :type => Array, :default => []
   # 节点名称 - cache 字段用于减少列表也的查询
@@ -39,7 +35,6 @@ class Slide
   #belongs_to :node
   #counter_cache :name => :node, :inverse_of => :topics
   has_many :attachs, :dependent => :destroy
-  has_many :replies, :dependent => :destroy
 
 	index :user_id => 1
 	index :folder_id => 1
@@ -84,16 +79,6 @@ class Slide
     self.pull(follower_ids: uid)
   end
 
-  def update_last_reply(reply)
-    # replied_at 用于最新回复的排序，如果贴着创建时间在一个月以前，就不再往前面顶了
-    self.last_active_mark = Time.now.to_i if self.created_at > 1.month.ago
-    self.replied_at = Time.now
-    self.last_reply_id = reply.id 
-    # self.last_reply_user_id = reply.user_id
-    # self.last_reply_user_login = reply.user.try(:login) || nil
-    self.save
-  end
-
   # 删除并记录删除人
   def destroy_by(user)
     return false if user.blank?
@@ -106,16 +91,9 @@ class Slide
     delete_notifiaction_mentions
   end
   
-  def last_page_with_per_page(per_page)
-    page = (self.replies_count.to_f / per_page).ceil
+  def last_page_with_per_page(count, per_page)
+    page = (count.to_f / per_page).ceil
     page > 1 ? page : nil
-  end
-  
-  # 所有的回复编号
-  def reply_ids
-    Rails.cache.fetch([self,"reply_ids"]) do
-      self.replies.only(:_id).map(&:_id)
-    end
   end
   
   def excellent?

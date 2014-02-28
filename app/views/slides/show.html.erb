@@ -66,7 +66,7 @@
 		<h3 class="panel-title"><i class="icon-comment"></i> 对幻灯片发表评论</h3>
           	</div>
         <div class="panel-body">
-				<%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
+				<%= form_for(Reply.new, :remote => true,:url => attach_replies_path(@in_attach), role:"form") do |f| %>
 					<div class="form-group">
       			<label for="exampleInputStar">评分</label>
 						<div><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
@@ -82,17 +82,13 @@
 		</div>
 		<ul id="myTab" class="nav nav-tabs">
   		<li class="active"><a href="#profile" data-toggle="tab">幻灯片描述</a></li>
-			<li><a href="#replies" data-toggle="tab">评论 (<b><%= @slide.replies_count %></b>)</a></li>
+			<li><a href="#replies" data-toggle="tab">评论 (<b><%= @in_attach.replies_count %></b>)</a></li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
   		<div class="tab-pane fade in active" id="profile">
 				<%= sanitize_slide @slide.body_html %>
   		</div>
-			<div class="tab-pane fade" id="history">
-				<!-- TODO seperate tpl -->
-				<p><strong>项目创建于</strong><%= @slide.created_at %></p>
-			</div>
- 			<div class="tab-pane fade" id="replies">
+			<div class="tab-pane fade" id="replies">
 				<div class="items">  
 					<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
 						<%= render :partial => "replies/reply", :collection => @replies %>

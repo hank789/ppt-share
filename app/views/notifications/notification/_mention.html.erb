@@ -4,7 +4,7 @@
 %>
   <%
     reply = notification.mentionable
-    slide = reply.slide
+    slide = reply.attach.slide
   %>
   <td class="face">
     <%= user_avatar_tag(reply.user, :normal) %>
