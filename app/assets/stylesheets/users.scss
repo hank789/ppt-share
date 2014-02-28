@@ -68,13 +68,14 @@ table.node_topics {
 .activity {
   margin-bottom: 0.5em;
   position: relative;
+  font-size: 13px;
+  padding-left: 30px;
 }
 .activity .body {
   overflow: hidden;
   padding: 0 0 1em;
 }
 .activity .body .title {
-  font-size: 14px;
   font-weight: bold;
   padding: 0 0 0.25em;
 }
@@ -84,4 +85,23 @@ table.node_topics {
   line-height: 0;
   margin-right: 0.7em;
   padding: 2px;
+}
+.activity abbr.timeago {
+  border: medium none;
+  color: #BBBBBB;
+  cursor: default;
+  font-size: 12px;
+  font-weight: normal;
+}
+.activity .mega-icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 32px auto;
+  color: #BBBBBB;
+  height: 32px;
+  left: 0;
+  padding: 3px;
+  position: absolute;
+  top: 14px;
+  width: 32px;
 }

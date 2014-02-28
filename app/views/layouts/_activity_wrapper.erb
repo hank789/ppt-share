@@ -1,6 +1,24 @@
 <div class="activity">
     <div class="body">
         <div>
+          <div class="mega-icon">
+            <span class="glyphicon glyphicon-<%= case a.key[a.key.index('.')..-1]
+                                                 when '.create'
+                                                   if a.key=='reply.create'
+                                                     'comment'
+                                                   else
+                                                     'plus'
+                                                   end
+                                                 when '.unlike'
+                                                   'heart-empty'
+                                                 when '.like'
+                                                   'heart'
+                                                 when '.update'
+                                                   'pencil'
+                                                 when '.destroy'
+                                                    'trash'
+                                                 end %>"></span>
+          </div>
           <%= timeago(a.created_at) %>
 
           <div class="details">

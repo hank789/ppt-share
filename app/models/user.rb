@@ -260,6 +260,7 @@ class User
     likeable.push(liked_user_ids: self.id)
     likeable.inc(likes_count: 1)
     likeable.touch
+    likeable.create_activity :like, owner: self
   end
 
   # 取消收藏
@@ -270,6 +271,7 @@ class User
     likeable.pull(liked_user_ids: self.id)
     likeable.inc(likes_count: -1)
     likeable.touch
+    likeable.create_activity :unlike, owner: self
   end
 
   # 收藏话题
