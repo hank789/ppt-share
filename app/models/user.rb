@@ -347,6 +347,7 @@ class User
   end
 
   def push_follower(uid)
+    uid = uid.to_i
     return false if uid == self.id
     return false if self.follower_ids.include?(uid)
     self.push(follower_ids: uid)
@@ -354,6 +355,7 @@ class User
   end
 
   def pull_follower(uid)
+    uid = uid.to_i
     return false if uid == self.id
     self.pull(follower_ids: uid)
     true

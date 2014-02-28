@@ -85,14 +85,14 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find(params[:id])
-    @user.push_follower(current_user.id)
+    @user = User.find(current_user.id)
+    @user.push_follower(params[:id])
     render :text => "1"
   end
 
   def unfollow
-    @user = User.find(params[:id])
-    @user.pull_follower(current_user.id)
+    @user = User.find(current_user.id)
+    @user.pull_follower(params[:id])
     render :text => "1"
   end
 

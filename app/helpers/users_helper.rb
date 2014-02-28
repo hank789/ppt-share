@@ -99,7 +99,7 @@ module UsersHelper
     return "" if current_user.id.equal?(follower_user.id)
     icon = content_tag(:i, "", :class => "icon small_follow")
     link_title = "关注"
-    if current_user and follower_user.follower_ids.include?(current_user.id)
+    if current_user and current_user.follower_ids.include?(follower_user.id)
       icon = content_tag(:i, "", :class => "icon small_followed")
       link_title = "取消关注"
     end
