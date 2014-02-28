@@ -145,6 +145,7 @@ class SlidesController < ApplicationController
     @slide.body = slide_params[:body]
 
     if @slide.save
+      @slide.create_activity :update, owner: current_user
       redirect_to(slide_path(@slide.id), :notice =>  t("slides.update_slide_success"))
     else
       render :action => "edit"

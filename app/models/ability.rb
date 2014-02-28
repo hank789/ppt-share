@@ -16,7 +16,10 @@ class Ability
 			if !user.newbie?
 				can :create, Slide
 				can :create, Folder
-			end
+      end
+      can :update, Slide do |slide|
+        (slide.user_id == user.id)
+      end
       
       # Reply
       # 新手用户晚上禁止回帖，防 spam，可在面板设置是否打开
