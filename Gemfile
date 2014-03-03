@@ -101,6 +101,7 @@ gem 'thin', "1.5.0"
 gem "docsplit", "~> 0.7.2"
 
 gem 'public_activity'
+gem 'cache_digests'
 
 group :development, :test do
   gem 'capistrano', '2.9.0', require: false
