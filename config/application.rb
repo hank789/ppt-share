@@ -49,6 +49,7 @@ module RubyChina
     config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
 		 mobile.css home.css)
 		config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+		config.assets.precompile << /dropzone.+\.png$/
   end
 end
 
