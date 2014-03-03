@@ -238,12 +238,13 @@
 	}
 }
 .slide-item {
-	height: 300px;
 	.flexslider, .document_thumb {
 		box-shadow: none;
+		border: 0;
 	}
 	.document_thumb {
-		line-height: 179px;
+		line-height: 180px;
+		border-radius: 0;
 	}
 	.thumbnail {
     border-radius: 0;
@@ -252,7 +253,14 @@
     margin-bottom: 25px;
     padding: 0;
 		.flexslider {
+			height: 180px;
 			margin-bottom: 0;
+			img {
+				border: 0;
+				border-left: 0;
+				border-right: 0;
+				border-top: 0;
+			}
 		}
 	}
 }
