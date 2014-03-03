@@ -85,10 +85,10 @@
 			<li><a href="#replies" data-toggle="tab">评论 (<b><%= @in_attach.replies_count %></b>)</a></li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
-  		<div class="tab-pane fade in active" id="profile">
+  		<div class="tab-pane in active" id="profile">
 				<%= sanitize_slide @slide.body_html %>
   		</div>
-			<div class="tab-pane fade" id="replies">
+			<div class="tab-pane" id="replies">
 
 				<div class="items">  
 					<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>

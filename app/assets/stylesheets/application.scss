@@ -301,16 +301,9 @@ body .top-form-inner {
     vertical-align: middle;
 }
 .listing-page .tab-content {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: -moz-use-text-color #D3D3D3 #D3D3D3;
-    border-image: none;
-    border-right: 1px solid #D3D3D3;
-    border-style: none solid solid;
-    border-width: medium 1px 1px;
-    padding: 20px;
+		padding: 20px;
+		border: 1px solid #D3D3D3;
+		border-top: none;
 }
 .listing-page .col-lg-12 {
     border-bottom: 1px solid #DAD7D7;
@@ -805,4 +798,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .grid li.wide {
     width: 50%;
 }
+}
+.dropzone {
+	background-color: #FAFCFD;
+	background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+	background-size: 16px 16px;
+	&.dz-drag-hover {
+		background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+		background-size: 22px 22px;
+		border: 5px dashed #CCCCCC;
+	}
 }
