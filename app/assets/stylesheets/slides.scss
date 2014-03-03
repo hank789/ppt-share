@@ -263,4 +263,8 @@
 			}
 		}
 	}
+	.caption > h4.title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
