@@ -89,18 +89,14 @@
 				<%= sanitize_slide @slide.body_html %>
   		</div>
 			<div class="tab-pane fade" id="replies">
-              <% if @replies.blank? %>
-                  <div class="no_result">
-                    <%= t("topics.no_replies") %>
-                  </div>
-              <% else %>
+
 				<div class="items">  
 					<%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
 						<%= render :partial => "replies/reply", :collection => @replies %>
 					<% end %>          
 				</div>               
 				<%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %>
-              <% end %>
+
   		</div>
 		</div>
 	</div>
