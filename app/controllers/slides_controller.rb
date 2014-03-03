@@ -66,7 +66,7 @@ class SlidesController < ApplicationController
     @slide = Slide.without_body.find(params[:id])
     @slide.hits.incr(1)
     #@node = @slide.node
-    #@show_raw = params[:raw] == "1"
+    @show_raw = params[:raw] == "1"
 
     @per_page = Reply.per_page
 		@in_attach = Attach.find(@slide.slide)
