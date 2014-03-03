@@ -19,7 +19,7 @@
 			<%= @slide.title %>
 	  	<span class="pull-right">
 			<% if owner?(@slide) or admin? %>
-				<%= link_to raw("<i class='icon-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-large btn-default" %>
+				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-large btn-default" %>
 			<% end %>
 				<%= slide_download_tag(@slide) %>
       	<%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
@@ -31,15 +31,15 @@
 	    <strong>上传于:</strong>
 			<%= @slide.created_at %>
 			<span class="label label-info">公开项目</span>
-	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>
+	    <span class="label label-default"><i class="fa fa-eye"></i> <%= @slide.hits %></span>
 			<%= likeable_tag(@slide) %><%= slide_favorite_tag(@slide) %>
 	  </p>
 	  <ul class="nav nav-tabs">
-	    <li class="active"><a href="#"><i class="icon-facetime-video"></i> 幻灯片</a></li>
+	    <li class="active"><a href="#"><i class="fa fa-video-camera"></i> 幻灯片</a></li>
 			<% if owner?(@slide) or admin? %>
-			<li><%= link_to raw("<i class='icon-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
+			<li><%= link_to raw("<i class='fa fa-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
 			<% end %>
-			<li class="active pull-right"><a href="#"><i class="icon-comment"></i> 发表评论</a></li>
+			<li class="active pull-right"><a href="#"><i class="fa fa-comment"></i> 发表评论</a></li>
 	  </ul>
 	</div>
 </div>
@@ -63,13 +63,13 @@
       <div class="col-md-6">
         <div class="panel panel-primary ">
         	<div class="panel-heading">
-		<h3 class="panel-title"><i class="icon-comment"></i> 对幻灯片发表评论</h3>
+		<h3 class="panel-title"><i class="fa fa-comment"></i> 对幻灯片发表评论</h3>
           	</div>
         <div class="panel-body">
 				<%= form_for(Reply.new, :remote => true,:url => attach_replies_path(@in_attach), role:"form") do |f| %>
 					<div class="form-group">
       			<label for="exampleInputStar">评分</label>
-						<div><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
+						<div><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></div>
       			</div>
      				<label for="exampleInputEmail1">评论</label>
 						<%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>

@@ -2,7 +2,7 @@
 	<ul class="nav pull-right" id="userbar">
 		<li>
 	  	<div class="btn-group" style="padding-right: 16px">
-				<a class="btn btn-primary navbar-btn btn-sm" href="<%= new_slide_url %>"><i class="icon-upload-alt"></i> Upload slide</a>
+				<a class="btn btn-primary navbar-btn btn-sm" href="<%= new_slide_url %>"><i class="fa fa-upload"></i> Upload slide</a>
 	  	</div>
 		</li>
 		</li>
@@ -11,10 +11,10 @@
 		    badge_class = "badge-error" if unread_notify_count > 0
 		  %>
 	  <li<%= " class=active" if ["notifications"].index(params[:controller]) %>>
-		<a href="<%= notifications_path %>" id="user_notifications_count"><span class="<%= badge_class %>"><b class="icon-bell"></b> <%= unread_notify_count %></span></a>
+		<a href="<%= notifications_path %>" id="user_notifications_count"><span class="<%= badge_class %>"><b class="fa fa-bell"></b> <%= unread_notify_count %></span></a>
 		</li>
 		<li class="dropdown" id="user_menu">
-			<%= link_to(sanitize("<b class='icon-user'></b> #{current_user.login} <b class='caret'></b>"), "#user_menu", :class => "dropdown-toggle", "data-toggle" => "dropdown") %>
+			<%= link_to(sanitize("<b class='fa fa-user'></b> #{current_user.login} <b class='caret'></b>"), "#user_menu", :class => "dropdown-toggle", "data-toggle" => "dropdown") %>
 		    <%= render_list :class => "dropdown-menu" do |li|
 					unless params[:controller].match(/cpanel/)
 		        li << link_to(t("menu.edit_account_path"), edit_user_registration_path)

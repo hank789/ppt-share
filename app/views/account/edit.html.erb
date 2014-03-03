@@ -4,7 +4,7 @@
 			<div class="col-md-8">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="icon-wrench"></i> <%= t("users.personal_information")%></h3>
+						<h3 class="panel-title"><i class="fa fa-wrench"></i> <%= t("users.personal_information")%></h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -61,7 +61,7 @@
 			<div class="col-md-4">
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="icon-edit"></i> <%= t("users.edit_password")%></h3>
+						<h3 class="panel-title"><i class="fa fa-edit"></i> <%= t("users.edit_password")%></h3>
 					</div>
 					<div class="panel-body">
 					<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name,:by => :pwd), :html => { :method => :put }) do |f| %>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="icon-key"></i> 密钥</h3>
+						<h3 class="panel-title"><i class="fa fa-key"></i> 密钥</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -97,7 +97,7 @@
 				</div>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="icon-trash"></i> <%= t("users.delete_my_account")%></h3>
+						<h3 class="panel-title"><i class="fa fa-trash-o"></i> <%= t("users.delete_my_account")%></h3>
 					</div>
 					<div class="panel-body">
 						<p><%= t("users.dont_like_it")%> <%= link_to(t("users.delete_this_account"), registration_path(resource_name), 'data-confirm' => "删除后无法恢复，你确定吗?", :class => "btn btn-danger", :method => :delete )%></p>

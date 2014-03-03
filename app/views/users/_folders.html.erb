@@ -1,11 +1,11 @@
 <% folders.each do |folder| %>
 <div class="item col-xs-4">
 <div class="well bg-color-lighten">
-	<h3><i class="icon-folder-close"></i> <%= folder.name%></h3>
+	<h3><i class="fa fa-folder"></i> <%= folder.name%></h3>
 	<div class="row"><%= render "box_slides", :slides => folder.slides %></div>
 	<div class="meta">
 		<span></span>
-		<span class="pull-right"><i class="icon-group"></i> <%= folder.followers.count %></span>
+		<span class="pull-right"><i class="fa fa-group"></i> <%= folder.followers.count %></span>
 	</div>
 </div>
 </div>

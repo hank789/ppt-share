@@ -8,7 +8,7 @@ class SlidesController < ApplicationController
   before_filter :init_base_breadcrumb
 
   def index
-    @slides = Slide.includes(:user).paginate(:page => params[:page], :per_page => 15)
+    @slides = Slide.recent.includes(:user).paginate(:page => params[:page], :per_page => 15)
     set_seo_meta("#{t("menu.slides")}","#{Setting.app_name}#{t("menu.slides")}")
     drop_breadcrumb(t("slides.slide_list.hot_slide"))
   end
@@ -34,7 +34,7 @@ class SlidesController < ApplicationController
 
   %w(no_reply popular).each do |name|
     define_method(name) do
-      @slides = Slide.send(name.to_sym).last_actived.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15)
+      @slides = Slide.send(name.to_sym).includes(:user).paginate(:page => params[:page], :per_page => 15)
       drop_breadcrumb(t("slides.slide_list.#{name}"))
       set_seo_meta([t("slides.slide_list.#{name}"),t("menu.slides")].join(" &raquo; "))
       render :action => "index"

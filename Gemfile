@@ -42,7 +42,8 @@ gem 'will_paginate', '3.0.4'
 gem 'anjlab-bootstrap-rails', '2.0.3.2', require: 'bootstrap-rails'
 gem 'bootstrap-will_paginate', '0.0.3'
 gem 'bootstrap_helper', github: 'huacnlee/bootstrap-helper'
-gem 'font-awesome-sass-rails'
+gem 'font-awesome-rails'
+
 
 # 三方平台 OAuth 验证登陆
 gem "omniauth", "~> 1.0.1"

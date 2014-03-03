@@ -13,16 +13,13 @@
 	    <strong>上传于:</strong>
 			<%= @slide.created_at %>&middot;
 			<span class="label label-info">公开项目</span>&middot;
-	    <span class="label label-default"><i class="icon-eye-open"></i> <%= @slide.hits %></span>&middot;
+	    <span class="label label-default"><i class="fa fa-eye"></i> <%= @slide.hits %></span>&middot;
 			<%= likeable_tag(@slide) %>&middot;
 			<%= slide_favorite_tag(@slide) %>
 	  </p>
 	  <ul class="nav nav-tabs">
-			<li><%= link_to raw("<i class='icon-facetime-video'></i> 幻灯片"), slide_url(@slide) %></li>
-			<li class="active"><%= link_to raw("<i class='icon-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
-			<% if owner?(@slide) or admin? %>
-			<li class="pull-right"><a href="#" title="coming soon..."><i class="icon-tasks"></i> Create Task</a></li>
-			<% end %>
+			<li><%= link_to raw("<i class='fa fa-video-camera'></i> 幻灯片"), slide_url(@slide) %></li>
+			<li class="active"><%= link_to raw("<i class='fa fa-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
 	  </ul>
 	</div>
 </div>

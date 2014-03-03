@@ -16,8 +16,8 @@ $(function() {
 			this.on("success", function(file, data) {
 				if(data) {
 					$('#slide_slide').val(data);
-					var cclass = "icon-refresh icon-spin";
-					} else var cclass = "icon-bolt";
+					var cclass = "fa fa-spinner fa-spin";
+					} else var cclass = "fa fa-bolt";
 				$('#upload_editor').show();
 				$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
 			});

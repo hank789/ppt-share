@@ -1,7 +1,7 @@
 <div class="jarviswidget">
 <header><%= render "menu" %></header>
 <div class="slides">
-	<h1 class="page-title txt-color-blueDark"><i class="icon-cloud"></i> <%= t("menu.my_workspace") %></h1>
+	<h1 class="page-title txt-color-blueDark"><i class="fa fa-cloud"></i> <%= t("menu.my_workspace") %></h1>
 	<div class="row">
 		<%= render "folders", :folders => @folders %>
 		<%= render "slides", :slides => @orphan_slides %>
