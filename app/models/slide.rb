@@ -16,6 +16,11 @@ class Slide
   field :title
   field :body
   field :body_html
+  field :last_reply_id, :type => Integer
+  field :replied_at , :type => DateTime
+  field :replies_count, :type => Integer, :default => 0
+  # 最后回复人的用户名 - cache 字段用于减少列表也的查询
+  field :last_reply_user_login
   field :private, :type => Mongoid::Boolean, :default => false
 
 	field :slide
@@ -32,6 +37,8 @@ class Slide
   counter_cache :name => :user, :inverse_of => :slides
   belongs_to :folder, :inverse_of => :folders
   counter_cache :name => :folder, :inverse_of => :folders
+  belongs_to :last_reply_user, :class_name => 'User'
+  belongs_to :last_reply, :class_name => 'Reply'
   #belongs_to :node
   #counter_cache :name => :node, :inverse_of => :topics
   has_many :attachs, :dependent => :destroy
@@ -54,14 +61,11 @@ class Slide
   scope :high_likes, -> { desc(:likes_count, :_id) }
   scope :last_week_created, -> { where(:created_at.gte => 1.week.ago.to_s) }
 
-  #before_save :store_cache_fields
-  #def store_cache_fields
-  #  self.node_name = self.node.try(:name) || ""
-  #end
-  #before_save :auto_space_with_title
-  #def auto_space_with_title
-  #  self.title.auto_space!
-  #end
+
+  before_save :auto_space_with_title
+  def auto_space_with_title
+    self.title.auto_space!
+  end
 
 	before_create :init_last_active_mark_on_create
 	def init_last_active_mark_on_create 
@@ -77,6 +81,17 @@ class Slide
   def pull_follower(uid)
     return false if uid == self.user_id
     self.pull(follower_ids: uid)
+  end
+
+  def update_last_reply(reply)
+    # replied_at 用于最新回复的排序，如果贴着创建时间在一个月以前，就不再往前面顶了
+    self.last_active_mark = Time.now.to_i if self.created_at > 1.month.ago
+    self.replied_at = Time.now
+    self.last_reply_id = reply.id
+    self.last_reply_user_id = reply.user_id
+    self.last_reply_user_login = reply.user.try(:login) || nil
+    self.replies_count +=1
+    self.save
   end
 
   # 删除并记录删除人

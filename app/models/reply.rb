@@ -46,6 +46,8 @@ class Reply
   after_create :update_parent_attach
   def update_parent_attach
     attach.update_last_reply(self)
+    slide = Slide.find_by_id(attach.slide_id)
+    slide.update_last_reply(self)
   end
 
   # 更新的时候也更新话题的 updated_at 以便于清理缓存之类的东西
