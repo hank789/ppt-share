@@ -12,8 +12,8 @@
 
                         <div class="header">
                             <ul class="nav nav-pills pull-right">
-															<li><%= link_to(t("common.login"), new_user_session_path) %></li>
-															<li class="active"><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> <%= t("common.register") %></a>
+			<li><%= link_to(t("common.login"), new_user_session_path) %></li>
+			<li class="active"><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> <%= t("common.register") %></a>
                                 </li>
 
                             </ul>
@@ -38,15 +38,15 @@
                             <div class="row">
                                 <div class="col-lg-8 col-sm-8">
 
-																		<input type="text" name="q" value="<%= params[:q] %>" placeholder="关键词" class="form-control input-lg">
+			<input type="text" name="q" value="<%= params[:q] %>" placeholder="关键词" class="form-control input-lg">
                                 </div>
                                 <!-- /.col-lg-6 -->
                                 <div class="col-lg-4 col-sm-4">
                                     <div class="input-group">
-																				<input type="text" name="q" value="<%= params[:q] %>" placeholder="分类： PowerPoint、KeyNotes..." class="form-control input-lg">
+			<input type="text" name="q" value="<%= params[:q] %>" placeholder="分类： PowerPoint、PDF..." class="form-control input-lg">
                                         <span class="input-group-btn">
-        <button type="submit" class="btn btn-success btn-lg">搜索</button>
-      </span>
+                                        <button type="submit" class="btn btn-success btn-lg">搜索</button>
+                                        </span>
                                     </div>
                                     <!-- /input-group -->
 
