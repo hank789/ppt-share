@@ -28,7 +28,7 @@
         </tr>
       <% end %>
 
-      <% if !@user.email.blank? && @user.email_public %>
+      <% if !@user.email.blank? %>
       <tr>
         <td><label><%= t("mongoid.attributes.user.email") %>:</label></td>
         <td><span style="word-break:break-all;overflow:auto;"><%= auto_link @user.email %></span></td>
