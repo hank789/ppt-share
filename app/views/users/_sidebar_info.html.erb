@@ -28,20 +28,6 @@
         </tr>
       <% end %>
 
-      <% if !@user.location.blank? %>
-        <tr class="adr">
-          <td><label><%= t("users.city")%>:</label></td>
-          <td><span class="region"><%= location_name_tag(@user.location) %></span></td>
-        </tr>
-      <% end %>
-
-      <% if !@user.company.blank? %>
-        <tr class="adr">
-          <td><label><%= t("mongoid.attributes.user.company") %>:</label></td>
-          <td><span class="org"><%= @user.company %></span></td>
-        </tr>
-      <% end %>
-
       <% if !@user.email.blank? && @user.email_public %>
       <tr>
         <td><label><%= t("mongoid.attributes.user.email") %>:</label></td>
@@ -49,38 +35,7 @@
       </tr>
       <% end %>
 
-      <% if !@user.twitter.blank? %>
-        <tr>
-          <td><label><%= t("users.twitter")%>:</label></td>
-          <td><span><%= link_to "@#{@user.twitter}", @user.twitter_url, :class => "twitter", :rel => "nofollow" %></span></td>
-        </tr>
-      <% end %>
-
-      <% if !@user.website.blank? %>
-        <tr>
-          <td><label><%= t("users.personal_website")%>:</label></td>
-          <td><span><%= render_user_personal_website(@user)%></span></td>
-        </tr>
-      <% end %>
-
-      <% if !@user.tagline.blank? %>
-        <tr>
-          <td><label><%= t("users.signature")%>:</label></td>
-          <td><span><%= render_user_tagline(@user) %></span></td>
-        </tr>
-      <% end %>
-
-      <tr>
-        <td><label><%= t("users.join_time")%>:</label></td>
-        <td><span><%= render_user_join_time(@user) %></span></td>
-      </tr>
   </table>
 
 </div>
 </div>
-
-<% if !@user.bio.blank? %>
-  <div class="box">
-    <p><%= simple_format(@user.bio) %></p>
-  </div>
-<% end %>
