@@ -104,7 +104,7 @@ module UsersHelper
       link_title = "取消关注"
     end
     follow_label = raw "#{icon} <span>#{link_title}</span>"
-    raw "#{link_to(follow_label, "#", :onclick => "return Users.follow(this);", 'data-id' => follower_user.id, :class => "btn", :title => link_title, :rel => "twipsy")}"
+    raw "#{link_to(follow_label, "#", :onclick => "return Users.follow(this);", 'data-id' => follower_user.id, :class => "btn-custom", :title => link_title, :rel => "twipsy")}"
   end
 
 end

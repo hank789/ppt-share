@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
 	<div class="panel-body">
   <div class="userinfo vcard">
-    <div class="pull-right" style="text-align:center;">
+    <div class="pull-right">
       <%= user_avatar_tag(@user,:big, :link => false) %>
     </div>
     <%= render_user_level_tag(@user) %>
@@ -12,7 +12,7 @@
         <% if admin? %>
           <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
         <% end %>
-        <%= user_follow_tag(@user) %>
+        &nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
       </li>
       <li>
         <label>ID:</label>

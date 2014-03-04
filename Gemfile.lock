@@ -90,9 +90,6 @@ GEM
       will_paginate
     bson (1.7.1)
     builder (3.1.4)
-    cache_digests (0.3.1)
-      actionpack (>= 3.2)
-      thread_safe
     cancan (1.6.10)
     capistrano (2.9.0)
       highline
@@ -434,7 +431,6 @@ DEPENDENCIES
   auto-space (= 0.0.2)
   bootstrap-will_paginate (= 0.0.3)
   bootstrap_helper!
-  cache_digests
   cancan (~> 1.6.10)
   capistrano (= 2.9.0)
   capybara (~> 0.4.1)

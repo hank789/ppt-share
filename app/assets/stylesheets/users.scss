@@ -7,6 +7,11 @@
     font-size:14px; line-height:180%; border-bottom:1px dashed #eee;
     label { color:#999; font-size:12px; margin-right:8px; display:inline-block; width:100px; text-align: right;}
   }
+  td {
+    font-size:14px; line-height:180%; border-bottom:1px dashed #eee;
+    label { color:#999; font-size:12px; margin-right:8px; display:inline-block; text-align: right;margin-bottom: 0px;}
+  }
+
 
 }
 
@@ -104,4 +109,9 @@ table.node_topics {
   position: absolute;
   top: 14px;
   width: 32px;
+}
+a.btn-custom:hover,
+a.btn-custom:focus {
+  color: #2a6496;
+  text-decoration: none;
 }
