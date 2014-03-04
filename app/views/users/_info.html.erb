@@ -20,7 +20,7 @@
       </li>
       <% if !@user.name.blank? %>
         <li>
-          <label>Name:</label>
+          <label><%= t("mongoid.attributes.user.name") %>:</label>
           <strong><%= @user.name %></strong>
         </li>
       <% end %>
@@ -34,14 +34,14 @@
 
       <% if !@user.company.blank? %>
         <li class="adr">
-          <label><%= t("users.company")%>:</label>
+          <label><%= t("mongoid.attributes.user.company") %>:</label>
           <span class="org"><%= @user.company %></span>
         </li>
       <% end %>
 
       <% if !@user.email.blank? && @user.email_public %>
       <li>
-        <label>Email:</label>
+        <label><%= t("mongoid.attributes.user.email") %>:</label>
         <span><%= auto_link @user.email %></span>
       </li>
       <% end %>

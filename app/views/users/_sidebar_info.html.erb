@@ -23,7 +23,7 @@
 
       <% if !@user.name.blank? %>
         <tr>
-          <td><label>Name:</label></td>
+          <td><label><%= t("mongoid.attributes.user.name") %>:</label></td>
           <td><strong><%= @user.name %></strong></td>
         </tr>
       <% end %>
@@ -37,15 +37,15 @@
 
       <% if !@user.company.blank? %>
         <tr class="adr">
-          <td><label><%= t("users.company")%>:</label></td>
+          <td><label><%= t("mongoid.attributes.user.company") %>:</label></td>
           <td><span class="org"><%= @user.company %></span></td>
         </tr>
       <% end %>
 
       <% if !@user.email.blank? && @user.email_public %>
       <tr>
-        <td><label>Email:</label></td>
-        <td><span><%= auto_link @user.email %></span></td>
+        <td><label><%= t("mongoid.attributes.user.email") %>:</label></td>
+        <td><span style="word-break:break-all;overflow:auto;"><%= auto_link @user.email %></span></td>
       </tr>
       <% end %>
 
