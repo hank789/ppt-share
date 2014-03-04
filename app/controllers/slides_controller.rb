@@ -8,7 +8,7 @@ class SlidesController < ApplicationController
   before_filter :init_base_breadcrumb
 
   def index
-    @slides = Slide.recent.includes(:user).paginate(:page => params[:page], :per_page => 15)
+    @slides = Slide.last_actived.includes(:user).paginate(:page => params[:page], :per_page => 15)
     set_seo_meta("#{t("menu.slides")}","#{Setting.app_name}#{t("menu.slides")}")
     drop_breadcrumb(t("slides.slide_list.hot_slide"))
   end

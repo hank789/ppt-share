@@ -22,6 +22,7 @@ RubyChina::Application.routes.draw do
 
 	resources :folders
 	
+	get "slides/last" => "slides#recent", as: "recent_slides"
  	resources :slides do
 		member do 
 			post :reply
