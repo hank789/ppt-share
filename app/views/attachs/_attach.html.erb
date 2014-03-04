@@ -14,6 +14,6 @@
 <% end %>
 	<div class="media-body">
 		<h4>版本一 <span class="label label-info">发布</span> <a class="btn btn-danger btn-sm  pull-right" title="coming soon...">Delete</a></h4>
-		<%= attach.user.login %>上传于<%= attach.created_at %>
+		<%= user_name_tag(attach.user.login) %><%= sanitize t("common.created_at", :time => timeago(attach.created_at))%>
 	</div>
 </li>
