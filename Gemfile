@@ -82,7 +82,8 @@ gem "social-share-button", '0.1.4'
 gem 'simple_form', "3.0.1"
 
 # API
-gem 'grape', github: 'intridea/grape', branch: 'master'
+gem 'grape'
+gem "grape-entity"
 
 # Mailer
 gem 'postmark-rails', '0.4.1'
@@ -101,7 +102,7 @@ gem 'thin', "1.5.0"
 gem 'rack-cors', require: 'rack/cors'
 
 # Doc split
-gem "docsplit", github: 'documentcloud/docsplit', branch: 'master'
+gem "docsplit"
 
 gem 'public_activity'
 
