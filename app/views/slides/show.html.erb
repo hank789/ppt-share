@@ -37,6 +37,7 @@
 	    <li class="active"><a href="#"><i class="fa fa-video-camera"></i>幻灯片</a></li>
 			<% if owner?(@slide) or admin? %>
 			<li><%= link_to raw("<i class='fa fa-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
+            <% end %>
 	  </ul>
 	</div>
 </div>
