@@ -34,11 +34,9 @@
 			<%= likeable_tag(@slide) %>
 	  </p>
 	  <ul class="nav nav-tabs">
-	    <li class="active"><a href="#"><i class="fa fa-video-camera"></i> 幻灯片</a></li>
+	    <li class="active"><a href="#"><i class="fa fa-video-camera"></i>幻灯片</a></li>
 			<% if owner?(@slide) or admin? %>
 			<li><%= link_to raw("<i class='fa fa-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
-			<% end %>
-			<li class="active pull-right"><a href="#"><i class="fa fa-comment"></i> 发表评论</a></li>
 	  </ul>
 	</div>
 </div>
