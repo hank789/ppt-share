@@ -79,10 +79,10 @@ gem 'faye-rails','1.0.0'
 gem "social-share-button", '0.1.4'
 
 # 表单
-gem 'simple_form', "3.0.0.rc"
+gem 'simple_form', "3.0.1"
 
 # API
-gem 'grape', github: 'intridea/grape', branch: 'frontier'
+gem 'grape', github: 'intridea/grape', branch: 'master'
 
 # Mailer
 gem 'postmark-rails', '0.4.1'
@@ -97,9 +97,11 @@ gem 'eventmachine', '1.0.3'
 gem "puma", "2.6.0"
 # Faye Server 需要
 gem 'thin', "1.5.0"
+# for api 跨域
+gem 'rack-cors', require: 'rack/cors'
 
 # Doc split
-gem "docsplit", "~> 0.7.2"
+gem "docsplit", github: 'documentcloud/docsplit', branch: 'master'
 
 gem 'public_activity'
 

@@ -59,7 +59,7 @@ class Slide
 	scope :last_actived, desc(:last_active_mark) 
 	scope :popular, desc(:likes_count)# { where(:likes_count.gt => 0) }
   scope :high_likes, -> { desc(:likes_count, :_id) }
-  scope :last_week_created, -> { where(:created_at.gte => 1.week.ago.to_s) }
+  
 
 
   before_save :auto_space_with_title
