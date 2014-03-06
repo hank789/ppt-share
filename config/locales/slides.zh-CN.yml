@@ -6,6 +6,6 @@
     reply_success: "评论发表成功"
     reply_this_floor: "回复此楼"
     create_slide_success: "幻灯片项目添加成功"
-    create_slide_description: "只能上传PowerPoint、Keynote、PDF文件，上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表上传完成。"
+    create_slide_description: "只能上传PowerPoint、PDF文件，上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表上传完成。"
     update_slide_success: "幻灯片项目信息更新成功"
     upload_slide: "上传幻灯片"
