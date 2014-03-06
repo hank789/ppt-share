@@ -9,12 +9,12 @@
 	<div class="container">
     <div class="row">
       <div id="carousel_tag" class="col-md-6">
-				<%= if @attach_id.nil?
-							render 'upload'
-						else 
-							render_cell :slides, :carousel, :attach_id => @attach_id
-						end
-				%>
+	<%= if @attach_id.nil?
+		render 'upload'
+	else 
+		render_cell :slides, :carousel, :attach_id => @attach_id
+	end
+	%>
          <!-- /#upper -->
       </div>
       <div class="col-md-6">
