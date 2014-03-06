@@ -5,11 +5,11 @@ defaults: &defaults
   admin_emails:
     - "admin@admin.com"
   google_analytics_key: ""
-  upload_url: "http://dev-saasow.qiniudn.com"
-  qiniu_ak: "DcULQt-9qnWvVg_9rUevvq4DIyxdmvtJapNe-6sm"
-  qiniu_sk: "H_IAbKXPKsFvfLCSCDZzQ9VKB21XYAEOA_BfzsxU"
-  qiniu_bucket: "dev-saasow"
-  qiniu_bucket_domain: "dev-saasow.qiniudn.com"
+  upload_url: "http://makeslide-dev.qiniudn.com"
+  qiniu_ak: "Gqr5MCPuRFtaUnXUCSe7QgppCrXtt02WNkDrIn_V"
+  qiniu_sk: "ooT-KBTq_CbvDouah6GJAuEk_v1X30Q3kAWrHnG6"
+  qiniu_bucket: "makeslide-dev"
+  qiniu_bucket_domain: "makeslide-dev.qiniudn.com"
   email_server: "smtp.exmail.qq.com"
   email_domain: "exmail.qq.com"
   email_sender: 'dev-test@saashow.com'
