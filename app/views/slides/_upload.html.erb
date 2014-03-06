@@ -1,11 +1,10 @@
 <div id="upload_landing" class="group section-wrap upper" id="upper">
 <div class="wrap group">
 <div class="section-2 group">
-	<%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone" } do |f|  %>
+	<%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone",:multipart => true } do |f|  %>
 	<% end %>
 <script type="text/javascript">
 $(function() {
-	$('#upload_editor').hide();
 	Dropzone.options.uploadDropzone = {
 		//addRemoveLinks : true,
 		maxFilesize: 20,
@@ -18,7 +17,7 @@ $(function() {
 					$('#slide_slide').val(data);
 					var cclass = "fa fa-spinner fa-spin";
 					} else var cclass = "fa fa-bolt";
-				$('#upload_editor').show();
+
 				$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
 			});
 		}

@@ -29,11 +29,67 @@ defaults: &defaults
   twitter_id: "ruby_china"
   gravatar_proxy: "http://gravatar.com"
 
-development:
-  <<: *defaults
+development: &development
+    app_name: "Makeslidedev"
+    foot_html: "&copy; Makeslide."
+    domain: "dev.makeslide.com"
+    admin_emails:
+      - "admin@makeslide.com"
+    google_analytics_key: ""
+    upload_url: "makeslide-dev.qiniudn.com"
+    qiniu_ak: "Gqr5MCPuRFtaUnXUCSe7QgppCrXtt02WNkDrIn_V"
+    qiniu_sk: "ooT-KBTq_CbvDouah6GJAuEk_v1X30Q3kAWrHnG6"
+    qiniu_bucket: "makeslide-dev"
+    qiniu_bucket_domain: "makeslide-dev.qiniudn.com"
+    email_server: "smtp.mailgun.org"
+    email_domain: "postmaster@makeslide.com"
+    email_sender: 'postmaster@makeslide.com'
+    email_password: '2wg8oubgzrm0'
+    faye_server: "http://127.0.0.1:8080/faye"
+    faye_token: "123456"
+    # twitter_token: "uJ9fBa53SmqrHBqs1qq5cg"
+    # twitter_secret: "b9e9hbsa9sYYCqmW0kTyfALshclmkQX4kzTm8BBBTw"
+    github_token: "207bd3415f6f42bcf8da"
+    github_secret: "8d51636e1325cd4a0af78efe567a35f29d42096d"
+    # douban_token: "04fab3198986e6350ef0194c9c94b29f"
+    # douban_secret: "5c08eac53cfa1890"
+    # google_js_api_key: "ABQIAAAAC-ble-vmy_g7-Qvem5P86xTX2XchcwgyHzp4Xo0DHRAzt2aLjhQnflwIyCJBOWYCE_rFuUkE0qEmhw"
+    google_custom_search_id: "016658237367474087615:WMX464284035"
+    # external_feed_url: "http://ruby-taiwan.org/topics/feed"
+    # external_feed_name: "Ruby Taiwan Group"
+    twitter_id: "Makeslide"
+    gravatar_proxy: "http://gravatar.com"
 
 test:
-  <<: *defaults
+  <<: *development
 
-production:
-  <<: *defaults
+production: &production
+    app_name: "Makeslide"
+    foot_html: "&copy; Makeslide."
+    domain: "makeslide.com"
+    admin_emails:
+      - "admin@makeslide.com"
+    google_analytics_key: "UA-39939963-3"
+    upload_url: "makeslide.qiniudn.com"
+    qiniu_ak: "Gqr5MCPuRFtaUnXUCSe7QgppCrXtt02WNkDrIn_V"
+    qiniu_sk: "ooT-KBTq_CbvDouah6GJAuEk_v1X30Q3kAWrHnG6"
+    qiniu_bucket: "makeslide"
+    qiniu_bucket_domain: "makeslide.qiniudn.com"
+    email_server: "smtp.mailgun.org"
+    email_domain: "postmaster@makeslide.com"
+    email_sender: 'postmaster@makeslide.com'
+    email_password: '2wg8oubgzrm0'
+    faye_server: "http://127.0.0.1:80/faye"
+    faye_token: "123456"
+    # twitter_token: "uJ9fBa53SmqrHBqs1qq5cg"
+    # twitter_secret: "b9e9hbsa9sYYCqmW0kTyfALshclmkQX4kzTm8BBBTw"
+    github_token: "207bd3415f6f42bcf8da"
+    github_secret: "8d51636e1325cd4a0af78efe567a35f29d42096d"
+    # douban_token: "04fab3198986e6350ef0194c9c94b29f"
+    # douban_secret: "5c08eac53cfa1890"
+    # google_js_api_key: "ABQIAAAAC-ble-vmy_g7-Qvem5P86xTX2XchcwgyHzp4Xo0DHRAzt2aLjhQnflwIyCJBOWYCE_rFuUkE0qEmhw"
+    google_custom_search_id: "016658237367474087615:WMX464284035"
+    # external_feed_url: "http://ruby-taiwan.org/topics/feed"
+    # external_feed_name: "Ruby Taiwan Group"
+    twitter_id: "MakeSlide"
+    gravatar_proxy: "http://gravatar.com"

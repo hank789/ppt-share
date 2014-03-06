@@ -5,6 +5,7 @@ class Photo
   include Mongoid::BaseModel
 
   field :image
+  field :order_number
 
   belongs_to :user
 	belongs_to :attach
