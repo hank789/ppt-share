@@ -73,8 +73,8 @@
   sites:
     create: 提交网站
   menu:
-    slogan: "协作，分享，发现 Slides"
-    slides: "Slides"
+    slogan: "分享、发现精美幻灯片"
+    slides: "幻灯片"
     wiki: "知识库"
     users: "会员"
     cpanel: "后台"
