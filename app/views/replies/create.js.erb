@@ -4,8 +4,8 @@
     Turbolinks.visit(location.href);
   }
   else {
-    $("#replies .items").append('<%= j(render("reply", :reply => @reply, :reply_counter => @attach.replies_count - 1, :display_edit => true)) %>')
-    $("a[href='#replies'] b").text('<%= @attach.replies_count %>');
+    $("#replies .items").append('<%= j(render("reply", :reply => @reply, :reply_counter => @slide.replies_count - 1, :display_edit => true)) %>')
+    $("a[href='#replies'] b").text('<%= @slide.replies_count %>');
     $("#replies .reply a.edit:last").css("display","inline-block");
     Slides.replyCallback(1,'<%= j(@msg) %>');
   }

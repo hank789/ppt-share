@@ -3,15 +3,15 @@ class RepliesController < ApplicationController
 
   load_and_authorize_resource :reply
 
-  before_filter :find_attach
+  before_filter :find_slide
   def create
 
     @reply = Reply.new(reply_params)
-    @reply.attach_id = @attach.id
+    @reply.slide_id = @slide.id
     @reply.user_id = current_user.id
 
     if @reply.save
-      current_user.read_attach(@attach)
+      current_user.read_slide(@slide)
       @msg = t("slides.reply_success")
     else
       @msg = @reply.errors.full_messages.join("<br />")
@@ -20,7 +20,7 @@ class RepliesController < ApplicationController
 
   def edit
     @reply = Reply.find(params[:id])
-    drop_breadcrumb(t("menu.attachs"), attachs_path)
+    drop_breadcrumb(t("menu.slides"), slides_path)
     drop_breadcrumb t("reply.edit_reply")
   end
 
@@ -28,7 +28,7 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
 
     if @reply.update_attributes(reply_params)
-      redirect_to(attach_path(@reply.attach_id), :notice => '回帖更新成功.')
+      redirect_to(slide_path(@reply.slide_id), :notice => '回帖更新成功.')
     else
       render :action => "edit"
     end
@@ -37,16 +37,16 @@ class RepliesController < ApplicationController
   def destroy
     @reply = Reply.find(params[:id])
     if @reply.destroy
-      redirect_to(attach_path(@reply.attach_id), :notice => '回帖删除成功.')
+      redirect_to(slide_path(@reply.slide_id), :notice => '回帖删除成功.')
     else
-      redirect_to(attach_path(@reply.attach_id), :alert => '程序异常，删除失败.')
+      redirect_to(slide_path(@reply.slide_id), :alert => '程序异常，删除失败.')
     end
   end
 
   protected
 
-  def find_attach
-    @attach = Attach.find(params[:attach_id])
+  def find_slide
+    @slide = Slide.find(params[:slide_id])
   end
   
   def reply_params

@@ -31,11 +31,9 @@ class UsersController < ApplicationController
     drop_breadcrumb(t("slides.title"))
   end
 
-	def workspace 
-		@folders = @user.folders.recent.paginate(:page => params[:page], :per_page => 30)
-		@orphan_slides = @user.slides.where(:folder_id => nil).recent 
+	def workspace
+		@orphan_slides = @user.slides.recent
     drop_breadcrumb(@user.login, user_path(@user.login))
-    drop_breadcrumb(t("users.menu.folders"))
   end
 
 

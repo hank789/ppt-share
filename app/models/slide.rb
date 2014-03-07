@@ -4,7 +4,6 @@ class Slide
   include Mongoid::Document
   include PublicActivity::Common
   #tracked except: :update, :owner => proc {|controller, model| controller.current_user}
-  include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel
   include Mongoid::SoftDelete
@@ -12,22 +11,26 @@ class Slide
   include Mongoid::Likeable
   include Mongoid::MarkdownBody
   include Redis::Objects
+  include Mongoid::Mentionable
 
   field :title
   field :body
   field :body_html
   field :last_reply_id, :type => Integer
   field :replied_at , :type => DateTime
+  field :source
+  field :message_id
   field :replies_count, :type => Integer, :default => 0
+  # 回复过的人的 ids 列表
+  field :follower_ids, :type => Array, :default => []
+  field :suggested_at, :type => DateTime
   # 最后回复人的用户名 - cache 字段用于减少列表也的查询
   field :last_reply_user_login
   field :private, :type => Mongoid::Boolean, :default => false
-
+  # 删除人
+  field :who_deleted
 	field :slide
-  # 回复过的人的 ids 列表
-  field :follower_ids, :type => Array, :default => []
-  # 节点名称 - cache 字段用于减少列表也的查询
-  #field :node_name
+
   # 精华贴 0 否， 1 是
   field :excellent, type: Integer, default: 0
  	# 用于排序的标记
@@ -35,32 +38,42 @@ class Slide
 
   belongs_to :user, :inverse_of => :slides
   counter_cache :name => :user, :inverse_of => :slides
-  belongs_to :folder, :inverse_of => :folders
-  counter_cache :name => :folder, :inverse_of => :folders
   belongs_to :last_reply_user, :class_name => 'User'
   belongs_to :last_reply, :class_name => 'Reply'
-  #belongs_to :node
-  #counter_cache :name => :node, :inverse_of => :topics
+  has_many :replies, :dependent => :destroy
+
   has_many :attachs, :dependent => :destroy
 
 	index :user_id => 1
-	index :folder_id => 1
 	index :likes_count => 1
-	index :last_active_mark => -1  
+	index :last_active_mark => -1
+  index :suggested_at => 1
+  index :excellent => -1
 
-  validates_presence_of :title#, :node_id
+  validates_presence_of :user_id, :title, :body
 	validates_uniqueness_of :title, :scope => [:user_id]
 
 	counter :hits, :default => 0    
-	counter :downloads, :default => 0    
+	counter :downloads, :default => 0
 
-	# scopes
-	scope :fields_for_list, -> { without(:body,:body_html) }
-	scope :last_actived, desc(:last_active_mark) 
-	scope :popular, desc(:likes_count)# { where(:likes_count.gt => 0) }
+  delegate :login, :to => :user, :prefix => true, :allow_nil => true
+  delegate :body, :to => :last_reply, :prefix => true, :allow_nil => true
+
+  # scopes
+  scope :last_actived, desc(:last_active_mark)
+  # 推荐的话题
+  scope :suggest, -> { where(:suggested_at.ne => nil).desc(:suggested_at) }
+  scope :fields_for_list, -> { without(:body,:body_html) }
   scope :high_likes, -> { desc(:likes_count, :_id) }
-  
+  scope :high_replies, -> { desc(:replies_count, :_id) }
+  scope :no_reply, -> { where(:replies_count => 0) }
+  scope :popular, -> { where(:likes_count.gt => 5) }
+  scope :without_node_ids, Proc.new { |ids| where(:node_id.nin => ids) }
+  scope :excellent, -> { where(:excellent.gte => 1) }
 
+  def self.find_by_message_id(message_id)
+    where(:message_id => message_id).first
+  end
 
   before_save :auto_space_with_title
   def auto_space_with_title
@@ -90,7 +103,6 @@ class Slide
     self.last_reply_id = reply.id
     self.last_reply_user_id = reply.user_id
     self.last_reply_user_login = reply.user.try(:login) || nil
-    self.replies_count +=1
     self.save
   end
 
@@ -105,10 +117,17 @@ class Slide
     super
     delete_notifiaction_mentions
   end
-  
-  def last_page_with_per_page(count, per_page)
-    page = (count.to_f / per_page).ceil
+
+  def last_page_with_per_page(per_page)
+    page = (self.replies_count.to_f / per_page).ceil
     page > 1 ? page : nil
+  end
+
+  # 所有的回复编号
+  def reply_ids
+    Rails.cache.fetch([self,"reply_ids"]) do
+      self.replies.only(:_id).map(&:_id)
+    end
   end
   
   def excellent?

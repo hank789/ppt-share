@@ -65,7 +65,6 @@ class User
   index :location => 1
   index({private_token: 1},{ sparse: true })
 
-	has_many :folders, :dependent => :destroy
   has_many :slides, :dependent => :destroy
 	has_many :attachs, :dependent => :destroy
   #has_many :notes
@@ -79,7 +78,6 @@ class User
 
   validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
 
-  has_and_belongs_to_many :following_folders, :class_name => 'Folder', :inverse_of => :followers
   has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
   has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
 
@@ -232,24 +230,24 @@ class User
   end
 
   # 是否读过 slide 的最近更新
-  def attach_read?(attach)
+  def slide_read?(slide)
     # 用 last_reply_id 作为 cache key ，以便不热门的数据自动被 Memcached 挤掉
-    last_reply_id = attach.last_reply_id || -1
-    Rails.cache.read("user:#{self.id}:attach_read:#{attach.id}") == last_reply_id
+    last_reply_id = slide.last_reply_id || -1
+    Rails.cache.read("user:#{self.id}:slide_read:#{slide.id}") == last_reply_id
   end
 
   # 将 slide 的最后回复设置为已读
-  def read_attach(attach)
-    return if attach.blank?
-    return if self.attach_read?(attach)
+  def read_slide(slide)
+    return if slide.blank?
+    return if self.slide_read?(slide)
 
-    self.notifications.unread.any_of({:mentionable_type => 'Attach', :mentionable_id => attach.id},
-                                     {:mentionable_type => 'Reply', :mentionable_id.in => attach.reply_ids},
-                                     {:reply_id.in => attach.reply_ids}).update_all(read: true)
+    self.notifications.unread.any_of({:mentionable_type => 'Slide', :mentionable_id => slide.id},
+                                     {:mentionable_type => 'Reply', :mentionable_id.in => slide.reply_ids},
+                                     {:reply_id.in => slide.reply_ids}).update_all(read: true)
 
     # 处理 last_reply_id 是空的情况
-    last_reply_id = attach.last_reply_id || -1
-    Rails.cache.write("user:#{self.id}:attach_read:#{attach.id}", last_reply_id)
+    last_reply_id = slide.last_reply_id || -1
+    Rails.cache.write("user:#{self.id}:slide_read:#{slide.id}", last_reply_id)
   end
 
   # 收藏东西

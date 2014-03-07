@@ -20,7 +20,6 @@ RubyChina::Application.routes.draw do
     end
   end
 
-	resources :folders
 	
 	get "slides/last" => "slides#recent", as: "recent_slides"
  	resources :slides do
@@ -32,14 +31,14 @@ RubyChina::Application.routes.draw do
 		collection do
 			get :no_reply
 			get :popular
-		end
+    end
+    resources :replies
 	end
 
 	resources :attachs, :except => :index do
 		member do
 			get :download
 		end
-		resources :replies
 	end
 
   resources :photos

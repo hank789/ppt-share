@@ -14,23 +14,10 @@ class SlidesController < ApplicationController
   end
 
   def feed
-    @slides = Slide.recent.without_body.limit(20).includes(:node,:user, :last_reply_user)
+    @slides = Slide.recent.without_body.limit(20).includes(:user, :last_reply_user)
     render :layout => false
   end
 
-  def node
-    @node = Node.find(params[:id])
-    @slides = @node.slides.last_actived.fields_for_list.includes(:user).paginate(:page => params[:page],:per_page => 15)
-    set_seo_meta("#{@node.name} &raquo; #{t("menu.slides")}","#{Setting.app_name}#{t("menu.slides")}#{@node.name}",@node.summary)
-    drop_breadcrumb("#{@node.name}")
-    render :action => "index"
-  end
-
-  def node_feed
-    @node = Node.find(params[:id])
-    @slides = @node.slides.recent.without_body.limit(20)
-    render :layout => false
-  end
 
   %w(no_reply popular).each do |name|
     define_method(name) do
@@ -65,23 +52,23 @@ class SlidesController < ApplicationController
   def show
     @slide = Slide.without_body.find(params[:id])
     @slide.hits.incr(1)
-    #@node = @slide.node
+
     @show_raw = params[:raw] == "1"
 
     @per_page = Reply.per_page
-		@in_attach = Attach.find(@slide.slide)
+
     # 默认最后一页
-    params[:page] = @slide.last_page_with_per_page(@in_attach.replies_count, @per_page) if params[:page].blank?
+    params[:page] = @slide.last_page_with_per_page(@per_page) if params[:page].blank?
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
-    @replies = @in_attach.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
+    @replies = @slide.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
 		# TODO 
     if current_user
       # 找出用户 like 过的 Reply，给 JS 处理 like 功能的状态
       @user_liked_reply_ids = []
       @replies.each { |r| @user_liked_reply_ids << r.id if r.liked_user_ids.include?(current_user.id) }
       # 通知处理
-      current_user.read_attach(@in_attach)
+      current_user.read_slide(@slide)
       # 是否关注过
       @has_followed = @slide.follower_ids.include?(current_user.id)
       # 是否收藏
@@ -91,7 +78,7 @@ class SlidesController < ApplicationController
     #drop_breadcrumb("#{@node.try(:name)}", node_slides_path(@node.try(:id)))
     drop_breadcrumb t("slides.read_slide")
 
-    fresh_when(:etag => [@slide,@has_followed,@has_favorited,@replies,@node,@show_raw])
+    fresh_when(:etag => [@slide,@has_followed,@has_favorited,@replies,@show_raw])
   end
 
 	def attachs
@@ -131,13 +118,6 @@ class SlidesController < ApplicationController
     end
 	end
 
-  def preview
-    @body = params[:body]
-
-    respond_to do |format|
-      format.json
-    end
-  end
 
   def update
     @slide = Slide.find(params[:id])
@@ -211,6 +191,6 @@ class SlidesController < ApplicationController
   end
 
   def slide_params
-    params.require(:slide).permit(:folder_id, :title, :body, :slide, :private)
+    params.require(:slide).permit(:title, :body, :slide, :private)
   end
 end
