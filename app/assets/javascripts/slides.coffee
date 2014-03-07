@@ -213,7 +213,6 @@ window.Slides =
 
   init : ->
     bodyEl = $("body")
-    Dropzone.autoDiscover = false
     Slides.initCloseWarning($("textarea.closewarning"))
 
     $("textarea").bind "keydown","ctrl+return",(el) ->
