@@ -104,17 +104,7 @@
     <div class="tab-pane in active" id="profile">
             <%= sanitize_slide @slide.body_html %>
     </div>
-      <hr>
-      <div class="panel-body">
-        <%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
-            <div class="form-group">
-            <label for="exampleInputEmail1">评论</label>
-            <%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
-             </div>
-            <br>
-            <button type="submit" class="btn btn-success pull-right"><i class="fa fa-comments-o"></i>&nbsp;发布</button>
-        <% end %>
-      </div>
+
       <hr>
       <div class="tab-pane in active">
 
@@ -135,6 +125,17 @@
               <%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %>
             </div>
         <% end %>
+
+      <hr>
+      <div class="panel-body">
+        <%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
+            <div class="form-group">
+            <%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
+             </div>
+            <br>
+            <button type="submit" class="btn btn-success pull-right"><i class="fa fa-comments-o"></i>&nbsp;发布评论</button>
+        <% end %>
+      </div>
 
       </div>
 
