@@ -15,24 +15,16 @@
               <%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone",:multipart => true } do |f|  %>
               <script type="text/javascript">
                   $(function() {
-                      Dropzone.options.uploadDropzone = {
-                          //addRemoveLinks : true,
-                          maxFilesize: 20,
-                          maxFiles: 1,
-                          acceptedFiles: ".ppt,.pptx,.pdf",
-                          dictResponseError: 'Error uploading file!',
-                          init: function() {
-                              this.on("success", function(file, data) {
-                                  if(data) {
-                                      $('#slide_slide').val(data);
-                                      var cclass = "fa fa-spinner fa-spin";
-                                  } else var cclass = "fa fa-bolt";
+                      Dropzone.autoDiscover = false;
+                      var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>",maxFilesize: 20,maxFiles: 1,acceptedFiles: ".ppt,.pptx,.pdf",dictResponseError: "Error uploading file!"});
+                      myDropzone.on("success",function(file, data) {
+                          if(data) {
+                              $('#slide_slide').val(data);
+                              var cclass = "fa fa-spinner fa-spin";
+                          } else var cclass = "fa fa-bolt";
 
-                                  $('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
-                              });
-                          }
-                      };
-                  })
+                          $('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
+                      });});
               </script>
               <% end %>
             </div>
