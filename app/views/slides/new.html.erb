@@ -30,6 +30,7 @@
                       });
                       myDropzone.on("sending", function(file, xhr, formData) {
                           $('#carousel_tag').attr('class','col-md-4');
+                          formData.append('filetype',file.type);
                           formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
                       });
                   });

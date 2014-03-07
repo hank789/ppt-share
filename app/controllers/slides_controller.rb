@@ -52,7 +52,7 @@ class SlidesController < ApplicationController
   def show
     @slide = Slide.without_body.find(params[:id])
     @slide.hits.incr(1)
-
+    @attach = Attach.find_by_id(@slide.slide)
     @show_raw = params[:raw] == "1"
 
     @per_page = Reply.per_page

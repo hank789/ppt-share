@@ -9,6 +9,11 @@ class SlidesCell < BaseCell
 	def carousel(opts = {})
 		@attach = Attach.find(opts[:attach_id]) unless opts[:attach_id].blank?
 		render
-	end
+  end
+
+  def carousel_simple(opts = {})
+    @attach = Attach.find(opts[:attach_id]) unless opts[:attach_id].blank?
+    render
+  end
 
 end

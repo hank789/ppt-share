@@ -15,6 +15,7 @@ class Ability
 			if !user.newbie?
 				can :create, Slide
       end
+      can :favorite, Slide
       can :update, Slide do |slide|
         (slide.user_id == user.id)
       end

@@ -66,14 +66,21 @@
 			<%= raw SiteConfig.footer_html %>
 		</div>
 	</div>
-  <script type="text/javascript">
-		$(function () {
-			$('.flexslider').flexslider({
-				controlNav: false,
-				slideshow: false
-			});
-		});
-	</script>
+    <script type="text/javascript">
+        $(function () {
+            $('.flexslide_simple').flexslider({
+                controlNav: false,
+                slideshow: false
+            });
+        });
+        $(function () {
+            $('.flexslide_with_thumb').flexslider({
+                controlNav: false,
+                slideshow: false,
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
   <script type="text/javascript" data-turbolinks-eval=false>
     ROOT_URL = "<%= root_url %>";
     FAYE_SERVER_URL = "<%= Setting.faye_server %>";

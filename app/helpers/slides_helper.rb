@@ -23,8 +23,6 @@ module SlidesHelper
 
   def slide_favorite_tag(slide)
     return "" if current_user.blank?
-		return "" if slide.blank? 
-		return "" if owner?(slide)
     icon = content_tag(:i, "", :class => "icon small_bookmark")
     link_title = "收藏"
     if current_user and current_user.favorite_slide_ids.include?(slide.id)

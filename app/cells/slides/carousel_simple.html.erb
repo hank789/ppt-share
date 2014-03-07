@@ -10,10 +10,10 @@
 	</div>
 	</div>
 <% else %>
-<div class="flexslider flexslide_with_thumb">
+<div class="flexslider flexslide_simple">
 <ul class="slides">
 	<% @attach.photos.each do |item| %>
-   <li data-thumb="<%= item.image %>"><%= image_tag item.image %></li>
+   <li><%= image_tag item.image %></li>
  	<% end %>
 </ul>
 </div>

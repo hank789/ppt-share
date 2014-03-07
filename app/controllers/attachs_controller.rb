@@ -7,6 +7,7 @@ class AttachsController < ApplicationController
 			@attach = current_user.attachs.new
 			@attach.file= params[:file]
       @attach.file_size= params[:filesize]
+      @attach.file_type= params[:filetype]
       @attach.slide_id = params[:slide_id]
 			if @attach.save
 			#Attach.new({:url => @b}).save
