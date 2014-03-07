@@ -15,6 +15,7 @@
               <%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone",:multipart => true } do |f|  %>
               <script type="text/javascript">
                   $(function() {
+                      Dropzone.autoDiscover = false;
                       $('#upload_editor').hide();
                       var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>",maxFilesize: 100,maxFiles: 1,acceptedFiles: ".ppt,.pptx,.pdf",dictResponseError: "Error uploading file!"});
                       myDropzone.on("success",function(file, data) {
