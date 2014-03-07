@@ -147,7 +147,7 @@ window.App =
   init : () ->
     App.initForDesktopView()
     FormStorage.restore()
-    Dropzone.autoDiscover = false
+
     $("abbr.timeago").timeago()
     $(".alert").alert()
     $('.dropdown-toggle').dropdown()
