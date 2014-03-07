@@ -8,22 +8,31 @@
 <div class="listing-page">
 	<div class="container">
     <div class="row">
-      <div id="carousel_tag" class="col-md-6">
+      <div id="carousel_tag" class="col-md-12">
         <div id="upload_landing" class="group section-wrap upper" id="upper">
           <div class="wrap group">
             <div class="section-2 group">
               <%= simple_form_for Attach.new, :url => attachs_path, :html => { id:"uploadDropzone", :class => "dropzone",:multipart => true } do |f|  %>
               <script type="text/javascript">
                   $(function() {
+                      $('#upload_editor').hide();
                       var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>",maxFilesize: 20,maxFiles: 1,acceptedFiles: ".ppt,.pptx,.pdf",dictResponseError: "Error uploading file!"});
                       myDropzone.on("success",function(file, data) {
                           if(data) {
                               $('#slide_slide').val(data);
                               var cclass = "fa fa-spinner fa-spin";
                           } else var cclass = "fa fa-bolt";
-
-                          $('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
-                      });});
+                          $('#upload_editor').show();
+                          $('#carousel_tag').attr('class','col-md-4');
+                          $('#slide_form').attr('class','col-md-8');
+                          myDropzone.disable();
+                          //$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
+                      });
+                      myDropzone.on("sending", function(file, xhr, formData) {
+                          $('#carousel_tag').attr('class','col-md-4');
+                          formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
+                      });
+                  });
               </script>
               <% end %>
             </div>
@@ -31,8 +40,8 @@
         </div>
 
       </div>
-      <div class="col-md-6">
-    		<%= render 'form' %>
+      <div id="slide_form">
+      <%= render 'form' %>
       </div>
     </div>
   </div>

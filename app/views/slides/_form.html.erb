@@ -2,19 +2,6 @@
 	<div class="panel-heading"><h3 class="panel-title"><%= params[:action]=='edit'? "修改幻灯片项目信息" : "填写幻灯片项目信息" %></h3></div>
   <div class="panel-body">		
 		<%= render "shared/error_messages", :target => @slide %>
-  	<div class="row">
-      <div class="col-lg-12">
-      	<div class="media">
-         	<a class="pull-left" href="#"><%= user_avatar_tag(current_user, :big) %></a>
-          <div class="media-body">
-						<h4 class="media-heading"><%= current_user.name %> <small> 拥有<%= current_user.slides.count %>组幻灯片</small></h4>
-            <h5><a href="">查看该上传者其它幻灯片</a></h5>
-            <hr style="margin:8px auto">
-            <span class="label label-primary">所属组织</span>
-          </div>
-        </div>
-  		</div>
-   	</div>
 		<%= simple_form_for @slide do |f| %>
 			<%= f.input :slide, :as => :hidden %>
 			<div class="form-group">
@@ -22,7 +9,7 @@
 				<%= f.text_field :title, class:"form-control" %>
       </div>
       <label for="exampleInputEmail1">描述</label>
-			<%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
+			<%= f.text_area :body,:class => "form-control", :rows => "10", :tabindex => "1" %>
 			<br>
       <button type="submit" class="btn btn-success"><%= params[:action]=='edit'? "提交修改" : "创建" %></button>
 		<% end %>
