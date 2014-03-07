@@ -16,7 +16,7 @@
               <script type="text/javascript">
                   $(function() {
                       $('#upload_editor').hide();
-                      var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>",maxFilesize: 20,maxFiles: 1,acceptedFiles: ".ppt,.pptx,.pdf",dictResponseError: "Error uploading file!"});
+                      var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>",maxFilesize: 100,maxFiles: 1,acceptedFiles: ".ppt,.pptx,.pdf",dictResponseError: "Error uploading file!"});
                       myDropzone.on("success",function(file, data) {
                           if(data) {
                               $('#slide_slide').val(data);
