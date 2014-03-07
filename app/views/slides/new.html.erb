@@ -10,7 +10,7 @@
     <div class="row">
       <div id="carousel_tag" class="col-md-6">
 	<%= if @attach_id.nil?
-		render 'upload'
+          render :partial =>  "slides/upload"
 	else 
 		render_cell :slides, :carousel, :attach_id => @attach_id
 	end

@@ -88,6 +88,7 @@ class SlidesController < ApplicationController
 	end 
 
   def new
+    @slide = Slide.new
     drop_breadcrumb t("slides.new_slide")
     set_seo_meta("#{t("slides.new_slide")} &raquo; #{t("menu.slides")}")
   end
