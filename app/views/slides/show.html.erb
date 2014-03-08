@@ -91,6 +91,30 @@
 
             </div>
             <div class="form-group">
+              <label class="col-sm-5 control-label">收藏：</label>
+
+              <%= slide_favorite_tag(@slide) %>
+
+            </div>
+
+            <div class="form-group">
+              <% if admin? and !@slide.excellent? %>
+                  <%= link_to raw("<label class='col-sm-5 control-label'>&nbsp;</label>&nbsp;&nbsp;&nbsp;<i class='icon small_cert'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华" , method: "patch", data: { confirm: "确定要设置成精华么？" } %>
+              <% end %>
+              <% if @slide.excellent? %>
+                  <label class='col-sm-5 control-label'>&nbsp;</label>
+                    <i class="icon small_cert_on"></i> 已被设为精华！
+                    <% if admin? %>
+
+                          <%= link_to "取消", unsuggest_slide_path(@slide.id), method: "delete" %>
+
+                    <% end %>
+
+              <% end %>
+
+            </div>
+
+            <div class="form-group">
               <label class="col-sm-8 control-label"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></label>
 
             </div>
