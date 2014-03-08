@@ -25,12 +25,6 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="nav-header">
-					<button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
 					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-dashboard"></span> Make<span class="sec-brand">Slide</span></a>
 				</div>
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -45,7 +39,7 @@
 		</nav>
 		<%= render partial:"users/menu" if current_user %>
 		<%= raw "<hr>" if !current_user && params[:controller]+'/'+params[:action] != "home/index" %>
-		<%= notice_message %>   
+		<%= notice_message %>
 		<%= yield %>
 	<% else %>
 		<div id="landing">
@@ -53,7 +47,7 @@
 				<div class="container">
 					<div class="auth-unit">
 						<h3 class="text-brand"><span class="glyphicon glyphicon-dashboard"></span> Make<span class="sec-brand">Slide</span></h3>
-					 	<%= notice_message %>   
+                        <%= notice_message %>
 						<%= yield %>
 					</div>
 				</div>
@@ -82,6 +76,7 @@
     </script>
   <script type="text/javascript" data-turbolinks-eval=false>
     ROOT_URL = "<%= root_url %>";
+    ASSET_URL = "<%= asset_url('/') %>";
     FAYE_SERVER_URL = "<%= Setting.faye_server %>";
     <% if current_user %>
       CURRENT_USER_ACCESS_TOKEN = "<%= current_user.temp_access_token %>";
@@ -105,5 +100,6 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
   </script>
+    <div class="zoom-overlay"></div>
 </body>
 </html>
