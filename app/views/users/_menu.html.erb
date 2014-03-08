@@ -22,7 +22,7 @@
 	#li << link_to(t("menu.my_workspace"), workspace_user_path(current_user.login.downcase))
 	li << link_to(t("users.menu.slides"), slides_user_path(current_user.login.downcase))
 	li << link_to(t("users.menu.collections"), collections_user_path(current_user.login.downcase))
-	li << link_to(t("users.menu.likes"), likes_user_path(current_user.login.downcase))
+	li << link_to("热门幻灯片", "/")
 end %>
 
             </div>
