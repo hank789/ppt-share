@@ -1,20 +1,20 @@
-<div class="panel panel-primary">
-<div class="panel-body">
-  <table>
+<div class="sidebar">
     <tr>
-      <td><div class="pull-right"><%= user_avatar_tag(@user,:big, :link => false) %></div></td>
+      <td><div class="box" style="text-align:center;"><%= user_avatar_tag(@user,:big, :link => false) %></div></td>
       <td>&nbsp;</td>
       <td style="vertical-align: top;">
-        <div style="padding-bottom: 5px;"><%= render_user_level_tag(@user) %></div>
-        <% if admin? %>
-            <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
-        <% end %>
-        <%= user_follow_tag(@user) %>
-
+        <div style="padding-bottom: 5px;"><%= render_user_level_tag(@user) %>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
+            &nbsp;&nbsp;&nbsp;&nbsp;<% if admin? %>
+                <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
+             <% end %>   
+        </div>
       </td>
     </tr>
-   </table>
-  <table class="userinfo vcard">
+
+<hr>
+
+<table class="userinfo vcard">
     <tr>
         <td><label>ID:</label></td>
         <td><strong class="fn"><%= @user.login %></strong></td>
@@ -54,12 +54,27 @@
           <td><span><%= render_user_tagline(@user) %></span></td>
         </tr>
     <% end %>
+</table>
 
-  </table>
-  <% if !@user.bio.blank? %>
-      <div class="box">
-        <p><%= simple_format(@user.bio) %></p>
+<hr>
+
+<table>
+<div>
+      <div class="col-md-4" style="text-align:center;">
+            <h3>388</h3>
+            <h6>上传数</h6>
       </div>
-  <% end %>
+
+      <div class="col-md-4" style="text-align:center;">
+            <h3>32</h3>
+            <h6>关注数</h6>
+      </div>
+
+      <div class="col-md-4" style="text-align:center;">
+             <h3>1239</h3>
+            <h6>粉丝数</h6>
+      </div>
 </div>
+</table>
+
 </div>
