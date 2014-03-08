@@ -1,6 +1,6 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:auth_unbind, :home]
+  before_filter :require_user, :only => [:auth_unbind, :home,:show,:slides,:collections]
   before_filter :set_menu_active
   before_filter :find_user, :only => [:show, :slides, :likes, :collections, :workspace, :home]
   caches_action :index, :expires_in => 2.hours, :layout => false
@@ -17,12 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # 排除掉几个非技术的节点
-    #without_node_ids = [21,22,23,31,49,51,57,25]
-    #@slides = @user.slides.without_node_ids(without_node_ids).high_likes.limit(20)
-    #@replies = @user.replies.only(:slide_id,:body_html,:created_at).recent.includes(:slide).limit(10)
-    set_seo_meta("#{@user.login}")
-    drop_breadcrumb(@user.login)
+    redirect_to("/#{@user.login}/slides")
   end
 
   def slides
