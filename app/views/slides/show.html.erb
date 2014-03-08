@@ -150,7 +150,9 @@
                     <%= render :partial => "replies/reply", :collection => @replies %>
                 <% end %>
               </div>
-              <%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %>
+              <div class="pagination">
+              <%= will_paginate @replies, :inner_window => 2, container:false, :params => { :anchor => 'replies' } %>
+              </div>
             </div>
         <% end %>
 <!-- /#发表评论-->
