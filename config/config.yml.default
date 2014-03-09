@@ -3,7 +3,7 @@ defaults: &defaults
   foot_html: "&copy; Makeslide."
   domain: "makeslide.com"
   admin_emails:
-    - "admin@admin.com"
+    - "admin@makeslide.com"
   google_analytics_key: ""
   upload_url: "http://makeslide-dev.qiniudn.com"
   qiniu_ak: "Gqr5MCPuRFtaUnXUCSe7QgppCrXtt02WNkDrIn_V"

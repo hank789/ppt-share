@@ -8,8 +8,8 @@ default_run_options[:pty] = true
 
 set :rvm_ruby_string, 'ruby-2.1.0'
 set :rvm_type, :user
-set :application, "ruby-china"
-set :repository,  "git://github.com/ruby-china/ruby-china.git"
+set :application, "makeslide"
+set :repository,  "git://github.com/pafa/makeslide.git"
 set :branch, "master"
 set :scm, :git
 set :user, "ruby"
@@ -20,9 +20,9 @@ set :git_shallow_clone, 1
 set :puma_role, :app
 set :puma_config_file, "config/puma.rb"
 
-role :web, "saashow.com"                          # Your HTTP server, Apache/etc
-role :app, "saashow.com"                          # This may be the same as your `Web` server
-role :db,  "saashow.com", :primary => true # This is where Rails migrations will run
+role :web, "makeslide.com"                          # Your HTTP server, Apache/etc
+role :app, "makeslide.com"                          # This may be the same as your `Web` server
+role :db,  "makeslide.com", :primary => true # This is where Rails migrations will run
 
 namespace :faye do
   desc "Start Faye"
