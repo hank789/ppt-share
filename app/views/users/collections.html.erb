@@ -1,22 +1,11 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-3 col-sm-4">
-			<div class="left-sec">
-              			<div class="left-cont">
-					<%= render "sidebar_info" %>
-              			</div>
+		<div class="right-sec">
+			<div class="top">
+				<h3 class="text-center">时间轴 <small>/ 标签类 / 热门度</small></h3>
 			</div>
-		</div>
-		<div class="col-md-9 col-sm-8">
-			<div class="right-sec">
-				<div class="top">
-					<ul class="nav nav-tabs tooltip-demo">
-                      					<li class="active"><a href="#"><i class="fa fa-video-camera"></i>  全部（<strong><%= @slides.count %></strong>）</a></li>
-					</ul>
-				</div>
-				<div class="row">
-					<%= render :partial => "slides/slide", :collection => @slides %>
-				</div>
+			<div class="row">
+				<%= render :partial => "slides/slide", :collection => @slides %>
 			</div>
 		</div>
 	</div>
