@@ -19,8 +19,9 @@
 			<%= @slide.title %>
 	  	<span class="pull-right">
 			<% if owner?(@slide) or admin? %>
-				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-large btn-default" %>
+				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-sm btn-default" %>
 			<% end %>
+
 			<%= slide_download_tag(@slide) %>
 	    </span>
 	 	</h2>
@@ -126,6 +127,7 @@
 
 <!-- /#幻灯片描述-->
     <div class="tab-pane in active col-md-8" id="profile">
+            <br>
             <h4>幻灯片描述：</h4>
             <hr>
             <%= sanitize_slide @slide.body_html %>
