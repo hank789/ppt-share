@@ -19,13 +19,13 @@
                                                     'trash'
                                                  end %>"></span>
           </div>
-          <%= timeago(a.created_at) %>
-
+ 
           <div class="details">
             <div class="avatar"><%= user_avatar_tag(a.owner) %></div>
             <div class="title">
               <%= user_name_tag(a.owner) %>
               <%= content_for(:action) %>
+              <%= timeago(a.created_at) %>
 
             </div>
             <%= yield %>
@@ -34,4 +34,5 @@
         </div>
 
     </div>
+    <hr>
 </div>

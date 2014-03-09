@@ -35,11 +35,11 @@
     edit_on_gravatar: "如需修改头像，请进入"
     menu:
       topics: "帖子"
-      recent_reply_topics: "最近回帖"
+      recent_reply_topics: "最近回复"
       like: "喜欢"
       profile: "个人信息"
-      slides: "我上传的"
-      collections: "我收藏的"
+      slides: "我的幻灯片"
+      collections: "我的收藏夹"
       likes: "我喜欢的"
       notes: "记事本"
 

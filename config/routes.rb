@@ -27,10 +27,13 @@ RubyChina::Application.routes.draw do
 			post :reply
 			post :favorite
 			get :attachs
+      patch :suggest
+      delete :unsuggest
 		end
 		collection do
 			get :no_reply
 			get :popular
+      get :excellent
     end
     resources :replies
 	end

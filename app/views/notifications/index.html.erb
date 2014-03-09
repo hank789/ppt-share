@@ -18,9 +18,12 @@
         	<%= render :partial => "notification", :collection => @notifications %>
      	 	</tbody>
 			</table>
-			<%= link_to t("common.clear"), clear_notifications_path, :class => 'btn btn-danger', :method => :post, 'data-disable-with' => '清空中...' %>
+              <div class="pagination">
+                <%= will_paginate @notifications, :inner_window => 2, container:false %>
+                &nbsp;&nbsp;<%= link_to t("common.clear"), clear_notifications_path, :class => 'btn btn-danger', :method => :post, 'data-disable-with' => '清空中...' %>
+              </div>
   <% end %>
-  <%= will_paginate @notifications %>
+
 		</div>
 	</div>
 </div>

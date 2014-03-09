@@ -4,7 +4,6 @@
 #= require jquery.turbolinks
 #= require sco.collapse
 #= require dynamo.min
-#= require dropzone
 #= require bootstrap-transition
 #= require bootstrap-alert
 #= require bootstrap-modal
@@ -30,6 +29,7 @@
 #= require turbolinks
 #= require slides
 #= require users
+#= require dropzone
 #= require_self
 
 window.App =

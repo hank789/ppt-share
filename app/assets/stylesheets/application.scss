@@ -12,8 +12,6 @@
  *= require_self
  */
  
-@import "http://fonts.googleapis.com/css?family=Nunito:400,700,300";
-@import "http://fonts.googleapis.com/css?family=Oxygen:400,300,700";
 #wrap {
     height: auto;
     margin: 0 auto -60px;
@@ -30,14 +28,14 @@
     font-size: 12px;
 }
 body {
-    background-color: #F0F0F0;
-    font-family: "Oxygen",Helvetica,Arial,sans-serif;
+    background-color: #FFFFFF;
+    font-family: "Helvetica Neue",helvetica,arial,sans-serif;
     height: 100%;
     margin-top: 0;
     width: 100%;
 }
 html {
-    font-family: "Oxygen",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue",helvetica,arial,sans-serif;
     height: 100%;
 }
 .hero-spacer {
@@ -102,7 +100,7 @@ body .top-form-inner {
     border-right: 1px solid #D6D6D6;
     height: 100%;
     overflow-y: auto;
-    padding-top: 1em;
+    padding-top: 2em;
     z-index: 1000;
 }
 .left-sec .left-cont {
@@ -119,7 +117,7 @@ body .top-form-inner {
     font-size: 11px;
 }
 .right-sec {
-    margin-top: 1em;
+    margin-top: 2em;
     overflow: hidden;
 }
 .right-sec .thumbnail img {
@@ -168,7 +166,7 @@ body .top-form-inner {
     padding-right: 10px;
 }
 .right-sec .media-body .label {
-    font-family: "Oxygen",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue",helvetica,arial,sans-serif;
 }
 .right-sec ul.media-list li.premium-item .label-success {
     background: none repeat scroll 0 0 #FFFFFF;
@@ -483,7 +481,7 @@ body .top-form-inner {
 }
 #landing .text-muted {
     color: #FFFFFF;
-    font-family: 'Nunito',sans-serif;
+    font-family: "Helvetica Neue",helvetica,arial,sans-serif;
     font-size: 22px;
     letter-spacing: -1px;
 }
@@ -655,7 +653,7 @@ img.featurette-image {
     padding-right: 16px;
 }
 .navbar-default {
-    background-color: #FFFFFF;
+    background-color: #F3F3F3;
     border-color: #CFCFCF;
 }
 .navbar {
@@ -671,11 +669,11 @@ img.featurette-image {
 }
 .navbar-brand {
     color: #4B4949;
-    font-family: 'Nunito',sans-serif;
-    font-size: 16px;
+    font-family: "Helvetica Neue",helvetica,arial,sans-serif;
+    font-size: 18px;
     font-weight: bold;
-    letter-spacing: -1px;
-    padding: 15px 30px;
+    letter-spacing: 0px;
+    padding: 11px 20px 3px 15px;
 }
 .navbar-brand:hover {
     opacity: 0.9;

@@ -12,7 +12,7 @@
 <% else %>
 <div class="flexslider flexslide_simple">
 <ul class="slides">
-	<% @attach.photos.each do |item| %>
+	<% @photos.each do |item| %>
    <li><%= image_tag item.image %></li>
  	<% end %>
 </ul>

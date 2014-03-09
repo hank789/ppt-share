@@ -1,6 +1,6 @@
 class DocsplitWorker
 	include Sidekiq::Worker
-	sidekiq_options :queue => 'a', :retry => 5
+	sidekiq_options :queue => 'a', :retry => 20
 
 	def perform(attach_id)
 		attach = Attach.find(attach_id)
