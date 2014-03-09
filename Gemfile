@@ -1,7 +1,7 @@
 # coding: utf-8
 source 'http://ruby.taobao.org'
 
-gem "rails", "4.0.2"
+gem "rails", "4.0.3"
 gem 'turbolinks', '~> 1.2.0'
 gem 'jquery-turbolinks', '2.0.0'
 gem 'actionpack-action_caching', '1.0.0'
@@ -96,14 +96,15 @@ gem "god"
 gem 'dalli', '1.1.1'
 gem 'eventmachine', '1.0.3'
 gem "puma", "2.6.0"
+
 # Faye Server 需要
 gem 'thin', "1.5.0"
+
 # for api 跨域
 gem 'rack-cors', require: 'rack/cors'
 
 # Doc split
 gem "docsplit"
-
 gem 'public_activity'
 
 group :development, :test do
