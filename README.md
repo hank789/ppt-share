@@ -10,8 +10,8 @@
 ## Install
 
 ```bash
-git clone git@github.com:Dokec/SShow.git
-cd SShow
+git clone git@github.com:pafa/makeslide.git
+cd makeslide
 ruby setup.rb
 # ensure that memcached has started up
 rails s
@@ -23,6 +23,18 @@ rails s
 # Sidekiq
 # ensure that redis has started up
 bundle exec sidekiq -C config/sidekiq.yml
+```
+
+## Start MongoDb
+
+```bash
+mongod
+```
+
+## Start redis-server
+
+```bash
+redis-server
 ```
 
 ## Testing
