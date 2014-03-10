@@ -1,7 +1,4 @@
-<div class="slide-item col-md-
-  <% if @slides_col_md.present? %><%= slides_col_md %>
-  <% else %>4
-  <% end %> col-sm-6">
+<div class="slide-item col-md-<% if @slides_col_md.present? %><%= slides_col_md %><% else %>4<% end %> col-sm-6">
   <div class="thumbnail">
     <%= render_cell :slides, :carousel_simple, :attach_id => slide.slide %>
     <div class="caption">
