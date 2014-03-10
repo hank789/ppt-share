@@ -4,8 +4,8 @@ source 'http://ruby.taobao.org'
 gem "rails", "4.0.3"
 gem 'turbolinks', '~> 1.2.0'
 gem 'jquery-turbolinks', '2.0.0'
-gem 'actionpack-action_caching', '1.0.0'
-gem 'sass-rails', "~> 4.0.0"
+gem 'actionpack-action_caching'
+gem 'sass-rails', '>= 3.2'
 gem 'coffee-rails', "~> 4.0.0"
 gem 'uglifier', '>= 1.3.0'
 
@@ -39,10 +39,9 @@ gem 'devise-encryptable', '0.1.2'
 gem 'will_paginate', '3.0.4'
 
 # Bootstrap
-gem 'anjlab-bootstrap-rails', '2.0.3.2', require: 'bootstrap-rails'
-gem 'bootstrap-will_paginate', '0.0.3'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap_helper', github: 'huacnlee/bootstrap-helper'
-gem 'font-awesome-rails'
 
 
 # 三方平台 OAuth 验证登陆
@@ -86,7 +85,7 @@ gem 'grape'
 gem "grape-entity"
 
 # Mailer
-gem 'postmark-rails', '0.4.1'
+gem 'postmark-rails', '~> 0.5.2'
 
 # Google Analytics performance
 gem 'garelic', '0.0.2'
@@ -116,7 +115,6 @@ group :development, :test do
   gem "rspec-cells", '0.1.7'
 	gem 'fuubar'
   gem "capybara", "~> 0.4.1"
-  gem 'api_taster', '0.6.0'
   gem "letter_opener"
 
   # 用于组合小图片
