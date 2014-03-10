@@ -2,7 +2,7 @@
 require "digest/md5"
 module UsersHelper
   # 生成用户 login 的链接，user 参数可接受 user 对象或者 字符串的 login
-  def user_name_tag(user,options = {})
+  def user_name_tag(user, options = {})
     return "匿名" if user.blank?
 
     if (user.class == "".class)
@@ -21,21 +21,31 @@ module UsersHelper
 
   def user_avatar_width_for_size(size)
     case size
-      when :normal then 48
-      when :small then 16
-      when :large then 64
-      when :big then 100
-      else size
+      when :normal then
+        48
+      when :small then
+        16
+      when :large then
+        64
+      when :big then
+        100
+      else
+        size
     end
   end
-  
+
   def user_avatar_size_name_for_2x(size)
     case size
-    when :normal then :large
-    when :small then :normal
-    when :large then :big
-    when :big then :big
-    else size
+      when :normal then
+        :large
+      when :small then
+        :normal
+      when :large then
+        :big
+      when :big then
+        :big
+      else
+        size
     end
   end
 
@@ -89,7 +99,7 @@ module UsersHelper
     elsif user.newbie?
       content_tag(:span, t("common.newbie_user"), :class => "label label-default role")
     else
-      content_tag(:span,  t("common.normal_user"), :class => "label label-default role")
+      content_tag(:span, t("common.normal_user"), :class => "label label-default role")
     end
   end
 

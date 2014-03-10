@@ -18,7 +18,7 @@ module Redcarpet
                                :hard_wrap => true))
       end
 
-      
+
       def block_code(code, language)
         language.downcase! if language.is_a?(String)
         html = super(code, language)
@@ -74,7 +74,7 @@ class MarkdownConverter
         :autolink => true,
         :fenced_code_blocks => true,
         :no_intra_emphasis => true
-      })
+    })
   end
 end
 
@@ -91,7 +91,7 @@ class MarkdownTopicConverter < MarkdownConverter
     users = normalize_user_mentions(text)
 
     # 如果 ``` 在刚刚换行的时候 Redcapter 无法生成正确，需要两个换行
-    text.gsub!("\n```","\n\n```")
+    text.gsub!("\n```", "\n\n```")
 
     result = convert(text)
 
@@ -109,7 +109,7 @@ class MarkdownTopicConverter < MarkdownConverter
   private
   # convert bbcode-style image tag [img]url[/img] to markdown syntax ![alt](url)
   def convert_bbcode_img(text)
-    text.gsub!(/\[img\](.+?)\[\/img\]/i) {"![#{image_alt $1}](#{$1})"}
+    text.gsub!(/\[img\](.+?)\[\/img\]/i) { "![#{image_alt $1}](#{$1})" }
   end
 
   def image_alt(src)
@@ -211,13 +211,13 @@ class MarkdownTopicConverter < MarkdownConverter
       html = content.gsub(/:(\S+):/) do |emoji|
 
         emoji_code = emoji #.gsub("|", "_")
-        emoji      = emoji_code.gsub(":", "")
+        emoji = emoji_code.gsub(":", "")
 
         if MdEmoji::EMOJI.include?(emoji)
-          file_name    = "#{emoji.gsub('+', 'plus')}.png"
+          file_name = "#{emoji.gsub('+', 'plus')}.png"
 
           %{<img src="#{upload_url}/assets/emojis/#{file_name}" class="emoji" } +
-            %{title="#{emoji_code}" alt="" />}
+              %{title="#{emoji_code}" alt="" />}
         else
           emoji_code
         end
@@ -241,7 +241,7 @@ class MarkdownTopicConverter < MarkdownConverter
         :space_after_headers => true,
         :disable_indented_code_blocks => true,
         :no_intra_emphasis => true
-      })
+    })
     @emoji = MdEmoji::Render.new
   end
 end

@@ -30,7 +30,7 @@ module RubyChina
           "#{Setting.gravatar_proxy}/avatar/#{hash}.png?s=120"
         end
       end
-      expose(:topics, :unless => { :collection => true }) do |model, opts|
+      expose(:topics, :unless => {:collection => true}) do |model, opts|
         model.topics.recent.limit(opts[:topics_limit] ||= 1).as_json(:only => [:id, :title, :created_at, :node_name, :replies_count])
       end
     end
@@ -43,7 +43,7 @@ module RubyChina
       expose :id, :body, :body_html, :created_at, :updated_at
       expose :user, :using => APIEntities::User
     end
-    
+
     class Topic < Grape::Entity
       expose :id, :title, :created_at, :updated_at, :replied_at, :replies_count, :node_name, :node_id, :last_reply_user_id, :last_reply_user_login
       expose :user, :using => APIEntities::User
@@ -54,12 +54,12 @@ module RubyChina
       expose(:hits) { |topic| topic.hits.to_i }
       expose :user, :using => APIEntities::User
       # replies only exposed when a single topic is fetched
-      expose :replies, :using => APIEntities::Reply, :unless => { :collection => true }
+      expose :replies, :using => APIEntities::Reply, :unless => {:collection => true}
     end
 
     class Node < Grape::Entity
       expose :id, :name, :topics_count, :summary, :section_id, :sort
-      expose(:section_name) {|model, opts| model.section.try(:name) }
+      expose(:section_name) { |model, opts| model.section.try(:name) }
     end
   end
 end

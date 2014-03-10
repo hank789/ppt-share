@@ -1,9 +1,9 @@
 # coding: utf-8
 require "redcarpet"
 module ApplicationHelper
-	def orphan_navbar
-		!current_user && (['sessions/new', 'sessions/create', 'account/new', 'account/create', 'devise/passwords/new', 'devise/passwords/create'].include? "#{params[:controller]}/#{params[:action]}") 
-	end
+  def orphan_navbar
+    !current_user && (['sessions/new', 'sessions/create', 'account/new', 'account/create', 'devise/passwords/new', 'devise/passwords/create'].include? "#{params[:controller]}/#{params[:action]}")
+  end
 
   def sanitize_slide(body)
     sanitize body, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strong em strike u a ul ol li span), :attributes => %w(href src class title alt target rel)
@@ -28,10 +28,10 @@ module ApplicationHelper
   def controller_stylesheet_link_tag
     fname = ""
     case controller_name
-    when "users", "home", "slides"
-      fname = "#{controller_name}.css"
-    when "replies"
-      fname = "slides.css"
+      when "users", "home", "slides"
+        fname = "#{controller_name}.css"
+      when "replies"
+        fname = "slides.css"
     end
     return "" if fname.blank?
     raw %(<link href="#{asset_path(fname)}" rel="stylesheet" data-turbolinks-track />)
@@ -39,12 +39,12 @@ module ApplicationHelper
 
   def controller_javascript_include_tag
     fname =
-    case controller_name
-    when "pages","slides","notes"
-      fname = "#{controller_name}.js"
-    when "replies"
-      fname = "slides.js"
-    end
+        case controller_name
+          when "pages", "slides", "notes"
+            fname = "#{controller_name}.js"
+          when "replies"
+            fname = "slides.js"
+        end
     return "" if fname.blank?
     raw %(<script src="#{asset_path(fname)}" data-turbolinks-track></script>)
   end
@@ -57,8 +57,8 @@ module ApplicationHelper
     assembler = Redcarpet::Render::HTML.new(:hard_wrap => options[:hard_wrap]) # auto <br> in <p>
 
     renderer = Redcarpet::Markdown.new(assembler, {
-      :autolink => true,
-      :fenced_code_blocks => true
+        :autolink => true,
+        :fenced_code_blocks => true
     })
     content_tag(:div, sanitize(MarkdownConverter.convert(str)), :class => options[:class])
   end
@@ -80,7 +80,7 @@ module ApplicationHelper
 
   def timeago(time, options = {})
     options[:class]
-    options[:class] = options[:class].blank? ? "timeago" : [options[:class],"timeago"].join(" ")
+    options[:class] = options[:class].blank? ? "timeago" : [options[:class], "timeago"].join(" ")
     content_tag(:abbr, "", options.merge(:title => time.iso8601)) if time
   end
 
@@ -93,8 +93,8 @@ module ApplicationHelper
   # 去除区域里面的内容的换行标记
   def spaceless(&block)
     data = with_output_buffer(&block)
-    data = data.gsub(/\n\s+/,"")
-    data = data.gsub(/>\s+</,"><")
+    data = data.gsub(/\n\s+/, "")
+    data = data.gsub(/>\s+</, "><")
     sanitize data
   end
 
@@ -102,11 +102,12 @@ module ApplicationHelper
     Setting.facebook_enable
   end
 
-  MOBILE_USER_AGENTS =  'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
-                        'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
-                        'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
-                        'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
-                        'webos|amoi|novarra|cdm|alcatel|pocket|iphone|mobileexplorer|mobile'
+  MOBILE_USER_AGENTS = 'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
+      'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
+      'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
+      'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
+      'webos|amoi|novarra|cdm|alcatel|pocket|iphone|mobileexplorer|mobile'
+
   def mobile?
     agent_str = request.user_agent.to_s.downcase
     return false if agent_str =~ /ipad/
@@ -114,15 +115,15 @@ module ApplicationHelper
   end
 
   # 可按需修改
-  LANGUAGES_LISTS = { "Ruby" => "ruby", "HTML / ERB" => "erb", "CSS / SCSS" => "scss", "JavaScript" => "js",
-                      "YAML <i>(.yml)</i>" => "yml", "CoffeeScript" => "coffee", "Nginx / Redis <i>(.conf)</i>" => "conf",
-                      "Python" => "python", "PHP" => "php", "Java" => "java", "Erlang" => "erlang", "Shell / Bash" => "shell" }
+  LANGUAGES_LISTS = {"Ruby" => "ruby", "HTML / ERB" => "erb", "CSS / SCSS" => "scss", "JavaScript" => "js",
+                     "YAML <i>(.yml)</i>" => "yml", "CoffeeScript" => "coffee", "Nginx / Redis <i>(.conf)</i>" => "conf",
+                     "Python" => "python", "PHP" => "php", "Java" => "java", "Erlang" => "erlang", "Shell / Bash" => "shell"}
 
   def insert_code_menu_items_tag
     lang_list = []
     LANGUAGES_LISTS.each do |k, l|
       lang_list << content_tag(:li) do
-        content_tag(:a, raw(k), id: l, class: 'insert_code', data: { content: l })
+        content_tag(:a, raw(k), id: l, class: 'insert_code', data: {content: l})
       end
     end
     raw lang_list.join("")

@@ -9,7 +9,7 @@ RubyChina::Application.load_tasks
 namespace :test do
   desc "preparing config files..."
   task :prepare => :init do
-    ["config","mongoid","redis"].each do |cfgfile|
+    ["config", "mongoid", "redis"].each do |cfgfile|
       system("cp config/#{cfgfile}.yml.default config/#{cfgfile}.yml") unless File.exist?("config/#{cfgfile}.yml")
     end
   end

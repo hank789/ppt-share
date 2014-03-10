@@ -12,7 +12,7 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  field :email,              :type => String, :default => ""
+  field :email, :type => String, :default => ""
   # Email 的 md5 值，用于 Gravatar 头像
   field :email_md5
   # Email 是否公开
@@ -24,18 +24,18 @@ class User
   validates_presence_of :email
 
   ## Recoverable
-  field :reset_password_token,   :type => String
+  field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
 
   ## Rememberable
   field :remember_created_at, :type => Time
 
   ## Trackable
-  field :sign_in_count,      :type => Integer, :default => 0
+  field :sign_in_count, :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
+  field :last_sign_in_at, :type => Time
   field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
+  field :last_sign_in_ip, :type => String
 
   field :login
   field :name
@@ -63,16 +63,16 @@ class User
   index :login => 1
   index :email => 1
   index :location => 1
-  index({private_token: 1},{ sparse: true })
+  index({private_token: 1}, {sparse: true})
 
   has_many :slides, :dependent => :destroy
-	has_many :attachs, :dependent => :destroy
+  has_many :attachs, :dependent => :destroy
   #has_many :notes
   has_many :replies, :dependent => :destroy
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
-  
+
   attr_accessor :password_confirmation
   ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
 
@@ -83,14 +83,14 @@ class User
 
   scope :hot, desc(:replies_count, :slides_count)
 
-	def read_notifications(notifications)
-    unread_ids = notifications.find_all{|notification| !notification.read?}.map(&:_id)
+  def read_notifications(notifications)
+    unread_ids = notifications.find_all { |notification| !notification.read? }.map(&:_id)
     if unread_ids.any?
       Notification::Base.where({
-        :user_id => id,
-        :_id.in  => unread_ids,
-        :read    => false
-      }).update_all(read: true, updated_at: Time.now)
+                                   :user_id => id,
+                                   :_id.in => unread_ids,
+                                   :read => false
+                               }).update_all(read: true, updated_at: Time.now)
     end
   end
 
@@ -162,11 +162,16 @@ class User
 
   def has_role?(role)
     case role
-      when :admin then admin?
-      when :wiki_editor then wiki_editor?
-      when :site_editor then site_editor?
-      when :member then self.state == STATE[:normal]
-      else false
+      when :admin then
+        admin?
+      when :wiki_editor then
+        wiki_editor?
+      when :site_editor then
+        site_editor?
+      when :member then
+        self.state == STATE[:normal]
+      else
+        false
     end
   end
 
@@ -177,12 +182,14 @@ class User
 
   # 注册邮件提醒
   after_create :send_welcome_mail
+
   def send_welcome_mail
     UserMailer.delay.welcome(self.id)
   end
 
   # 保存用户所在城市
   before_save :store_location
+
   def store_location
     if self.location_changed?
       if not self.location.blank?
@@ -198,12 +205,12 @@ class User
   end
 
   STATE = {
-    # 软删除
-    :deleted => -1,
-    # 正常
-    :normal => 1,
-    # 屏蔽
-    :blocked => 2,
+      # 软删除
+      :deleted => -1,
+      # 正常
+      :normal => 1,
+      # 屏蔽
+      :blocked => 2,
   }
 
   def update_with_password(params={})
@@ -226,7 +233,7 @@ class User
   def bind_service(response)
     provider = response["provider"]
     uid = response["uid"].to_s
-    authorizations.create(:provider => provider , :uid => uid )
+    authorizations.create(:provider => provider, :uid => uid)
   end
 
   # 是否读过 slide 的最近更新
@@ -254,7 +261,7 @@ class User
   def like(likeable)
     return false if likeable.blank?
     return false if likeable.liked_by_user?(self)
-		self.push(like_slide_ids: likeable.id)
+    self.push(like_slide_ids: likeable.id)
     likeable.push(liked_user_ids: self.id)
     likeable.inc(likes_count: 1)
     likeable.touch
@@ -265,7 +272,7 @@ class User
   def unlike(likeable)
     return false if likeable.blank?
     return false if not likeable.liked_by_user?(self)
-		self.pull(like_slide_ids: likeable.id)
+    self.pull(like_slide_ids: likeable.id)
     likeable.pull(liked_user_ids: self.id)
     likeable.inc(likes_count: -1)
     likeable.touch
@@ -324,13 +331,13 @@ class User
       items = JSON.parse(json)
       items = items.collect do |a1|
         {
-          :name => a1["name"],
-          :url => a1["html_url"],
-          :watchers => a1["watchers"],
-          :description => a1["description"]
+            :name => a1["name"],
+            :url => a1["html_url"],
+            :watchers => a1["watchers"],
+            :description => a1["description"]
         }
       end
-      items = items.sort { |a1,a2| a2[:watchers] <=> a1[:watchers] }.take(count)
+      items = items.sort { |a1, a2| a2[:watchers] <=> a1[:watchers] }.take(count)
       Rails.cache.write(cache_key, items, :expires_in => 7.days)
     end
     items

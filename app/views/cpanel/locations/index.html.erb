@@ -9,15 +9,15 @@
       <td class="opts"></td>
     </tr>
     <% @locations.each do |item| %>
-    <tr class="<%= cycle("","even") %>">
-      <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.users_count %></td>
-      <td>
-        <%= link_to "", edit_cpanel_location_path(item.id), :class => "icon small_edit" %>
-        <%= link_to "", cpanel_location_path(item.id), :method => :delete, 'data-confirm' => '确定要删除吗?', :class => "icon small_delete" %>
-      </td>
-    </tr>
+        <tr class="<%= cycle("", "even") %>">
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.users_count %></td>
+          <td>
+            <%= link_to "", edit_cpanel_location_path(item.id), :class => "icon small_edit" %>
+            <%= link_to "", cpanel_location_path(item.id), :method => :delete, 'data-confirm' => '确定要删除吗?', :class => "icon small_delete" %>
+          </td>
+        </tr>
     <% end %>
   </table>
   <%= will_paginate @locations %>

@@ -8,7 +8,7 @@ class Photo
   field :order_number
 
   belongs_to :user
-	belongs_to :attach
+  belongs_to :attach
 
   ACCESSABLE_ATTRS = [:image]
 

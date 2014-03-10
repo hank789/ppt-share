@@ -9,7 +9,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'coffee-rails', "~> 4.0.0"
 gem 'uglifier', '>= 1.3.0'
 
-gem "rails-i18n","0.1.8"
+gem "rails-i18n", "0.1.8"
 gem "jquery-rails", "3.0.4"
 gem "pakunok"
 gem "rails_autolink", ">= 1.1.0"
@@ -22,7 +22,7 @@ gem "flexslider"
 gem 'carrierwave', '0.6.2'
 #gem 'carrierwave-upyun', '0.1.5'
 gem 'carrierwave-qiniu'
-gem 'mini_magick','3.3', require: false
+gem 'mini_magick', '3.3', require: false
 gem 'dropzonejs-rails'
 gem 'qiniu-rs'
 
@@ -52,7 +52,7 @@ gem "omniauth-github", "~> 1.1.0"
 gem "cancan", "~> 1.6.10"
 
 # Redis 命名空间
-gem 'redis-namespace','~> 1.2.1'
+gem 'redis-namespace', '~> 1.2.1'
 
 # 将一些数据存放入 Redis
 gem "redis-objects", "0.5.2"
@@ -72,8 +72,8 @@ gem "cells", '~> 3.8.8'
 # 队列
 gem "sidekiq", "~> 2.13.1"
 gem "cookiejar", "0.3.0"
-gem 'faye-rails','1.0.0'
-gem 'faye','0.8.3'
+gem 'faye-rails', '1.0.0'
+gem 'faye', '0.8.3'
 # 分享功能
 gem "social-share-button", '0.1.4'
 
@@ -113,7 +113,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem "rspec-cells", '0.1.7'
-	gem 'fuubar'
+  gem 'fuubar'
   gem "capybara", "~> 0.4.1"
   gem "letter_opener"
 
@@ -132,10 +132,10 @@ group :production do
 end
 
 # 监控sidekiq
-gem 'sinatra', require: false  
-gem 'slim' 
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development do
-	# Debugger
-	gem 'debugger'
+  # Debugger
+  gem 'debugger'
 end

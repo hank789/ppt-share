@@ -4,6 +4,7 @@ class RepliesController < ApplicationController
   load_and_authorize_resource :reply
 
   before_filter :find_slide
+
   def create
 
     @reply = Reply.new(reply_params)
@@ -33,7 +34,7 @@ class RepliesController < ApplicationController
       render :action => "edit"
     end
   end
-  
+
   def destroy
     @reply = Reply.find(params[:id])
     if @reply.destroy
@@ -48,7 +49,7 @@ class RepliesController < ApplicationController
   def find_slide
     @slide = Slide.find(params[:slide_id])
   end
-  
+
   def reply_params
     params.require(:reply).permit(:body)
   end

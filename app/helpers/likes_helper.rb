@@ -21,8 +21,8 @@ module LikesHelper
       icon = content_tag("i", "", :class => "icon small_like")
     end
     like_label = raw "#{icon} <span>#{label}</span>"
-    raw "#{link_to(like_label,"#",:title => title, :rel => "twipsy", 'data-count' => likeable.likes_count,
-            'data-state' => state,'data-type' => likeable.class,'data-id' => likeable.id,
-            :class => 'likeable btn', :onclick => "return App.likeable(this);")}"
+    raw "#{link_to(like_label, "#", :title => title, :rel => "twipsy", 'data-count' => likeable.likes_count,
+                   'data-state' => state, 'data-type' => likeable.class, 'data-id' => likeable.id,
+                   :class => 'likeable btn', :onclick => "return App.likeable(this);")}"
   end
 end

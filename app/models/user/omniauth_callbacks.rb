@@ -1,18 +1,18 @@
 # coding: utf-8
 class User
   module OmniauthCallbacks
-    ["github","google","twitter","douban"].each do |provider|
+    ["github", "google", "twitter", "douban"].each do |provider|
       define_method "find_or_create_for_#{provider}" do |response|
         uid = response["uid"].to_s
         data = response["info"]
 
-        if user = User.where("authorizations.provider" => provider , "authorizations.uid" => uid).first
+        if user = User.where("authorizations.provider" => provider, "authorizations.uid" => uid).first
           user
         else
           user = User.new_from_provider_data(provider, uid, data)
 
           if user.save(:validate => false)
-            user.authorizations << Authorization.new(:provider => provider, :uid => uid )
+            user.authorizations << Authorization.new(:provider => provider, :uid => uid)
             return user
           else
             Rails.logger.warn("User.create_from_hash 失败，#{user.errors.inspect}")

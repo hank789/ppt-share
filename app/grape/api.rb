@@ -32,8 +32,8 @@ module RubyChina
       get "node/:id" do
         @node = Node.find(params[:id])
         @topics = @node.topics.last_actived
-          .limit(page_size)
-          .includes(:user)
+        .limit(page_size)
+        .includes(:user)
         present @topics, :with => APIEntities::Topic
       end
 
@@ -141,13 +141,13 @@ module RubyChina
         @users = User.hot.limit(20)
         present @users, :with => APIEntities::DetailUser
       end
-      
+
       # Get temp_access_token, this key is use for Faye client channel
       # Example
       # /api/users/temp_access_token?token=232332233223:1
       get "temp_access_token" do
         authenticate!
-        present ({ :temp_access_token => current_user.temp_access_token }).to_json
+        present ({:temp_access_token => current_user.temp_access_token}).to_json
       end
 
       # Get a single user
@@ -181,9 +181,9 @@ module RubyChina
       get do
         @site_nodes = SiteNode.all.includes(:sites).desc('sort')
         @site_nodes.as_json(:except => :sort, :include => {
-          :sites => {
-            :only => [:name, :url, :desc, :favicon, :created_at]
-          }
+            :sites => {
+                :only => [:name, :url, :desc, :favicon, :created_at]
+            }
         })
       end
     end

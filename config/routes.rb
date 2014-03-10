@@ -1,7 +1,7 @@
 RubyChina::Application.routes.draw do
   require 'api'
   require "api_v2"
-  
+
   resources :comments
   root :to => "home#index"
 
@@ -9,7 +9,7 @@ RubyChina::Application.routes.draw do
       :registrations => :account,
       :sessions => :sessions,
       :omniauth_callbacks => "users/omniauth_callbacks"
-    }
+  }
 
   delete "account/auth/:provider/unbind" => "users#auth_unbind", as: 'unbind_account'
   post "account/update_private_token" => "users#update_private_token", as: 'update_private_token_account'
@@ -20,29 +20,29 @@ RubyChina::Application.routes.draw do
     end
   end
 
-	
-	get "slides/last" => "slides#recent", as: "recent_slides"
- 	resources :slides do
-		member do 
-			post :reply
-			post :favorite
-			get :attachs
+
+  get "slides/last" => "slides#recent", as: "recent_slides"
+  resources :slides do
+    member do
+      post :reply
+      post :favorite
+      get :attachs
       patch :suggest
       delete :unsuggest
-		end
-		collection do
-			get :no_reply
-			get :popular
+    end
+    collection do
+      get :no_reply
+      get :popular
       get :excellent
     end
     resources :replies
-	end
+  end
 
-	resources :attachs, :except => :index do
-		member do
-			get :download
-		end
-	end
+  resources :attachs, :except => :index do
+    member do
+      get :download
+    end
+  end
 
   resources :photos
   resources :likes
@@ -64,21 +64,21 @@ RubyChina::Application.routes.draw do
 
   mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 
-	require 'sidekiq/web'
-	# ...
-	mount Sidekiq::Web, at: '/sidekiq'
+  require 'sidekiq/web'
+  # ...
+  mount Sidekiq::Web, at: '/sidekiq'
 
   # WARRING! 请保持 User 的 routes 在所有路由的最后，以便于可以让用户名在根目录下面使用，而又不影响到其他的 routes
   # 比如 http://makeslide.com/huacnlee
   get "users/city/:id" => "users#city", as: 'location_users'
-  post "users/:id/follow"=> "users#follow"
-  post "users/:id/unfollow"=> "users#unfollow"
+  post "users/:id/follow" => "users#follow"
+  post "users/:id/unfollow" => "users#unfollow"
   get "users" => "users#index", as: 'users'
   resources :users, :path => "" do
     member do
-			get :slides
+      get :slides
       get :likes
-			get :collections
+      get :collections
       get :workspace
       get :home
     end

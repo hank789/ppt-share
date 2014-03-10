@@ -1,20 +1,20 @@
 <% if @attach.nil? || @attach.photos.blank? %>
-	<div class="document_thumb">	
-		<div>
-		<i class="<%= if @attach.nil? 
-										'fa fa-bolt'
-									else
-										'fa fa-spinner fa-spin'
-									end %> icon-large">
-		</i>
-	</div>
-	</div>
+    <div class="document_thumb">
+      <div>
+        <i class="<%= if @attach.nil?
+                        'fa fa-bolt'
+                      else
+                        'fa fa-spinner fa-spin'
+                      end %> icon-large">
+        </i>
+      </div>
+    </div>
 <% else %>
-<div class="flexslider flexslide_with_thumb">
-<ul class="slides">
-	<% @photos.each do |item| %>
-   <li><%= image_tag item.image %></li>
- 	<% end %>
-</ul>
-</div>
+    <div class="flexslider flexslide_with_thumb">
+      <ul class="slides">
+        <% @photos.each do |item| %>
+            <li><%= image_tag item.image %></li>
+        <% end %>
+      </ul>
+    </div>
 <% end %>

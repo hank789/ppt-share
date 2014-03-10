@@ -1,6 +1,6 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:auth_unbind, :home,:show,:slides,:collections]
+  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections]
   before_filter :set_menu_active
   before_filter :find_user, :only => [:show, :slides, :likes, :collections, :workspace, :home]
   caches_action :index, :expires_in => 2.hours, :layout => false
@@ -26,24 +26,24 @@ class UsersController < ApplicationController
     drop_breadcrumb(t("slides.title"))
   end
 
-	def workspace
-		@orphan_slides = @user.slides.recent
+  def workspace
+    @orphan_slides = @user.slides.recent
     drop_breadcrumb(@user.login, user_path(@user.login))
   end
 
 
-	def likes
+  def likes
     @slides = Slide.where(:_id.in => @user.like_slide_ids).paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.likes"))
-	end
+  end
 
-  def collections 
+  def collections
     @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.collections"))
   end
-  
+
   def auth_unbind
     provider = params[:provider]
     if current_user.authorizations.count <= 1
@@ -51,10 +51,10 @@ class UsersController < ApplicationController
       return
     end
 
-    current_user.authorizations.destroy_all({ :provider => provider })
-    redirect_to edit_user_registration_path, :flash => {:warring => t("users.unbind_success", :provider => provider.titleize )}
+    current_user.authorizations.destroy_all({:provider => provider})
+    redirect_to edit_user_registration_path, :flash => {:warring => t("users.unbind_success", :provider => provider.titleize)}
   end
-  
+
   def update_private_token
     current_user.update_private_token
     render :text => current_user.private_token

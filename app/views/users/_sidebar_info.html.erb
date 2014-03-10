@@ -1,23 +1,26 @@
 <div class="sidebar">
-    <tr>
-      <td><div class="box" style="text-align:center;"><%= user_avatar_tag(@user,:big, :link => false) %></div></td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">
-        <div style="padding-bottom: 5px;"><%= render_user_level_tag(@user) %>
-            &nbsp;&nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
-            &nbsp;&nbsp;&nbsp;&nbsp;<% if admin? %>
-                <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
-             <% end %>   
-        </div>
-      </td>
-    </tr>
+  <tr>
+    <td>
+      <div class="box" style="text-align:center;"><%= user_avatar_tag(@user, :big, :link => false) %></div>
+    </td>
+    <td>&nbsp;</td>
+    <td style="vertical-align: top;">
+      <div style="padding-bottom: 5px;"><%= render_user_level_tag(@user) %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <% if admin? %>
+            <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
 
-<hr>
+  <hr>
 
-<table class="userinfo vcard">
+  <table class="userinfo vcard">
     <tr>
-        <td><label>ID:</label></td>
-        <td><strong class="fn"><%= @user.login %></strong></td>
+      <td><label>ID:</label></td>
+      <td><strong class="fn"><%= @user.login %></strong></td>
     </tr>
 
     <% if !@user.name.blank? %>
@@ -28,17 +31,17 @@
     <% end %>
 
     <% if !@user.email.blank? && @user.email_public %>
-      <tr>
-        <td><label><%= t("mongoid.attributes.user.email") %>:</label></td>
-        <td><span style="word-break:break-all;overflow:auto;"><%= auto_link @user.email %></span></td>
-      </tr>
+        <tr>
+          <td><label><%= t("mongoid.attributes.user.email") %>:</label></td>
+          <td><span style="word-break:break-all;overflow:auto;"><%= auto_link @user.email %></span></td>
+        </tr>
     <% end %>
 
     <% if !@user.location.blank? %>
-      <tr class="adr">
-          <td><label><%= t("users.city")%>:</label></td>
+        <tr class="adr">
+          <td><label><%= t("users.city") %>:</label></td>
           <td><span class="region"><%= location_name_tag(@user.location) %></span></td>
-      </tr>
+        </tr>
     <% end %>
 
     <% if !@user.company.blank? %>
@@ -50,31 +53,31 @@
 
     <% if !@user.tagline.blank? %>
         <tr>
-          <td><label><%= t("users.signature")%>:</label></td>
+          <td><label><%= t("users.signature") %>:</label></td>
           <td><span><%= render_user_tagline(@user) %></span></td>
         </tr>
     <% end %>
-</table>
+  </table>
 
-<hr>
+  <hr>
 
-<table>
-<div>
+  <table>
+    <div>
       <div class="col-md-4" style="text-align:center;">
-            <h3>388</h3>
-            <h6>上传数</h6>
+        <h3>388</h3>
+        <h6>上传数</h6>
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-            <h3>32</h3>
-            <h6>关注数</h6>
+        <h3>32</h3>
+        <h6>关注数</h6>
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-             <h3>1239</h3>
-            <h6>粉丝数</h6>
+        <h3>1239</h3>
+        <h6>粉丝数</h6>
       </div>
-</div>
-</table>
+    </div>
+  </table>
 
 </div>

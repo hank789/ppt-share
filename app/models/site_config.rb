@@ -40,6 +40,7 @@ class SiteConfig
   end
 
   after_save :update_cache
+
   def update_cache
     Rails.cache.write("site_config:#{self.key}", self.value)
   end

@@ -2,46 +2,49 @@
 <html>
 <head>
   <title>MakeSlide - Control Panel</title>
-  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" />
+  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>"/>
   <%= stylesheet_link_tag "cpanel" %>
   <%= javascript_include_tag "app" %>
   <%= csrf_meta_tag %>
 </head>
 <body class="no-right-panel container" style="min-height: 800px;">
-	<header id="header">
-		<div id="logo-group">
+<header id="header">
+  <div id="logo-group">
 			<span id="logo">
 				<a href="/" class="site-logo"></a>
 			</span>
-		</div>
-	</header>
+  </div>
+</header>
 
-	<aside id="left-panel">
-		<%= render "common/user_aside" %>
-		<nav>
-			<ul>
-				<li>
-					<a title="Dashboard" href="<%= cpanel_root_path %>"><i class="icon-lg icon-fw icon-home"></i>  <span class="menu-item-parent">概览</span></a>
-				</li>
-				<li>
-					<a title="User" href="<%= cpanel_users_path %>"><i class="icon-lg icon-fw icon-user"></i>  <span class="menu-item-parent">用户</span> <span class="badge pull-right inbox-badge"><%= User.count %></span></a>
-				</li>
+<aside id="left-panel">
+  <%= render "common/user_aside" %>
+  <nav>
+    <ul>
+      <li>
+        <a title="Dashboard" href="<%= cpanel_root_path %>"><i class="icon-lg icon-fw icon-home"></i>
+          <span class="menu-item-parent">概览</span></a>
+      </li>
+      <li>
+        <a title="User" href="<%= cpanel_users_path %>"><i class="icon-lg icon-fw icon-user"></i>
+          <span class="menu-item-parent">用户</span>
+          <span class="badge pull-right inbox-badge"><%= User.count %></span></a>
+      </li>
 
-			</ul>		
-		</nav>
+    </ul>
+  </nav>
 
-	</aside>
-	<div id="main" role="main">  
-		<div id="ribbon">
-			<div class="breadcrumb">
-			<a href="<%= cpanel_root_path %>">Root</a> &gt;
-			<%= yield :sitemap %>
-	 		</div>                 
-		</div>
-		<div id="content">
-		<%= notice_message %>
-	 	<%= yield %>         
-	 	</div>                 
-	</div> 
+</aside>
+<div id="main" role="main">
+  <div id="ribbon">
+    <div class="breadcrumb">
+      <a href="<%= cpanel_root_path %>">Root</a> &gt;
+      <%= yield :sitemap %>
+    </div>
+  </div>
+  <div id="content">
+    <%= notice_message %>
+    <%= yield %>
+  </div>
+</div>
 </body>
 </html>

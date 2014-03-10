@@ -65,7 +65,7 @@ class Cpanel::LocationsController < Cpanel::ApplicationController
     @location.destroy
 
     respond_to do |format|
-      format.html { redirect_to(cpanel_locations_path,:notice => "删除成功。") }
+      format.html { redirect_to(cpanel_locations_path, :notice => "删除成功。") }
       format.json
     end
   end

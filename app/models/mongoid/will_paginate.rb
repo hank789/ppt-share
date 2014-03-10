@@ -5,7 +5,7 @@ require "will_paginate/collection"
 module Mongoid
   module WillPaginate
     extend ActiveSupport::Concern
-    
+
     def paginate(options = {})
       options = base_options options
 

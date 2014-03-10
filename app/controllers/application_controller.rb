@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :unread_notify_count
 
-  before_filter do    
+  before_filter do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
-    
-    if devise_controller?      
+
+    if devise_controller?
       devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(*User::ACCESSABLE_ATTRS) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(*User::ACCESSABLE_ATTRS) }
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(*User::ACCESSABLE_ATTRS) }
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def render_optional_error_file(status_code)
     status = status_code.to_s
-    if ["404","403", "422", "500"].include?(status)
+    if ["404", "403", "422", "500"].include?(status)
       render :template => "/errors/#{status}", :format => [:html], :handler => [:erb], :status => status, :layout => "application"
     else
       render :template => "/errors/unknown", :format => [:html], :handler => [:erb], :status => status, :layout => "application"
@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
     flash[:notice] = msg
   end
 
-  def set_seo_meta(title = '',meta_keywords = '', meta_description = '')
+  def set_seo_meta(title = '', meta_keywords = '', meta_description = '')
     if title.length > 0
       @page_title = "#{title}"
     end
@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
   def require_user
     if current_user.blank?
       respond_to do |format|
-        format.html  {
+        format.html {
           authenticate_user!
         }
         format.all {
@@ -91,12 +91,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def unread_notify_count
     return 0 if current_user.blank?
     @unread_notify_count ||= current_user.notifications.unread.count
   end
-  
+
   def fresh_when(opts = {})
     opts[:etag] ||= []
     # 保证 etag 参数是 Array 类型

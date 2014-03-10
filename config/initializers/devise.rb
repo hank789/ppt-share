@@ -32,18 +32,18 @@ Devise.setup do |config|
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
   # config.authentication_keys = [ :email ]
-  config.authentication_keys = [ :login ]
+  config.authentication_keys = [:login]
 
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email, :login ]
+  config.case_insensitive_keys = [:email, :login]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email, :login ]
-  
+  config.strip_whitespace_keys = [:email, :login]
+
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
 
@@ -55,7 +55,7 @@ Devise.setup do |config|
 
   # The realm used in Http Basic Authentication
   # config.http_authentication_realm = "Application"
-  
+
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
@@ -95,7 +95,7 @@ Devise.setup do |config|
   # (ie 2 days).
   # config.allow_unconfirmed_access_for = 2.days
   # config.confirm_within = 3.days
-  
+
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed new email is stored in
@@ -129,7 +129,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 

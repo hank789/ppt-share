@@ -3,11 +3,12 @@ ROW_SIZE = 80
 
 class String
   COLORS = {
-    :red => "\033[31m",
-    :green => "\033[32m",
-    :yellow => "\033[33m",
-    :blue => "\033[34m"
+      :red => "\033[31m",
+      :green => "\033[32m",
+      :yellow => "\033[33m",
+      :blue => "\033[34m"
   }
+
   def colorize(color)
     "#{COLORS[color]}#{self}\033[0m"
   end
@@ -47,7 +48,7 @@ def replace_file(file_name, from, to)
   File.open(file_name, "r+") do |f|
     out = ""
     f.each do |line|
-        out << line.gsub(from, to)
+      out << line.gsub(from, to)
     end
     f.pos = 0
     f.print out
@@ -61,7 +62,7 @@ puts ""
 
 puts_section "Checking Package Dependencies..." do
   pkg_exist = true
-  [["bundle","Bundler"],["mongod","MongoDB 2.0+"],["redis-server","Redis 2.0+"],["memcached","Memcached 1.4+"],["convert","ImageMagick 6.5+"]].each do |item|
+  [["bundle", "Bundler"], ["mongod", "MongoDB 2.0+"], ["redis-server", "Redis 2.0+"], ["memcached", "Memcached 1.4+"], ["convert", "ImageMagick 6.5+"]].each do |item|
     puts_line_with_yn item[1] do
       if `which #{item[0]}` == ""
         pkg_exist = false
@@ -84,13 +85,13 @@ puts_section "Configure" do
   print "Your MongoDB host (default: 127.0.0.1:27017):"
   host = gets.strip
   host = "127.0.0.1:27017" if host == ""
-  replace_file('config/mongoid.yml','SETUP_DEVELOPMENT_HOST',host)
+  replace_file('config/mongoid.yml', 'SETUP_DEVELOPMENT_HOST', host)
 
   print "Your Redis host (default: 127.0.0.1:6379):"
   host = gets.strip
   host = "127.0.0.1:6379" if host == ""
-  replace_file('config/redis.yml','SETUP_REDIS_HOST',host.split(":")[0])
-  replace_file('config/redis.yml','SETUP_REDIS_PORT',host.split(":")[1])
+  replace_file('config/redis.yml', 'SETUP_REDIS_HOST', host.split(":")[0])
+  replace_file('config/redis.yml', 'SETUP_REDIS_PORT', host.split(":")[1])
 end
 
 puts_line "Install gems..." do

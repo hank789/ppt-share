@@ -23,7 +23,7 @@ module CarrierWave
 
       include CarrierWave::Validations::ActiveModel
 
-      validates_integrity_of  column if uploader_option(column.to_sym, :validate_integrity)
+      validates_integrity_of column if uploader_option(column.to_sym, :validate_integrity)
       validates_processing_of column if uploader_option(column.to_sym, :validate_processing)
 
       after_save :"store_#{column}!"
@@ -77,10 +77,10 @@ Mongoid::Document::ClassMethods.send(:include, CarrierWave::Mongoid)
 
 CarrierWave.configure do |config|
   config.storage = :qiniu
-  config.qiniu_access_key    = Setting.qiniu_ak
-  config.qiniu_secret_key    = Setting.qiniu_sk 
-  config.qiniu_bucket        = Setting.qiniu_bucket 
-  config.qiniu_bucket_domain = Setting.qiniu_bucket_domain 
-  config.qiniu_block_size    = 4*1024*1024
-  config.qiniu_protocal      = "http"
+  config.qiniu_access_key = Setting.qiniu_ak
+  config.qiniu_secret_key = Setting.qiniu_sk
+  config.qiniu_bucket = Setting.qiniu_bucket
+  config.qiniu_bucket_domain = Setting.qiniu_bucket_domain
+  config.qiniu_block_size = 4*1024*1024
+  config.qiniu_protocal = "http"
 end

@@ -33,8 +33,8 @@ module RubyChina
       get "node/:id" do
         @node = Node.find(params[:id])
         @topics = @node.topics.last_actived
-          .limit(page_size)
-          .includes(:user)
+        .limit(page_size)
+        .includes(:user)
         present @topics, :with => APIEntities::Topic
       end
 
@@ -51,7 +51,7 @@ module RubyChina
         if @topic.save
           present @topic, :with => APIEntities::DetailTopic
         else
-          error!({ "error" => @topic.errors.full_messages }, 400)
+          error!({"error" => @topic.errors.full_messages}, 400)
         end
       end
 
@@ -78,7 +78,7 @@ module RubyChina
         if @reply.save
           present @reply, :with => APIEntities::Reply
         else
-          error!({"error" => @reply.errors.full_messages }, 400)
+          error!({"error" => @reply.errors.full_messages}, 400)
         end
       end
 
@@ -180,9 +180,9 @@ module RubyChina
       get do
         @site_nodes = SiteNode.all.includes(:sites).desc('sort')
         @site_nodes.as_json(:except => :sort, :include => {
-          :sites => {
-            :only => [:name, :url, :desc, :favicon, :created_at]
-          }
+            :sites => {
+                :only => [:name, :url, :desc, :favicon, :created_at]
+            }
         })
       end
     end
@@ -198,7 +198,7 @@ module RubyChina
           puts "------ #{@photo.inspect}"
           @photo.image.url
         else
-          error!({"error" => @photo.errors.full_messages }, 400)
+          error!({"error" => @photo.errors.full_messages}, 400)
         end
       end
     end

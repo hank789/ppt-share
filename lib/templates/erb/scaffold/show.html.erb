@@ -5,9 +5,9 @@
 </div>
 <div id="<%= singular_table_name %>">
   <% for attribute in attributes -%>
-  <p>
-    <b><%= attribute.human_name %>:</b>
-    <%%= @<%= file_name %>.<%= attribute.name %> %>
-  </p>
+      <p>
+        <b><%= attribute.human_name %>:</b>
+        <%%= @<%= file_name %>.<%= attribute.name %> %>
+      </p>
   <% end -%>
 </div>

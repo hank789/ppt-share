@@ -5,101 +5,104 @@
   <%= stylesheet_link_tag "front", "data-turbolinks-track" => true %>
   <%= yield :styles %>
   <% if mobile? %>
-    <%= stylesheet_link_tag "mobile" %>
-    <meta name="apple-mobile-web-app-capable" content="no">
-    <meta content='True' name='HandheldFriendly' />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="apple-touch-icon-precomposed" href="<%= asset_path("ios-icon.png") %>" />
+      <%= stylesheet_link_tag "mobile" %>
+      <meta name="apple-mobile-web-app-capable" content="no">
+      <meta content='True' name='HandheldFriendly'/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+      <link rel="apple-touch-icon-precomposed" href="<%= asset_path("ios-icon.png") %>"/>
   <% end %>
-  <meta name="keywords" content="<%= @meta_keywords %>" />
-  <meta name="description" content="<%= @meta_description %>" />
-  <meta charset='utf-8' />
-  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" />
+  <meta name="keywords" content="<%= @meta_keywords %>"/>
+  <meta name="description" content="<%= @meta_description %>"/>
+  <meta charset='utf-8'/>
+  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>"/>
   <%= raw SiteConfig.custom_head_html %>
   <%= csrf_meta_tag %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 </head>
-<body data-offset="50" data-controller-name="<%= controller_name %>">  
-	<div id="wrap">
-	<% if !orphan_navbar %>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="nav-header">
-					<a href="/" class="navbar-brand"><img src="<%= asset_path("logo_32.png") %>" />&nbsp;MakeSlide</a>
-				</div>
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<form action="/search" role="search" class="navbar-form navbar-left" method="get">
-						<div class="form-group">
-							<input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" class="form-control input-sm">
-						 </div>
-					</form>
-					<%= render "common/user_nav" %>
-				</div>
-			</div>
-		</nav>
-		<%= render partial:"users/menu" if current_user %>
-		<%= raw "<hr>" if !current_user && params[:controller]+'/'+params[:action] != "home/index" %>
-		<%= notice_message %>
-		<%= yield %>
-	<% else %>
-		<div id="landing">
-			<div class="header-image">
-				<div class="container">
-					<div class="auth-unit">
-						<h3 class="text-brand">MakeSlide.com</h3>
-					 	<%= notice_message %>   
-						<%= yield %>
-					</div>
-				</div>
-			</div>
-		</div>
-	<% end %>
-	</div>
-	<div id="footer">
-		<div class="container">
-			<%= raw SiteConfig.footer_html %>
-		</div>
-	</div>
-    <script type="text/javascript">
-        $(function () {
-            $('.flexslide_simple').flexslider({
-                controlNav: false,
-                slideshow: false
-            });
+<body data-offset="50" data-controller-name="<%= controller_name %>">
+<div id="wrap">
+  <% if !orphan_navbar %>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="nav-header">
+            <a href="/" class="navbar-brand"><img src="<%= asset_path("logo_32.png") %>"/>&nbsp;MakeSlide</a>
+          </div>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <form action="/search" role="search" class="navbar-form navbar-left" method="get">
+              <div class="form-group">
+                <input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" class="form-control input-sm">
+              </div>
+            </form>
+            <%= render "common/user_nav" %>
+          </div>
+        </div>
+      </nav>
+      <%= render partial: "users/menu" if current_user %>
+      <%= raw "<hr>" if !current_user && params[:controller]+'/'+params[:action] != "home/index" %>
+      <%= notice_message %>
+      <%= yield %>
+  <% else %>
+      <div id="landing">
+        <div class="header-image">
+          <div class="container">
+            <div class="auth-unit">
+              <h3 class="text-brand">MakeSlide.com</h3>
+              <%= notice_message %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+<div id="footer">
+  <div class="container">
+    <%= raw SiteConfig.footer_html %>
+  </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.flexslide_simple').flexslider({
+            controlNav: false,
+            slideshow: false
         });
-        $(function () {
-            $('.flexslide_with_thumb').flexslider({
-                controlNav: false,
-                slideshow: false
-            });
+    });
+    $(function () {
+        $('.flexslide_with_thumb').flexslider({
+            controlNav: false,
+            slideshow: false
         });
-    </script>
-  <script type="text/javascript" data-turbolinks-eval=false>
+    });
+</script>
+<script type="text/javascript" data-turbolinks-eval=false>
     ROOT_URL = "<%= root_url %>";
     ASSET_URL = "<%= asset_url('/') %>";
     FAYE_SERVER_URL = "<%= Setting.faye_server %>";
     <% if current_user %>
-      CURRENT_USER_ACCESS_TOKEN = "<%= current_user.temp_access_token %>";
+    CURRENT_USER_ACCESS_TOKEN = "<%= current_user.temp_access_token %>";
     <% end %>
     if (FAYE_SERVER_URL) {
-      App.initNotificationSubscribe();
+        App.initNotificationSubscribe();
     }
-  </script>
-  <%= yield :scripts %>
-  <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '<%= Setting.google_analytics_key %>']);
-      _gaq.push(['_setSiteSpeedSampleRate', 100]);
-      _gaq.push(['_trackPageview']);
+</script>
+<%= yield :scripts %>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<%= Setting.google_analytics_key %>']);
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    _gaq.push(['_trackPageview']);
 
-      <%= Garelic::Timing %>
+    <%= Garelic::Timing %>
 
-      (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-  </script>
-    <div class="zoom-overlay"></div>
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<div class="zoom-overlay"></div>
 </body>
 </html>

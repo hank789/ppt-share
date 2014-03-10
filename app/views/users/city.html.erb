@@ -4,12 +4,12 @@
       <div id="hot_users" class="row user_list">
         <h3 class="text-center"><%= @location.name %>的<%= t("users.hot_users") %></h3>
         <% if !@users.blank? %>
-          <% @users.each do |item| %>
-            <div class="item span1">
-              <div class="avatar"><%= user_avatar_tag(item) %></div>
-              <div class="name"><%= user_name_tag(item) %></div>
-            </div>
-          <% end %>
+            <% @users.each do |item| %>
+                <div class="item span1">
+                  <div class="avatar"><%= user_avatar_tag(item) %></div>
+                  <div class="name"><%= user_name_tag(item) %></div>
+                </div>
+            <% end %>
         <% end %>
       </div>
       <%= will_paginate @users %>

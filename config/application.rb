@@ -17,7 +17,7 @@ module RubyChina
     config.autoload_paths += %W(#{config.root}/uploaders)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/grape)
-		config.autoload_paths += %W(#{Rails.root}/app/workers)  
+    config.autoload_paths += %W(#{Rails.root}/app/workers)
 
     config.time_zone = 'Beijing'
 
@@ -45,11 +45,11 @@ module RubyChina
       Devise::Mailer.layout "mailer"
     }
 
-		# config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
 		 mobile.css home.css)
-		config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
-		config.assets.precompile << /dropzone.+\.png$/
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+    config.assets.precompile << /dropzone.+\.png$/
   end
 end
 

@@ -36,7 +36,7 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
     @reply = Reply.unscoped.find(params[:id])
 
     if @reply.update_attributes(params[:reply].permit!)
-       redirect_to(cpanel_replies_path, :notice => 'Reply was successfully updated.')
+      redirect_to(cpanel_replies_path, :notice => 'Reply was successfully updated.')
     else
       render :action => "edit"
     end

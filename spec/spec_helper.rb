@@ -1,8 +1,8 @@
 #require 'simplecov'
 #SimpleCov.start 'rails' do
-  #add_filter "/cpanel/"
-  #add_group "cells", "app/cells"
-  #add_group "uploaders", "app/uploaders"
+#add_filter "/cpanel/"
+#add_group "cells", "app/cells"
+#add_group "uploaders", "app/uploaders"
 #end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -21,7 +21,7 @@ Rails.logger.level = 4
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   # == Mock Framework
@@ -56,6 +56,6 @@ RSpec.configure do |config|
   end
 
   config.include RSpec::Rails::RequestExampleGroup, :type => :request, :example_group => {
-    :file_path => /spec\/api/
+      :file_path => /spec\/api/
   }
 end

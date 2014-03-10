@@ -6,7 +6,7 @@ comment_line = '<%= j(render("comment",:item => @comment)) %>';
 comments_box.append(comment_line);
 $(comment_line).fadeOut("fast");
 $("abbr.timeago").timeago();
-$("textarea",comments_form).val("").focus();
+$("textarea", comments_form).val("").focus();
 <% else %>
-$("textarea",comments_form).focus();
+$("textarea", comments_form).focus();
 <% end %>

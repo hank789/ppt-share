@@ -1,7 +1,7 @@
 # coding: utf-8
 class SlidesController < ApplicationController
 
-  load_and_authorize_resource :only => [:new,:edit,:create,:update,:destroy,:favorite, :follow, :unfollow, :suggest, :unsuggest]
+  load_and_authorize_resource :only => [:new, :edit, :create, :update, :destroy, :favorite, :follow, :unfollow, :suggest, :unsuggest]
 
   before_filter :set_menu_active
   caches_action :feed, :node_feed, :expires_in => 1.hours
@@ -9,7 +9,7 @@ class SlidesController < ApplicationController
 
   def index
     @slides = Slide.last_actived.includes(:user).paginate(:page => params[:page], :per_page => 15)
-    set_seo_meta("#{t("menu.slides")}","#{Setting.app_name}#{t("menu.slides")}")
+    set_seo_meta("#{t("menu.slides")}", "#{Setting.app_name}#{t("menu.slides")}")
     drop_breadcrumb(t("slides.slide_list.hot_slide"))
   end
 
@@ -23,7 +23,7 @@ class SlidesController < ApplicationController
     define_method(name) do
       @slides = Slide.send(name.to_sym).includes(:user).paginate(:page => params[:page], :per_page => 15)
       drop_breadcrumb(t("slides.slide_list.#{name}"))
-      set_seo_meta([t("slides.slide_list.#{name}"),t("menu.slides")].join(" &raquo; "))
+      set_seo_meta([t("slides.slide_list.#{name}"), t("menu.slides")].join(" &raquo; "))
       render :action => "index"
     end
   end
@@ -31,23 +31,23 @@ class SlidesController < ApplicationController
   def recent
     @slides = Slide.recent.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15, :total_entries => 1500)
     drop_breadcrumb(t("slides.slide_list.recent"))
-    set_seo_meta([t("slides.slide_list.recent"),t("menu.slides")].join(" &raquo; "))
+    set_seo_meta([t("slides.slide_list.recent"), t("menu.slides")].join(" &raquo; "))
     render :action => "index"
   end
 
   def excellent
     @slides = Slide.excellent.recent.fields_for_list.includes(:user).paginate(page: params[:page], per_page: 15, total_entries: 500)
     drop_breadcrumb(t("slides.slide_list.excellent"))
-    set_seo_meta([t("slides.slide_list.excellent"),t("menu.slides")].join(" &raquo; "))
+    set_seo_meta([t("slides.slide_list.excellent"), t("menu.slides")].join(" &raquo; "))
     render :action => "index"
   end
 
-	def download
-		@slide = Slide.find(params[:id])
-		@slide.downloads.incr(1)
-		send_file @slide.slide 
-		render :action => "index"
-	end
+  def download
+    @slide = Slide.find(params[:id])
+    @slide.downloads.incr(1)
+    send_file @slide.slide
+    render :action => "index"
+  end
 
   def show
     @slide = Slide.without_body.find(params[:id])
@@ -62,7 +62,7 @@ class SlidesController < ApplicationController
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
     @replies = @slide.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
-		# TODO 
+    # TODO
     if current_user
       # 找出用户 like 过的 Reply，给 JS 处理 like 功能的状态
       @user_liked_reply_ids = []
@@ -78,14 +78,14 @@ class SlidesController < ApplicationController
     #drop_breadcrumb("#{@node.try(:name)}", node_slides_path(@node.try(:id)))
     drop_breadcrumb t("slides.read_slide")
 
-    fresh_when(:etag => [@slide,@has_followed,@has_favorited,@replies,@show_raw])
+    fresh_when(:etag => [@slide, @has_followed, @has_favorited, @replies, @show_raw])
   end
 
-	def attachs
-		@slide = Slide.without_body.find(params[:id])
-		set_seo_meta("#{@slide.title} &raquo; #{t("menu.slides")}")
+  def attachs
+    @slide = Slide.without_body.find(params[:id])
+    set_seo_meta("#{@slide.title} &raquo; #{t("menu.slides")}")
     drop_breadcrumb t("slides.read_slide")
-	end 
+  end
 
   def new
     @slide = Slide.new
@@ -100,24 +100,24 @@ class SlidesController < ApplicationController
   end
 
   def create
-   	@slide = Slide.new(slide_params)
-		@slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
+    @slide = Slide.new(slide_params)
+    @slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
     @slide.user_id = current_user.id
-		if @slide.save
-			if !@slide.slide.blank?
-				@attach = Attach.find(@slide.slide)
-				if @attach.slide_id.nil?
-					@attach.slide_id = @slide._id
-					@attach.save
+    if @slide.save
+      if !@slide.slide.blank?
+        @attach = Attach.find(@slide.slide)
+        if @attach.slide_id.nil?
+          @attach.slide_id = @slide._id
+          @attach.save
         end
         @slide.create_activity :create, owner: current_user
-			end
-     	redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
-		else
-			@attach_id = slide_params[:slide]
-    	render :action => "new"
+      end
+      redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
+    else
+      @attach_id = slide_params[:slide]
+      render :action => "new"
     end
-	end
+  end
 
 
   def update
@@ -127,7 +127,7 @@ class SlidesController < ApplicationController
 
     if @slide.save
       @slide.create_activity :update, owner: current_user
-      redirect_to(slide_path(@slide.id), :notice =>  t("slides.update_slide_success"))
+      redirect_to(slide_path(@slide.id), :notice => t("slides.update_slide_success"))
     else
       render :action => "edit"
     end
@@ -168,7 +168,7 @@ class SlidesController < ApplicationController
 
   def unsuggest
     @slide = Slide.find(params[:id])
-    @slide.update_attribute(:excellent,0)
+    @slide.update_attribute(:excellent, 0)
     redirect_to @slide, success: "加精已经取消。"
   end
 

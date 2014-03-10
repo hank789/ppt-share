@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  
+
   def new
     super
     session["user_return_to"] = request.referrer
@@ -11,12 +11,12 @@ class SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     resource.ensure_private_token!
     respond_to do |format|
-			format.html { redirect_to after_sign_in_path_for(resource) }
-			format.json { render :status => '201', :json => resource.as_json(:only => [:login, :email, :private_token]) }
+      format.html { redirect_to after_sign_in_path_for(resource) }
+      format.json { render :status => '201', :json => resource.as_json(:only => [:login, :email, :private_token]) }
     end
   end
 
-	# DELETE /resource/sign_out
+  # DELETE /resource/sign_out
   def destroy
     redirect_path = after_sign_out_path_for(resource_name)
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))

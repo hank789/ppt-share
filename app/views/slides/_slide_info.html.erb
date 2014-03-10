@@ -3,12 +3,13 @@
     <%= user_avatar_tag(@slide.user, :normal) %>
   </div>
   <h1 class="entry-title"><%= truncate(slide.title, :length => 100) %></h1>
+
   <div class="info leader">
     •
     <%= user_name_tag(slide.user, :data => {:author => true}) %>
     •
-    <%= sanitize t("common.created_at", :time => timeago(slide.created_at))%>
+    <%= sanitize t("common.created_at", :time => timeago(slide.created_at)) %>
     •
-    <%= slide.hits %><%= t("common.read_times")%>
+    <%= slide.hits %><%= t("common.read_times") %>
   </div>
 </div>

@@ -9,7 +9,7 @@ default_run_options[:pty] = true
 set :rvm_ruby_string, 'ruby-2.1.0'
 set :rvm_type, :user
 set :application, "makeslide"
-set :repository,  "git://github.com/pafa/makeslide.git"
+set :repository, "git://github.com/pafa/makeslide.git"
 set :branch, "master"
 set :scm, :git
 set :user, "ruby"
@@ -20,9 +20,9 @@ set :git_shallow_clone, 1
 set :puma_role, :app
 set :puma_config_file, "config/puma.rb"
 
-role :web, "makeslide.com"                          # Your HTTP server, Apache/etc
-role :app, "makeslide.com"                          # This may be the same as your `Web` server
-role :db,  "makeslide.com", :primary => true # This is where Rails migrations will run
+role :web, "makeslide.com" # Your HTTP server, Apache/etc
+role :app, "makeslide.com" # This may be the same as your `Web` server
+role :db, "makeslide.com", :primary => true # This is where Rails migrations will run
 
 namespace :faye do
   desc "Start Faye"
@@ -68,4 +68,4 @@ task :mongoid_migrate_database, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:migrate"
 end
 
-after "deploy:finalize_update","deploy:symlink", :init_shared_path, :link_shared_files, :mongoid_migrate_database #, :compile_assets
+after "deploy:finalize_update", "deploy:symlink", :init_shared_path, :link_shared_files, :mongoid_migrate_database #, :compile_assets

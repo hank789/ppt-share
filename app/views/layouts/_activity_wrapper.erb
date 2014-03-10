@@ -1,38 +1,38 @@
 <div class="activity">
-    <div class="body">
-        <div>
-          <div class="mega-icon">
+  <div class="body">
+    <div>
+      <div class="mega-icon">
             <span class="glyphicon glyphicon-<%= case a.key[a.key.index('.')..-1]
-                                                 when '.create'
-                                                   if a.key=='reply.create'
-                                                     'comment'
-                                                   else
-                                                     'plus'
-                                                   end
-                                                 when '.unlike'
-                                                   'heart-empty'
-                                                 when '.like'
-                                                   'heart'
-                                                 when '.update'
-                                                   'pencil'
-                                                 when '.destroy'
-                                                    'trash'
+                                                   when '.create'
+                                                     if a.key=='reply.create'
+                                                       'comment'
+                                                     else
+                                                       'plus'
+                                                     end
+                                                   when '.unlike'
+                                                     'heart-empty'
+                                                   when '.like'
+                                                     'heart'
+                                                   when '.update'
+                                                     'pencil'
+                                                   when '.destroy'
+                                                     'trash'
                                                  end %>"></span>
-          </div>
- 
-          <div class="details">
-            <div class="avatar"><%= user_avatar_tag(a.owner) %></div>
-            <div class="title">
-              <%= user_name_tag(a.owner) %>
-              <%= content_for(:action) %>
-              <%= timeago(a.created_at) %>
+      </div>
 
-            </div>
-            <%= yield %>
-          </div>
+      <div class="details">
+        <div class="avatar"><%= user_avatar_tag(a.owner) %></div>
+        <div class="title">
+          <%= user_name_tag(a.owner) %>
+          <%= content_for(:action) %>
+          <%= timeago(a.created_at) %>
 
         </div>
+        <%= yield %>
+      </div>
 
     </div>
-    <hr>
+
+  </div>
+  <hr>
 </div>

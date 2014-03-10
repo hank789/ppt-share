@@ -17,7 +17,7 @@ class Slide
   field :body
   field :body_html
   field :last_reply_id, :type => Integer
-  field :replied_at , :type => DateTime
+  field :replied_at, :type => DateTime
   field :source
   field :message_id
   field :replies_count, :type => Integer, :default => 0
@@ -29,12 +29,12 @@ class Slide
   field :private, :type => Mongoid::Boolean, :default => false
   # 删除人
   field :who_deleted
-	field :slide
+  field :slide
 
   # 精华贴 0 否， 1 是
   field :excellent, type: Integer, default: 0
- 	# 用于排序的标记
-	field :last_active_mark, :type => Integer  
+  # 用于排序的标记
+  field :last_active_mark, :type => Integer
 
   belongs_to :user, :inverse_of => :slides
   counter_cache :name => :user, :inverse_of => :slides
@@ -44,17 +44,17 @@ class Slide
 
   has_many :attachs, :dependent => :destroy
 
-	index :user_id => 1
-	index :likes_count => 1
-	index :last_active_mark => -1
+  index :user_id => 1
+  index :likes_count => 1
+  index :last_active_mark => -1
   index :suggested_at => 1
   index :excellent => -1
 
   validates_presence_of :user_id, :title, :body
-	validates_uniqueness_of :title, :scope => [:user_id]
+  validates_uniqueness_of :title, :scope => [:user_id]
 
-	counter :hits, :default => 0    
-	counter :downloads, :default => 0
+  counter :hits, :default => 0
+  counter :downloads, :default => 0
 
   delegate :login, :to => :user, :prefix => true, :allow_nil => true
   delegate :body, :to => :last_reply, :prefix => true, :allow_nil => true
@@ -63,7 +63,7 @@ class Slide
   scope :last_actived, desc(:last_active_mark)
   # 推荐的话题
   scope :suggest, -> { where(:suggested_at.ne => nil).desc(:suggested_at) }
-  scope :fields_for_list, -> { without(:body,:body_html) }
+  scope :fields_for_list, -> { without(:body, :body_html) }
   scope :high_likes, -> { desc(:likes_count, :_id) }
   scope :high_replies, -> { desc(:replies_count, :_id) }
   scope :no_reply, -> { where(:replies_count => 0) }
@@ -76,14 +76,16 @@ class Slide
   end
 
   before_save :auto_space_with_title
+
   def auto_space_with_title
     self.title.auto_space!
   end
 
-	before_create :init_last_active_mark_on_create
-	def init_last_active_mark_on_create 
-	  self.last_active_mark = Time.now.to_i
-	end
+  before_create :init_last_active_mark_on_create
+
+  def init_last_active_mark_on_create
+    self.last_active_mark = Time.now.to_i
+  end
 
   def push_follower(uid)
     return false if uid == self.user_id
@@ -109,7 +111,7 @@ class Slide
   # 删除并记录删除人
   def destroy_by(user)
     return false if user.blank?
-    self.update_attribute(:who_deleted,user.login)
+    self.update_attribute(:who_deleted, user.login)
     self.destroy
   end
 
@@ -125,11 +127,11 @@ class Slide
 
   # 所有的回复编号
   def reply_ids
-    Rails.cache.fetch([self,"reply_ids"]) do
+    Rails.cache.fetch([self, "reply_ids"]) do
       self.replies.only(:_id).map(&:_id)
     end
   end
-  
+
   def excellent?
     self.excellent >= 1
   end

@@ -1,16 +1,16 @@
 RAILS_ROOT = File.expand_path('../', __dir__)
 
 God.watch do |w|
-  w.name     = "sidekiq"
+  w.name = "sidekiq"
   w.interval = 30.seconds
-  w.log      = "#{RAILS_ROOT}/log/#{w.name}.god.log"
-  w.dir      = RAILS_ROOT
+  w.log = "#{RAILS_ROOT}/log/#{w.name}.god.log"
+  w.dir = RAILS_ROOT
   w.pid_file = "#{RAILS_ROOT}/tmp/pids/#{w.name}.pid"
-  w.start    = "nohup bundle exec sidekiq -e production -C #{RAILS_ROOT}/config/sidekiq.yml -P #{RAILS_ROOT}/tmp/pids/sidekiq.pid >> #{RAILS_ROOT}/log/sidekiq.log 2>&1 &"
-  w.stop     = "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid`"
-  
+  w.start = "nohup bundle exec sidekiq -e production -C #{RAILS_ROOT}/config/sidekiq.yml -P #{RAILS_ROOT}/tmp/pids/sidekiq.pid >> #{RAILS_ROOT}/log/sidekiq.log 2>&1 &"
+  w.stop = "kill -9 `cat #{RAILS_ROOT}/tmp/pids/sidekiq.pid`"
+
   # determine the state on startup
-  w.transition(:init, { true => :up, false => :start }) do |on|
+  w.transition(:init, {true => :up, false => :start}) do |on|
     on.condition(:process_running) do |c|
       c.running = true
     end

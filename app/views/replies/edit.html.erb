@@ -1,6 +1,6 @@
 <div class="sidebar">
   <div class="box">
-    <%= t("reply.slide_location")%>:<br />
+    <%= t("reply.slide_location") %>:<br/>
     <%= slide_title_tag(@reply.slide) %>
   </div>
   <div class="box">
@@ -10,20 +10,20 @@
 <div class="content">
   <div class="box">
     <%= simple_form_for([@slide, @reply]) do |f| %>
-      <%= render "shared/error_messages", :target => @reply %>
-      <div class="control-group edit_tools">
-        <%= render "/slides/editor_toolbar" %>
-      </div>
-      <div class="control-group">
-        <%= f.text_area :body, :class => "slide_editor" %>
-      </div>
-      <div class="control-group">
-        <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+        <%= render "shared/error_messages", :target => @reply %>
+        <div class="control-group edit_tools">
+          <%= render "/slides/editor_toolbar" %>
+        </div>
+        <div class="control-group">
+          <%= f.text_area :body, :class => "slide_editor" %>
+        </div>
+        <div class="control-group">
+          <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
 
-        <% if can? :destroy, @reply %>
-          <%= link_to "删除",[@slide,@reply], :class => "pull-right btn btn-danger", :method => :delete, :data => { :confirm => "确定要删除此回复么？" } %>
-        <% end %>
-      </div>
+          <% if can? :destroy, @reply %>
+              <%= link_to "删除", [@slide, @reply], :class => "pull-right btn btn-danger", :method => :delete, :data => {:confirm => "确定要删除此回复么？"} %>
+          <% end %>
+        </div>
     <% end %>
   </div>
 </div>

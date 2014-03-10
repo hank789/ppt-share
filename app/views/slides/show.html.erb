@@ -1,48 +1,48 @@
 <% content_for :scripts do %>
-	<script type="text/javascript"> 
-		Slides.replies_per_page = <%= @per_page %>;
-		$(document).ready(function(){
-		<% if admin? %>
-			$("#replies .reply a.edit").css('display','inline-block');
-			<% elsif current_user %>
-			$("#replies .reply a.edit[data-uid='<%= current_user.id %>']").css('display','inline-block');
-		<% end %>
-		<% if current_user && !@user_liked_reply_ids.blank? %>
-			Slides.checkRepliesLikeStatus([<%= @user_liked_reply_ids.join(",") %>]);
-		<% end %>
-		})
-	</script>
+    <script type="text/javascript">
+        Slides.replies_per_page = <%= @per_page %>;
+        $(document).ready(function () {
+            <% if admin? %>
+            $("#replies .reply a.edit").css('display', 'inline-block');
+            <% elsif current_user %>
+            $("#replies .reply a.edit[data-uid='<%= current_user.id %>']").css('display', 'inline-block');
+            <% end %>
+            <% if current_user && !@user_liked_reply_ids.blank? %>
+            Slides.checkRepliesLikeStatus([<%= @user_liked_reply_ids.join(",") %>]);
+            <% end %>
+        })
+    </script>
 <% end %>
 <div class="listing-page-top tooltip-demo">
-	<div class="container">
-		<h2>
-			<%= @slide.title %>
-	  	<span class="pull-right">
+  <div class="container">
+    <h2>
+      <%= @slide.title %>
+      <span class="pull-right">
 			<% if owner?(@slide) or admin? %>
-				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class:"btn btn-sm btn-default" %>
+				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
 			<% end %>
-                    <a class="btn btn-sm btn-default"><i class="fa fa-star"></i> 收藏</a>
-			<%= slide_download_tag(@slide) %>
+        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i> 收藏</a>
+        <%= slide_download_tag(@slide) %>
 	    </span>
-	 	</h2>
-	</div>
+    </h2>
+  </div>
 </div>
 
 <!-- Begin page content -->
 <div class="listing-page">
-	<div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-md-8">
         <div class="group section-wrap upper" id="upper">
-        	<div class="wrap group">
-          	<div class="section-2 group">
-				<%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
+          <div class="wrap group">
+            <div class="section-2 group">
+              <%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
             </div>
-          		<!-- /.section-2 -->
-         	</div>
-        	<!-- /.wrap -->
+            <!-- /.section-2 -->
+          </div>
+          <!-- /.wrap -->
         </div>
-      	<!-- /#upper -->
+        <!-- /#upper -->
       </div>
       <div class="col-md-4">
         <div class="panel">
@@ -50,45 +50,45 @@
             <div class="form-group">
               <label class="col-sm-5 control-label">作者：</label>
 
-               <p class="form-control-static pull-left"><%= user_name_tag(@slide.user) %></p>
+              <p class="form-control-static pull-left"><%= user_name_tag(@slide.user) %></p>
 
             </div>
             <div class="form-group">
               <label class="col-sm-5 control-label">上传时间：</label>
 
-                <p class="form-control-static"><%= sanitize t("common.created_at", :time => timeago(@slide.created_at))%></p>
+              <p class="form-control-static"><%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></p>
 
             </div>
             <div class="form-group">
               <label class="col-sm-5 control-label">文件类型：</label>
 
-                <p class="form-control-static"><%= case @attach.file_type
-                                                     when "application/vnd.ms-powerpoint"
-                                                       "PowerPoint"
-                                                     when "application/pdf"
-                                                       "PDF"
-                                                     when "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                                                       "KeyNote"
-                                                    end %></p>
+              <p class="form-control-static"><%= case @attach.file_type
+                                                   when "application/vnd.ms-powerpoint"
+                                                     "PowerPoint"
+                                                   when "application/pdf"
+                                                     "PDF"
+                                                   when "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                                                     "KeyNote"
+                                                 end %></p>
 
             </div>
             <div class="form-group">
               <label class="col-sm-5 control-label">共享方式：</label>
 
-                <p class="form-control-static"><%= @slide.private ? "隐私":"完全公开" %></p>
+              <p class="form-control-static"><%= @slide.private ? "隐私" : "完全公开" %></p>
 
             </div>
             <div class="form-group">
               <label class="col-sm-5 control-label">阅读人数：</label>
 
-                <p class="form-control-static"><%= @slide.hits %></p>
+              <p class="form-control-static"><%= @slide.hits %></p>
 
             </div>
-            
+
             <div class="form-group">
               <label class="col-sm-5 control-label">喜欢人数：</label>
 
-                <%= likeable_tag(@slide) %>
+              <%= likeable_tag(@slide) %>
 
             </div>
             <div class="form-group">
@@ -100,16 +100,16 @@
 
             <div class="form-group">
               <% if admin? and !@slide.excellent? %>
-                  <%= link_to raw("<label class='col-sm-5 control-label'>&nbsp;</label>&nbsp;&nbsp;&nbsp;<i class='icon small_cert'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华" , method: "patch", data: { confirm: "确定要设置成精华么？" } %>
+                  <%= link_to raw("<label class='col-sm-5 control-label'>&nbsp;</label>&nbsp;&nbsp;&nbsp;<i class='icon small_cert'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
               <% end %>
               <% if @slide.excellent? %>
                   <label class='col-sm-5 control-label'>&nbsp;</label>
-                    <i class="icon small_cert_on"></i> 已被设为精华！
-                    <% if admin? %>
+                  <i class="icon small_cert_on"></i> 已被设为精华！
+                  <% if admin? %>
 
-                          <%= link_to "取消", unsuggest_slide_path(@slide.id), method: "delete" %>
+                      <%= link_to "取消", unsuggest_slide_path(@slide.id), method: "delete" %>
 
-                    <% end %>
+                  <% end %>
 
               <% end %>
 
@@ -121,54 +121,54 @@
             </div>
 
           </form>
-  		</div>
-	  </div>
-	</div>
-
-<!-- /#幻灯片描述-->
-    <div class="tab-pane in active col-md-8" id="profile">
-            <br>
-            <h4>幻灯片描述：</h4>
-            <hr>
-            <%= sanitize_slide @slide.body_html %>
-            <br><br>
+        </div>
+      </div>
     </div>
 
-<!-- /#评论内容-->
-      <div class="tab-pane in active col-md-8">
+    <!-- /#幻灯片描述-->
+    <div class="tab-pane in active col-md-8" id="profile">
+      <br>
+      <h4>幻灯片描述：</h4>
+      <hr>
+      <%= sanitize_slide @slide.body_html %>
+      <br><br>
+    </div>
+
+    <!-- /#评论内容-->
+    <div class="tab-pane in active col-md-8">
       <h4>评论：</h4>
       <hr>
-        <% if @replies.blank? %>
-            <div class="no_result">
-              <%= t("slides.no_replies") %>
+      <% if @replies.blank? %>
+          <div class="no_result">
+            <%= t("slides.no_replies") %>
+          </div>
+      <% else %>
+          <div id="replies" class="box box_gray">
+            <div class="total">
+              共收到 <b><%= @slide.replies_count %></b> 条回复
             </div>
-        <% else %>
-            <div id="replies" class="box box_gray">
-              <div class="total">
-                共收到 <b><%= @slide.replies_count %></b> 条回复
-              </div>
-              <div class="items">
-                <%= cache([@slide,params[:page],"raw:#{@show_raw}"]) do %>
-                    <%= render :partial => "replies/reply", :collection => @replies %>
-                <% end %>
-              </div>
-              <div class="pagination">
-              <%= will_paginate @replies, :inner_window => 2, container:false, :params => { :anchor => 'replies' } %>
-              </div>
+            <div class="items">
+              <%= cache([@slide, params[:page], "raw:#{@show_raw}"]) do %>
+                  <%= render :partial => "replies/reply", :collection => @replies %>
+              <% end %>
             </div>
-        <% end %>
-<!-- /#发表评论-->
+            <div class="pagination">
+              <%= will_paginate @replies, :inner_window => 2, container: false, :params => {:anchor => 'replies'} %>
+            </div>
+          </div>
+      <% end %>
+      <!-- /#发表评论-->
       <div class="panel-body">
-        <%= form_for(Reply.new, :remote => true,:url => slide_replies_path(@slide), role:"form") do |f| %>
+        <%= form_for(Reply.new, :remote => true, :url => slide_replies_path(@slide), role: "form") do |f| %>
             <div class="form-group">
-            <%= f.text_area :body,:class => "form-control", :rows => "5", :tabindex => "1" %>
-             </div>
+              <%= f.text_area :body, :class => "form-control", :rows => "5", :tabindex => "1" %>
+            </div>
             <br>
             <button type="submit" class="btn btn-success pull-right"><i class="fa fa-comments-o"></i>&nbsp;发布评论</button>
         <% end %>
       </div>
 
-      </div>
+    </div>
 
-	</div>
+  </div>
 </div>

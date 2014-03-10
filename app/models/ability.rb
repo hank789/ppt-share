@@ -12,19 +12,19 @@ class Ability
       # admin
       can :manage, :all
     elsif user.has_role?(:member)
-			if !user.newbie?
-				can :create, Slide
+      if !user.newbie?
+        can :create, Slide
       end
       can :favorite, Slide
       can :update, Slide do |slide|
         (slide.user_id == user.id)
       end
-      
+
       # Reply
       # 新手用户晚上禁止回帖，防 spam，可在面板设置是否打开
       if !(user.newbie? &&
-           (SiteConfig.reject_newbie_reply_in_the_evening == 'true') &&
-           (Time.zone.now.hour < 9 || Time.zone.now.hour > 22))
+          (SiteConfig.reject_newbie_reply_in_the_evening == 'true') &&
+          (Time.zone.now.hour < 9 || Time.zone.now.hour > 22))
         can :create, Reply
       end
       can :update, Reply do |reply|
@@ -63,12 +63,12 @@ class Ability
   end
 
   protected
-    def basic_read_only
-      can :read,Slide
+  def basic_read_only
+    can :read, Slide
 
-      can :read, Reply
+    can :read, Reply
 
-      can :read, Photo
-      can :read, Comment
-    end
+    can :read, Photo
+    can :read, Comment
+  end
 end

@@ -1,15 +1,18 @@
-<div class="slide-item col-md-<% if @slides_col_md.present? %><%= slides_col_md %><% else %>4<% end %> col-sm-6">
-	<div class="thumbnail">
-		<%= render_cell :slides, :carousel_simple, :attach_id => slide.slide %>
-		<div class="caption">
-			<h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
-			<ul class="list-inline">
-				<li><span class="fa fa-eye"></span> <%= slide.hits %></li>
-				<li>·</li>
-				<li> <span class="fa fa-heart"></span> <%= slide.likes_count %></li>
-				<li>·</li>
-				<li><span class="fa fa-download"></span> <%= slide.downloads %></li>
-			</ul>
-		</div>
-	</div>
+<div class="slide-item col-md-
+  <% if @slides_col_md.present? %><%= slides_col_md %>
+  <% else %>4
+  <% end %> col-sm-6">
+  <div class="thumbnail">
+    <%= render_cell :slides, :carousel_simple, :attach_id => slide.slide %>
+    <div class="caption">
+      <h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
+      <ul class="list-inline">
+        <li><span class="fa fa-eye"></span> <%= slide.hits %></li>
+        <li>·</li>
+        <li><span class="fa fa-heart"></span> <%= slide.likes_count %></li>
+        <li>·</li>
+        <li><span class="fa fa-download"></span> <%= slide.downloads %></li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -19,7 +19,7 @@ module Erb
         end
       end
 
-    protected
+      protected
 
       def available_views
         %w(index edit show new _form _base)

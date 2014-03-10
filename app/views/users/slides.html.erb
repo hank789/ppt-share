@@ -1,19 +1,19 @@
 <div class="container">
-	<div class="row">
-		<div class="col-md-3 col-sm-4">
-			<div class="left-sec">
-				<%= render "sidebar_info" %>
-			</div>
-		</div>
-		<div class="col-md-9 col-sm-8">
-			<div class="right-sec">
-				<div class="row">
-					<%= render :partial => "slides/slide", :collection => @slides %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="text-center">
-		<%= will_paginate @slides, :inner_window => 2 %>
-	</div>
+  <div class="row">
+    <div class="col-md-3 col-sm-4">
+      <div class="left-sec">
+        <%= render "sidebar_info" %>
+      </div>
+    </div>
+    <div class="col-md-9 col-sm-8">
+      <div class="right-sec">
+        <div class="row">
+          <%= render :partial => "slides/slide", :collection => @slides %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= will_paginate @slides, :inner_window => 2 %>
+  </div>
 </div>

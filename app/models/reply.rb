@@ -3,10 +3,10 @@ require "digest/md5"
 class Reply
   include Mongoid::Document
   include PublicActivity::Model
-  tracked :owner => proc {|controller, model| controller.current_user},
+  tracked :owner => proc { |controller, model| controller.current_user },
           :params => {
-              :summary => proc {|controller, model| model.body},
-              :slide_id => proc {|controller, model| model.slide_id}
+              :summary => proc { |controller, model| model.body },
+              :slide_id => proc { |controller, model| model.slide_id }
           }
   include Mongoid::Timestamps
   include Mongoid::BaseModel
@@ -39,11 +39,12 @@ class Reply
   validate do
     ban_words = (SiteConfig.ban_words_on_reply || "").split("\n").collect { |word| word.strip }
     if self.body.strip.downcase.in?(ban_words)
-      self.errors.add(:body,"请勿回复无意义的内容，如你想收藏或赞这篇帖子，请用帖子后面的功能。")
+      self.errors.add(:body, "请勿回复无意义的内容，如你想收藏或赞这篇帖子，请用帖子后面的功能。")
     end
   end
 
   after_create :update_parent_slide
+
   def update_parent_slide
     slide.update_last_reply(self)
   end
@@ -52,13 +53,13 @@ class Reply
   after_update :update_parent_slide_updated_at
   # 删除的时候也要更新 Slide 的 updated_at 以便清理缓存
   after_destroy :update_parent_slide_updated_at
+
   def update_parent_slide_updated_at
     if not self.slide.blank?
       self.slide.touch
     end
   end
-  
-  
+
 
   after_create do
     Reply.delay.send_slide_reply_notification(self.id)
