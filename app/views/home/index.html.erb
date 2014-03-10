@@ -6,8 +6,6 @@
         <div id="landing">
             <div class="header-image">
                 <div class="headline">
-
-
                     <div class="container">
 
                         <div class="header">
@@ -17,89 +15,44 @@
                                 </li>
 
                             </ul>
-                            <h3 class="text-muted"><img src="<%= asset_path("logo_48.png") %>" />&nbsp;MakeSlide</h3>
+                            <h1 class="text-muted">&nbsp;MakeSlide.com</h1>
                         </div>
 
-                        <h1>只谈幻灯片，发现你所需，分享你所爱</h1>
-                        <p class="subline">超过 <strong>526,78<span class="dynamo" data-lines="3,4,5,6">2</span></strong> 组幻灯片已分享在这里</p>
-
-                        <h6 class="text-muted">点击“搜索”来探索幻灯片之美</h6>
-
-
+                        <h1 class="text-center">只谈幻灯片，发现你所需，分享你所爱</h1>
+                        <p class="subline text-center">超过 <strong>526,78<span class="dynamo" data-lines="3,4,5,6,7,8,9">2</span></strong> 组幻灯片已分享在这里</p>
                     </div>
-                </div>
+                </div>                
 
-
-                <div class="search-block">
-                    <div class="container">
-                        <form action="/search" class="form-inline" role="form" method="get">
-
-
-                            <div class="row">
-                                <div class="col-lg-8 col-sm-8">
-
-			<input type="text" name="q" value="<%= params[:q] %>" placeholder="关键词" class="form-control input-lg">
-                                </div>
-                                <!-- /.col-lg-6 -->
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="input-group">
-                                      <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-success btn-lg">搜索</button>
-                                      </span>
-                                    </div>
-                                </div>
-                                <!-- /.col-lg-6 -->
-                            </div>
-                            <!-- /.row -->
-
-
-                        </form>
-
+                <div class="container">
+                   <br><br><br><br>
+                   <div class="row">
+                        <div class="col-lg-4 col-md-4 animated slideInDown">
+                            <div align="center"><img alt="thumbnail" class="featurette-image img-circle img-responsive animated fade" src="<%= image_path("social.jpg") %>"></div>
+                            <font color=#FFFFFF><h4> 便捷分享</h4></font>
+                            <p>无论是PowerPoint，还是PDF，亦或图片，上传之后都可以转化为可轻松阅读的形式，并具有固定的链接，便于分享，以及评论反馈的收集。</p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 animated fadeInUpBig">
+                            <div align="center"><img alt="thumbnail" class="featurette-image img-circle img-responsive animated fade" src="<%= image_path("team.jpg") %>"></div>
+                            <font color=#FFFFFF><h4> 社交协作</h4></font>
+                            <p>MakeSlide引用了社交的概念，可以关注用户，了解其动态。并可以发布隐私幻灯片时选择公开范围，使得部分隐私幻灯片可以在局部圈子进行交流分享。</p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 animated slideInRight">
+                            <div align="center"><img alt="thumbnail" class="featurette-image img-circle img-responsive animated fade" src="<%= image_path("collection.png") %>"></div>
+                            <font color=#FFFFFF><h4> 灵活采集</h4></font>
+                            <p>灵活的采集方式，即可以收藏整套幻灯片，也可以针对具体一页收藏，甚至对喜欢的图片收藏，形成自己的知识库，从而提高制作幻灯片的水准和速度。</p>
                     </div>
+                    </div> 
                 </div>
-            </div>
             <!-- /header-image -->
         </div>
 
 <!-- /Header Section -->
 
- <!-- Section 1 -->
-
-        <div class="section">
-            <div class="container">
-
-                <div class="featurette animated slideInLeft">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="<%= image_path("social.jpg") %>">
-                    <h2>1. 便捷分享</h2>
-                    <p class="lead">无论是PowerPoint，还是PDF，亦或图片，上传之后都可以转化为可轻松阅读的形式，并具有固定的链接，便于分享，以及评论反馈的收集。</p>
-                </div>
-
-                <hr class="featurette-divider">
-
-                <div class="featurette animated slideInRight">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-left animated fade" src="<%= image_path("team.jpg") %>">
-                    <h2>2. 社交协作</h2>
-                    <p class="lead">MakeSlide引用了社交的概念，可以关注用户，了解其动态。并可以发布隐私幻灯片时选择公开范围，使得部分隐私幻灯片可以在局部圈子进行交流分享。</p>
-                </div>
-
-                <hr class="featurette-divider">
-
-                <div class="featurette animated slideInLeft">
-                    <img alt="thumbnail" class="featurette-image img-circle img-responsive pull-right animated fade" src="<%= image_path("collection.png") %>">
-                    <h2>3. 灵活采集</h2>
-                    <p class="lead">灵活的采集方式，即可以收藏整套幻灯片，也可以针对具体一页收藏，甚至对喜欢的图片收藏，形成自己的知识库，从而提高制作幻灯片的水准和速度。</p>
-                </div>
-                <hr class="featurette-divider">
-            </div>
-        </div>
-
-<!-- /Section 1 -->
-
 <!-- Section 2 -->
 
         <div class="section">
             <div class="container">
-                <h2 class="text-center">本周 <small>热门幻灯片</small></h2>
+                <h3 class="text-center">本周热门幻灯片</h3>
                 <br>
               <div class="right-sec">
                 <div class="row">
