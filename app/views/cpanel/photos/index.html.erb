@@ -17,7 +17,9 @@
       </tr>
   <% end %>
 </table>
-<%= will_paginate @photos %>
+<div class="pagination">
+<%= will_paginate @photos ,:inner_window => 2, container: false %>
+</div>
 <br/>
 
 <%= link_to 'New Photo', new_cpanel_photo_path %>
