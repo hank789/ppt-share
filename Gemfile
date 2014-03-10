@@ -71,8 +71,8 @@ gem "cells", '~> 3.8.8'
 
 # 队列
 gem "sidekiq", "~> 2.13.1"
-
-gem 'faye-rails','1.0.0'
+gem "cookiejar", "0.3.0"
+gem 'faye-rails',"~> 1.0.10"
 
 # 分享功能
 gem "social-share-button", '0.1.4'

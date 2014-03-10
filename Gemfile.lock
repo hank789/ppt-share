@@ -116,7 +116,7 @@ GEM
     coffee-script-source (1.7.0)
     columnize (0.3.6)
     connection_pool (1.2.0)
-    cookiejar (0.3.1)
+    cookiejar (0.3.0)
     culerity (0.2.15)
     daemons (1.1.9)
     dalli (1.1.1)
@@ -168,8 +168,9 @@ GEM
       faye-websocket (>= 0.4.0)
       rack (>= 1.0.0)
       yajl-ruby (>= 1.0.0)
-    faye-rails (1.0.0)
-      faye (~> 0.8.2)
+    faye-rails (1.0.10)
+      eventmachine (~> 1.0.0)
+      faye (~> 0.8.9)
     faye-websocket (0.7.2)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.1)
@@ -451,6 +452,7 @@ DEPENDENCIES
   cells (~> 3.8.8)
   chunky_png (= 1.2.8)
   coffee-rails (~> 4.0.0)
+  cookiejar (= 0.3.0)
   dalli (= 1.1.1)
   database_cleaner
   debugger
@@ -461,7 +463,7 @@ DEPENDENCIES
   eventmachine (= 1.0.3)
   exception_notification
   factory_girl_rails
-  faye-rails (= 1.0.0)
+  faye-rails (~> 1.0.10)
   flexslider
   fuubar
   garelic (= 0.0.2)
