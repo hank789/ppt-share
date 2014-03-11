@@ -12,7 +12,7 @@
         <label for="exampleInputEmail1">描述</label>
         <%= f.text_area :body, :class => "form-control", :rows => "10", :tabindex => "1" %>
         <br>
-        <button type="submit" class="btn btn-success"><%= params[:action]=='edit' ? "提交修改" : "创建" %></button>
+        <button type="submit" class="btn btn-success pull-right"><%= params[:action]=='edit' ? "提交修改" : "完成创建" %></button>
     <% end %>
   </div>
 </div>
