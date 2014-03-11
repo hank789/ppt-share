@@ -80,6 +80,7 @@
                                                        "PowerPoint"
                                                    end %></li>
               <li class="list-group-item">共享方式：<%= @slide.private ? "隐私" : "完全公开" %></li>
+              <li class="list-group-item">文件大小：12.34 MB </li>
               <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
               <li class="list-group-item">喜欢人数：<%= likeable_tag(@slide) %></li>
               <li class="list-group-item">收藏人数：<%= slide_favorite_tag(@slide) %></li>
@@ -89,9 +90,14 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">分享链接</h3></div>
               <ul class="list-group size-13">
-                <li class="list-group-item">分享链接1</li>
-                <li class="list-group-item">分享链接2</li>
-                <li class="list-group-item">分享链接3</li>
+                <li class="list-group-item">单页分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+                <a class="btn btn-sm btn-default">复制</a></li>
+                <li class="list-group-item">全屏分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+                <a class="btn btn-sm btn-default">复制</a></li>
+                <li class="list-group-item">嵌套分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+                <a class="btn btn-sm btn-default">复制</a></li>
+                <li class="list-group-item">邮件分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+                <a class="btn btn-sm btn-default">复制</a></li>
                 <li class="list-group-item"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></li>
               </ul>
           </div>
