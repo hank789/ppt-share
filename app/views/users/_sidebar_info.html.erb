@@ -6,8 +6,7 @@
     <td>&nbsp;</td>
     <td style="vertical-align: top;">
       <div style="text-align:center;"><%= render_user_level_tag(@user) %>
-        &nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
-        &nbsp;&nbsp;
+        <%= user_follow_tag(@user) %>
         <% if admin? %>
             <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-sm btn-default' %>
         <% end %>
