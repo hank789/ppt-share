@@ -62,9 +62,9 @@ module UsersHelper
     if user[:avatar].blank?
       default_url = asset_path("avatar/#{size}.png")
       img_src = "#{Setting.gravatar_proxy}/avatar/#{user.email_md5}.png"
-      img = image_tag(img_src, :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag(img_src, :class => "uface img-circle", :style => "width:#{width}px;height:#{width}px;")
     else
-      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "media-object dp img-circle", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "img-circle", :style => "width:#{width}px;height:#{width}px;")
     end
 
     if link
