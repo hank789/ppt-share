@@ -12,6 +12,7 @@ class Slide
   include Mongoid::MarkdownBody
   include Redis::Objects
   include Mongoid::Mentionable
+  include ActsAsTaggable::Taggable
 
   field :title
   field :body

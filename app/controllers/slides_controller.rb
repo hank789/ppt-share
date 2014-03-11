@@ -89,12 +89,16 @@ class SlidesController < ApplicationController
 
   def new
     @slide = Slide.new
+    @slide.tags= ""
+    @slide_tags = ActsAsTaggable::Tag.all.distinct(:name).to_s
+
     drop_breadcrumb t("slides.new_slide")
     set_seo_meta("#{t("slides.new_slide")} &raquo; #{t("menu.slides")}")
   end
 
   def edit
     @slide = Slide.find(params[:id])
+    @slide_tags = ActsAsTaggable::Tag.all.distinct(:name).to_s
     drop_breadcrumb t("slides.edit_slide")
     set_seo_meta("#{t("slides.edit_slide")} &raquo; #{t("menu.slides")}")
   end
@@ -111,6 +115,8 @@ class SlidesController < ApplicationController
           @attach.save
         end
         @slide.create_activity :create, owner: current_user
+        # tag
+        current_user.tag @slide, params[:slideTags].to_s.split(",")
       end
       redirect_to(slide_path(@slide.id), :notice => t("slides.create_slide_success"))
     else
@@ -124,9 +130,10 @@ class SlidesController < ApplicationController
     @slide = Slide.find(params[:id])
     @slide.title = slide_params[:title]
     @slide.body = slide_params[:body]
-
     if @slide.save
       @slide.create_activity :update, owner: current_user
+      # tag
+      current_user.tag @slide, params[:slideTags].to_s.split(",")
       redirect_to(slide_path(@slide.id), :notice => t("slides.update_slide_success"))
     else
       render :action => "edit"

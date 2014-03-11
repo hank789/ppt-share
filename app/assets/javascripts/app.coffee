@@ -1,6 +1,11 @@
 #= require jquery
 #= require jquery_ujs
-#= require pakunok/jquery-ui/pack/draggable
+#= require jquery.ui.core
+#= require jquery.ui.widget
+#= require jquery.ui.position
+#= require jquery.ui.autocomplete
+#= require jquery.ui.effect-blind
+#= require jquery.ui.effect-highlight
 #= require jquery.turbolinks
 #= require sco.collapse
 #= require dynamo.min
@@ -24,6 +29,7 @@
 #= require slides
 #= require users
 #= require dropzone
+#= require tag-it
 #= require_self
 
 window.App =

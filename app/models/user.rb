@@ -7,6 +7,7 @@ class User
   include Mongoid::Timestamps
   include Mongoid::BaseModel
   include Redis::Objects
+  include ActsAsTaggable::Tagger
   extend OmniauthCallbacks
 
   devise :database_authenticatable, :registerable,
