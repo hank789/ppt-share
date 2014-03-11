@@ -63,12 +63,10 @@
               <label class="col-sm-5 control-label">文件类型：</label>
 
               <p class="form-control-static"><%= case @attach.file_type
-                                                   when "application/vnd.ms-powerpoint"
-                                                     "PowerPoint"
                                                    when "application/pdf"
                                                      "PDF"
-                                                   when "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                                                     "KeyNote"
+                                                   else
+                                                     "PowerPoint"
                                                  end %></p>
 
             </div>
