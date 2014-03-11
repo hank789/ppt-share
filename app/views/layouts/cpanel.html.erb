@@ -11,14 +11,10 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
       <%= link_to("控制台", cpanel_root_path, :class => "brand span2")%>
       <div class="nav-collapse">
-        <%= render_list :class => "nav" do |li|
+        <!-- /后台目录-->
+        <%= render_list :class => "nav pull-left" do |li|
           li << link_to(t("cpanel.menu.root_path"), cpanel_root_path)
           li << link_to(t("cpanel.menu.site_configs"), cpanel_site_configs_path )
           li << link_to(t("cpanel.menu.users"),cpanel_users_path)
@@ -26,7 +22,7 @@
           li << link_to(t("cpanel.menu.photos"),cpanel_photos_path )
           li << link_to(t("cpanel.menu.locations"),cpanel_locations_path )
         end  %>
-
+        <!-- /管理员下拉菜单-->
         <ul class="nav  pull-right">
           <li class="dropdown" id="user_menu">
             <a href="#user_menu" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.login %> <b class='caret'></b></a>
@@ -35,20 +31,28 @@
             </ul>
           </li>
         </ul>
+
       </div>
     </div>
   </div>
 </div>
+
+
 <div class="container">
+  <!-- /最近幻灯片-->
   <div class="breadcrumb">
     <a href="<%= cpanel_root_path %>">Root</a> &gt;
     <%= yield :sitemap %>
   </div>
+
+  <!-- /统计信息-->
   <div id="main" class="box">
     <%= notice_message %>
     <%= yield %>
   </div>
 </div>
+
+<!-- /页脚信息-->
 <footer class="footer">
   <div class="container">
     <p class="suggest">使用 <a href="http://www.mozillaonline.com/" target="_blank" rel="nofollow">Firefox</a> 或 <a href="http://www.google.com/chrome" target="_blank" rel="nofollow">Chrome</a> 浏览访问本站将会获得更佳的视觉体验.</p>
