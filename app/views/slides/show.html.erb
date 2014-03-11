@@ -21,7 +21,8 @@
 			<% if owner?(@slide) or admin? %>
 				<%= link_to raw("<i class='fa fa-edit'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
 			<% end %>
-        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i> 收藏</a>
+        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i>精华</a>
+        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i>收藏</a>
         <%= slide_download_tag(@slide) %>
 	    </span>
     </h2>
@@ -43,7 +44,12 @@
           <!-- /.wrap -->
         </div>
         <!-- /#upper -->
+        <span class="pull-right">
+        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i>赞</a>
+        <a class="btn btn-sm btn-default"><i class="fa fa-star"></i>踩</a>
+        </span>
       </div>
+
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading"><h3 class="panel-title">幻灯片信息</h3></div>
