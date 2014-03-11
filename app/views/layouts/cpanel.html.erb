@@ -37,15 +37,12 @@
   </div>
 </div>
 
-
+<!-- /页面路径-->
 <div class="container">
-  <!-- /最近幻灯片-->
   <div class="breadcrumb">
     <a href="<%= cpanel_root_path %>">Root</a> &gt;
     <%= yield :sitemap %>
   </div>
-
-  <!-- /统计信息-->
   <div id="main" class="box">
     <%= notice_message %>
     <%= yield %>
