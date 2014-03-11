@@ -22,7 +22,17 @@
 				<%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
 			<% end %>
         <a class="btn btn-sm btn-default"><i class="glyphicon glyphicon-thumbs-up"></i>精华</a>
-        <a class="btn btn-sm btn-default"><i class="glyphicon glyphicon-bookmark"></i>收藏</a>
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-bookmark"></i>收藏</button>
+          <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">此幻灯片完整收藏</a></li>
+            <li><a href="#">当前幻灯片单页收藏</a></li>
+          </ul>
+        </div>
         <%= slide_download_tag(@slide) %>
 	    </span>
     </h2>
