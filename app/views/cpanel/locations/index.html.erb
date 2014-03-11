@@ -1,5 +1,7 @@
 <%= render 'base' %>
-<h1><%= t("mongoid.models.location") %></h1>
+<% content_for :sitemap do %>
+    <span class="current">城市</span>
+<% end %>
 <div id="cpanel_locations">
   <table class="table table-bordered table-striped table-condensed">
     <tr class="head">

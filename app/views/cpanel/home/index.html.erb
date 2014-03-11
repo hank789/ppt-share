@@ -2,7 +2,22 @@
     <span class="current"><%= t("cpanel.overview") %></span>
 <% end %>
 
-<div class="group">
-  <h1 style="text-align: center"> 概览，Widgets展示信息给用户</h1>
-</div>
+<% if !@recent_slides.blank? %>
+    <div class="group">
+      <h2>最近幻灯片</h2>
+      <ul>
+        <% @recent_slides.each do |item| %>
+            <li><a href="<%= edit_slide_path(item) %>"><%= truncate(item.title,:length => 50) %></a></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
+<div class="group">
+  <h2><%= t("cpanel.statics") %></h2>
+  <ul>
+    <li><%= t("cpanel.menu.users") %>: <%= User.count %> 人</li>
+    <li>幻灯片: <%= Slide.count %> 个</li>
+    <li><%= t("cpanel.menu.replies") %>: <%= Reply.count %> 条</li>
+  </ul>
+</div>
