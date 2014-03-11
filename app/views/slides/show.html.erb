@@ -45,57 +45,35 @@
         <!-- /#upper -->
       </div>
       <div class="col-md-4">
-        <div class="panel">
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="col-sm-5 control-label">作者：</label>
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3 class="panel-title">幻灯片信息</h3></div>
+            <ul class="list-group size-13">
+              <li class="list-group-item">作者：<%= user_name_tag(@slide.user) %></li>
+              <li class="list-group-item">上传时间：<%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></li>
+              <li class="list-group-item">文件类型：<%= case @attach.file_type
+                                                     when "application/pdf"
+                                                       "PDF"
+                                                     else
+                                                       "PowerPoint"
+                                                   end %></li>
+              <li class="list-group-item">共享方式：<%= @slide.private ? "隐私" : "完全公开" %></li>
+              <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
+              <li class="list-group-item">喜欢人数：<%= likeable_tag(@slide) %></li>
+              <li class="list-group-item">收藏人数：<%= slide_favorite_tag(@slide) %></li>
+            </ul>
+          </div>
 
-              <p class="form-control-static pull-left"><%= user_name_tag(@slide.user) %></p>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">分享链接</h3></div>
+              <ul class="list-group size-13">
+                <li class="list-group-item">分享链接1</li>
+                <li class="list-group-item">分享链接2</li>
+                <li class="list-group-item">分享链接3</li>
+                <li class="list-group-item"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></li>
+              </ul>
+          </div>
 
-            </div>
-            <div class="form-group">
-              <label class="col-sm-5 control-label">上传时间：</label>
-
-              <p class="form-control-static"><%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></p>
-
-            </div>
-            <div class="form-group">
-              <label class="col-sm-5 control-label">文件类型：</label>
-
-              <p class="form-control-static"><%= case @attach.file_type
-                                                   when "application/pdf"
-                                                     "PDF"
-                                                   else
-                                                     "PowerPoint"
-                                                 end %></p>
-
-            </div>
-            <div class="form-group">
-              <label class="col-sm-5 control-label">共享方式：</label>
-
-              <p class="form-control-static"><%= @slide.private ? "隐私" : "完全公开" %></p>
-
-            </div>
-            <div class="form-group">
-              <label class="col-sm-5 control-label">阅读人数：</label>
-
-              <p class="form-control-static"><%= @slide.hits %></p>
-
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-5 control-label">喜欢人数：</label>
-
-              <%= likeable_tag(@slide) %>
-
-            </div>
-            <div class="form-group">
-              <label class="col-sm-5 control-label">收藏：</label>
-
-              <%= slide_favorite_tag(@slide) %>
-
-            </div>
-
+          <!-- /#这个设置精华的按钮改到右上角去 -->
             <div class="form-group">
               <% if admin? and !@slide.excellent? %>
                   <%= link_to raw("<label class='col-sm-5 control-label'>&nbsp;</label>&nbsp;&nbsp;&nbsp;<i class='icon small_cert'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
@@ -104,23 +82,11 @@
                   <label class='col-sm-5 control-label'>&nbsp;</label>
                   <i class="icon small_cert_on"></i> 已被设为精华！
                   <% if admin? %>
-
                       <%= link_to "取消", unsuggest_slide_path(@slide.id), method: "delete" %>
-
                   <% end %>
-
               <% end %>
-
             </div>
-
-            <div class="form-group">
-              <label class="col-sm-8 control-label"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></label>
-
-            </div>
-
-          </form>
         </div>
-      </div>
     </div>
 
     <!-- /#幻灯片描述-->
