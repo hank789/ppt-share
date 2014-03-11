@@ -58,23 +58,27 @@
         </tr>
     <% end %>
   </table>
-
+  <% if !@user.bio.blank? %>
+  <div class="bio box">
+    <p><%= auto_link(simple_format(@user.bio)) %></p>
+  </div>
+  <% end %>
   <hr>
 
   <table>
     <div>
       <div class="col-md-4" style="text-align:center;">
-        <h3>388</h3>
+        <h3><%= @user.slides_count %></h3>
         <h6>上传数</h6>
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-        <h3>32</h3>
+        <h3><%= @user.follower_ids.count %></h3>
         <h6>关注数</h6>
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-        <h3>1239</h3>
+        <h3><%= @user.followed_ids.count %></h3>
         <h6>粉丝数</h6>
       </div>
     </div>

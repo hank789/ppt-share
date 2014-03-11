@@ -20,6 +20,8 @@ class User
   field :encrypted_password, :type => String, :default => ""
   # 关注过的人的 ids 列表
   field :follower_ids, :type => Array, :default => []
+  # 记录被谁关注的 ids 列表
+  field :followed_ids, :type => Array, :default => []
 
   validates_presence_of :email
 
@@ -353,18 +355,23 @@ class User
     self.update_private_token if self.private_token.blank?
   end
 
+  # 关注用户
   def push_follower(uid)
     uid = uid.to_i
     return false if uid == self.id
     return false if self.follower_ids.include?(uid)
     self.push(follower_ids: uid)
+    user = User.find_by_id(uid)
+    user.push(followed_ids: self.id)
     true
   end
-
+  # 取消关注用户
   def pull_follower(uid)
     uid = uid.to_i
     return false if uid == self.id
     self.pull(follower_ids: uid)
+    user = User.find_by_id(uid)
+    user.pull(followed_ids: self.id)
     true
   end
 end
