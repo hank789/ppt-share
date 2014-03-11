@@ -6,25 +6,24 @@
     <%= simple_form_for @slide do |f| %>
         <%= f.input :slide, :as => :hidden %>
         <div class="form-group">
-          <label>标题</label>
+          <label for="exampleInputEmail1">标题</label>
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group">
-        <label>描述</label>
-        <%= f.text_area :body, :class => "form-control", :rows => "10", :tabindex => "1" %>
+          <label for="exampleInputEmail1">描述</label>
+          <%= f.text_area :body, :class => "form-control", :rows => "10", :tabindex => "1" %>
         </div>
         <div class="form-group">
           <label>标签</label>
           <%= f.text_field :tags, :id => "slideTags",:name => "slideTags", :value => params[:action]=='edit' ? @slide.tags.join(",") : "" %>
-
         </div>
         <br>
-        <button type="submit" class="btn btn-success"><%= params[:action]=='edit' ? "提交修改" : "创建" %></button>
+        <button type="submit" class="btn btn-success pull-right"><%= params[:action]=='edit' ? "提交修改" : "完成创建" %></button>
         <script type="text/javascript">
-          $(function () {
-              var sampleTags= <%= raw @slide_tags %>;
-              $("#slideTags").tagit({availableTags: sampleTags,singleField: true,singleFieldNode: $('#slideTags')});
-          });
+            $(function () {
+                var sampleTags= <%= raw @slide_tags %>;
+                $("#slideTags").tagit({availableTags: sampleTags,singleField: true,singleFieldNode: $('#slideTags')});
+            });
         </script>
     <% end %>
   </div>

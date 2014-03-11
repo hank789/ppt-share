@@ -5,15 +5,14 @@
     </td>
     <td>&nbsp;</td>
     <td style="vertical-align: top;">
-      <div style="padding-bottom: 5px;"><%= render_user_level_tag(@user) %>
-        &nbsp;&nbsp;&nbsp;&nbsp;<%= user_follow_tag(@user) %>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+      <div style="text-align:center;"><%= render_user_level_tag(@user) %>
+        <%= user_follow_tag(@user) %>
         <% if admin? %>
-            <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-mini' %>
+            <%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-sm btn-default' %>
         <% end %>
       </div>
     </td>
-  </tr>
+    </tr>
 
   <hr>
 
