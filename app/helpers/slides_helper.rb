@@ -17,7 +17,7 @@ module SlidesHelper
   def slide_download_tag(slide)
     return "" if slide.blank?
     return "" if slide.slide.blank?
-    title = raw "#{content_tag(:i, "", :class => "icon-download-alt")} <span>Download</span>"
+    title = raw "#{content_tag(:i, "", :class => "glyphicon glyphicon-cloud-download")} <span>Download</span>"
     link_to(title, download_attach_url(slide.slide), class: "btn btn-sm btn-success")
   end
 
