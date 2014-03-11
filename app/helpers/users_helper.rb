@@ -93,13 +93,13 @@ module UsersHelper
 
   def render_user_level_tag(user)
     if admin?(user)
-      content_tag(:span, t("common.admin_user"), :class => "label label-warning role")
+      content_tag(:span, t("common.admin_user"), :class => "label-warning role btn btn-sm")
     elsif wiki_editor?(user)
-      content_tag(:span, t("common.vip_user"), :class => "label label-success role")
+      content_tag(:span, t("common.vip_user"), :class => "label-success role btn btn-sm")
     elsif user.newbie?
-      content_tag(:span, t("common.newbie_user"), :class => "label label-default role")
+      content_tag(:span, t("common.newbie_user"), :class => "label-default role btn btn-sm")
     else
-      content_tag(:span, t("common.normal_user"), :class => "label label-default role")
+      content_tag(:span, t("common.normal_user"), :class => "label-default role btn btn-sm")
     end
   end
 
@@ -114,7 +114,7 @@ module UsersHelper
       link_title = "取消关注"
     end
     follow_label = raw "#{icon} <span>#{link_title}</span>"
-    raw "#{link_to(follow_label, "#", :onclick => "return Users.follow(this);", 'data-id' => follower_user.id, :class => "btn-custom", :title => link_title, :rel => "twipsy")}"
+    raw "#{link_to(follow_label, "#", :onclick => "return Users.follow(this);", 'data-id' => follower_user.id, :class => "btn btn-sm btn-default", :title => link_title, :rel => "twipsy")}"
   end
 
 end
