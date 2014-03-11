@@ -68,8 +68,8 @@ class Slide
   scope :high_replies, -> { desc(:replies_count, :_id) }
   scope :no_reply, -> { where(:replies_count => 0) }
   scope :popular, -> { where(:likes_count.gt => 5) }
-  scope :without_node_ids, Proc.new { |ids| where(:node_id.nin => ids) }
   scope :excellent, -> { where(:excellent.gte => 1) }
+  scope :recent_update, desc(:updated_at)
 
   def self.find_by_message_id(message_id)
     where(:message_id => message_id).first

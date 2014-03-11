@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def home
     @activities = PublicActivity::Activity.desc(:created_at).where(:owner_type => "User").any_in(:owner_id => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
-    @current_slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 20)
+    @current_slides = @user.slides.recent_update.limit(20)
   end
 
   def show
