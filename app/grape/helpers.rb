@@ -1,4 +1,4 @@
-module RubyChina
+module MakeSlide
   module APIHelpers
     def warden
       env['warden']

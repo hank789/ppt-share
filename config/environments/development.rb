@@ -1,5 +1,5 @@
 # coding: utf-8
-RubyChina::Application.configure do
+MakeSlide::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on

@@ -1,7 +1,7 @@
 require "entities"
 require "helpers"
 
-module RubyChina
+module MakeSlide
   class API < Grape::API
     prefix "api"
     format :json
