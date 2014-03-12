@@ -1,8 +1,16 @@
+<div class="listing-page-top">
+  <div class="container">
+    <h2>
+      <%= @location.name %>的<%= t("users.hot_users") %>
+    </h2>
+  </div>
+</div>
+
+<!-- City的人员 -->
 <div class="listing-page">
   <div class="container">
     <div id="users" class="box">
       <div id="hot_users" class="row user_list">
-        <h3 class="text-center"><%= @location.name %>的<%= t("users.hot_users") %></h3>
         <% if !@users.blank? %>
             <% @users.each do |item| %>
                 <div class="item span1">
@@ -11,8 +19,9 @@
                 </div>
             <% end %>
         <% end %>
+            </div>
+        </div>
       </div>
-      <%= will_paginate @users %>
-    </div>
   </div>
 </div>
+
