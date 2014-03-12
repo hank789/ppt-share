@@ -1,3 +1,26 @@
 <div class="listing-page-top">
-关注我的人
+  <div class="container">
+    <h2>
+      <%= "#{current_user.login} " %> 的粉丝
+    </h2>
+  </div>
+</div>
+
+<!-- 分类列表，现在逻辑是错的 -->
+<div class="listing-page">
+  <div class="container">
+    <div id="users" class="box">
+      <div id="hot_users" class="row user_list">
+        <% if !@users.blank? %>
+            <% @users.each do |item| %>
+                <div class="item span1">
+                  <div class="avatar"><%= user_avatar_tag(item) %></div>
+                  <div class="name"><%= user_name_tag(item) %></div>
+                </div>
+            <% end %>
+        <% end %>
+            </div>
+        </div>
+      </div>
+  </div>
 </div>
