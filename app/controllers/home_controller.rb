@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     drop_breadcrumb("首页", root_path)
     set_seo_meta("#{t("menu.slogan")}")
     @slides = Slide.excellent.recent.fields_for_list.includes(:user).limit(8)
-    @slides_col_md=3;
+    @slides_col_md=3
   end
 
   def api

@@ -42,6 +42,7 @@ class UsersController < ApplicationController
 
   def collections
     @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 30)
+    @slides_col_md=3
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.collections"))
   end

@@ -1,4 +1,5 @@
-<div class="listing-page-top">
+<br><br><br>
+<div class="listing-page">
 <div class="container">
   <div class="row">
     <div class="col-md-3 col-sm-4">
@@ -14,8 +15,8 @@
       </div>
     </div>
   </div>
-  <div class="text-center">
-    <%= will_paginate @slides, :inner_window => 2 %>
+  <div class="pagination">
+    <%= will_paginate @slides, :inner_window => 2, container: false %>
   </div>
 </div>
 </div>

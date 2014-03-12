@@ -1,20 +1,19 @@
 <div class="listing-page-top">
-<div class="container">
-  <div class="row">
-    <div class="right-sec">
-      <div class="top">
-        <h3 class="text-center">时间轴
-          <small>/ 标签类 / 热门度</small>
-        </h3>
-      </div>
-      <div class="row">
-        <%= render :partial => "slides/slide", :collection => @slides %>
-      </div>
-    </div>
+  <div class="container">
+     <div class="row">
+       <div class="top">
+         <h3 class="text-center">时间轴<small>/ 标签类 / 热门度</small></h3>
+       </div>
+     </div>
   </div>
-  <div class="text-center">
-    <%= will_paginate @slides, :inner_window => 2 %>
-  </div>
-  <hr>
 </div>
+<div class="listing-page">
+  <div class="container">
+      <div class="row">
+        <%= render :partial => "slides/slide", :collection => @slides,:locals => {:slides_col_md => @slides_col_md} %>
+      </div>
+  </div>
+  <div class="pagination">
+    <%= will_paginate @slides, :inner_window => 2, container: false %>
+  </div>
 </div>
