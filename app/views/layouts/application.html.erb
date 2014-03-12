@@ -55,11 +55,21 @@
       </div>
   <% end %>
 </div>
-<div id="footer">
-  <div class="container">
-    <%= raw SiteConfig.footer_html %>
-  </div>
-</div>
+
+<% if not mobile? %>
+    <a class="go_top" href="#"><i class="icons_go_top"></i></a>
+    <footer class="footer" id="footer">
+      <div class="container">
+        <%= raw SiteConfig.footer_html %>
+      </div>
+    </footer>
+<% end %>
+<% if mobile? %>
+    <script type="text/javascript">
+        app_mobile = true;
+        $('body').animate({ scrollTop: -1 },0);
+    </script>
+<% end %>
 <script type="text/javascript">
     $(function () {
         $('.flexslide_simple').flexslider({

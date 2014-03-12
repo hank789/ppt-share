@@ -26,7 +26,31 @@
   padding: 2em;
   text-align: center;
 }
-
+.icons_go_top {
+  display:inline-block;
+  transition-property: background-position;
+  transition-duration: 0.5s;
+  -moz-transition-property: background-position; /* Firefox 4 */
+  -moz-transition-duration: 0.5s; /* Firefox 4 */
+  -webkit-transition-property: background-position; /* Safari and Chrome */
+  -webkit-transition-duration: 0.5s; /* Safari and Chrome */
+  width: 16px; height: 16px; background: url(image-path('go_top.png'));
+}
+@media only screen and (-webkit-device-pixel-ratio: 2){
+  .icons_go_top { background: url(image-path('go_top@2x.png')); background-size:16px 16px; }
+}
+.go_top {
+  background: #FFF;
+  text-align: center;
+  border:1px solid #eee;
+  display:none;
+  height:20px; width:24px;
+  padding-top:4px; overflow:hidden;
+  border-radius:6px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
 #footer p {
   font-size: 12px;
 }
@@ -103,8 +127,6 @@ body .top-form-inner {
   text-transform: none;
 }
 
-.left-sec .filter-sec {
-}
 
 .left-sec .input-control {
   font-size: 13px;
@@ -854,8 +876,6 @@ img.featurette-image {
   border-bottom: 1px solid #DDDDDD;
 }
 
-.nav-tabs {
-}
 
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable- input:focus {
   box-shadow: none;
@@ -865,40 +885,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border: 2px solid #DE4343;
 }
 
-.btn-primary {
-  background-color: #009DDC;
-  border-color: #0085B7;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-  background-color: #0094CC;
-  border-color: #285E8E;
-  color: #FFFFFF;
-}
-
-.btn-success {
-  background-color: #A2C765;
-  border-color: #7DA53D;
-}
-
-.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
-  background-color: #91BC47;
-  border-color: #739638;
-  color: #FFFFFF;
-}
-
-.btn-danger {
-  background-color: #F26963;
-  border-color: #D43F3A;
-}
-
-.label-success {
-  background-color: #A2C765;
-}
-
-.label-primary {
-  background-color: #009DDC;
-}
 
 .grid i {
   font-size: 25px;
