@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
   def index
     if current_user.present?
-      redirect_to(home_user_url(current_user.login));
+      redirect_to(user_url(current_user.login));
     end
 
     drop_breadcrumb("首页", root_path)

@@ -5,7 +5,7 @@
   <p><%= t("users.recover_password_message_alert") %></p>
 </div>
 <div class="auth-unit-inner">
-  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => "tooltip-demo", :role => "form"}) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :role => "form"}) do |f| %>
       <div class="form-group">
         <label class="email required control-label" for="user_email"><%= t("mongoid.attributes.user.email") %></label>
         <%= f.input_field :email, :class => 'form-control', placeholder: "name@email.com" %>
