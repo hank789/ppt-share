@@ -11,17 +11,15 @@ class UsersController < ApplicationController
     drop_breadcrumb t("common.index")
   end
 
-  def home
-
-  end
-
   def activity
     @activities = PublicActivity::Activity.desc(:created_at).where(:owner_type => "User").any_in(:owner_id => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
     @current_slides = current_user.slides.recent_update.limit(20)
   end
 
   def show
-    redirect_to("/#{@user.login}/slides")
+    @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
+    drop_breadcrumb(@user.login, user_path(@user.login))
+    drop_breadcrumb(t("slides.title"))
   end
 
   def slides
@@ -93,6 +91,14 @@ class UsersController < ApplicationController
     render :text => "1"
   end
 
+  # 我关注的
+  def follower
+
+  end
+  # 我被人关注
+  def followed
+
+  end
   protected
   def find_user
     # 处理 login 有大写字母的情况

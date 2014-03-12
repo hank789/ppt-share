@@ -18,10 +18,9 @@
         <%= link_to(sanitize("<b class='glyphicon glyphicon-user'></b> #{current_user.login} <b class='caret'></b>"), "#user_menu", :class => "dropdown-toggle", "data-toggle" => "dropdown") %>
         <%= render_list :class => "dropdown-menu" do |li|
           unless params[:controller].match(/cpanel/)
-            li << link_to(t("users.menu.my_home"), home_user_path(current_user.login.downcase))
             li << link_to(t("users.menu.activity_feed"), activity_user_path(current_user.login.downcase))
             #li << link_to(t("menu.my_workspace"), workspace_user_path(current_user.login.downcase))
-            li << link_to(t("users.menu.slides"), slides_user_path(current_user.login.downcase))
+            li << link_to(t("users.menu.slides"), user_path(current_user.login.downcase))
             li << link_to(t("users.menu.collections"), collections_user_path(current_user.login.downcase))
             li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
             li << link_to(t("menu.cpanel"), "/cpanel") if admin?

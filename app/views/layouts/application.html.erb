@@ -37,7 +37,7 @@
           </div>
         </div>
       </nav>
-      <%= render partial: "users/menu" if current_user %>
+      
       <%= raw "<hr>" if !current_user && params[:controller]+'/'+params[:action] != "home/index" %>
       <%= notice_message %>
       <%= yield %>

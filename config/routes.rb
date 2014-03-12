@@ -20,7 +20,6 @@ MakeSlide::Application.routes.draw do
     end
   end
 
-
   get "slides/last" => "slides#recent", as: "recent_slides"
   resources :slides do
     member do
@@ -76,12 +75,10 @@ MakeSlide::Application.routes.draw do
   get "users" => "users#index", as: 'users'
   resources :users, :path => "" do
     member do
-      get :slides
-      get :likes
       get :collections
-      get :workspace
-      get :home
       get :activity
+      get :follower
+      get :followed
     end
   end
 
