@@ -18,21 +18,22 @@
     <h2>
       <%= @slide.title %>
       <span class="pull-right">
-			<% if owner?(@slide) or admin? %>
-				<%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
-			<% end %>
-        <a class="btn btn-sm btn-default"><i class="glyphicon glyphicon-thumbs-up"></i>精华</a>
-        <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-bookmark"></i>收藏</button>
-          <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">此幻灯片完整收藏</a></li>
-            <li><a href="#">当前幻灯片单页收藏</a></li>
-          </ul>
-        </div>
+        <% if @slide.excellent? %>
+            <i class="icon small_cert_on"></i>
+            <% if admin? %>
+                <%= link_to "取消精华", unsuggest_slide_path(@slide.id), method: "delete", class: "btn btn-sm btn-warning" %>
+            <% end %>
+        <% end %>
+        <% if owner?(@slide) or admin? %>
+            <%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
+        <% end %>
+        <% if admin? and !@slide.excellent? %>
+            <%= link_to raw("<i class='glyphicon glyphicon-thumbs-up'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华",class: "btn btn-sm btn-default", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
+        <% end %>
+
+
+        <%= slide_favorite_tag(@slide) %>
+
         <%= slide_download_tag(@slide) %>
 	    </span>
     </h2>
@@ -150,7 +151,8 @@
               <li class="list-group-item">文件大小：12.34 MB </li>
               <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
               <li class="list-group-item">喜欢人数：<%= likeable_tag(@slide) %></li>
-              <li class="list-group-item">收藏人数：<%= slide_favorite_tag(@slide) %></li>
+              <!-- /#to do 完成收藏人数的功能 -->
+              <li class="list-group-item">收藏人数：12</li>
             </ul>
           </div>
 
@@ -191,20 +193,6 @@
                 </li>
               </ul>
           </div>
-
-          <!-- /#这个设置精华的按钮改到右上角去 -->
-            <div class="form-group">
-              <% if admin? and !@slide.excellent? %>
-                  <%= link_to raw("<label class='col-sm-5 control-label'>&nbsp;</label>&nbsp;&nbsp;&nbsp;<i class='icon small_cert'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
-              <% end %>
-              <% if @slide.excellent? %>
-                  <label class='col-sm-5 control-label'>&nbsp;</label>
-                  <i class="icon small_cert_on"></i> 已被设为精华！
-                  <% if admin? %>
-                      <%= link_to "取消", unsuggest_slide_path(@slide.id), method: "delete" %>
-                  <% end %>
-              <% end %>
-            </div>
         </div>
     </div>
 

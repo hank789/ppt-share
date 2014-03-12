@@ -23,14 +23,14 @@ module SlidesHelper
 
   def slide_favorite_tag(slide)
     return "" if current_user.blank?
-    icon = content_tag(:i, "", :class => "icon small_bookmark")
+    icon = content_tag(:i, "", :class => "glyphicon glyphicon-star-empty")
     link_title = "收藏"
     if current_user and current_user.favorite_slide_ids.include?(slide.id)
-      icon = content_tag(:i, "", :class => "icon small_bookmarked")
+      icon = content_tag(:i, "", :class => "glyphicon glyphicon-star")
       link_title = "取消收藏"
     end
     favorite_label = raw "#{icon} <span>#{link_title}</span>"
-    raw "#{link_to(favorite_label, "#", :onclick => "return Slides.favorite(this);", 'data-id' => slide.id, :class => "btn", :title => link_title, :rel => "twipsy")}"
+    raw "#{link_to(favorite_label, "#", :onclick => "return Slides.favorite(this);", 'data-id' => slide.id, :class => "btn btn-sm btn-primary", :title => link_title, :rel => "twipsy")}"
   end
 
   def slide_follow_tag(slide)
