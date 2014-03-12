@@ -70,11 +70,10 @@
         <!-- /#幻灯片标签-->
         <div class="tab-pane in active">
           <br>
-          <h4>标签云：</h4>
+          <h4>标签：</h4>
           <hr>
-          <strong>作者标签：</strong><%= @slide.tags.join(",") %>
-          <br><strong>收藏者标签：</strong>还未实现
-          <br><br>
+            <span class="label label-default"><%= @slide.tags.join(",") %></span>
+          <br><br><br>
         </div>
 
         <!-- /#评论内容-->
