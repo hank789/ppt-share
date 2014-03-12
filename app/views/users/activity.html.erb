@@ -1,3 +1,16 @@
+<div class="listing-page-top tooltip-demo">
+  <div class="container">
+    <h2>
+      <%= "#{current_user.login} " %> 关注的动态
+      <span class="pull-right">
+        <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-th-list"></i>查看关注列表</a>
+        <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-th"></i>发现更多</a>
+      </span>
+    </h2>
+  </div>
+</div>
+
+<!-- 关注的活动记录 -->
 <div class="listing-page">
   <div class="container">
     <div class="col-md-8">
@@ -9,6 +22,7 @@
       </div>
     </div>
 
+    <!-- 我最近处理的幻灯片 -->
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"><h3 class="panel-title">我最近处理的幻灯片</h3></div>
