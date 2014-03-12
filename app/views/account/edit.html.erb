@@ -1,11 +1,11 @@
 <!-- 个人设置title -->
-<div class="listing-page-top tooltip-demo">
+<div class="listing-page-top">
   <div class="container">
     <h2>
       账户设置
       <span class="pull-right">
-        <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-th-list"></i>密码设置</a>
-        <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-tint"></i>获取API密钥</a>
+        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#userpassword"><i class="glyphicon glyphicon-th-list"></i>密码设置</a>
+        <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#apitoken"><i class="glyphicon glyphicon-tint"></i>获取API密钥</a>
         <%= link_to(t("users.delete_this_account"), registration_path(resource_name), 'data-confirm' => "删除后无法恢复，你确定吗?", :class => "btn btn-sm btn-danger", :method => :delete) %>
       </span>
     </h2>
@@ -67,63 +67,58 @@
 </div>
 
 <!--密码修改-->
-<div class="listing-page">
-  <div class="container">
-    <div class="row">
-        <div class="col-md-4">
+<div class="modal" id="userpassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= t("users.edit_password") %></h4>
         </div>
-        <div class="col-md-4">
-          <div class="panel panel-warning">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-edit"></i> <%= t("users.edit_password") %></h3>
-            </div>
-            <div class="panel-body">
-              <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name, :by => :pwd), :html => {:method => :put}) do |f| %>
-                  <%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
-                  <div class="form-group">
-                    <%= f.label :current_password %>
-                    <%= f.input_field :current_password, class: "form-control" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :password %>
-                    <%= f.input_field :password, class: "form-control" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :password_confirmation %>
-                    <%= f.input_field :password_confirmation, class: "form-control" %>
-                  </div>
-                  <%= f.submit "修改密码", :class => "btn btn-warning pull-right", 'data-disable-with' => t("common.saving") %>
-              <% end %>
-            </div>
+      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name, :by => :pwd), :html => {:method => :put}) do |f| %>
+      <div class="modal-body">
+          <%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
+          <div class="form-group">
+            <%= f.label :current_password %>
+            <%= f.input_field :current_password, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.input_field :password, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.input_field :password_confirmation, class: "form-control" %>
           </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "修改密码", :class => "btn btn-warning", 'data-disable-with' => t("common.saving") %>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
 <!--Token查看和更新-->
-<div class="listing-page">
-  <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-key"></i>API 密钥</h3>
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <textarea id="private_token" readonly="readonly" class="form-control"><%= @user.private_token %></textarea>
-                </div>
-                <div>
-                  <a href="#" class="btn btn-default pull-right" id="update_private_token">更换一个</a>
-                  <span class="help-inline">用于三方应用验证</span>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="modal" id="apitoken" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">API 密钥</h4>
       </div>
-  </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <textarea id="private_token" readonly="readonly" class="form-control"><%= @user.private_token %></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span class="pull-left">用于三方应用验证</span>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="#" class="btn btn-default btn-primary" id="update_private_token">更换一个</a>
+      </div>
+      </div>
+    </div>
 </div>
 
 <!--删除账户JS-->
