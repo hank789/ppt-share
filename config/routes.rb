@@ -77,8 +77,8 @@ MakeSlide::Application.routes.draw do
     member do
       get :collections
       get :activity
-      get :follower
-      get :followed
+      get :following
+      get :followers
     end
   end
 

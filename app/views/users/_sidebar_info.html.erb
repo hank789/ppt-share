@@ -72,12 +72,12 @@
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-        <h3><%= link_to(@user.follower_ids.count, followed_user_path) %></h3>
+        <h3><%= link_to(@user.follower_ids.count, following_user_path) %></h3>
         <h6>关注数</h6>
       </div>
 
       <div class="col-md-4" style="text-align:center;">
-        <h3><%= link_to(@user.followed_ids.count, follower_user_path) %></h3>
+        <h3><%= link_to(@user.followed_ids.count, followers_user_path) %></h3>
         <h6>粉丝数</h6>
       </div>
     </div>

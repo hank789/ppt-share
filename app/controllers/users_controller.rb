@@ -92,11 +92,11 @@ class UsersController < ApplicationController
   end
 
   # 我关注的
-  def follower
+  def following
 
   end
   # 我被人关注
-  def followed
+  def followers
 
   end
   protected
