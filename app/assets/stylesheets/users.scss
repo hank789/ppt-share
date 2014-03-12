@@ -13,22 +13,6 @@
     margin-top: -8px;
     margin-bottom: 20px;
   }
-  ul {
-    list-style: none;
-  }
-  li {
-    font-size: 14px;
-    line-height: 180%;
-    border-bottom: 1px dashed #eee;
-    label {
-      color: #999;
-      font-size: 12px;
-      margin-right: 8px;
-      display: inline-block;
-      width: 100px;
-      text-align: right;
-    }
-  }
   td {
     font-size: 14px;
     line-height: 180%;
@@ -195,10 +179,4 @@ table.node_topics {
   padding: 3px;
   position: absolute;
   width: 32px;
-}
-
-a.btn-custom:hover,
-a.btn-custom:focus {
-  color: #2a6496;
-  text-decoration: none;
 }
