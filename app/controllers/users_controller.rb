@@ -1,6 +1,6 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections]
+  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections, :activity]
   before_filter :set_menu_active
   before_filter :find_user, :only => [:show, :slides, :likes, :collections, :workspace, :home]
   caches_action :index, :expires_in => 2.hours, :layout => false
@@ -12,8 +12,12 @@ class UsersController < ApplicationController
   end
 
   def home
+
+  end
+
+  def activity
     @activities = PublicActivity::Activity.desc(:created_at).where(:owner_type => "User").any_in(:owner_id => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
-    @current_slides = @user.slides.recent_update.limit(20)
+    @current_slides = current_user.slides.recent_update.limit(20)
   end
 
   def show

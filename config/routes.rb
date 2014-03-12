@@ -81,6 +81,7 @@ MakeSlide::Application.routes.draw do
       get :collections
       get :workspace
       get :home
+      get :activity
     end
   end
 

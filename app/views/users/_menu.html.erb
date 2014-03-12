@@ -18,7 +18,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="navbar-ex5-collapse">
         <%= render_list :class => "nav navbar-nav" do |li|
-          li << link_to("关注的动态", "/")
+          li << link_to(t("users.menu.my_home"), home_user_path(current_user.login.downcase))
+          li << link_to(t("users.menu.activity_feed"), activity_user_path(current_user.login.downcase))
           #li << link_to(t("menu.my_workspace"), workspace_user_path(current_user.login.downcase))
           li << link_to(t("users.menu.slides"), slides_user_path(current_user.login.downcase))
           li << link_to(t("users.menu.collections"), collections_user_path(current_user.login.downcase))
