@@ -36,6 +36,9 @@ class Slide
   field :excellent, type: Integer, default: 0
   # 用于排序的标记
   field :last_active_mark, :type => Integer
+  # 记录收藏数和人
+  field :favourite_user_ids, :type => Array, :default => []
+  field :favourite_count, :type => Integer, :default => 0
 
   belongs_to :user, :inverse_of => :slides
   counter_cache :name => :user, :inverse_of => :slides
@@ -47,6 +50,7 @@ class Slide
 
   index :user_id => 1
   index :likes_count => 1
+  index :favourite_count => 1
   index :last_active_mark => -1
   index :suggested_at => 1
   index :excellent => -1
