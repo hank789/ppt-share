@@ -12,3 +12,24 @@
  *= require_tree ./sprites/
  *= require_self
  */
+
+// 这里放全局样式
+
+body {
+    font-family:"Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+    height: 100%;
+    width: 100%;
+    margin-top: 50px;
+    /* 50px is the height of the navbar - change this if the navbarn height changes */
+    background-color:#F0F0F0;
+}
+html {
+    font-family:"Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+    height: 100%;
+}
+
+// 全局头部导航栏
+
+
+
+// 全部Footer
