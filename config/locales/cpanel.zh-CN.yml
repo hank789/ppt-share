@@ -7,7 +7,7 @@
       sections: "分类"
       nodes: "节点"
       wiki: "Wiki"
-      slides: "帖子"
+      slides: "幻灯片"
       replies: "回复"
       photos: "图片"
       notes: "记事本"
@@ -16,7 +16,7 @@
       sites: "SaaS产品"
       locations: "城市"
     overview: "概览"
-    recent_slides: "最近帖子"
+    recent_slides: "最近幻灯片"
     statics: "统计信息"
     site_configs:
       settings: "设置项"

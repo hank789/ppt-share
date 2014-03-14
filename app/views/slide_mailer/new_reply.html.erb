@@ -1,4 +1,4 @@
-<h1>你关注的帖子有了新回复</h1>
+<h1>你关注的幻灯片有了新回复</h1>
 <p>
   <%= user_name_tag(@reply.user) %>  回复了 《<%= slide_title_tag(@slide) %>》:</label> <br/>
 </p>
@@ -6,5 +6,5 @@
   <p><%= sanitize_reply @reply.body_html %><br/></p>
 </blockquote>
 <p>
-  <label> 帖子地址:</label> <%= slide_title_tag(@slide) %>.
+  <label> 幻灯片地址:</label> <%= slide_title_tag(@slide) %>.
 </p>
