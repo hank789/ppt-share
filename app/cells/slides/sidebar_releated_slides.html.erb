@@ -1,0 +1,9 @@
+<!-- /#幻灯片推荐(！！！！！！还没有实现宽度自适应！！！！！！) -->
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title">相关幻灯片推荐</h3></div>
+
+    <% for slide in @slides do %>
+        <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
+    <% end %>
+
+</div>

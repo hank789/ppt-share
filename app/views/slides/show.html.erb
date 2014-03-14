@@ -170,17 +170,7 @@
           </div>
 
           <!-- /#幻灯片推荐(！！！！！！还没有实现宽度自适应！！！！！！) -->
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">相关幻灯片推荐</h3></div>
-              <ul class="list-group size-13">
-                <li class="list-group-item">
-                <img alt="5735328db15393955656112a6c609ca5" src="http://makeslide-dev.qiniudn.com/photo/2014/5735328db15393955656112a6c609ca5.png" height="246px" />
-                </li>
-                <li class="list-group-item">
-                <img alt="5735328db15393955656112a6c609ca5" src="http://makeslide-dev.qiniudn.com/photo/2014/5735328db15393955656112a6c609ca5.png" height="246px" /> >
-                </li>
-              </ul>
-          </div>
+        <%= render_cell :slides, :sidebar_releated_slides, { :slide => @slide} %>
         </div>
     </div>
 

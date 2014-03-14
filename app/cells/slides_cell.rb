@@ -18,4 +18,20 @@ class SlidesCell < BaseCell
     render
   end
 
+  def sidebar_releated_slides(opts = {})
+    @slide = opts[:slide]
+    tags_objects = ActsAsTaggable::Tag.where(:name.in => @slide.tags, "tagged.object_class" => "Slide" ).all.to_a
+    @slides = Array.new
+
+    for tags_arr in tags_objects do
+      for tag in tags_arr.tagged
+        if tag['object_id'] != @slide.id
+          @slides.insert(tag['object_id'], Slide.find_by_id(tag['object_id']))
+        end
+      end
+    end
+    @slides = @slides.compact
+    render
+  end
+
 end

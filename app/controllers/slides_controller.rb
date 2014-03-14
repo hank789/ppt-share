@@ -57,7 +57,6 @@ class SlidesController < ApplicationController
         #render :text => "#{attach.file}?token=#{dlToken}"
         # data = open("#{attach.file}?token=#{dlToken}")
         send_data "#{attach.file}?token=#{dlToken}", :filename => file_name, :type => stat["mimeType"], :disposition => 'attachment', :stream => 'true', :buffer_size => '4096'
-        #redirect_to -1
       end
     end
   end
