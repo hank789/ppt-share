@@ -12,9 +12,9 @@ class Ability
       # admin
       can :manage, :all
     elsif user.has_role?(:member)
-      if !user.newbie?
-        can :create, Slide
-      end
+
+      can :create, Slide
+
       can :favorite, Slide
       can :update, Slide do |slide|
         (slide.user_id == user.id)
@@ -60,6 +60,5 @@ class Ability
     can :read, Reply
 
     can :read, Photo
-    can :read, Comment
   end
 end
