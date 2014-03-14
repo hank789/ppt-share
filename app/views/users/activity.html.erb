@@ -1,7 +1,7 @@
 <div class="container">
   <div class="basic-page-top">
     <h2>
-      <%= "#{current_user.login} " %> 关注的动态
+      <%= "#{current_user.login} " %>关注的动态
       <span class="pull-right">
         <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-th-list"></i>查看关注列表</a>
         <a class="btn btn-sm btn-default dropdown-toggle"><i class="glyphicon glyphicon-th"></i>发现更多</a>
@@ -24,14 +24,12 @@
 
       <!-- 我最近处理的幻灯片 -->
       <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3 class="panel-title">我最近处理的幻灯片</h3></div>
-          <ul class="list-group size-13">
+          <h5>我最近处理的幻灯片</h5>
+          <ul class="list-group">
             <% @current_slides.each do |slide| %>
             <li class="list-group-item"><%= link_to slide.title, slide_url(slide) %></li>
             <% end %>
           </ul>
-        </div>
       </div>
     </div>
   </div>
