@@ -1,11 +1,11 @@
-<div class="listing-page-top">
-  <div class="container">
+<div class="container">
+  <div class="listing-page-top">
     <h2>
       <%= @slide.title %>
       <span class="pull-right">
-				<%= slide_download_tag(@slide) %>
+        <%= slide_download_tag(@slide) %>
         <%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
-	    </span>
+      </span>
     </h2>
 
     <p>
@@ -21,11 +21,9 @@
       <li class="active"><%= link_to raw("<i class='fa fa-list'></i> 版本管理"), attachs_slide_url(@slide) %></li>
     </ul>
   </div>
-</div>
 
-<!-- Begin page content -->
-<div class="listing-page">
-  <div class="container">
+  <!-- Begin page content -->
+  <div class="listing-page">
     <ul class="media-list">
       <%= render :partial => "attachs/attach", :collection => @slide.attachs %>
     </ul>

@@ -1,26 +1,23 @@
-<div class="listing-page-top">
-  <div class="container">
+<div class="container">
+  <div class="listing-page-top">
     <h2>
       <%= @location.name %>的<%= t("users.hot_users") %>
     </h2>
   </div>
-</div>
 
-<!-- City的人员 -->
-<div class="listing-page">
-  <div class="container">
+  <!-- City的人员 -->
+  <div class="listing-page">
     <div id="users" class="box">
       <div id="hot_users" class="row user_list">
         <% if !@users.blank? %>
-            <% @users.each do |item| %>
-                <div class="item span1">
-                  <div class="avatar"><%= user_avatar_tag(item) %></div>
-                  <div class="name"><%= user_name_tag(item) %></div>
-                </div>
-            <% end %>
-        <% end %>
+        <% @users.each do |item| %>
+        <div class="item span1">
+          <div class="avatar"><%= user_avatar_tag(item) %></div>
+          <div class="name"><%= user_name_tag(item) %></div>
         </div>
+        <% end %>
+        <% end %>
       </div>
+    </div>
   </div>
 </div>
-

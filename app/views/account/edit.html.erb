@@ -1,6 +1,6 @@
 <!-- 个人设置title -->
-<div class="listing-page-top">
-  <div class="container">
+<div class="container">
+  <div class="listing-page-top">
     <h2>
       账户设置
       <span class="pull-right">
@@ -10,58 +10,56 @@
       </span>
     </h2>
   </div>
-</div>
 
 
-<!--用户基本设置-->
-<div class="listing-page">
-  <div class="container">
+  <!--用户基本设置-->
+  <div class="listing-page">
     <div class="row">
       <div class="col-md-2">
       </div>
-        <div class="col-md-8">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-wrench"></i> <%= t("users.personal_information") %></h3>
+      <div class="col-md-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-wrench"></i> <%= t("users.personal_information") %></h3>
+          </div>
+          <div class="panel-body">
+            <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :enctype => "multipart/form-data"}) do |f| %>
+            <%= render "shared/error_messages", :target => resource if params[:by].blank? %>
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.input_field :name, class: 'form-control' %>
             </div>
-            <div class="panel-body">
-              <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :enctype => "multipart/form-data"}) do |f| %>
-                  <%= render "shared/error_messages", :target => resource if params[:by].blank? %>
-                  <div class="form-group">
-                    <%= f.label :name %>
-                    <%= f.input_field :name, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :avatar %>
-                    <%= f.input_field :avatar, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :email %>
-                    <%= f.input_field :email, :disabled => (!resource.email.blank?), class: 'form-control' %>
-                  </div>
-                  <div class="checkbox">
-                    <label><%= f.check_box :email_public, :style => "width:auto;" %>公开 Email</label>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :location %>
-                    <%= f.input_field :location, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :company %>
-                    <%= f.input_field :company, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :tagline %>
-                    <%= f.input_field :tagline, class: 'form-control' %>
-                  </div>
-                  <%= f.label :bio %>
-                  <%= f.text_area :bio, :class => 'form-control', row: "5" %>
-                  <br>
-                  <%= f.submit "更新资料", :class => "btn btn-success  pull-right", 'data-disable-with' => t("common.saving") %>
-              <% end %>
+            <div class="form-group">
+              <%= f.label :avatar %>
+              <%= f.input_field :avatar, class: 'form-control' %>
             </div>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.input_field :email, :disabled => (!resource.email.blank?), class: 'form-control' %>
+            </div>
+            <div class="checkbox">
+              <label><%= f.check_box :email_public, :style => "width:auto;" %>公开 Email</label>
+            </div>
+            <div class="form-group">
+              <%= f.label :location %>
+              <%= f.input_field :location, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :company %>
+              <%= f.input_field :company, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :tagline %>
+              <%= f.input_field :tagline, class: 'form-control' %>
+            </div>
+            <%= f.label :bio %>
+            <%= f.text_area :bio, :class => 'form-control', row: "5" %>
+            <br>
+            <%= f.submit "更新资料", :class => "btn btn-success  pull-right", 'data-disable-with' => t("common.saving") %>
+            <% end %>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
@@ -73,22 +71,22 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel"><%= t("users.edit_password") %></h4>
-        </div>
+      </div>
       <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name, :by => :pwd), :html => {:method => :put}) do |f| %>
       <div class="modal-body">
-          <%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
-          <div class="form-group">
-            <%= f.label :current_password %>
-            <%= f.input_field :current_password, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password %>
-            <%= f.input_field :password, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password_confirmation %>
-            <%= f.input_field :password_confirmation, class: "form-control" %>
-          </div>
+        <%= render "shared/error_messages", :target => resource if params[:by] == "pwd" %>
+        <div class="form-group">
+          <%= f.label :current_password %>
+          <%= f.input_field :current_password, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.input_field :password, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.input_field :password_confirmation, class: "form-control" %>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,20 +115,20 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <a href="#" class="btn btn-default btn-primary" id="update_private_token">更换一个</a>
       </div>
-      </div>
     </div>
+  </div>
 </div>
 
 <!--删除账户JS-->
 <% content_for :scripts do %>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#update_private_token").click(function () {
-                $.post("<%= update_private_token_account_path %>", function (re) {
-                    $("#private_token").val(re);
-                });
-                return false;
-            })
-        });
-    </script>
+<script type="text/javascript">
+$(document).ready(function () {
+  $("#update_private_token").click(function () {
+    $.post("<%= update_private_token_account_path %>", function (re) {
+      $("#private_token").val(re);
+    });
+    return false;
+  })
+});
+</script>
 <% end %>

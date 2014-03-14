@@ -1,50 +1,50 @@
 <% content_for :scripts do %>
-    <script type="text/javascript">
-        Slides.replies_per_page = <%= @per_page %>;
-        $(document).ready(function () {
-            <% if admin? %>
-            $("#replies .reply a.edit").css('display', 'inline-block');
-            <% elsif current_user %>
-            $("#replies .reply a.edit[data-uid='<%= current_user.id %>']").css('display', 'inline-block');
-            <% end %>
-            <% if current_user && !@user_liked_reply_ids.blank? %>
-            Slides.checkRepliesLikeStatus([<%= @user_liked_reply_ids.join(",") %>]);
-            <% end %>
-        })
-    </script>
+<script type="text/javascript">
+Slides.replies_per_page = <%= @per_page %>;
+$(document).ready(function () {
+  <% if admin? %>
+  $("#replies .reply a.edit").css('display', 'inline-block');
+  <% elsif current_user %>
+  $("#replies .reply a.edit[data-uid='<%= current_user.id %>']").css('display', 'inline-block');
+  <% end %>
+  <% if current_user && !@user_liked_reply_ids.blank? %>
+  Slides.checkRepliesLikeStatus([<%= @user_liked_reply_ids.join(",") %>]);
+  <% end %>
+})
+</script>
 <% end %>
-<div class="listing-page-top">
-  <div class="container">
+
+<div class="container">
+  <div class="listing-page-top">
+
     <h2>
       <%= @slide.title %>
       <span class="pull-right">
         <% if @slide.excellent? %>
-            <i class="icon small_cert_on"></i>
-            <% if admin? %>
-                <%= link_to "取消精华", unsuggest_slide_path(@slide.id), method: "delete", class: "btn btn-sm btn-warning" %>
-            <% end %>
+        <i class="icon small_cert_on"></i>
+        <% if admin? %>
+        <%= link_to "取消精华", unsuggest_slide_path(@slide.id), method: "delete", class: "btn btn-sm btn-warning" %>
+        <% end %>
         <% end %>
         <% if owner?(@slide) or admin? %>
-            <%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
+        <%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
         <% end %>
         <% if admin? and !@slide.excellent? %>
-            <%= link_to raw("<i class='glyphicon glyphicon-thumbs-up'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华",class: "btn btn-sm btn-default", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
+        <%= link_to raw("<i class='glyphicon glyphicon-thumbs-up'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华",class: "btn btn-sm btn-default", method: "patch", data: {confirm: "确定要设置成精华么？"} %>
         <% end %>
 
 
         <%= slide_favorite_tag(@slide) %>
 
         <%= slide_download_tag(@slide) %>
-	    </span>
+      </span>
     </h2>
   </div>
-</div>
 
-<!-- Begin page content -->
-<div class="listing-page">
-  <div class="container">
+  <!-- Begin page content -->
+  <div class="listing-page">
 
-  <!-- 幻灯片展示 -->
+    <!-- 幻灯片展示 -->
     <div class="row">
       <div class="col-md-8">
         <div class="group section-wrap upper" id="upper">
@@ -70,7 +70,7 @@
           <br>
           <h4>标签：</h4>
           <hr>
-            <span class="label label-default"><%= @slide.tags.join(",") %></span>
+          <span class="label label-default"><%= @slide.tags.join(",") %></span>
           <br><br><br>
         </div>
 
@@ -79,32 +79,32 @@
           <h4>评论：</h4>
           <hr>
           <% if @replies.blank? %>
-              <div class="no_result">
-                <%= t("slides.no_replies") %>
-              </div>
+          <div class="no_result">
+            <%= t("slides.no_replies") %>
+          </div>
           <% else %>
-              <div id="replies" class="box box_gray">
-                <div class="total">
-                  共收到 <b><%= @slide.replies_count %></b> 条回复
-                </div>
-                <div class="items">
-                  <%= cache([@slide, params[:page], "raw:#{@show_raw}"]) do %>
-                      <%= render :partial => "replies/reply", :collection => @replies %>
-                  <% end %>
-                </div>
-                <div class="pagination">
-                  <%= will_paginate @replies, :inner_window => 2, container: false, :params => {:anchor => 'replies'} %>
-                </div>
-              </div>
+          <div id="replies" class="box box_gray">
+            <div class="total">
+              共收到 <b><%= @slide.replies_count %></b> 条回复
+            </div>
+            <div class="items">
+              <%= cache([@slide, params[:page], "raw:#{@show_raw}"]) do %>
+              <%= render :partial => "replies/reply", :collection => @replies %>
+              <% end %>
+            </div>
+            <div class="pagination">
+              <%= will_paginate @replies, :inner_window => 2, container: false, :params => {:anchor => 'replies'} %>
+            </div>
+          </div>
           <% end %>
           <!-- /#发表评论-->
           <div class="panel-body">
             <%= form_for(Reply.new, :remote => true, :url => slide_replies_path(@slide), role: "form") do |f| %>
-                <div class="form-group">
-                  <%= f.text_area :body, :class => "form-control", :rows => "5", :tabindex => "1" %>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success pull-right"><i class="fa fa-comments-o"></i>&nbsp;发布评论</button>
+            <div class="form-group">
+              <%= f.text_area :body, :class => "form-control", :rows => "5", :tabindex => "1" %>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success pull-right"><i class="fa fa-comments-o"></i>&nbsp;发布评论</button>
             <% end %>
           </div>
 
@@ -113,66 +113,47 @@
       </div>
 
       <div class="col-md-4">
-      <!-- /#踩赞排名和中和排名 
-        <div class="panel-body">
-          <div class="col-md-4" style="text-align:center;">
-            <h3>3244</h3>
-            <h5>赞</h5>
-          </div>
-
-          <div class="col-md-4" style="text-align:center;">
-            <h3>12</h3>
-            <h5>踩</h5>
-          </div>
-
-          <div class="col-md-4" style="text-align:center;">
-            <h3>234</h3>
-            <h5>综合排名</h5>
-          </div>
-        </div> 
-        -->
-
         <!-- /#幻灯片信息，不能操作 -->
         <div class="panel panel-default">
           <div class="panel-heading"><h3 class="panel-title">幻灯片信息</h3></div>
-            <ul class="list-group size-13">
-              <li class="list-group-item">作者：<%= user_name_tag(@slide.user) %></li>
-              <li class="list-group-item">上传时间：<%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></li>
-              <li class="list-group-item">文件类型：<%= case @attach.file_type
-                                                     when "application/pdf"
-                                                       "PDF"
-                                                     else
-                                                       "PowerPoint"
-                                                   end %></li>
-              <li class="list-group-item">共享方式：<%= @slide.private ? "隐私" : "完全公开" %></li>
-              <li class="list-group-item">文件大小：<%= number_to_human_size(@attach.file_size) %> </li>
-              <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
-              <!-- /#to do 完成收藏人数的功能 -->
-              <li class="list-group-item">收藏人数：<span id="slide_fav_count"><%= @slide.favourite_count %></span></li>
-              <li class="list-group-item">下载人数：<%= @slide.downloads %></li>
-            </ul>
-          </div>
+          <ul class="list-group size-13">
+            <li class="list-group-item">作者：<%= user_name_tag(@slide.user) %></li>
+            <li class="list-group-item">上传时间：<%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></li>
+            <li class="list-group-item">文件类型：<%= case @attach.file_type
+            when "application/pdf"
+              "PDF"
+            else
+              "PowerPoint"
+            end %></li>
+            <li class="list-group-item">共享方式：<%= @slide.private ? "隐私" : "完全公开" %></li>
+            <li class="list-group-item">文件大小：<%= number_to_human_size(@attach.file_size) %> </li>
+            <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
+            <!-- /#to do 完成收藏人数的功能 -->
+            <li class="list-group-item">收藏人数：<span id="slide_fav_count"><%= @slide.favourite_count %></span></li>
+            <li class="list-group-item">下载人数：<%= @slide.downloads %></li>
+          </ul>
+        </div>
 
-          <!-- /#便捷化的分享 -->
-          <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">分享链接</h3></div>
-              <ul class="list-group size-13">
-                <li class="list-group-item">单页分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
-                <a class="btn btn-xs btn-default">复制</a></li>
-                <li class="list-group-item">全屏分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+        <!-- /#便捷化的分享 -->
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3 class="panel-title">分享链接</h3></div>
+          <ul class="list-group size-13">
+            <li class="list-group-item">单页分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+              <a class="btn btn-xs btn-default">复制</a></li>
+              <li class="list-group-item">全屏分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
                 <a class="btn btn-xs btn-default">复制</a></li>
                 <li class="list-group-item">嵌套分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
-                <a class="btn btn-xs btn-default">复制</a></li>
-                <li class="list-group-item">邮件分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
-                <a class="btn btn-xs btn-default">复制</a></li>
-                <li class="list-group-item"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></li>
-              </ul>
+                  <a class="btn btn-xs btn-default">复制</a></li>
+                  <li class="list-group-item">邮件分享链接：<input type="text" readonly="" value="http://makeslide.com/i/posKU2U0" class="sls" onclick="this.select();">
+                    <a class="btn btn-xs btn-default">复制</a></li>
+                    <li class="list-group-item"><%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %></li>
+                  </ul>
+                </div>
+
+                <!-- /#幻灯片推荐(！！！！！！还没有实现宽度自适应！！！！！！) -->
+                <%= render_cell :slides, :sidebar_releated_slides, { :slide => @slide} %>
+              </div>
+            </div>
+
           </div>
-
-          <!-- /#幻灯片推荐(！！！！！！还没有实现宽度自适应！！！！！！) -->
-        <%= render_cell :slides, :sidebar_releated_slides, { :slide => @slide} %>
         </div>
-    </div>
-
-  </div>
-</div>

@@ -1,67 +1,65 @@
-<div class="listing-page-top">
-<div class="top">
-  <br>
+<div class="container">
+  <div class="listing-page-top">
+    <div class="top">
+      <h1 class="text-center">分享是一种美德！</h1>
+      <h2 class="text-center">
+        <small>文件拖拽到下框、或点击框体后选择文件，即可完成上传。</small>
+      </h2>
+    </div>
 
-  <h1 class="text-center">分享是一种美德！</h1>
+    <!-- Begin page content -->
+    <div class="listing-page">
 
-  <h2 class="text-center">
-    <small>文件拖拽到下框、或点击框体后选择文件，即可完成上传。</small>
-  </h2>
-</div>
-
-<!-- Begin page content -->
-<div class="listing-page">
-  <div class="container">
-    <div class="row">
-      <div id="carousel_tag" class="col-md-12">
-        <div id="upload_landing" class="group section-wrap upper" id="upper">
-          <div class="wrap group">
-            <div class="section-2 group">
-              <%= simple_form_for Attach.new, :url => attachs_path, :html => {id: "uploadDropzone", :class => "dropzone", :multipart => true} do |f| %>
-                  <script type="text/javascript">
-                      $(function () {
-                          Dropzone.autoDiscover = false;
-                          $('#upload_editor').hide();
-                          var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
-                          myDropzone.on("success", function (file, data) {
-                              if (data) {
-                                  $('#slide_attach_id').val(data);
-                                  var cclass = "fa fa-spinner fa-spin";
-                              } else var cclass = "fa fa-bolt";
-                              $('#upload_editor').show();
-                              $('#carousel_tag').attr('class', 'col-md-4');
-                              $('#slide_form').attr('class', 'col-md-8');
-                              myDropzone.disable();
-                              //$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
-                          });
-                          myDropzone.on("sending", function (file, xhr, formData) {
-                              $('#carousel_tag').attr('class', 'col-md-4');
-                              formData.append('filetype', file.type);
-                              formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
-                          });
-                      });
-                  </script>
-              <% end %>
+      <div class="row">
+        <div id="carousel_tag" class="col-md-12">
+          <div id="upload_landing" class="group section-wrap upper" id="upper">
+            <div class="wrap group">
+              <div class="section-2 group">
+                <%= simple_form_for Attach.new, :url => attachs_path, :html => {id: "uploadDropzone", :class => "dropzone", :multipart => true} do |f| %>
+                <script type="text/javascript">
+                $(function () {
+                  Dropzone.autoDiscover = false;
+                  $('#upload_editor').hide();
+                  var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
+                  myDropzone.on("success", function (file, data) {
+                    if (data) {
+                      $('#slide_attach_id').val(data);
+                      var cclass = "fa fa-spinner fa-spin";
+                    } else var cclass = "fa fa-bolt";
+                    $('#upload_editor').show();
+                    $('#carousel_tag').attr('class', 'col-md-4');
+                    $('#slide_form').attr('class', 'col-md-8');
+                    myDropzone.disable();
+                    //$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
+                  });
+                  myDropzone.on("sending", function (file, xhr, formData) {
+                    $('#carousel_tag').attr('class', 'col-md-4');
+                    formData.append('filetype', file.type);
+                    formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
+                  });
+                });
+                </script>
+                <% end %>
+              </div>
             </div>
           </div>
+
+          <br><br>
+          <tr>
+            <td><label>1.</label></td>
+            <td><strong class="fn">上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表文件上传完成。</strong></td>
+          </tr>
+          <br><br>
+          <tr>
+            <td><label>2.</label></td>
+            <td><strong class="fn">目前支持的上传文件格式有：PowerPoint、PDF。</strong></td>
+          </tr>
+
         </div>
-
-        <br><br>
-        <tr>
-          <td><label>1.</label></td>
-          <td><strong class="fn">上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表文件上传完成。</strong></td>
-        </tr>
-        <br><br>
-        <tr>
-          <td><label>2.</label></td>
-          <td><strong class="fn">目前支持的上传文件格式有：PowerPoint、PDF。</strong></td>
-        </tr>
-
-      </div>
-      <div id="slide_form">
-        <%= render 'form' %>
+        <div id="slide_form">
+          <%= render 'form' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
