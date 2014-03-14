@@ -1,20 +1,18 @@
-<div class="listing-page-top">
-  <div class="container">
+<div class="container">
+  <div class="listing-page-top">
     <h2>
       <%= "#{current_user.login} " %> 收藏的幻灯片
     </h2>
   </div>
-</div>
 
-<!-- 收藏的幻灯片展示 -->
-<div class="listing-page">
-  <div class="container">
-      <div class="row">
-        <%= render :partial => "slides/slide", :collection => @slides,:locals => {:slides_col_md => @slides_col_md} %>
-      </div>
+  <!-- 收藏的幻灯片展示 -->
+  <div class="listing-page">
+    <div class="row">
+      <%= render :partial => "slides/slide", :collection => @slides,:locals => {:slides_col_md => @slides_col_md} %>
+    </div>
   </div>
 
-<div class="pagination">
+  <div class="pagination">
     <%= will_paginate @slides, :inner_window => 2, container: false %>
   </div>
 </div>
