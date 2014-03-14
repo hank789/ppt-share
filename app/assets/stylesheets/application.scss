@@ -114,5 +114,21 @@ html {
 }
 
 
+// 全局Footer
 
-// 全部Footer
+.footer {
+  border-top:0;
+  min-width: 940px;
+  margin-bottom:30px;
+  margin-top:0px;
+  padding:0;
+  padding-bottom:10px;
+}
+.footer p {
+  margin:3px 0;
+  color: #555;
+}
+.footer_buttons {
+  width: 130px;
+  padding-bottom: 15px;
+}

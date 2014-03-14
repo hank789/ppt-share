@@ -11,26 +11,12 @@
     padding: 0 0 60px;
 }
 /* Set the fixed height of the footer here */
- #footer {
-    text-align: center;
-    padding: 2em;
-    background-color: white;
-    border-top: 2px solid #F0F0F0;
-}
-#footer p {
-    font-size: 12px;
-}
 .hero-spacer {
     margin-top: 50px;
 }
 .hero-feature {
     margin-bottom: 30px;
     /* spaces out the feature boxes once they start to stack responsively */
-}
-footer {
-    font-size: 12px;
-    margin: 50px 0;
-    text-align: center;
 }
 /* Custom styles */
  body .btn .glyphicon {
@@ -473,12 +459,7 @@ body .top-form-inner {
     background: #F7F7F7;
     padding: 60px 0px;
 }
-footer {
-    margin: 50px 0;
-}
-footer a {
-    font-weight: bold;
-}
+
 /* Overide BS Styles */
  .fade {
     opacity: 1;
