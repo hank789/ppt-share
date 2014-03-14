@@ -44,15 +44,6 @@ class Ability
         photo.user_id == photo.id
       end
 
-      # Comment
-      can :create, Comment
-      can :update, Comment do |comment|
-        comment.user_id == comment.id
-      end
-      can :destroy, Comment do |comment|
-        comment.user_id == comment.id
-      end
-
       basic_read_only
     else
       # banned or unknown situation

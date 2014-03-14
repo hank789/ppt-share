@@ -2,7 +2,6 @@ MakeSlide::Application.routes.draw do
   require 'api'
   require "api_v2"
 
-  resources :comments
   root :to => "home#index"
 
   devise_for :users, :path => "account", :controllers => {
