@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="listing-page-top">
+  <div class="basic-page-top">
     <h2>
       <%= @slide.title %>
       <span class="pull-right">
@@ -23,7 +23,7 @@
   </div>
 
   <!-- Begin page content -->
-  <div class="listing-page">
+  <div class="basic-page">
     <ul class="media-list">
       <%= render :partial => "attachs/attach", :collection => @slide.attachs %>
     </ul>

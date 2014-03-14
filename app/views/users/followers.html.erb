@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="listing-page-top">
+  <div class="basic-page-top">
     <h2>
       <%= "#{current_user.login} " %> 的粉丝
     </h2>
   </div>
 
   <!-- 分类列表，现在逻辑是错的 -->
-  <div class="listing-page">
+  <div class="basic-page">
     <div id="users" class="box">
       <div id="hot_users" class="row user_list">
         <% if !@users.blank? %>

@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="listing-page-top">
+  <div class="basic-page-top">
     <h2>
       <%= "#{current_user.login} " %>的收藏夹
     </h2>
   </div>
 
   <!-- 登陆者的收藏夹展示 -->
-  <div class="listing-page">
+  <div class="basic-page">
     <div class="row">
       <%= render :partial => "slides/slide", :collection => @slides,:locals => {:slides_col_md => @slides_col_md} %>
     </div>

@@ -113,9 +113,67 @@ html {
     font-size: 12px;
 }
 
+// 整体页面布局
+// 普通页面抬头
+.basic-page-top {
+    padding: 2em 0px 0em;
+    border-bottom: 1px solid #DDD;
+}
+.basic-page-top .nav-tabs {
+    border-bottom: none;
+    margin-top: 45px;
+}
+.basic-page-top h2 {
+    margin-top: 5px;
+    font-family: inherit;
+    font-weight: bold;
+}
+.basic-page-top .nav-tabs i {
+    padding-right: 7px;
+    font-size: 15px;
+    vertical-align: middle;
+}
+.basic-page-top p {
+    font-size: 11px;
+    color: #635F5F;
+}
+.basic-page-top .label {
+    font-family: inherit;
+    font-size: 99%;
+}
+
+// 普通页面内容
+.basic-page {
+    padding: 4em 0px;
+    background: #FFF;
+}
+.basic-page .tab-content {
+    padding: 20px;
+    border: 1px solid #D3D3D3;
+    border-top: none;
+}
+.basic-page .col-lg-12 {
+    border-bottom: 1px solid #DAD7D7;
+    margin-bottom: 17px;
+}
+.basic-page .media {
+    /*box-shadow:0px 0px 4px -2px #000;*/
+    margin: 13px 0;
+    padding: 5px 25px;
+}
+.basic-page .dp {
+    border:10px solid #eee;
+    transition: all 0.2s ease-in-out;
+}
+.basic-page .dp:hover {
+    border:5px solid #eee;
+    /*-webkit-font-smoothing:antialiased;*/
+}
+.basic-page .table {
+    font-size: 11px;
+}
 
 // 全局Footer
-
 .footer {
   border-top:0;
   min-width: 940px;

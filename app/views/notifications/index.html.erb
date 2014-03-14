@@ -1,13 +1,13 @@
 <div class="container" id="notifications">
 
-  <div class="listing-page-top">
+  <div class="basic-page-top">
     <h2>
       通知提醒
       <small>（<%= @notifications.total_entries %> 条）</small>
     </h2>
   </div>
   <!-- 通知内容 -->
-  <div class="listing-page">
+  <div class="basic-page">
     <% if @notifications.blank? %>
     <div class="no_result" style="padding:30px 30px;">暂无通知</div>
     <% else %>
