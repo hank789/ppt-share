@@ -5,7 +5,7 @@
   mongoid:
     models:
       user: "User"
-      topic: "Topic"
+      slide: "Slide"
       post: "Post"
       page: "Wiki"
     attributes:
@@ -24,7 +24,7 @@
         verified: "Verified"
         remember_me: "Remember me"
         current_password: "Current Password"
-      topic:
+      slide:
         title: "Title"
         user_id: "User"
         body: "Content"

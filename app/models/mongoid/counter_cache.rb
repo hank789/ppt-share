@@ -3,12 +3,12 @@
 # https://gist.github.com/1033906
 #
 # class Forum
-#   references_many :topics
+#   references_many :slides
 #   references_many :posts
 # end
 #
 #
-# class Topic
+# class Slide
 #   referenced_in :forum
 #   include Mongoid::CounterCache
 #   counter_cache name: :forum, inverse_of: :posts

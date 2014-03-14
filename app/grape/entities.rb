@@ -14,6 +14,10 @@ module MakeSlide
       end
     end
 
+    class UserSlide < Grape::Entity
+      expose :id, :title, :body, :body_html, :created_at, :updated_at, :replied_at, :replies_count, :node_name, :node_id, :last_reply_user_login
+    end
+
     class DetailUser < Grape::Entity
       expose :id, :name, :login, :location, :company, :twitter, :website, :bio, :tagline, :github_url
       expose :email do |model, opts|
@@ -30,36 +34,47 @@ module MakeSlide
           "#{Setting.gravatar_proxy}/avatar/#{hash}.png?s=120"
         end
       end
-      expose(:topics, :unless => {:collection => true}) do |model, opts|
-        model.topics.recent.limit(opts[:topics_limit] ||= 1).as_json(:only => [:id, :title, :created_at, :node_name, :replies_count])
+      expose(:slides, :unless => { :collection => true }) do |model, opts|
+        APIEntities::UserSlide.represent model.slides.recent.limit(opts[:slides_limit] ||= 1)
       end
     end
 
-    class UserTopic < Grape::Entity
-      expose :id, :title, :body, :body_html, :created_at, :updated_at, :replied_at, :replies_count, :node_name, :node_id, :last_reply_user_login
-    end
-
     class Reply < Grape::Entity
-      expose :id, :body, :body_html, :created_at, :updated_at
+      expose :id, :body, :body_html, :created_at, :updated_at, :deleted_at, :slide_id
       expose :user, :using => APIEntities::User
     end
-
-    class Topic < Grape::Entity
+    
+    class Slide < Grape::Entity
       expose :id, :title, :created_at, :updated_at, :replied_at, :replies_count, :node_name, :node_id, :last_reply_user_id, :last_reply_user_login
       expose :user, :using => APIEntities::User
     end
 
-    class DetailTopic < Topic
+    class DetailSlide < Slide
       expose :id, :title, :created_at, :updated_at, :replied_at, :replies_count, :node_name, :node_id, :last_reply_user_id, :last_reply_user_login, :body, :body_html
-      expose(:hits) { |topic| topic.hits.to_i }
+      expose(:hits) { |slide| slide.hits.to_i }
       expose :user, :using => APIEntities::User
-      # replies only exposed when a single topic is fetched
-      expose :replies, :using => APIEntities::Reply, :unless => {:collection => true}
+      # replies only exposed when a single slide is fetched
+      expose(:replies, :unless => { :collection => true }) do |model, opts|
+        replies = model.replies
+        replies = replies.unscoped if opts[:include_deleted]
+        APIEntities::Reply.represent(replies.asc(:_id))
+      end
     end
 
     class Node < Grape::Entity
-      expose :id, :name, :topics_count, :summary, :section_id, :sort
-      expose(:section_name) { |model, opts| model.section.try(:name) }
+      expose :id, :name, :slides_count, :summary, :section_id, :sort
+      expose(:section_name) {|model, opts| model.section.try(:name) }
+    end
+
+    class Notification < Grape::Entity
+      expose :id, :created_at, :updated_at, :read
+      expose(:mention, :if => lambda {|model, opts| model.is_a? ::Notification::Mention }) do |model, opts|
+        # mode.mentionable_type could be "Reply" or "Slide"
+        APIEntities.const_get(model.mentionable_type).represent model.mentionable
+      end
+      expose(:reply, :if => lambda {|model, opts| model.is_a? ::Notification::SlideReply }) do |model, opts|
+        APIEntities::Reply.represent model.reply
+      end
     end
   end
 end

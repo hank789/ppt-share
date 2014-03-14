@@ -64,12 +64,12 @@ body {
       display: none;
     }
   }
-  #nav_new_topic {
+  #nav_new_slide {
     margin-right: 10px;
   }
 }
 
-table.node_topics .replies {
+table.node_slides .replies {
   width: 40px;
 }
 
@@ -111,7 +111,7 @@ table.node_topics .replies {
   }
 }
 
-#new_topic {
+#new_slide {
   #preview {
     width: 100%;
     padding: 0;
@@ -210,24 +210,24 @@ form {
   }
 }
 
-.topics .topic .infos {
+.slides .slide .infos {
   padding-right: 40px;
 }
 
-.topics .topic .replies {
+.slides .slide .replies {
   display: inline;
   width: auto;
   margin-right: 10px;
 }
 
-.topics .topic .replies a.count, .topics .topic .replies a.count:visited {
+.slides .slide .replies a.count, .slides .slide .replies a.count:visited {
   margin: 0;
   padding: 0px 5px;
   font-size: 10px;
   font-weight: normal;
 }
 
-#main .topics .topic h1 {
+#main .slides .slide h1 {
   font-size: 16px;
 }
 
@@ -239,13 +239,13 @@ form {
   }
 }
 
-.topics {
+.slides {
   .body {
     img {
       max-width: 98%;
     }
   }
-  .topic {
+  .slide {
     .avatar {
       width: 33px;
       img {
@@ -297,7 +297,7 @@ form {
   padding: 4px;
 }
 
-.new_topic {
+.new_slide {
   .input {
     .span3 {
       display: block;
@@ -308,7 +308,7 @@ form {
   .chzn-container {
     display: block;
   }
-  #topic_title {
+  #slide_title {
     display: block;
     width: 98%;
   }
@@ -357,25 +357,25 @@ form {
   display: none;
 }
 
-.home_suggest_topics {
+.home_suggest_slides {
   .box {
     width: auto;
     position: static;
   }
-  .topics {
-    .topic {
+  .slides {
+    .slide {
       height: auto;
       .title {
         white-space: break-all;
         overflow: auto;
       }
     }
-    .topic:nth-child(odd) {
+    .slide:nth-child(odd) {
       width: auto;
       float: none;
       clear: left;
     }
-    .topic:nth-child(even) {
+    .slide:nth-child(even) {
       width: auto;
       padding-left: 0;
       margin-left: -10px;

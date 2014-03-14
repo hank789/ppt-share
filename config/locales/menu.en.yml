@@ -49,7 +49,7 @@
     last_reply_time: "Last replied at"
     reply: "Reply"
     index_node_navigation: "Node Navigation"
-    highlight_topic: "Sticky Topic"
+    highlight_slide: "Sticky Slide"
     statics: "Statistics"
     comments: "Comments"
     no_search_result: "No search result"
@@ -58,18 +58,18 @@
     editor_toolbar_preview: "Preview"
     by: "by"
     at: "on"
-    hot_topics: "Hot topics"
+    hot_slides: "Hot slides"
   reply:
     edit_reply: "Edit Reply"
     delete_reply_success: 'Delete successfully.'
-    topic_location: 'Replied to'
+    slide_location: 'Replied to'
   photos:
     upload_and_insert_code: "Upload and insert code"
     uploading: "Uploading"
   sites:
     create: Submit a site
   menu:
-    topics: "Discussion"
+    slides: "Discussion"
     wiki: "Wiki"
     users: "Users"
     cpanel: "Control Panel"
@@ -94,7 +94,7 @@
     you_have_successfully: "You have successfully registered an account in"
     registered_an_account: "."
   rss:
-    recent_topics_description: "Recent Topics in %{name} Forum."
-    recent_topics_title: "%{name} Forum"
-    recent_node_topics_description: "Recent Topic in %{node_name} of %{name} Forum."
-    recent_node_topics_title: "%{node_name} node of %{name} Forum"
+    recent_slides_description: "Recent Slides in %{name} Forum."
+    recent_slides_title: "%{name} Forum"
+    recent_node_slides_description: "Recent Slide in %{node_name} of %{name} Forum."
+    recent_node_slides_title: "%{node_name} node of %{name} Forum"

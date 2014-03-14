@@ -15,8 +15,8 @@ config/thin.yml
 config/redis.yml
 config/mailer_daemon.yml
 public/uploads/**/*
-public/topics
-public/topics/**/*
+public/slides
+public/slides/**/*
 .redcar
 .DS_Store
 *.swp

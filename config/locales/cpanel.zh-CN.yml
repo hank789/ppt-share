@@ -7,7 +7,7 @@
       sections: "分类"
       nodes: "节点"
       wiki: "Wiki"
-      topics: "帖子"
+      slides: "帖子"
       replies: "回复"
       photos: "图片"
       notes: "记事本"
@@ -16,7 +16,7 @@
       sites: "SaaS产品"
       locations: "城市"
     overview: "概览"
-    recent_topics: "最近帖子"
+    recent_slides: "最近帖子"
     statics: "统计信息"
     site_configs:
       settings: "设置项"
@@ -24,5 +24,5 @@
       edit_setting: "修改设置"
     users:
       trust_user_can_modify_wiki: "信任用户将可以修改 Wiki"
-    topic_list: "话题列表"
+    slide_list: "话题列表"
     check_photo: "瀏覽圖片"

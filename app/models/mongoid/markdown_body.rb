@@ -10,7 +10,7 @@ module Mongoid
 
     private
     def markdown_body
-      self.body_html = MarkdownTopicConverter.format(self.body) if self.body_changed?
+      self.body_html = MarkdownSlideConverter.format(self.body) if self.body_changed?
     end
   end
 end

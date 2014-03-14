@@ -12,10 +12,11 @@ module Redcarpet
       include Rouge::Plugins::Redcarpet
 
       def initialize(extensions={})
-        super(extensions.merge(:xhtml => true,
-                               :no_styles => true,
-                               :escape_html => true,
-                               :hard_wrap => true))
+        super(extensions.merge(xhtml: true,
+                               no_styles: true,
+                               escape_html: true,
+                               hard_wrap: true,
+                               link_attributes: {target: '_blank'}))
       end
 
 
@@ -48,8 +49,8 @@ module Redcarpet
       end
     end
 
-    class HTMLwithTopic < HTMLwithSyntaxHighlight
-      # Topic 里面，所有的 head 改为 h4 显示
+    class HTMLwithSlide < HTMLwithSyntaxHighlight
+      # Slide 里面，所有的 head 改为 h4 显示
       def header(text, header_level)
         "<h4>#{text}</h4>"
       end
@@ -78,7 +79,7 @@ class MarkdownConverter
   end
 end
 
-class MarkdownTopicConverter < MarkdownConverter
+class MarkdownSlideConverter < MarkdownConverter
   def self.format(raw)
     self.instance.format(raw)
   end
@@ -102,7 +103,7 @@ class MarkdownTopicConverter < MarkdownConverter
 
     return doc.to_html.strip
   rescue => e
-    puts "MarkdownTopicConverter.format ERROR: #{e}"
+    puts "MarkdownSlideConverter.format ERROR: #{e}"
     return text
   end
 
@@ -234,7 +235,7 @@ class MarkdownTopicConverter < MarkdownConverter
   end
 
   def initialize
-    @converter = Redcarpet::Markdown.new(Redcarpet::Render::HTMLwithTopic.new, {
+    @converter = Redcarpet::Markdown.new(Redcarpet::Render::HTMLwithSlide.new, {
         :autolink => true,
         :fenced_code_blocks => true,
         :strikethrough => true,

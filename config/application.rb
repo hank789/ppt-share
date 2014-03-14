@@ -17,7 +17,7 @@ module MakeSlide
     config.autoload_paths += %W(#{config.root}/uploaders)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/grape)
-    config.autoload_paths += %W(#{Rails.root}/app/workers)
+    config.autoload_paths += %W(#{config.root}workers)
 
     config.time_zone = 'Beijing'
 
@@ -40,7 +40,7 @@ module MakeSlide
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
-
+    config.action_view.sanitized_allowed_attributes = %w{target}
     config.to_prepare {
       Devise::Mailer.layout "mailer"
     }
@@ -48,8 +48,14 @@ module MakeSlide
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
 		 mobile.css home.css)
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
     config.assets.precompile << /dropzone.+\.png$/
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '/api/*', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
+      end
+    end
   end
 end
 

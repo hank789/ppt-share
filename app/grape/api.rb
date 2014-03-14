@@ -12,32 +12,32 @@ module MakeSlide
     # APIs marked as 'require authentication' should be provided the user's private token,
     # either in post body or query string, named "token"
 
-    resource :topics do
+    resource :slides do
 
-      # Get active topics list
+      # Get active slides list
       # params[:page]
       # params[:per_page]: default is 30
       # Example
-      #   /api/topics/index.json?page=1&per_page=15
+      #   /api/slides/index.json?page=1&per_page=15
       get do
-        @topics = Topic.last_actived.includes(:user).paginate(:page => params[:page], :per_page => params[:per_page]||30)
-        present @topics, :with => APIEntities::Topic
+        @slides = Slide.last_actived.includes(:user).paginate(:page => params[:page], :per_page => params[:per_page]||30)
+        present @slides, :with => APIEntities::Slide
       end
 
-      # Get active topics of the specified node
+      # Get active slides of the specified node
       # params[:id]: node id
-      # other params are same to those of topics#index
+      # other params are same to those of slides#index
       # Example
-      #   /api/topics/node/1.json?size=30
+      #   /api/slides/node/1.json?size=30
       get "node/:id" do
         @node = Node.find(params[:id])
-        @topics = @node.topics.last_actived
-        .limit(page_size)
-        .includes(:user)
-        present @topics, :with => APIEntities::Topic
+        @slides = @node.slides.last_actived
+          .limit(page_size)
+          .includes(:user)
+        present @slides, :with => APIEntities::Slide
       end
 
-      # Post a new topic
+      # Post a new slide
       # require authentication
       # params:
       #   title
@@ -45,19 +45,19 @@ module MakeSlide
       #   node_id
       post do
         authenticate!
-        @topic = current_user.topics.new(:title => params[:title], :body => params[:body])
-        @topic.node_id = params[:node_id]
-        @topic.save!
+        @slide = current_user.slides.new(:title => params[:title], :body => params[:body])
+        @slide.node_id = params[:node_id]
+        @slide.save!
         #TODO error handling
       end
 
-      # Get topic detail
+      # Get slide detail
       # Example
-      #   /api/topics/1.json
+      #   /api/slides/1.json
       get ":id" do
-        @topic = Topic.includes(:replies).find_by_id(params[:id])
-        @topic.hits.incr(1)
-        present @topic, :with => APIEntities::DetailTopic
+        @slide = Slide.includes(:replies).find_by_id(params[:id])
+        @slide.hits.incr(1)
+        present @slide, :with => APIEntities::DetailSlide
       end
 
       # Post a new reply
@@ -65,51 +65,51 @@ module MakeSlide
       # params:
       #   body
       # Example
-      #   /api/topics/1/replies.json
+      #   /api/slides/1/replies.json
       post ":id/replies" do
         authenticate!
-        @topic = Topic.find(params[:id])
-        @reply = @topic.replies.build(:body => params[:body])
+        @slide = Slide.find(params[:id])
+        @reply = @slide.replies.build(:body => params[:body])
         @reply.user_id = current_user.id
         @reply.save
       end
 
-      # Follow a topic
+      # Follow a slide
       # require authentication
       # params:
       #   NO
       # Example
-      #   /api/topics/1/follow.json
+      #   /api/slides/1/follow.json
       post ":id/follow" do
         authenticate!
-        @topic = Topic.find(params[:id])
-        @topic.push_follower(current_user.id)
+        @slide = Slide.find(params[:id])
+        @slide.push_follower(current_user.id)
       end
 
-      # Unfollow a topic
+      # Unfollow a slide
       # require authentication
       # params:
       #   NO
       # Example
-      #   /api/topics/1/unfollow.json
+      #   /api/slides/1/unfollow.json
       post ":id/unfollow" do
         authenticate!
-        @topic = Topic.find(params[:id])
-        @topic.pull_follower(current_user.id)
+        @slide = Slide.find(params[:id])
+        @slide.pull_follower(current_user.id)
       end
 
-      # Add/Remove a topic to/from favorite
+      # Add/Remove a slide to/from favorite
       # require authentication
       # params:
       #   type(optional) default is empty, set it unfavoritate to remove favorite
       # Example
-      #   /api/topics/1/favorite.json
+      #   /api/slides/1/favorite.json
       post ":id/favorite" do
         authenticate!
         if params[:type] == "unfavorite"
-          current_user.unfavorite_topic(params[:id])
+          current_user.unfavorite_slide(params[:id])
         else
-          current_user.favorite_topic(params[:id])
+          current_user.favorite_slide(params[:id])
         end
       end
     end
@@ -123,13 +123,13 @@ module MakeSlide
       end
     end
 
-    # Mark a topic as favorite for current authenticated user
+    # Mark a slide as favorite for current authenticated user
     # Example
     # /api/user/favorite/qichunren/8.json?token=232332233223:1
     resource :user do
-      put "favorite/:user/:topic" do
+      put "favorite/:user/:slide" do
         authenticate!
-        current_user.favorite_topic(params[:topic])
+        current_user.favorite_slide(params[:slide])
       end
     end
 
@@ -141,13 +141,13 @@ module MakeSlide
         @users = User.hot.limit(20)
         present @users, :with => APIEntities::DetailUser
       end
-
+      
       # Get temp_access_token, this key is use for Faye client channel
       # Example
       # /api/users/temp_access_token?token=232332233223:1
       get "temp_access_token" do
         authenticate!
-        present ({:temp_access_token => current_user.temp_access_token}).to_json
+        present ({ :temp_access_token => current_user.temp_access_token }).to_json
       end
 
       # Get a single user
@@ -155,22 +155,22 @@ module MakeSlide
       #   /api/users/qichunren.json
       get ":user" do
         @user = User.where(:login => /^#{params[:user]}$/i).first
-        present @user, :topics_limit => 5, :with => APIEntities::DetailUser
+        present @user, :slides_limit => 5, :with => APIEntities::DetailUser
       end
 
 
-      # List topics for a user
-      get ":user/topics" do
+      # List slides for a user
+      get ":user/slides" do
         @user = User.where(:login => /^#{params[:user]}$/i).first
-        @topics = @user.topics.recent.limit(page_size)
-        present @topics, :with => APIEntities::UserTopic
+        @slides = @user.slides.recent.limit(page_size)
+        present @slides, :with => APIEntities::UserSlide
       end
 
-      # List favorite topics for a user
-      get ":user/topics/favorite" do
+      # List favorite slides for a user
+      get ":user/slides/favorite" do
         @user = User.where(:login => /^#{params[:user]}$/i).first
-        @topics = Topic.find(@user.favorite_topic_ids)
-        present @topics, :with => APIEntities::Topic
+        @slides = Slide.find(@user.favorite_slide_ids)
+        present @slides, :with => APIEntities::Slide
       end
     end
 
@@ -181,9 +181,9 @@ module MakeSlide
       get do
         @site_nodes = SiteNode.all.includes(:sites).desc('sort')
         @site_nodes.as_json(:except => :sort, :include => {
-            :sites => {
-                :only => [:name, :url, :desc, :favicon, :created_at]
-            }
+          :sites => {
+            :only => [:name, :url, :desc, :favicon, :created_at]
+          }
         })
       end
     end

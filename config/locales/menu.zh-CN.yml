@@ -48,7 +48,7 @@
     last_reply_time: "最后回复时间"
     reply: "回复"
     index_node_navigation: "讨论节点分类导航"
-    highlight_topic: "置顶话题"
+    highlight_slide: "置顶话题"
     statics: "统计信息"
     comments: "条评论"
     no_search_result: "没有搜索到相关内容。"
@@ -58,7 +58,7 @@
     node: "节点"
     by: "由"
     at: "在"
-    hot_topics: "热门讨论"
+    hot_slides: "热门讨论"
     hot_locations: "热门城市"
     replied_at: 回复于
     replies_count: "回复"
@@ -66,7 +66,7 @@
   reply:
     edit_reply: "修改回帖"
     delete_reply_success: '回帖删除成功.'
-    topic_location: '回帖所在文章'
+    slide_location: '回帖所在文章'
   photos:
     upload_and_insert_code: "上传并插入代码"
     uploading: "正在上传"
@@ -93,18 +93,18 @@
     you_have_successfully: "你已经成功在"
     registered_an_account: "注册了账号。"
   rss:
-    recent_topics_description: "%{name}讨论区最新发帖."
-    recent_topics_title: "%{name}讨论区"
-    recent_node_topics_description: "%{name} 讨论区 %{node_name} 节点最新发帖."
-    recent_node_topics_title: "%{name} 讨论区 %{node_name} 节点"
+    recent_slides_description: "%{name}讨论区最新发帖."
+    recent_slides_title: "%{name}讨论区"
+    recent_node_slides_description: "%{name} 讨论区 %{node_name} 节点最新发帖."
+    recent_node_slides_title: "%{name} 讨论区 %{node_name} 节点"
   site_config:
-    new_topic_dropdown_node_ids: "Sidebar 新建话题按钮，下拉显示的节点(node_id)，逗号隔开如 (1,3,4)"
-    node_ids_hide_in_topics_index: "要在论坛首页列表隐藏的节点,以逗号隔开"
+    new_slide_dropdown_node_ids: "Sidebar 新建话题按钮，下拉显示的节点(node_id)，逗号隔开如 (1,3,4)"
+    node_ids_hide_in_slides_index: "要在论坛首页列表隐藏的节点,以逗号隔开"
     custom_head_html: "自定 HTML head 区域的内容"
     site_index_html: "SaaS产品列表首页头的 HTML"
-    topic_index_sidebar_html: "话题列表首页边栏 HTML"
-    before_topic_html: "话题正文前面的 HTML"
-    after_topic_html: "话题后面的 HTML"
+    slide_index_sidebar_html: "话题列表首页边栏 HTML"
+    before_slide_html: "话题正文前面的 HTML"
+    after_slide_html: "话题后面的 HTML"
     footer_html: "页脚 HTML"
     wiki_index_html: "WIKI 首页 HTMl"
     index_html: "网站首页 HTML"

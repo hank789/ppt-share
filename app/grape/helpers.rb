@@ -3,8 +3,8 @@ module MakeSlide
     def warden
       env['warden']
     end
-
-    # topic helpers
+    
+    # slide helpers
     def max_page_size
       100
     end
@@ -23,7 +23,7 @@ module MakeSlide
       token = params[:token] || oauth_token
       @current_user ||= User.where(:private_token => token).first
     end
-
+    
     def oauth_token
       # 此处的是为 ruby-china-for-ios 的 token Auth 特别设计的，不是所谓的 OAuth
       # 由于 NSRails 没有特别提供独立的 token 参数， 所以直接用 OAuth 那个参数来代替
@@ -32,7 +32,7 @@ module MakeSlide
     end
 
     def authenticate!
-      error!({"error" => "401 Unauthorized"}, 401) unless current_user
+      error!({ "error" => "401 Unauthorized" }, 401) unless current_user
     end
   end
 end

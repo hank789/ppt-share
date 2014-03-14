@@ -96,13 +96,17 @@ window.App =
     $('span', el).text("#{likes_count}人喜欢")
     $("i.icon", el).attr("class", "icon small_liked")
 
-  atReplyable: (el, logins) ->
+  atReplyable : (el, logins) ->
     return if logins.length == 0
     $(el).atwho
-      at: "@"
-      data: logins
-      search_key: "search"
-      tpl: "<li data-value='${login}'>${login} <small>${name}</small></li>"
+      at : "@"
+      data : logins
+      search_key : "search"
+      tpl : "<li data-value='${login}'>${login} <small>${name}</small></li>"
+    .atwho
+        at : ":"
+        data : window.EMOJI_LIST
+        tpl : "<li data-value='${name}:'><img src='#{ASSET_URL}/assets/emojis/${name}.png' height='20' width='20'/> ${name} </li>"
     true
 
   initForDesktopView: () ->

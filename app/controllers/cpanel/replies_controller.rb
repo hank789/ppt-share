@@ -8,7 +8,7 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
   def show
     @reply = Reply.unscoped.find(params[:id])
 
-    if @reply.topic.blank?
+    if @reply.slide.blank?
       redirect_to cpanel_replies_path, :alert => "帖子已经不存在"
     end
   end

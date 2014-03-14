@@ -289,8 +289,10 @@ class User
     return false if self.favorite_slide_ids.include?(slide_id)
     self.push(favorite_slide_ids: slide_id)
     slide = Slide.find_by_id(slide_id)
-    slide.push(favourite_user_ids: self.id)
-    slide.update_attribute(:favourite_count, slide.favourite_count + 1)
+    if !slide.favourite_user_ids.include?(self.id)
+      slide.push(favourite_user_ids: self.id)
+      slide.update_attribute(:favourite_count, slide.favourite_count + 1)
+    end
     true
   end
 
