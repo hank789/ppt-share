@@ -11,26 +11,28 @@
 
   <!-- 关注的活动记录 -->
   <div class="basic-page box">
-    <div class="col-md-8">
-      <%= render_activities(@activities, layout: :activity_wrapper) %>
-      <div class="text-center">
-        <div class="pagination">
-          <%= will_paginate @activities, :inner_window => 2, container: false %>
+    <div class="row">
+      <div class="col-md-8">
+        <br>
+        <%= render_activities(@activities, layout: :activity_wrapper) %>
+        <div class="text-center">
+          <div class="pagination">
+            <%= will_paginate @activities, :inner_window => 2, container: false %>
+          </div>
+        </div>
+      </div>
+
+      <!-- 我最近处理的幻灯片 -->
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3 class="panel-title">我最近处理的幻灯片</h3></div>
+          <ul class="list-group size-13">
+            <% @current_slides.each do |slide| %>
+            <li class="list-group-item"><%= link_to slide.title, slide_url(slide) %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
-
-    <!-- 我最近处理的幻灯片 -->
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">我最近处理的幻灯片</h3></div>
-        <ul class="list-group size-13">
-          <% @current_slides.each do |slide| %>
-          <li class="list-group-item"><%= link_to slide.title, slide_url(slide) %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
   </div>
-</div>
 </div>
