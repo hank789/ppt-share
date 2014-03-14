@@ -30,7 +30,7 @@ class Slide
   field :private, :type => Mongoid::Boolean, :default => false
   # 删除人
   field :who_deleted
-  field :slide
+  field :attach_id
 
   # 精华贴 0 否， 1 是
   field :excellent, type: Integer, default: 0

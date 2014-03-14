@@ -50,7 +50,7 @@
         <div class="group section-wrap upper" id="upper">
           <div class="wrap group">
             <div class="section-2 group">
-              <%= render_cell :slides, :carousel, :attach_id => @slide.slide %>
+              <%= render_cell :slides, :carousel, :attach_id => @slide.attach_id %>
             </div>
           </div>
         </div>
@@ -138,7 +138,6 @@
             <ul class="list-group size-13">
               <li class="list-group-item">作者：<%= user_name_tag(@slide.user) %></li>
               <li class="list-group-item">上传时间：<%= sanitize t("common.created_at", :time => timeago(@slide.created_at)) %></li>
-              <li class="list-group-item">文件分类：功能未实现 </li>
               <li class="list-group-item">文件类型：<%= case @attach.file_type
                                                      when "application/pdf"
                                                        "PDF"
@@ -146,10 +145,10 @@
                                                        "PowerPoint"
                                                    end %></li>
               <li class="list-group-item">共享方式：<%= @slide.private ? "隐私" : "完全公开" %></li>
-              <li class="list-group-item">文件大小：功能未实现 </li>
+              <li class="list-group-item">文件大小：<%= number_to_human_size(@attach.file_size) %> </li>
               <li class="list-group-item">阅读人数：<%= @slide.hits %></li>
               <!-- /#to do 完成收藏人数的功能 -->
-              <li class="list-group-item">收藏人数：<%= @slide.favourite_count %></li>
+              <li class="list-group-item">收藏人数：<span id="slide_fav_count"><%= @slide.favourite_count %></span></li>
               <li class="list-group-item">下载人数：<%= @slide.downloads %></li>
             </ul>
           </div>

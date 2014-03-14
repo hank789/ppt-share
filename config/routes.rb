@@ -25,6 +25,7 @@ MakeSlide::Application.routes.draw do
       post :reply
       post :favorite
       get :attachs
+      get :download
       patch :suggest
       delete :unsuggest
     end
@@ -34,12 +35,6 @@ MakeSlide::Application.routes.draw do
       get :excellent
     end
     resources :replies
-  end
-
-  resources :attachs, :except => :index do
-    member do
-      get :download
-    end
   end
 
   resources :photos

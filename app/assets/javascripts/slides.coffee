@@ -151,10 +151,12 @@ window.Slides =
         type: "POST"
       $('span', el).text("收藏")
       $("i.glyphicon", el).attr("class", "glyphicon glyphicon-star-empty")
+      $("#slide_fav_count").text(parseInt($("#slide_fav_count").text()) - 1)
     else
       $.post "/slides/#{slide_id}/favorite"
       $('span', el).text("取消收藏")
       $("i.glyphicon", el).attr("class", "glyphicon glyphicon-star")
+      $("#slide_fav_count").text(parseInt($("#slide_fav_count").text()) + 1)
     false
 
   follow: (el) ->
@@ -180,7 +182,7 @@ window.Slides =
       url: "/attachs/#{attach_id}/download"
       type: "GET"
       success: (data) ->
-        alert(data)
+
     false
 
   carousel: (attach_id) ->

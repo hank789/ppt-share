@@ -43,16 +43,29 @@ class SlidesController < ApplicationController
   end
 
   def download
-    @slide = Slide.find(params[:id])
-    @slide.downloads.incr(1)
-    send_file @slide.slide
-    render :action => "index"
+    unless current_user
+      redirect_to new_user_session_path
+    else
+      attach = Attach.find(params[:id])
+      slide = Slide.find(attach.slide_id)
+      key = attach.file.to_s.split("#{Setting.qiniu_bucket_domain}/")
+      if key.length == 2
+        stat = Qiniu::RS.stat(Setting.qiniu_bucket, key[1])
+        slide.downloads.incr(1)
+        dlToken = Qiniu::RS.generate_download_token :expires_in => 3600, :pattern => attach.file
+        file_name = slide.title + File.extname(key[1])
+        #render :text => "#{attach.file}?token=#{dlToken}"
+        # data = open("#{attach.file}?token=#{dlToken}")
+        send_data "#{attach.file}?token=#{dlToken}", :filename => file_name, :type => stat["mimeType"], :disposition => 'attachment', :stream => 'true', :buffer_size => '4096'
+        #redirect_to -1
+      end
+    end
   end
 
   def show
     @slide = Slide.without_body.find(params[:id])
     @slide.hits.incr(1)
-    @attach = Attach.find_by_id(@slide.slide)
+    @attach = Attach.find_by_id(@slide.attach_id)
     @show_raw = params[:raw] == "1"
 
     @per_page = Reply.per_page
@@ -105,11 +118,11 @@ class SlidesController < ApplicationController
 
   def create
     @slide = Slide.new(slide_params)
-    @slide.slide = "" unless !@slide.slide.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.slide})
+    @slide.attach_id = "" unless !@slide.attach_id.nil? && Attach.exists({:user_id => current_user.id, :_id => @slide.attach_id})
     @slide.user_id = current_user.id
     if @slide.save
-      if !@slide.slide.blank?
-        @attach = Attach.find(@slide.slide)
+      if !@slide.attach_id.blank?
+        @attach = Attach.find(@slide.attach_id)
         if @attach.slide_id.nil?
           @attach.slide_id = @slide._id
           @attach.save
@@ -199,6 +212,6 @@ class SlidesController < ApplicationController
   end
 
   def slide_params
-    params.require(:slide).permit(:title, :body, :slide, :private)
+    params.require(:slide).permit(:title, :body, :attach_id, :private)
   end
 end

@@ -25,7 +25,7 @@
                           var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
                           myDropzone.on("success", function (file, data) {
                               if (data) {
-                                  $('#slide_slide').val(data);
+                                  $('#slide_attach_id').val(data);
                                   var cclass = "fa fa-spinner fa-spin";
                               } else var cclass = "fa fa-bolt";
                               $('#upload_editor').show();
