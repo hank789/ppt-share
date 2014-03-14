@@ -1,3 +1,6 @@
+// 幻灯片展示的相关样式
+
+// 评论的样式
 #replies {
   .total {
     padding: 0 10px 6px 10px;
@@ -113,7 +116,7 @@
   }
 }
 
-/* Slide & Reply body format */
+/* 幻灯片和评论body的样式 */
 #replies .reply .body,
 .markdown_body {
   position: relative;
@@ -286,6 +289,7 @@
   }
 }
 
+// 原来rubychina的右边栏样式
 .sidebar {
   .hot_nodes {
     ul {
