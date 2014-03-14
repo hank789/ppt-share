@@ -66,7 +66,7 @@ class Slide
 
   # scopes
   scope :last_actived, desc(:last_active_mark)
-  # 推荐的话题
+  # 推荐的幻灯片
   scope :suggest, -> { where(:suggested_at.ne => nil).desc(:suggested_at) }
   scope :fields_for_list, -> { without(:body, :body_html) }
   scope :high_likes, -> { desc(:likes_count, :_id) }

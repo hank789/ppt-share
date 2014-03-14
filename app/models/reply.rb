@@ -49,7 +49,7 @@ class Reply
     slide.update_last_reply(self)
   end
 
-  # 更新的时候也更新话题的 updated_at 以便于清理缓存之类的东西
+  # 更新的时候也更新幻灯片的 updated_at 以便于清理缓存之类的东西
   after_update :update_parent_slide_updated_at
   # 删除的时候也要更新 Slide 的 updated_at 以便清理缓存
   after_destroy :update_parent_slide_updated_at

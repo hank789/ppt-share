@@ -2,7 +2,7 @@
   mongoid:
     models:
       user: "用户"
-      slide: "话题"
+      slide: "幻灯片"
       post: "文章"
       page: "Wiki"
     attributes:

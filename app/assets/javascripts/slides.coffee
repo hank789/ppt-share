@@ -2,7 +2,7 @@
 window.Slides =
   replies_per_page: 50
 
-# 往话题编辑器里面插入图片代码
+# 往幻灯片编辑器里面插入图片代码
   appendImageFromUpload: (srcs) ->
     txtBox = $(".slide_editor")
     caret_pos = txtBox.caret('pos')
@@ -197,7 +197,7 @@ window.Slides =
       $("#reply > form").submit()
     return false
 
-# 往话题编辑器里面插入代码模版
+# 往幻灯片编辑器里面插入代码模版
   appendCodesFromHint: (language = '') ->
     txtBox = $(".slide_editor")
     caret_pos = txtBox.caret('pos')

@@ -6,7 +6,7 @@ class Notification::SlideReply < Notification::Base
   def notify_hash
     return "" if self.reply.blank?
     {
-        :title => "关注的话题有了新回复:",
+        :title => "关注的幻灯片有了新回复:",
         :content => self.reply_body[0, 30],
         :content_path => self.content_path
     }

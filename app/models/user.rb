@@ -282,7 +282,7 @@ class User
     likeable.create_activity :unlike, owner: self
   end
 
-  # 收藏话题
+  # 收藏幻灯片
   def favorite_slide(slide_id)
     return false if slide_id.blank?
     slide_id = slide_id.to_i
@@ -296,7 +296,7 @@ class User
     true
   end
 
-  # 取消对话题的收藏
+  # 取消对幻灯片的收藏
   def unfavorite_slide(slide_id)
     return false if slide_id.blank?
     slide_id = slide_id.to_i
