@@ -37,6 +37,10 @@ MakeSlide::Application.routes.draw do
     resources :replies
   end
 
+  resources :attachs, :except => :index do
+
+  end
+
   resources :photos
   resources :likes
 
