@@ -116,7 +116,7 @@ html {
 // 整体页面布局
 // 普通页面抬头
 .basic-page-top {
-    padding: 2em 0px 0em;
+    padding: 1em 0px 0em 1em;
     border-bottom: 1px solid #DDD;
 }
 .basic-page-top .nav-tabs {
@@ -124,9 +124,7 @@ html {
     margin-top: 45px;
 }
 .basic-page-top h2 {
-    margin-top: 5px;
-    font-family: inherit;
-    font-weight: bold;
+    font-family: Helvetica;
 }
 .basic-page-top .nav-tabs i {
     padding-right: 7px;
