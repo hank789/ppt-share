@@ -8,13 +8,13 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div class="navbar">
+<div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to("控制台", cpanel_root_path, :class => "brand span2")%>
       <div class="nav-collapse">
         <!-- /后台目录-->
-        <%= render_list :class => "nav pull-left" do |li|
+        <%= render_list :class => "nav nav-pills pull-left" do |li|
           li << link_to(t("cpanel.menu.root_path"), cpanel_root_path)
           li << link_to(t("cpanel.menu.site_configs"), cpanel_site_configs_path )
           li << link_to(t("cpanel.menu.users"),cpanel_users_path)
