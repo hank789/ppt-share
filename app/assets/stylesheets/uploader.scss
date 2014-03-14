@@ -1,0 +1,14 @@
+
+// 这里是所有幻灯片上传页面的样式
+
+// 上传拖拽框的样式
+.dropzone {
+  background-color: #FAFCFD;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-size: 16px 16px;
+  &.dz-drag-hover {
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+    background-size: 22px 22px;
+    border: 5px dashed #CCCCCC;
+  }
+}
