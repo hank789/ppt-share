@@ -29,6 +29,29 @@ html {
 }
 
 // 全局头部导航栏
+// 左侧的Logo,在 app/views/layouts/application.html.erb 被引用
+.navbar-brand {
+    color: #4B4949;
+    font-family:"Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+    padding: 0px 0px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+.navbar-brand:hover {
+    opacity: 0.9;
+}
+.navbar-brand span.sub-brand {
+    color: #6B6B6B;
+}
+.navbar-brand .glyphicon {
+    color: #1EA4D1;
+    vertical-align: top;
+    line-height: 15px;
+}
+.navbar-default .navbar-brand {
+    color: #575757;
+}
 
 
 
