@@ -56,7 +56,7 @@ def replace_file(file_name, from, to)
   end
 end
 
-puts "Now Installing Ruby China..."
+puts "Now Installing Make Slide..."
 puts "="*ROW_SIZE
 puts ""
 
@@ -103,4 +103,4 @@ puts_line "Seed default data..." do
 end
 
 puts ""
-puts "Ruby China Successfully Installed."
+puts "Make Slide Successfully Installed."
