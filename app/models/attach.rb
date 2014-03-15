@@ -9,6 +9,9 @@ class Attach
   field :file
   field :file_size
   field :file_type
+  field :original_filename
+
+  index :cache_id => 1
 
   ACCESSABLE_ATTRS = [:file]
 

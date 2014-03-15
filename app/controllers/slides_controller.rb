@@ -53,7 +53,7 @@ class SlidesController < ApplicationController
         stat = Qiniu::RS.stat(Setting.qiniu_bucket, key[1])
         slide.downloads.incr(1)
         dlToken = Qiniu::RS.generate_download_token :expires_in => 3600, :pattern => attach.file
-        file_name = slide.title + File.extname(key[1])
+        file_name = attach.original_filename
         #render :text => "#{attach.file}?token=#{dlToken}"
         # data = open("#{attach.file}?token=#{dlToken}")
         send_data "#{attach.file}?token=#{dlToken}", :filename => file_name, :type => stat["mimeType"], :disposition => 'attachment', :stream => 'true', :buffer_size => '4096'
