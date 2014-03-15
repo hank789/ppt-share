@@ -8,7 +8,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to("控制台", cpanel_root_path, :class => "brand span2")%>
@@ -43,7 +43,8 @@
     <a href="<%= cpanel_root_path %>">Root</a> &gt;
     <%= yield :sitemap %>
   </div>
-  <div id="main" class="box">
+  <div class="basic-page-top"></div>
+  <div id="main" class="basic-page box">
     <%= notice_message %>
     <%= yield %>
   </div>
