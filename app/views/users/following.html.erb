@@ -5,7 +5,6 @@
     </h2>
   </div>
 
-  <!-- 关注的人列表，现在逻辑是错的 -->
   <div class="basic-page box">
     <div id="users" class="box">
       <div id="hot_users" class="row user_list">
@@ -14,6 +13,7 @@
         <div class="item span1">
           <div class="avatar"><%= user_avatar_tag(item) %></div>
           <div class="name"><%= user_name_tag(item) %></div>
+          <div class=""><%= user_follow_tag(item) %> <%= render_user_level_tag(item) %></div>
         </div>
         <% end %>
         <% end %>

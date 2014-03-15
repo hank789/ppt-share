@@ -94,11 +94,11 @@ class UsersController < ApplicationController
 
   # 我关注的
   def following
-
+    @users = User.find(current_user.follower_ids)
   end
   # 我被人关注
   def followers
-
+    @users = User.find(current_user.followed_ids)
   end
   protected
   def find_user

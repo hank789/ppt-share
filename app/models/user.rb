@@ -81,8 +81,8 @@ class User
 
   validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}, :exclusion => { :in => %w(sidekiq account cpanel), :message => " %{value} is reserved." }
 
-  has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
-  has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
+  # has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
+  # has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
 
   scope :hot, desc(:replies_count, :slides_count)
 
