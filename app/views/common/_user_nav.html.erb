@@ -105,7 +105,7 @@
         <!-- end input: search field -->
 
         <!-- multiple lang dropdown : find all flags in the image folder -->
-        <ul class="header-dropdown-list hidden-xs">
+        <!-- <ul class="header-dropdown-list hidden-xs">
           <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="img/flags/us.png"> <span> US </span> <i class="fa fa-angle-down"></i> </a>
             <ul class="dropdown-menu pull-right">
@@ -120,8 +120,14 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
         <!-- end multiple lang -->
+
+        <!-- upload slide button -->
+        <div class="btn-header pull-right">
+          <span><a href="<%= new_slide_url %>" title="<%= t("slides.upload_slide") %>"><i class="glyphicon glyphicon-cloud-upload"></i></a></span>
+        </div>
+        <!-- end logout button -->
 
       </div>
       <!-- end pulled right: nav area -->

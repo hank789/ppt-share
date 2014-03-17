@@ -7,13 +7,13 @@
 #= require jquery.ui.effect-blind
 #= require jquery.ui.effect-highlight
 #= require jquery.turbolinks
-#= require_tree ./smta/
 #= require jquery.timeago
 #= require jquery.timeago.settings
 #= require jquery.hotkeys
 #= require jquery.chosen
 #= require jquery.autogrow-textarea
 #= require jquery.html5-fileupload
+#= require bootstrap.min
 #= require social-share-button
 #= require jquery.atwho
 #= require faye
@@ -22,7 +22,6 @@
 #= require turbolinks
 #= require slides
 #= require users
-#= require dropzone
 #= require tag-it
 #= require_self
 

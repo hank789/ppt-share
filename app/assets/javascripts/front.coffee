@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery.ui.core
-#= require_tree ./smta/bootstrap
+#= require bootstrap.min
 #= require_tree ./smta/notification
 #= require_tree ./smta/plugin
 #= require form_storage

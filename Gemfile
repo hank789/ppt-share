@@ -22,7 +22,6 @@ gem 'carrierwave', '0.6.2'
 #gem 'carrierwave-upyun', '0.1.5'
 gem 'carrierwave-qiniu'
 gem 'mini_magick', '3.3', require: false
-gem 'dropzonejs-rails'
 gem 'qiniu-rs'
 
 # Mongoid 辅助插件
