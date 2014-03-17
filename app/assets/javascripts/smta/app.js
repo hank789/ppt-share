@@ -217,7 +217,8 @@ $(document).ready(function() {
 		}, function(ButtonPressed) {
 			if (ButtonPressed == "Yes") {
 				$.root_.addClass('animated fadeOutUp');
-				setTimeout(logout, 1000)
+                $this.attr('data-method','delete');
+				setTimeout(logout($this), 1000)
 			}
 
 		});
@@ -228,8 +229,9 @@ $(document).ready(function() {
 	 * LOGOUT ACTION
 	 */
 
-	function logout() {
-		window.location = $.loginURL;
+	function logout(object) {
+        object.click();
+		//window.location = $.loginURL;
 	}
 
 	/*
