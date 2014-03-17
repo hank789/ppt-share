@@ -2,21 +2,20 @@
 source 'http://ruby.taobao.org'
 
 gem "rails", "4.0.3"
-gem 'turbolinks', '~> 1.2.0'
-gem 'jquery-turbolinks', '2.0.0'
+gem 'turbolinks', "~> 2.2.1"
+gem 'jquery-turbolinks', '2.0.2'
 gem 'actionpack-action_caching'
 gem 'sass-rails', '>= 3.2'
 gem 'coffee-rails', "~> 4.0.0"
 gem 'uglifier', '>= 1.3.0'
 
 gem "rails-i18n", "0.1.8"
-gem "jquery-rails", "3.0.4"
+gem "jquery-rails", "3.1.0"
 gem 'jquery-ui-rails'
 gem "rails_autolink", ">= 1.1.0"
 gem "md_emoji"
 gem 'exception_notification'
-gem "jbuilder", "~> 2.0.2"
-gem "flexslider"
+gem "jbuilder", "~> 2.0.4"
 
 # 上传组件
 gem 'carrierwave', '0.6.2'
@@ -39,8 +38,8 @@ gem 'devise-encryptable', '0.1.2'
 gem 'will_paginate', '3.0.4'
 
 # Bootstrap
-gem 'bootstrap-sass', '~> 3.1.1'
-gem 'bootstrap-will_paginate', '0.0.10'
+# gem 'bootstrap-sass', '~> 3.1.1'
+# gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap_helper', github: 'huacnlee/bootstrap-helper'
 
 

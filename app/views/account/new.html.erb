@@ -1,33 +1,76 @@
-<%= render "shared/error_messages", :target => resource %>
-<div class="auth-unit-top">
-  <h3><%= t("common.register") %></h3>
+<div class="well no-padding">
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => "form", :id => "smart-form-register", :class => "smart-form client-form"}) do |f| %>
+    <header>
+      <%= t("common.register") %>
+    </header>
+    <%= render "shared/error_messages", :target => resource %>
+    <fieldset>
+      <section>
+        <label class="input"> <i class="icon-append fa fa-user"></i>
+          <input type="text" name="username" placeholder="Username">
+          <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+      </section>
 
-  <p><%= t("users.free_to_join_description") %></p>
-</div>
-<div class="auth-unit-inner">
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => "form"}) do |f| %>
-      <div class="form-group">
-        <%= f.label :login %>
-        <%= f.input_field :login, :class => 'form-control', placeholder: "" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.input_field :email, :class => 'form-control', placeholder: "name@email.com" %>
-      </div>
-      <div class="checkbox">
-        <label><%= f.check_box :email_public, :style => "width:auto;", :checked => true %><%= t('mongoid.attributes.user.email_public') %></label>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.input_field :password, :class => 'form-control', placeholder: "" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.input_field :password_confirmation, :class => 'form-control', placeholder: "" %>
-      </div>
-      <button type="submit" class="btn btn-block btn-success" id="message_trigger_ok"><%= t("common.register") %></button>
+      <section>
+        <label class="input"> <i class="icon-append fa fa-envelope"></i>
+          <%= f.input_field :email, :class => 'form-control', placeholder: "Email address" %>
+          <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+      </section>
+
+      <section>
+        <label class="checkbox">
+          <%= f.check_box :email_public, :checked => true %><i></i><%= t('mongoid.attributes.user.email_public') %>
+        </label>
+      </section>
+
+      <section>
+        <label class="input"> <i class="icon-append fa fa-lock"></i>
+          <%= f.input_field :password, :type => "password", placeholder: "Password" %>
+          <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+      </section>
+
+      <section>
+        <label class="input"> <i class="icon-append fa fa-lock"></i>
+          <%= f.input_field :password_confirmation, :type => "password", placeholder: "Confirm password" %>
+          <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+      </section>
+    </fieldset>
+
+    <fieldset>
+      <section>
+        <label class="checkbox">
+          <input type="checkbox" name="subscription" id="subscription">
+          <i></i>I want to receive news and special offers</label>
+        <label class="checkbox">
+          <input type="checkbox" name="terms" id="terms">
+          <i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a></label>
+      </section>
+    </fieldset>
+    <footer>
+      <button type="submit" class="btn btn-primary">
+        <%= t("common.register") %>
+      </button>
+    </footer>
+
+    <div class="message">
+      <i class="fa fa-check"></i>
+      <p>
+        Thank you for your registration!
+      </p>
+    </div>
   <% end %>
+
 </div>
-<br>
-<a class="btn btn-primary btn-block btn-lg" href="<%= new_session_path(resource_name) %>"><%= t("users.already_have_account") %>
-  <strong><%= t("common.login") %></strong></a>
+<p class="note text-center">*FREE Registration ends on October 2015.</p>
+<h5 class="text-center">- Or sign in using -</h5>
+<ul class="list-inline text-center">
+  <li>
+    <a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
+  </li>
+</ul>

@@ -7,10 +7,7 @@
 #= require jquery.ui.effect-blind
 #= require jquery.ui.effect-highlight
 #= require jquery.turbolinks
-#= require sco.collapse
-#= require dynamo.min
-#= require bootstrap
-#= require will_paginate
+#= require_tree ./smta/
 #= require jquery.timeago
 #= require jquery.timeago.settings
 #= require jquery.hotkeys
@@ -19,9 +16,6 @@
 #= require jquery.html5-fileupload
 #= require social-share-button
 #= require jquery.atwho
-#= require jquery.flexslider
-#= require nprogress
-#= require emoji_list
 #= require faye
 #= require notifier
 #= require form_storage
@@ -178,16 +172,10 @@ window.App =
       else
         $("a.go_top").hide()
 
-# NProgress
-NProgress.configure
-  speed: 0
 
-$(document).on 'page:fetch', ->
-  NProgress.start()
-$(document).on 'page:restore', ->
-  NProgress.remove()
+
+
 $(document).ready ->
   App.init()
-  NProgress.done()
 
 FormStorage.init()

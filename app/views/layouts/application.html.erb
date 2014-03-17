@@ -2,91 +2,95 @@
 <html>
 <head>
   <%= render_page_title %>
-  <%= stylesheet_link_tag "front", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "front" %>
   <%= yield :styles %>
-  <% if mobile? %>
-      <%= stylesheet_link_tag "mobile" %>
-      <meta name="apple-mobile-web-app-capable" content="no">
-      <meta content='True' name='HandheldFriendly'/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-      <link rel="apple-touch-icon-precomposed" href="<%= asset_path("ios-icon.png") %>"/>
-  <% end %>
+  <meta charset="utf-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
   <meta name="keywords" content="<%= @meta_keywords %>"/>
   <meta name="description" content="<%= @meta_description %>"/>
-  <meta charset='utf-8'/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>"/>
   <%= raw SiteConfig.custom_head_html %>
   <%= csrf_meta_tag %>
-  <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 </head>
-<body data-offset="50" data-controller-name="<%= controller_name %>">
-<div id="wrap">
-  <% if !orphan_navbar %>
-      <% if current_user %>
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="nav-header">
-            <a href="<%= activity_user_path(current_user.login.downcase) if current_user %>" class="navbar-brand"><img src="<%= asset_path("mslogo.png") %>"/></a>
-          </div>
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <form action="/search" role="search" class="navbar-form navbar-left" method="get">
-              <div class="form-group">
-                <input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" class="form-control input-sm">
-              </div>
-            </form>
-            <%= render "common/user_nav" %>
-          </div>
-        </div>
-      </nav>
-      <% else %>
-      <% end %>
+<body data-offset="50" data-controller-name="<%= controller_name %>" class="desktop-detected pace-done fixed-header smart-style-3">
 
-      <%= raw "<hr>" if !current_user && params[:controller]+'/'+params[:action] != "home/index" %>
-      <%= notice_message %>
-      <%= yield %>
-  <% else %>
-      <div id="landing">
-        <div class="header-image">
-          <div class="container">
-            <div class="auth-unit">
-              <h3 class="text-brand">MakeSlide.com</h3>
-              <%= notice_message %>
-              <%= yield %>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>
+<!-- HEADER -->
+<%= render "common/user_nav" %>
+<!-- END HEADER -->
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<%= render "common/user_aside" %>
+<!-- END NAVIGATION -->
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+<!-- RIBBON -->
+<div id="ribbon">
+
+  <span class="ribbon-button-alignment"> <span id="refresh" class="btn btn-ribbon" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true"><i class="fa fa-refresh"></i></span> </span>
+
+  <!-- breadcrumb -->
+  <ol class="breadcrumb">
+    <li>Home</li><li>Dashboard</li>
+  </ol>
+  <!-- end breadcrumb -->
+
+  <!-- You can also add more buttons to the
+  ribbon for further usability
+
+  Example below:
+
+  <span class="ribbon-button-alignment pull-right">
+  <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+  <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+  <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+  </span> -->
+
 </div>
+<!-- END RIBBON -->
 
-<% if not mobile? %>
-    <a class="go_top" href="#"><i class="icons_go_top"></i></a>
-    <footer class="footer" id="footer">
-      <div class="container">
-        <%= raw SiteConfig.footer_html %>
-      </div>
-    </footer>
-<% end %>
-<% if mobile? %>
-    <script type="text/javascript">
-        app_mobile = true;
-        $('body').animate({ scrollTop: -1 },0);
-    </script>
-<% end %>
-<script type="text/javascript">
-    $(function () {
-        $('.flexslide_simple').flexslider({
-            controlNav: false,
-            slideshow: false
-        });
-    });
-    $(function () {
-        $('.flexslide_with_thumb').flexslider({
-            controlNav: false,
-            slideshow: false
-        });
-    });
-</script>
+<!-- MAIN CONTENT -->
+<div id="content">
+  <%= notice_message %>
+  <%= yield %>
+</div>
+<!-- END MAIN CONTENT -->
+
+</div>
+<!-- END MAIN PANEL -->
+
+<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+Note: These tiles are completely responsive,
+you can add as many as you like
+-->
+<div id="shortcut">
+  <ul>
+    <li>
+      <a href="#inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+    </li>
+    <li>
+      <a href="#calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+    </li>
+    <li>
+      <a href="#gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+    </li>
+    <li>
+      <a href="#invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+    </li>
+    <li>
+      <a href="#gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+    </li>
+  </ul>
+</div>
+<!-- END SHORTCUT AREA -->
+<%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 <script type="text/javascript" data-turbolinks-eval=false>
     ROOT_URL = "<%= root_url %>";
     ASSET_URL = "<%= asset_url('/') %>";
@@ -97,6 +101,12 @@
     if (FAYE_SERVER_URL) {
         App.initNotificationSubscribe();
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        pageSetUp();
+    });
 </script>
 <%= yield :scripts %>
 <script type="text/javascript">
@@ -116,6 +126,5 @@
         s.parentNode.insertBefore(ga, s);
     })();
 </script>
-<div class="zoom-overlay"></div>
 </body>
 </html>
