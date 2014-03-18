@@ -121,30 +121,7 @@ $(document).ready(function() {
 		$.root_.removeClass('search-mobile');
 	});
 
-	// ACTIVITY
-	// ajax drop
-	$('#activity').click(function(e) {
-		var $this = $(this);
 
-		if ($this.find('.badge').hasClass('bg-color-red')) {
-			$this.find('.badge').removeClassPrefix('bg-color-');
-			$this.find('.badge').text("0");
-			// console.log("Ajax call for activity")
-		}
-
-		if (!$this.next('.ajax-dropdown').is(':visible')) {
-			$this.next('.ajax-dropdown').fadeIn(150);
-			$this.addClass('active');
-		} else {
-			$this.next('.ajax-dropdown').fadeOut(150);
-			$this.removeClass('active')
-		}
-
-		var mytest = $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
-		//console.log(mytest)
-
-		e.preventDefault();
-	});
 
 	$('input[name="activity"]').change(function() {
 		//alert($(this).val())

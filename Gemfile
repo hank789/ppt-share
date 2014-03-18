@@ -104,6 +104,8 @@ gem 'rack-cors', require: 'rack/cors'
 gem "docsplit"
 # activity feed
 gem 'public_activity'
+# icon
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'capistrano', '2.9.0', require: false

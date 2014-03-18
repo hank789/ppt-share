@@ -5,8 +5,11 @@
         <!-- END LOGO PLACEHOLDER -->
         <!-- Note: The activity badge color changes when clicked and resets the number to 0
         Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-
-        <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> <%= unread_notify_count %> </b> </span>
+    <%
+       badge_class = ""
+       badge_class = "bg-color-red" if unread_notify_count > 0
+    %>
+    <span id="activity" class="activity-dropdown"><a href="<%= notifications_path %>"> <i class="fa fa-bell"></i> <b class="badge <%= badge_class %>"> <%= unread_notify_count %> </b></a> </span>
 
 
   </div>
