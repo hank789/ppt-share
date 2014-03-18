@@ -1,1 +1,65 @@
-home page
+    <!-- /Header Section -->
+
+    <div id="landing">
+      <div class="header-image">
+        <div class="headline">
+          <div class="container">
+
+            <h1 class="text-center">只谈幻灯片，发现你所需，分享你所爱</h1>
+
+            <p class="subline text-center">超过
+              <strong>526,78<span class="dynamo" data-lines="3,4,5,6,7,8,9">2</span></strong> 组幻灯片已分享在这里</p>
+          </div>
+        </div>
+
+        <div class="container">
+          <br><br><br><br>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4 animated slideInDown">
+              <div align="center">
+                <img alt="thumbnail" class="img-circle img-responsive animated" src="<%= image_path("social.jpg") %>">
+              </div>
+              <font color=#FFFFFF><h4> 便捷分享</h4></font>
+
+              <p>无论是PowerPoint，还是PDF，亦或图片，上传之后都可以转化为可轻松阅读的形式，并具有固定的链接，便于分享，以及评论反馈的收集。</p>
+            </div>
+            <div class="col-lg-4 col-md-4 animated fadeInUpBig">
+              <div align="center">
+                <img alt="thumbnail" class="img-circle img-responsive animated" src="<%= image_path("team.jpg") %>">
+              </div>
+              <font color=#FFFFFF><h4> 社交协作</h4></font>
+
+              <p>MakeSlide引用了社交的概念，可以关注用户，了解其动态。并可以发布隐私幻灯片时选择公开范围，使得部分隐私幻灯片可以在局部圈子进行交流分享。</p>
+            </div>
+            <div class="col-lg-4 col-md-4 animated slideInRight">
+              <div align="center">
+                <img alt="thumbnail" class="img-circle img-responsive animated" src="<%= image_path("collection.png") %>">
+              </div>
+              <font color=#FFFFFF><h4> 灵活采集</h4></font>
+
+              <p>灵活的采集方式，即可以收藏整套幻灯片，也可以针对具体一页收藏，甚至对喜欢的图片收藏，形成自己的知识库，从而提高制作幻灯片的水准和速度。</p>
+            </div>
+          </div>
+        </div>
+        <!-- /header-image -->
+      </div>
+    </div>
+    <!-- /Header Section -->
+
+    <!-- Section 2 -->
+
+    <div class="section">
+      <div class="container">
+        <h3 class="text-center">本周热门幻灯片</h3>
+        <br>
+
+        <div class="right-sec">
+          <div class="row">
+            <%= render :partial => "slides/slide", :collection => @slides, :locals => {:slides_col_md => @slides_col_md} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /Section 2 -->
