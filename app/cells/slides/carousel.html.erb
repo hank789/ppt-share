@@ -1,3 +1,11 @@
+<% if @attach.nil? || @attach.photos.blank? %>
+    <i class="<%= if @attach.nil?
+                    'fa fa-bolt'
+                  else
+                    'fa fa-spinner fa-spin'
+                  end %> icon-large">
+    </i>
+<% else %>
 <!-- Main Container. Class goes in Slick constructor call -->
 <div class="slick">
 
@@ -75,3 +83,4 @@
         };
     }
 </script>
+<% end %>
