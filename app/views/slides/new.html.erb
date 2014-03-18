@@ -26,7 +26,9 @@
                           $(function() {
                               Dropzone.autoDiscover = false;
                               $('#upload_editor').hide();
+                              if(document.querySelector("form#uploadDropzone")){
                               var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
+
                               myDropzone.on("success", function (file, data) {
                                   if (data) {
                                       $('#slide_attach_id').val(data);
@@ -43,14 +45,15 @@
                                   formData.append('filetype', file.type);
                                   formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
                               });
+                              }
                           });
                       </script>
                   <% end %>
                   <p class="alert alert-warning">
-                    <i class="fa fa-warning fa-fw fa-lg"></i><strong>Opps!</strong>上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表文件上传完成。
+                    上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表文件上传完成。
                   </p>
                   <p class="alert alert-warning">
-                    <i class="fa fa-warning fa-fw fa-lg"></i><strong>Opps!</strong>目前支持的上传文件格式有：PowerPoint、PDF。
+                    目前支持的上传文件格式有：PowerPoint、PDF。
                   </p>
                 </div>
               </div>
