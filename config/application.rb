@@ -46,8 +46,7 @@ module MakeSlide
     }
 
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += %w(application.css app.js slides.css slides.js window.css front.css cpanel.css users.css
-		 mobile.css home.css)
+    config.assets.precompile += %w(application.css app.js applazy.js slides.js front.js front.css cpanel.css)
     config.assets.precompile << /\.(?:svg|eot|woff|ttf|mp3)$/
     config.assets.precompile << /dropzone.+\.png$/
     config.middleware.use Rack::Cors do
