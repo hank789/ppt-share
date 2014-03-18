@@ -22,6 +22,8 @@
 #= require slides
 #= require users
 #= require tag-it
+#= require slick
+#= require screenfull
 #= require_self
 
 window.App =

@@ -1,15 +1,13 @@
-<div class="col-sm-12 col-md-12 col-lg-6">
-  <div class="well">
+<div class="superbox-list">
     <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
     <div class="caption">
       <h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
       <ul class="list-inline">
-        <li><span class="glyphicon glyphicon-eye-open"></span> <%= slide.hits %></li>
+        <li><span class="fa fa-eye-open"></span> <%= slide.hits %></li>
         <li>·</li>
-        <li><span class="glyphicon glyphicon-heart"></span> <%= slide.likes_count %></li>
+        <li><span class="fa fa-heart"></span> <%= slide.likes_count %></li>
         <li>·</li>
-        <li><span class="glyphicon glyphicon-cloud-download"></span> <%= slide.downloads %></li>
+        <li><span class="fa fa-cloud-download"></span> <%= slide.downloads %></li>
       </ul>
     </div>
-  </div>
 </div>

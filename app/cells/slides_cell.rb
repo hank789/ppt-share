@@ -9,6 +9,14 @@ class SlidesCell < BaseCell
   def carousel(opts = {})
     @attach = Attach.find(opts[:attach_id]) unless opts[:attach_id].blank?
     @photos = @attach.photos.asc(:order_number) unless opts[:attach_id].blank?
+    image_str = @photos.first.image.to_s
+    if image_str[-6..-1].index('_') == 0
+      @img_str = image_str[0..-6]
+    else
+      @img_str = image_str[0..-7]
+    end
+
+
     render
   end
 

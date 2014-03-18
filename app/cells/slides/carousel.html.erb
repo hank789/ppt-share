@@ -1,20 +1,77 @@
-<% if @attach.nil? || @attach.photos.blank? %>
-    <div class="document_thumb">
+<!-- Main Container. Class goes in Slick constructor call -->
+<div class="slick">
+
+  <!-- This will containt the images -->
+  <div class="slick-content">
+  </div>
+
+  <!-- Part of default theme. slick.js doesn't ask for it -->
+  <div class="overlay-controls">
+    <a href="#" class='overlay-prev'></a>
+    <a href="#" class='overlay-next'></a>
+  </div>
+
+
+  <!-- This contains the controls -->
+  <div class="slick-bottom">
+    <!-- If it's there, it's width will be set to percentage completed -->
+    <div class="length"></div>
+
+    <div class="slick-no">
       <div>
-        <i class="<%= if @attach.nil?
-                        'fa fa-bolt'
-                      else
-                        'fa fa-spinner fa-spin'
-                      end %> icon-large">
-        </i>
+        <input type="text" class="current-no skip">/<span class="total"></span>
+      </div>
+      <div>
+        <img src="<%= asset_path("slick/fullscreen.png") %>" alt="" class="fullscr">
       </div>
     </div>
-<% else %>
-    <div class="flexslider flexslide_with_thumb">
-      <ul class="slides">
-        <% @photos.each do |item| %>
-            <li><%= image_tag item.image %></li>
-        <% end %>
-      </ul>
+    <div class="slick-controls">
+      <a href="#" class="prev"><img src="<%= asset_path("slick/backward.png") %>" alt=""></a>
+      <a href="#" class="next"><img src="<%= asset_path("slick/forward.png") %>" alt=""></a>
     </div>
-<% end %>
+  </div>
+
+</div>
+
+<script>
+    config = {
+        source: "<%= @img_str %>*.png",
+        start: 1,
+        end: <%= @photos.count %>
+    };
+
+    slick = new Slick('.slick', config);
+
+    $('.overlay-next').click(function(){
+        Slick.next(slick);
+    })
+    $('.overlay-prev').click(function(){
+        Slick.prev(slick);
+    })
+
+    $('.fullscr').click(function () {
+        if (screenfull.enabled) {
+            screenfull.toggle($('.slick')[0]);
+            if(!$('.slick.fullscreen').exists()){
+                // Needed because of a Chrome quirk.
+                setTimeout(function(){
+                    if($(window).width() > $(window).height()){
+                        $('.slick').addClass('fullscreen-width');
+                    }
+                    else{
+                        $('.slick').addClass('fullscreen-height');
+                    }
+                    $('.slick .slick-bottom').width($('.slick-content img.current').width()).css('margin', 'auto');
+                }, 100);
+            }
+        }
+    });
+    screenfull.onchange = function(){
+        // Undoing changes done through setTimeout above
+        if(!screenfull.isFullscreen){
+            $('.slick .slick-bottom').width('inherit').css('margin', 'auto');
+            $('.slick').removeClass('fullscreen-height');
+            $('.slick').removeClass('fullscreen-width');
+        };
+    }
+</script>

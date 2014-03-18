@@ -1,11 +1,8 @@
 <div class="row">
-  <div class="col-sm-12">
-      <div class="row">
-      <%= render :partial => "slides/slide", :collection => @slides %>
-      </div>
+  <div class="superbox col-sm-12">
+    <%= render :partial => "slides/slide", :collection => @slides %>
   </div>
 </div>
 <div class="pagination">
   <%= will_paginate @slides, :inner_window => 2, container: false %>
 </div>
-
