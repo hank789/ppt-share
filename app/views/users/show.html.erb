@@ -1,27 +1,11 @@
-<div class="container">
-  <div class="basic-page-top">
-    <h2>
-      左侧的部分准备上移
-    </h2>
-  </div>
-
-  <div class="basic-page box">
-    <div class="row">
-      <div class="col-md-3 col-sm-4">
-        <div class="left-sec">
-          <%= render "sidebar_info" %>
-        </div>
+<div class="row">
+  <div class="col-sm-12">
+      <div class="row">
+      <%= render :partial => "slides/slide", :collection => @slides %>
       </div>
-      <div class="col-md-9 col-sm-8">
-        <div class="right-sec">
-          <div class="row">
-            <%= render :partial => "slides/slide", :collection => @slides %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pagination">
-      <%= will_paginate @slides, :inner_window => 2, container: false %>
-    </div>
   </div>
 </div>
+<div class="pagination">
+  <%= will_paginate @slides, :inner_window => 2, container: false %>
+</div>
+

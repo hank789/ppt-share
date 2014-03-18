@@ -2,40 +2,6 @@
 window.Slides =
   replies_per_page: 50
 
-# 往幻灯片编辑器里面插入图片代码
-  appendImageFromUpload: (srcs) ->
-    txtBox = $(".slide_editor")
-    caret_pos = txtBox.caret('pos')
-    src_merged = ""
-    for src in srcs
-      src_merged = "![](#{src})\n"
-    source = txtBox.val()
-    before_text = source.slice(0, caret_pos)
-    txtBox.val(before_text + src_merged + source.slice(caret_pos + 1, source.count))
-    txtBox.caret('pos', caret_pos + src_merged.length)
-    txtBox.focus()
-
-# 上传图片
-  initUploader: () ->
-    $("#slide_add_image").bind "click", () ->
-      $(".slide_editor").focus()
-      $("#slide_upload_images").click()
-      return false
-
-    opts =
-      url: "/photos"
-      type: "POST"
-      beforeSend: () ->
-        $("#slide_add_image").hide()
-        $("#slide_add_image").before("<span class='loading'>上传中...</span>")
-      success: (result, status, xhr) ->
-        $("#slide_add_image").parent().find("span.loading").remove()
-        $("#slide_add_image").show()
-        Slides.appendImageFromUpload([result])
-
-    $("#slide_upload_images").fileUpload opts
-    return false
-
 # 回复
   reply: (floor, login) ->
     reply_body = $("#reply_body")
@@ -226,7 +192,7 @@ window.Slides =
 
     $("textarea").autogrow()
 
-    Slides.initUploader()
+
 
     $("a.at_floor").on 'click', (e) ->
       floor = $(this).data('floor')
