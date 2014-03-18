@@ -2,5 +2,13 @@
 ul.breadcrumb .divider{
   display: none;
 }
-
-
+/* 覆盖原生的图片路径 */
+.dropzone .dz-default.dz-message{
+  background-image: asset_url("dropzone/spritemap.png")
+}
+html{
+	background: asset_url("mybg.png") #fff
+}
+body{
+	background: asset_url("mybg.png") #fff
+}
