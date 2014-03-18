@@ -88,7 +88,7 @@ class SlidesController < ApplicationController
     end
     set_seo_meta("#{@slide.title} &raquo; #{t("menu.slides")}")
     #drop_breadcrumb("#{@node.try(:name)}", node_slides_path(@node.try(:id)))
-    drop_breadcrumb t("slides.read_slide")
+    drop_breadcrumb "幻灯片"
 
     fresh_when(:etag => [@slide, @has_followed, @has_favorited, @replies, @show_raw])
   end

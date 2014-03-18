@@ -6,6 +6,7 @@ class AccountController < Devise::RegistrationsController
     @user = current_user
     # 首次生成用户 Token
     @user.update_private_token if @user.private_token.blank?
+    drop_breadcrumb "账户设置"
     render layout: "application"
   end
 

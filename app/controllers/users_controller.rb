@@ -19,13 +19,13 @@ class UsersController < ApplicationController
   def show
     @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
-    drop_breadcrumb(t("slides.title"))
+
   end
 
   def slides
     @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))
-    drop_breadcrumb(t("slides.title"))
+    drop_breadcrumb("幻灯片")
   end
 
   def workspace
