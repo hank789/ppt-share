@@ -47,7 +47,11 @@ traditional hre="" links. See documentation for details.
 <li>
   <a href="<%= edit_user_registration_path %>"><i class="fa fa-lg fa-fw fa-edit"></i> <span class="menu-item-parent">个人设置</span></a>
 </li>
-
+<% if admin? %>
+<li>
+    <a href="/cpanel"><i class="fa fa-lg fa-fw fa-dashboard"></i> <span class="menu-item-parent"><%= t("menu.cpanel") %></span></a>
+</li>
+<% end %>
 
 </ul>
 </nav>
