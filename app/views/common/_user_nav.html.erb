@@ -1,17 +1,8 @@
 <header id="header">
   <div id="logo-group">
     <!-- PLACE YOUR LOGO HERE -->
-    <span id="logo"> <img src="<%= asset_path("logo.png") %>" alt="SmartAdmin"> </span>
+    <span id="logo"> <img src="<%= asset_path("logo.png") %>" alt="MakeSlide"> </span>
         <!-- END LOGO PLACEHOLDER -->
-        <!-- Note: The activity badge color changes when clicked and resets the number to 0
-        Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-    <%
-       badge_class = ""
-       badge_class = "bg-color-red" if unread_notify_count > 0
-    %>
-    <span id="activity" class="activity-dropdown"><a href="<%= notifications_path %>"> <i class="fa fa-bell"></i> <b class="badge <%= badge_class %>"> <%= unread_notify_count %> </b></a> </span>
-
-
   </div>
       <!-- projects dropdown -->
       <div id="project-context">
@@ -60,31 +51,6 @@
           <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
         </form>
         <!-- end input: search field -->
-
-        <!-- multiple lang dropdown : find all flags in the image folder -->
-        <!-- <ul class="header-dropdown-list hidden-xs">
-          <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="img/flags/us.png"> <span> US </span> <i class="fa fa-angle-down"></i> </a>
-            <ul class="dropdown-menu pull-right">
-              <li class="active">
-                <a href="javascript:void(0);"><img alt="" src="img/flags/us.png"> US</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);"><img alt="" src="img/flags/es.png"> Spanish</a>
-              </li>
-              <li>
-                <a href="javascript:void(0);"><img alt="" src="img/flags/de.png"> German</a>
-              </li>
-            </ul>
-          </li>
-        </ul> -->
-        <!-- end multiple lang -->
-
-        <!-- upload slide button -->
-        <div class="btn-header pull-right">
-          <span><a href="<%= new_slide_url %>" title="<%= t("slides.upload_slide") %>"><i class="fa fa-cloud-upload"></i></a></span>
-        </div>
-        <!-- end logout button -->
 
       </div>
       <!-- end pulled right: nav area -->
