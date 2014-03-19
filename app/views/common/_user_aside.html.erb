@@ -33,22 +33,22 @@ traditional hre="" links. See documentation for details.
   <a href="<%= user_path(current_user.login.downcase) %>" title="首页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">首页</span></a>
 </li>
 <li>
-  <a href="<%= notifications_path %>" title="通知"><i class="fa fa-lg fa-fw fa-bell"></i> <span class="menu-item-parent">通知</span></a>
+  <a href="<%= notifications_path %>" title="通知"><i class="fa fa-lg fa-fw fa-bell-o"></i> <span class="menu-item-parent">通知</span></a>
 </li>
 <li>
   <a href="<%= new_slide_url %>"><i class="fa fa-lg fa-fw fa-cloud-upload"></i> <span class="menu-item-parent"><%= t("slides.upload_slide") %></span></a>
 </li>
 <li>
-  <a href="<%= slides_user_path(current_user.login.downcase) %>"><i class="fa fa-lg fa-fw fa-file-o"></i> <span class="menu-item-parent">我的幻灯片</span></a>
+  <a href="<%= slides_user_path(current_user.login.downcase) %>"><i class="fa fa-lg fa-fw fa-folder-open-o"></i> <span class="menu-item-parent">我的幻灯片</span></a>
 </li>
 <li>
-  <a href="<%= collections_user_path(current_user.login.downcase) %>"><i class="fa fa-lg fa-fw fa-bookmark"></i> <span class="menu-item-parent">我的收藏</span></a>
+  <a href="<%= collections_user_path(current_user.login.downcase) %>"><i class="fa fa-lg fa-fw fa-bookmark-o"></i> <span class="menu-item-parent">我的收藏</span></a>
 </li>
 <li>
-  <a href="#"><i class="fa fa-lg fa-fw fa-eye"></i> <span class="menu-item-parent">发现</span></a>
+  <a href="#"><i class="fa fa-lg fa-fw fa-star-o"></i> <span class="menu-item-parent">发现</span></a>
 </li>
 <li>
-  <a href="<%= edit_user_registration_path %>"><i class="fa fa-lg fa-fw fa-edit"></i> <span class="menu-item-parent">个人设置</span></a>
+  <a href="<%= edit_user_registration_path %>"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">个人设置</span></a>
 </li>
 <% if admin? %>
 <li>
