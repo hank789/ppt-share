@@ -2,17 +2,17 @@ window.Users =
 
   follow: (el) ->
     user_id = $(el).data("id")
-    if $("i.icon", el).hasClass("small_followed")
+    if $("i.fa", el).hasClass("fa-check-circle")
       $.ajax
         url: "/users/#{user_id}/unfollow"
         type: "POST"
       $('span', el).text("关注")
-      $("i.icon", el).attr("class", "icon small_follow")
+      $("i.fa", el).attr("class", "fa fa-check")
       $(el).attr("data-original-title", "关注")
     else
       $.post "/users/#{user_id}/follow"
       $('span', el).text("取消关注")
-      $("i.icon", el).attr("class", "icon small_followed")
+      $("i.fa", el).attr("class", "fa fa-check-circle")
       $(el).attr("data-original-title", "取消关注")
     false
 
