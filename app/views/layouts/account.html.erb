@@ -99,6 +99,17 @@
 <%= javascript_include_tag "front" %>
 <%= yield :scripts %>
 <script type="text/javascript">
+    // Validation
+    $(function() {
+        // Validation
+        $("#smart-form-register").validate({
+            // Do not change code below
+            errorPlacement : function(error, element) {
+                error.insertAfter(element.parent());
+            }
+        });});
+</script>
+<script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', '<%= Setting.google_analytics_key %>']);
     _gaq.push(['_setSiteSpeedSampleRate', 100]);

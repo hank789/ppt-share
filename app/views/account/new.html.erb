@@ -7,13 +7,13 @@
     <fieldset>
       <section>
         <label class="input"> <i class="icon-append fa fa-user"></i>
-          <input type="text" name="username" placeholder="Username">
+          <%= f.input_field :login, :class => 'form-control', placeholder: "Username", :required => true %>
           <b class="tooltip tooltip-bottom-right">请输入您的用户名</b> </label>
       </section>
 
       <section>
         <label class="input"> <i class="icon-append fa fa-envelope"></i>
-          <%= f.input_field :email, :class => 'form-control', placeholder: "Email address" %>
+          <%= f.input_field :email, :class => 'form-control', placeholder: "Email address", :required => true %>
           <b class="tooltip tooltip-bottom-right">需要填写常用邮箱，以方便收到通知</b> </label>
       </section>
 
@@ -25,13 +25,13 @@
 
       <section>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
-          <%= f.input_field :password, :type => "password", placeholder: "Password" %>
+          <%= f.input_field :password, :type => "password", placeholder: "Password", :required => true %>
           <b class="tooltip tooltip-bottom-right">请输入一个自己容易记忆，别人难以猜测的密码</b> </label>
       </section>
 
       <section>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
-          <%= f.input_field :password_confirmation, :type => "password", placeholder: "Confirm password" %>
+          <%= f.input_field :password_confirmation, :type => "password", placeholder: "Confirm password", :required => true %>
           <b class="tooltip tooltip-bottom-right">再次输入密码</b> </label>
       </section>
     </fieldset>
@@ -42,7 +42,7 @@
           <input type="checkbox" name="subscription" id="subscription">
           <i></i>我希望订阅热门邮件，以及系统通知。</label>
         <label class="checkbox">
-          <input type="checkbox" name="terms" id="terms">
+          <input type="checkbox" name="terms" id="terms" required="true">
           <i></i>我同意<a href="#" data-toggle="modal" data-target="#myModal">注册条款</a></label>
       </section>
     </fieldset>
