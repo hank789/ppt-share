@@ -33,7 +33,11 @@ traditional hre="" links. See documentation for details.
   <a href="<%= user_path(current_user.login.downcase) %>" title="首页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">首页</span></a>
 </li>
 <li>
-  <a href="<%= notifications_path %>" title="通知提醒"><i class="fa fa-lg fa-fw fa-bell-o"></i> <span class="menu-item-parent">通知提醒</span></a>
+  <%
+     badge_class = ""
+     badge_class = "bg-color-greenLight" if unread_notify_count == 0
+  %>
+  <a href="<%= notifications_path %>" title="通知提醒"><i class="fa fa-lg fa-fw fa-bell-o"></i> <span class="menu-item-parent">通知提醒</span><span class="badge pull-right inbox-badge <%= badge_class %>"><%= unread_notify_count %></span></a>
 </li>
 <li>
   <a href="<%= new_slide_url %>"><i class="fa fa-lg fa-fw fa-cloud-upload"></i> <span class="menu-item-parent"><%= t("slides.upload_slide") %></span></a>
