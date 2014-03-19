@@ -4,7 +4,7 @@
 <div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
 					
-					<a href="javascript:void(0);" id="show-shortcut">
+					<a href="<%= user_path(current_user.login.downcase) %>">
                       <%= user_avatar_tag(current_user,30,:link => false,:class => "online") %>
 						<span>
 							<%= current_user.name %>
@@ -30,7 +30,7 @@ traditional hre="" links. See documentation for details.
 
 <ul>
 <li>
-  <a href="<%= user_path(current_user.login.downcase) %>" title="首页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">首页</span></a>
+  <a href="<%= root_path %>" title="首页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">首页</span></a>
 </li>
 <li>
   <a href="<%= notifications_path %>" title="通知提醒"><i class="fa fa-lg fa-fw fa-bell-o"></i> <span class="menu-item-parent">通知提醒</span><% if unread_notify_count !=0 %><span class="badge pull-right inbox-badge"> <%= unread_notify_count %> </span><% end %></a>
