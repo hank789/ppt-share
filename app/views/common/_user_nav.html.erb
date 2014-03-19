@@ -14,6 +14,8 @@
         <ul class="dropdown-menu">
           <% recent_slides.each do |slide| %>
               <li><%= link_to slide.title, slide_url(slide) %></li>
+              <li class="divider"></li>
+              <li><a href="javascript:void(0);"><i class="fa fa-power-off"></i> 清空</a></li>
           <% end %>
         </ul>
         <!-- end dropdown-menu-->
