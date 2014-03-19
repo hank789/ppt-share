@@ -8,13 +8,13 @@
       <section>
         <label class="input"> <i class="icon-append fa fa-user"></i>
           <input type="text" name="username" placeholder="Username">
-          <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+          <b class="tooltip tooltip-bottom-right">请输入您的用户名</b> </label>
       </section>
 
       <section>
         <label class="input"> <i class="icon-append fa fa-envelope"></i>
           <%= f.input_field :email, :class => 'form-control', placeholder: "Email address" %>
-          <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+          <b class="tooltip tooltip-bottom-right">需要填写常用邮箱，以方便收到通知</b> </label>
       </section>
 
       <section>
@@ -26,13 +26,13 @@
       <section>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
           <%= f.input_field :password, :type => "password", placeholder: "Password" %>
-          <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+          <b class="tooltip tooltip-bottom-right">请输入一个自己容易记忆，别人难以猜测的密码</b> </label>
       </section>
 
       <section>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
           <%= f.input_field :password_confirmation, :type => "password", placeholder: "Confirm password" %>
-          <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+          <b class="tooltip tooltip-bottom-right">再次输入密码</b> </label>
       </section>
     </fieldset>
 
@@ -40,10 +40,10 @@
       <section>
         <label class="checkbox">
           <input type="checkbox" name="subscription" id="subscription">
-          <i></i>I want to receive news and special offers</label>
+          <i></i>我希望订阅热门邮件，以及系统通知。</label>
         <label class="checkbox">
           <input type="checkbox" name="terms" id="terms">
-          <i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a></label>
+          <i></i>我同意<a href="#" data-toggle="modal" data-target="#myModal">注册条款</a></label>
       </section>
     </fieldset>
     <footer>
@@ -61,16 +61,4 @@
   <% end %>
 
 </div>
-<p class="note text-center">*FREE Registration ends on October 2015.</p>
-<h5 class="text-center">- Or sign in using -</h5>
-<ul class="list-inline text-center">
-  <li>
-    <a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-  </li>
-  <li>
-    <a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-  </li>
-  <li>
-    <a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-  </li>
-</ul>
+<p class="note text-center">*目前暂未开放注册，只提供内部邀请.</p>
