@@ -21,10 +21,13 @@
         <% if admin? %>
             &nbsp;<%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-sm btn-default' %>
         <% end %>
+        <% if current_user.id == @user.id %>
+            &nbsp;<a href="<%= edit_user_registration_path %>" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-pencil"></i> <%= t("menu.edit_account_path") %></a>
+        <% end %>
         &nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>
       </div>
       <div class="air air-top-left padding-10">
-        <h4 class="txt-color-white font-md">Jan 1, 2014</h4>
+        <h4 class="txt-color-white font-md"><%= Time.now.strftime("%a,%m/%d/%Y") %></h4>
       </div>
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>

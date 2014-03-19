@@ -27,7 +27,7 @@ $(document).ready(function () {
         <% end %>
         <% end %>
         <% if owner?(@slide) or admin? %>
-        <%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
+        <%= link_to raw("<i class='fa fa-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>
         <% end %>
         <% if admin? and !@slide.excellent? %>
         <%= link_to raw("<i class='glyphicon glyphicon-thumbs-up'></i> 加精"), suggest_slide_path(@slide.id), title: "设为精华",class: "btn btn-sm btn-default", method: "patch", data: {confirm: "确定要设置成精华么？"} %>

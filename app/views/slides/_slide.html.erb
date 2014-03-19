@@ -1,13 +1,21 @@
-<div class="superbox-list">
+<div class="row search-results clearfix">
+
+  <div class="col-sm-3">
     <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
-    <div class="caption">
-      <h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
-      <ul class="list-inline">
-        <li><span class="fa fa-eye-open"></span> <%= slide.hits %></li>
-        <li>·</li>
-        <li><span class="fa fa-heart"></span> <%= slide.likes_count %></li>
-        <li>·</li>
-        <li><span class="fa fa-cloud-download"></span> <%= slide.downloads %></li>
-      </ul>
-    </div>
+  </div>
+  <div class="col-sm-6">
+    <h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
+    <small><%= timeago(slide.created_at) %></small><br>
+    <small><%= slide.replies_count %>条回复</small><br><br>
+    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" %>
+  </div>
+  <div class="col-sm-3">
+    <ul class="list-unstyled">
+    <li><p class="text-muted"><i class="fa fa-eye"></i> <%= slide.hits %></p></li>
+
+    <li><p class="text-muted"><i class="fa fa-heart"></i> <%= slide.likes_count %></p></li>
+
+    <li><p class="text-muted"><i class="fa fa-cloud-download"></i> <%= slide.downloads %></p></li>
+    </ul>
+  </div>
 </div>
