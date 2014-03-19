@@ -21,19 +21,9 @@
 
         <!-- Suggestion: populate this list with fetch and push technique -->
         <ul class="dropdown-menu">
-          <li>
-            <a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">Notes on pipeline upgradee</a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">Assesment Report for merchant account</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
-          </li>
+          <% recent_slides.each do |slide| %>
+              <li><%= link_to slide.title, slide_url(slide) %></li>
+          <% end %>
         </ul>
         <!-- end dropdown-menu-->
 
@@ -62,8 +52,8 @@
         <!-- end search mobile button -->
 
         <!-- input: search field -->
-        <form action="#search.html" class="header-search pull-right">
-          <input type="text" placeholder="Find reports and more" id="search-fld">
+        <form action="/search" role="search" method="get" class="header-search pull-right">
+          <input type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" id="search-fld">
           <button type="submit">
             <i class="fa fa-search"></i>
           </button>

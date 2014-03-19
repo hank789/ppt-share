@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   hide_action :current_user
   protect_from_forgery
   helper_method :unread_notify_count
+  helper_method :recent_slides
 
   before_filter do
     resource = controller_name.singularize.to_sym
@@ -95,6 +96,11 @@ class ApplicationController < ActionController::Base
   def unread_notify_count
     return 0 if current_user.blank?
     @unread_notify_count ||= current_user.notifications.unread.count
+  end
+
+  def recent_slides
+    return nil if current_user.blank?
+    @recent_slides ||= current_user.slides.recent_update.limit(10)
   end
 
   def fresh_when(opts = {})
