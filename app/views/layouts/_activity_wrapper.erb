@@ -1,38 +1,38 @@
-<div class="activity">
-  <div class="body">
-    <div>
-      <div class="mega-icon">
-            <span class="glyphicon glyphicon-<%= case a.key[a.key.index('.')..-1]
-                                                   when '.create'
-                                                     if a.key=='reply.create'
-                                                       'comment'
-                                                     else
-                                                       'plus'
-                                                     end
-                                                   when '.unlike'
-                                                     'heart-empty'
-                                                   when '.like'
-                                                     'heart'
-                                                   when '.update'
-                                                     'pencil'
-                                                   when '.destroy'
-                                                     'trash'
-                                                 end %>"></span>
-      </div>
+<span class="timeline-seperator text-center"> <span><%= timeago(a.created_at) %></span>
+  <div class="btn-group pull-left"><span class="fa fa-<%= case a.key[a.key.index('.')..-1]
+                                                            when '.create'
+                                                              if a.key=='reply.create'
+                                                                'comment'
+                                                              else
+                                                                'plus'
+                                                              end
+                                                            when '.unlike'
+                                                              'heart-empty'
+                                                            when '.like'
+                                                              'heart'
+                                                            when '.update'
+                                                              'pencil'
+                                                            when '.destroy'
+                                                              'trash'
+                                                          end %>"></span></div>
+  </span>
+<div class="chat-body no-padding profile-message">
+  <ul>
+    <li class="message">
+      <%= user_avatar_tag(a.owner,:normal) %>
+	    <span class="message-text"> <%= user_name_tag(a.owner,:class => "username") %> <%= content_for(:action) %><br><%= yield %></span>
+      <ul class="list-inline font-xs">
+        <li>
+          <a href="javascript:void(0);" class="text-info"><i class="fa fa-reply"></i> 取消关注</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" class="text-primary">查看</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
 
-      <div class="details">
-        <div class="avatar"><%= user_avatar_tag(a.owner) %></div>
-        <div class="title">
-          <%= user_name_tag(a.owner) %>
-          <%= content_for(:action) %>
-          <%= timeago(a.created_at) %>
-
-        </div>
-        <%= yield %>
-      </div>
-
-    </div>
-
-  </div>
-  <hr>
 </div>
