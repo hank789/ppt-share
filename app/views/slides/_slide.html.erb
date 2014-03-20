@@ -6,8 +6,9 @@
   <div class="col-sm-6">
     <h4 class="title"><%= link_to(raw("<nobr>#{slide.title}</nobr>"), slide_path(slide), :title => slide.title) %></h4>
     <small><%= timeago(slide.created_at) %></small><br>
+    <small><%= user_name_tag(slide.user) %></small><br>
     <small><%= slide.replies_count %>条回复</small><br><br>
-    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" %>
+    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" if slide.user.id == current_user.id %>
   </div>
   <div class="col-sm-3">
     <ul class="list-unstyled">

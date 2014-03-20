@@ -23,14 +23,14 @@
                 </span>
                 <h2>Activity</h2>
                   <ul id="myTab3" class="nav nav-tabs pull-right in">
-                    <li class="pull-right active">
-                      <a href="#l3" data-toggle="tab">重要动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_important.count %></span></a>
+                    <li class="pull-right">
+                      <a href="#l1" data-toggle="tab">关注的动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_followed.count %></span></a>
                     </li>
                     <li class="pull-right">
                       <a href="#l2" data-toggle="tab">我相关动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_with_me.count %></span></a>
                     </li>
-                    <li class="pull-right">
-                      <a href="#l1" data-toggle="tab">关注的动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_followed.count %></span></a>
+                    <li class="pull-right active">
+                      <a href="#l3" data-toggle="tab">重要动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_important.count %></span></a>
                     </li>
                   </ul>
                 <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i>
@@ -107,51 +107,6 @@
 
 		-->
 		<header role="heading">
-			<h2>我的概况</h2>
-
-		<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
-
-		<!-- widget div-->
-		<div role="content">
-
-			<!-- widget edit box -->
-			<div class="jarviswidget-editbox">
-				<!-- This area used as dropdown edit box -->
-
-			</div>
-			<!-- end widget edit box -->
-
-			<!-- widget content -->
-			<div class="widget-body">
-
-				<div class="tabs-right">
-					<div class="tab-content">
-					</div>
-				</div>
-
-			</div>
-			<!-- end widget content -->
-
-		</div>
-		<!-- end widget div -->
-				
-	</div>
-
-	<div class="jarviswidget" id="wid-id-6" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false" role="widget">
-		<!-- widget options:
-		usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-		data-widget-colorbutton="false"
-		data-widget-editbutton="false"
-		data-widget-togglebutton="false"
-		data-widget-deletebutton="false"
-		data-widget-fullscreenbutton="false"
-		data-widget-custombutton="false"
-		data-widget-collapsed="true"
-		data-widget-sortable="false"
-
-		-->
-		<header role="heading">
 			<h2>今日推荐</h2>
 
 		<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
@@ -171,6 +126,7 @@
 
 				<div class="tabs-right">
 					<div class="tab-content">
+                      <%= render :partial => "slides/slide", :collection => @slides_suggest %>
 					</div>
 				</div>
 
