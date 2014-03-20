@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   end
 
   def slides
-    @slides = @user.slides.recent.fields_for_list.paginate(:page => params[:page], :per_page => 20)
+    @slides = @user.slides.recent_update.fields_for_list.paginate(:page => params[:page], :per_page => 20)
     @slides_count = @user.slides.count
     @slides_popular_count = @user.slides.where(:replies_count.gt => 5).count
-    @slides_suggest = Slide.excellent.recent.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
+    @slides_suggest = Slide.excellent.recent_update.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb("幻灯片")
   end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @slides = @user.slides.high_replies.where(:replies_count.gt => 5).fields_for_list.paginate(:page => params[:page], :per_page => 20)
     @slides_count = @user.slides.count
     @slides_popular_count = @user.slides.where(:replies_count.gt => 5).count
-    @slides_suggest = Slide.excellent.recent.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
+    @slides_suggest = Slide.excellent.recent_update.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb("幻灯片")
     render :action => "slides"
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def collections
-    @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
+    @slides = Slide.recent_update.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
     @slides_col_md=3
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.collections"))
