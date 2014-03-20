@@ -3,7 +3,8 @@ MakeSlide::Application.routes.draw do
   require "api_v2"
 
   root :to => "home#index"
-
+  get "home/releated_a" => "home#releated_a", :path => "releated_a", as: "home_releated_a"
+  get "home/follow_a" => "home#follow_a", :path => "follow_a", as: "home_follow_a"
   devise_for :users, :path => "account", :controllers => {
       :registrations => :account,
       :sessions => :sessions,
@@ -74,8 +75,8 @@ MakeSlide::Application.routes.draw do
   resources :users, :path => "" do
     member do
       get :collections
-      get :activity
       get :slides
+      get :slides_popular
       get :following
       get :followers
     end

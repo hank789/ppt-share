@@ -1,19 +1,14 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections, :activity]
+  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections, :slides_popular]
   before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :slides, :likes, :collections, :workspace, :home]
+  before_filter :find_user, :only => [:show, :slides, :likes, :collections, :slides_popular]
   caches_action :index, :expires_in => 2.hours, :layout => false
 
   def index
     @total_user_count = User.count
     @active_users = User.hot.limit(100)
     drop_breadcrumb t("common.index")
-  end
-
-  def activity
-    @activities = PublicActivity::Activity.desc(:created_at).where(:owner_type => "User").any_in(:owner_id => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
-    @current_slides = current_user.slides.recent_update.limit(20)
   end
 
   def show
@@ -23,25 +18,33 @@ class UsersController < ApplicationController
   end
 
   def slides
-    @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
+    @slides = @user.slides.recent.fields_for_list.paginate(:page => params[:page], :per_page => 20)
+    @slides_count = @user.slides.count
+    @slides_popular_count = @user.slides.where(:replies_count.gt => 5).count
+    @slides_suggest = Slide.excellent.recent.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb("幻灯片")
   end
 
-  def workspace
-    @orphan_slides = @user.slides.recent
+  def slides_popular
+    @slides = @user.slides.high_replies.where(:replies_count.gt => 5).fields_for_list.paginate(:page => params[:page], :per_page => 20)
+    @slides_count = @user.slides.count
+    @slides_popular_count = @user.slides.where(:replies_count.gt => 5).count
+    @slides_suggest = Slide.excellent.recent.fields_for_list.where(:user_id.ne => current_user.id).limit(6)
     drop_breadcrumb(@user.login, user_path(@user.login))
+    drop_breadcrumb("幻灯片")
+    render :action => "slides"
   end
 
 
   def likes
-    @slides = Slide.where(:_id.in => @user.like_slide_ids).paginate(:page => params[:page], :per_page => 30)
+    @slides = Slide.where(:_id.in => @user.like_slide_ids).paginate(:page => params[:page], :per_page => 20)
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.likes"))
   end
 
   def collections
-    @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 30)
+    @slides = Slide.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
     @slides_col_md=3
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.collections"))

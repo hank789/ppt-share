@@ -1,23 +1,122 @@
 <div class="row">
 
-  <div class="col-sm-12">
+  <!-- NEW WIDGET START -->
+  <article class="col-sm-12 col-md-12 col-lg-8 sortable-grid ui-sortable">
 
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-          <div class="well well-light well-sm no-margin no-padding">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div class="jarviswidget" id="wid-id-4" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false" role="widget">
+      <!-- widget options:
+                          usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-            <div class="row">
+                          data-widget-colorbutton="false"
+                          data-widget-editbutton="false"
+                          data-widget-togglebutton="false"
+                          data-widget-deletebutton="false"
+                          data-widget-fullscreenbutton="false"
+                          data-widget-custombutton="false"
+                          data-widget-collapsed="true"
+                          data-widget-sortable="false"
 
-              <div class="col-sm-12">
-                <%= render :partial => "slides/slide", :collection => @slides %>
+                          -->
+      <header role="heading">
+                <span class="widget-icon"> <i class="fa fa-folder-open-o text-success"></i>
+                </span>
+        <h2>我的幻灯片</h2>
+        <ul id="myTab3" class="nav nav-tabs pull-right in">
+          <li class="pull-right <%= "active" if action_name == "slides_popular" %>">
+            <a href="<%= slides_popular_user_path %>">受大家欢迎的 <span class="badge bg-color-pinkDark txt-color-white"><%= @slides_popular_count %></span></a>
+          </li>
+          <li class="pull-right <%= "active" if action_name == "slides" %>">
+            <a href="<%= slides_user_path %>">最近更新的 <span class="badge bg-color-pinkDark txt-color-white"><%= @slides_count %></span></a>
+          </li>
+        </ul>
+                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i>
+                </span>
+      </header>
+
+      <!-- widget div-->
+      <div class="no-padding" role="content">
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+          <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+
+        <!-- widget content -->
+        <div class="widget-body">
+
+
+          <div id="myTabContent3" class="tab-content padding-10">
+            <div class="tab-pane fade in active" id="l1">
+              <%= render :partial => "slides/slide", :collection => @slides %>
+              <div class="text-center">
                 <div class="pagination">
                   <%= will_paginate @slides, :inner_window => 2, container: false %>
                 </div>
               </div>
             </div>
           </div>
-         </div>
-      </div>
 
-  </div>
+        </div>
+        <!-- end widget content -->
+
+      </div>
+      <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+  </article>
+  <!-- WIDGET END -->
+
+  <article class="col-sm-12 col-md-12 col-lg-4 sortable-grid ui-sortable">
+
+    <div class="jarviswidget" id="wid-id-6" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false" role="widget">
+      <!-- widget options:
+      usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+      data-widget-colorbutton="false"
+      data-widget-editbutton="false"
+      data-widget-togglebutton="false"
+      data-widget-deletebutton="false"
+      data-widget-fullscreenbutton="false"
+      data-widget-custombutton="false"
+      data-widget-collapsed="true"
+      data-widget-sortable="false"
+
+      -->
+      <header role="heading">
+        <h2>今日推荐</h2>
+
+        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+      <!-- widget div-->
+      <div role="content">
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+          <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <div class="tabs-right">
+            <div class="tab-content">
+              <%= render :partial => "slides/slide", :collection => @slides_suggest %>
+            </div>
+          </div>
+
+        </div>
+        <!-- end widget content -->
+
+      </div>
+      <!-- end widget div -->
+
+    </div>
+  </article>
 </div>

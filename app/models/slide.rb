@@ -70,7 +70,7 @@ class Slide
   scope :suggest, -> { where(:suggested_at.ne => nil).desc(:suggested_at) }
   scope :fields_for_list, -> { without(:body, :body_html) }
   scope :high_likes, -> { desc(:likes_count, :_id) }
-  scope :high_replies, -> { desc(:replies_count, :_id) }
+  scope :high_replies, -> { desc(:replies_count) }
   scope :no_reply, -> { where(:replies_count => 0) }
   scope :popular, -> { where(:likes_count.gt => 5) }
   scope :excellent, -> { where(:excellent.gte => 1) }

@@ -23,14 +23,14 @@
                 </span>
                 <h2>Activity</h2>
                   <ul id="myTab3" class="nav nav-tabs pull-right in">
-                    <li class="pull-right">
-                      <a href="#l1" data-toggle="tab">关注的动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_followed.count %></span></a>
+                    <li class="pull-right <%= "active" if action_name == "follow_a" %>">
+                      <a href="<%= home_follow_a_path %>">关注的动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_followed_count %></span></a>
                     </li>
-                    <li class="pull-right">
-                      <a href="#l2" data-toggle="tab">我相关动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_with_me.count %></span></a>
+                    <li class="pull-right <%= "active" if action_name == "releated_a" %>">
+                      <a href="<%= home_releated_a_path %>">我相关动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_with_me_count %></span></a>
                     </li>
-                    <li class="pull-right active">
-                      <a href="#l3" data-toggle="tab">重要动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_important.count %></span></a>
+                    <li class="pull-right <%= "active" if action_name == "index" %>">
+                      <a href="<%= root_path %>">重要动态 <span class="badge bg-color-pinkDark txt-color-white"><%= @activities_important_count %></span></a>
                     </li>
                   </ul>
                 <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i>
@@ -52,27 +52,12 @@
 
 
                     <div id="myTabContent3" class="tab-content padding-10">
-                        <div class="tab-pane fade" id="l1">
-                          <%= render_activities(@activities_followed, layout: :activity_wrapper) %>
-                          <div class="text-center">
-                            <div class="pagination">
-                              <%= will_paginate @activities_followed, :inner_window => 2, container: false %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="tab-pane fade" id="l2">
-                          <%= render_activities(@activities_with_me, layout: :activity_wrapper) %>
-                          <div class="text-center">
-                            <div class="pagination">
-                              <%= will_paginate @activities_with_me, :inner_window => 2, container: false %>
-                            </div>
-                          </div>
-                        </div>
+
                         <div class="tab-pane fade in active" id="l3">
-                        <%= render_activities(@activities_important, layout: :activity_wrapper) %>
+                        <%= render_activities(@activities, layout: :activity_wrapper) %>
                         <div class="text-center">
                           <div class="pagination">
-                            <%= will_paginate @activities_important, :inner_window => 2, container: false %>
+                            <%= will_paginate @activities, :inner_window => 2, container: false %>
                           </div>
                         </div>
                         </div>
