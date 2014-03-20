@@ -8,9 +8,14 @@ module UsersHelper
     if (user.class == "".class)
       login = user
       name = login
-    else
-      login = user.login
-      name = user.name
+    else if(user.class == 1.class)
+           user= User.find(user);
+           login = user.login
+           name = user.name
+         else
+           login = user.login
+           name = user.name
+          end
     end
 
     name ||= login

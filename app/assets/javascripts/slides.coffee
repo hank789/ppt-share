@@ -108,7 +108,7 @@ window.Slides =
 
   favorite: (el) ->
     slide_id = $(el).data("id")
-    if $("i.glyphicon", el).hasClass("glyphicon-star")
+    if $("i.fa", el).hasClass("fa-star")
       hash =
         type: "unfavorite"
       $.ajax
@@ -116,12 +116,12 @@ window.Slides =
         data: hash
         type: "POST"
       $('span', el).text("收藏")
-      $("i.glyphicon", el).attr("class", "glyphicon glyphicon-star-empty")
+      $("i.fa", el).attr("class", "fa fa-star-o")
       $("#slide_fav_count").text(parseInt($("#slide_fav_count").text()) - 1)
     else
       $.post "/slides/#{slide_id}/favorite"
       $('span', el).text("取消收藏")
-      $("i.glyphicon", el).attr("class", "glyphicon glyphicon-star")
+      $("i.fa", el).attr("class", "fa fa-star")
       $("#slide_fav_count").text(parseInt($("#slide_fav_count").text()) + 1)
     false
 

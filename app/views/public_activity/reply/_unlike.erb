@@ -1,4 +1,4 @@
 <% single_content_for :action do %>取消喜欢
     <%= slide_title_tag(p[:slide_id]) %> 上的回复
 <% end %>
-<%= p[:summary] %>
+<%= raw reply_body_tag(a.trackable_id) %>

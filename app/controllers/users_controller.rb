@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
   def show
     @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
-    @activities = PublicActivity::Activity.desc(:created_at).where(:owner_type => "User").any_in(:owner_id => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
     drop_breadcrumb(@user.login, user_path(@user.login))
 
   end

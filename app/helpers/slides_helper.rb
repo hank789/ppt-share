@@ -17,16 +17,16 @@ module SlidesHelper
   def slide_download_tag(slide)
     return "" if slide.blank?
     return "" if slide.attach_id.blank?
-    title = raw "#{content_tag(:i, "", :class => "glyphicon glyphicon-cloud-download")} <span>Download</span>"
+    title = raw "#{content_tag(:i, "", :class => "fa fa-cloud-download")} <span>Download</span>"
     link_to(title, download_slide_url(slide.attach_id), class: "btn btn-sm btn-success")
   end
 
   def slide_favorite_tag(slide)
     return "" if current_user.blank?
-    icon = content_tag(:i, "", :class => "glyphicon glyphicon-star-empty")
+    icon = content_tag(:i, "", :class => "fa fa-star-o")
     link_title = "收藏"
     if current_user and current_user.favorite_slide_ids.include?(slide.id)
-      icon = content_tag(:i, "", :class => "glyphicon glyphicon-star")
+      icon = content_tag(:i, "", :class => "fa fa-star")
       link_title = "取消收藏"
     end
     favorite_label = raw "#{icon} <span>#{link_title}</span>"

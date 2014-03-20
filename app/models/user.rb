@@ -4,6 +4,7 @@ require "digest/md5"
 require "open-uri"
 class User
   include Mongoid::Document
+  include PublicActivity::Common
   include Mongoid::Timestamps
   include Mongoid::BaseModel
   include Redis::Objects
@@ -268,7 +269,7 @@ class User
     likeable.push(liked_user_ids: self.id)
     likeable.inc(likes_count: 1)
     likeable.touch
-    likeable.create_activity :like, owner: self
+    likeable.create_activity :like, owner: self, recipient: likeable.user
   end
 
   # 取消收藏
@@ -279,7 +280,7 @@ class User
     likeable.pull(liked_user_ids: self.id)
     likeable.inc(likes_count: -1)
     likeable.touch
-    likeable.create_activity :unlike, owner: self
+    likeable.create_activity :unlike, owner: self, recipient: likeable.user
   end
 
   # 收藏幻灯片
@@ -289,6 +290,7 @@ class User
     return false if self.favorite_slide_ids.include?(slide_id)
     self.push(favorite_slide_ids: slide_id)
     slide = Slide.find_by_id(slide_id)
+    slide.create_activity :favorite, owner: self, recipient: slide.user
     if !slide.favourite_user_ids.include?(self.id)
       slide.push(favourite_user_ids: self.id)
       slide.update_attribute(:favourite_count, slide.favourite_count + 1)
@@ -302,6 +304,7 @@ class User
     slide_id = slide_id.to_i
     self.pull(favorite_slide_ids: slide_id)
     slide = Slide.find_by_id(slide_id)
+    slide.create_activity :unfavorite, owner: self, recipient: slide.user
     if slide.favourite_user_ids.include?(self.id)
       slide.pull(favourite_user_ids: self.id)
       slide.update_attribute(:favourite_count, slide.favourite_count - 1)
@@ -374,6 +377,7 @@ class User
     self.push(follower_ids: uid)
     user = User.find_by_id(uid)
     user.push(followed_ids: self.id)
+    user.create_activity :follow, owner: self, recipient: user
     true
   end
   # 取消关注用户
@@ -383,6 +387,7 @@ class User
     self.pull(follower_ids: uid)
     user = User.find_by_id(uid)
     user.pull(followed_ids: self.id)
+    user.create_activity :unfollow, owner: self, recipient: user
     true
   end
 end

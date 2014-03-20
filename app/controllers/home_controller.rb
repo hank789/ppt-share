@@ -2,6 +2,9 @@
 class HomeController < ApplicationController
   def index
     if current_user.present?
+      @activities_followed = PublicActivity::Activity.desc(:created_at).where(:key.ne => "reply.mention").where(:owner_id.in => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
+      @activities_with_me = PublicActivity::Activity.desc(:created_at).where(:recipient_id => current_user.id).paginate(:page => params[:page], :per_page => 20)
+      @activities_important = PublicActivity::Activity.desc(:created_at).where(:owner_id.in => current_user.follower_ids).where(:trackable_type => "Slide").paginate(:page => params[:page], :per_page => 20)
       drop_breadcrumb("首页", root_path)
       set_seo_meta("#{t("menu.slogan")}")
     else

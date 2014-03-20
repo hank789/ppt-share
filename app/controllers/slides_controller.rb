@@ -126,7 +126,7 @@ class SlidesController < ApplicationController
           @attach.slide_id = @slide._id
           @attach.save
         end
-        @slide.create_activity :create, owner: current_user
+        @slide.create_activity :create, owner: current_user, recipient: current_user
         # tag
         current_user.tag @slide, params[:slideTags].to_s.split(",")
       end
@@ -143,7 +143,7 @@ class SlidesController < ApplicationController
     @slide.title = slide_params[:title]
     @slide.body = slide_params[:body]
     if @slide.save
-      @slide.create_activity :update, owner: current_user
+      @slide.create_activity :update, owner: current_user, recipient: current_user
       # tag
       current_user.tag @slide, params[:slideTags].to_s.split(",")
       redirect_to(slide_path(@slide.id), :notice => t("slides.update_slide_success"))
@@ -182,12 +182,14 @@ class SlidesController < ApplicationController
   def suggest
     @slide = Slide.find(params[:id])
     @slide.update_attributes(excellent: 1)
+    @slide.create_activity :suggest, owner: current_user, recipient: @slide.user
     redirect_to @slide, success: "加精成功。"
   end
 
   def unsuggest
     @slide = Slide.find(params[:id])
     @slide.update_attribute(:excellent, 0)
+    @slide.create_activity :unsuggest, owner: current_user, recipient: @slide.user
     redirect_to @slide, success: "加精已经取消。"
   end
 
