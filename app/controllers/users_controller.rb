@@ -12,7 +12,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @slides = @user.slides.recent.paginate(:page => params[:page], :per_page => 30)
+    @slides_recent = @user.slides.recent_update.paginate(:page => params[:page], :per_page => 20)
+    @slides_fav = @user.slides.recent_update.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
+    #关注
+    @following = User.find(@user.follower_ids)
+    #粉丝
+    @followers = User.find(@user.followed_ids)
     drop_breadcrumb(@user.login, user_path(@user.login))
 
   end
@@ -45,7 +50,6 @@ class UsersController < ApplicationController
 
   def collections
     @slides = Slide.recent_update.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
-    @slides_col_md=3
     drop_breadcrumb(@user.login, user_path(@user.login))
     drop_breadcrumb(t("users.menu.collections"))
   end

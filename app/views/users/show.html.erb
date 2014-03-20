@@ -15,7 +15,7 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <div id="myCarousel" class="carousel fade profile-carousel">
+    <div class="carousel profile-carousel">
       <div class="air air-bottom-right padding-10">
         <%= user_follow_tag(@user) %>
         <% if admin? %>
@@ -24,29 +24,14 @@
         <% if current_user.id == @user.id %>
             &nbsp;<a href="<%= edit_user_registration_path %>" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-pencil"></i> <%= t("menu.edit_account_path") %></a>
         <% end %>
-        &nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>
+
       </div>
       <div class="air air-top-left padding-10">
         <h4 class="txt-color-white font-md"><%= Time.now.strftime("%a,%m/%d/%Y") %></h4>
       </div>
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-      </ol>
+
       <div class="carousel-inner">
-        <!-- Slide 1 -->
-        <div class="item active">
           <img src="<%= asset_path("demo/s1.jpg") %>" alt="">
-        </div>
-        <!-- Slide 2 -->
-        <div class="item">
-          <img src="<%= asset_path("demo/s2.jpg") %>" alt="">
-        </div>
-        <!-- Slide 3 -->
-        <div class="item">
-          <img src="<%= asset_path("demo/m3.jpg") %>" alt="">
-        </div>
       </div>
     </div>
   </div>
@@ -56,92 +41,90 @@
     <div class="row">
 
       <div class="col-sm-3 profile-pic">
-        <%= user_avatar_tag(@user, :big, :link => false) %>
+        <%= user_avatar_tag(@user, 100, :link => false) %>
         <div class="padding-10">
-          <h4 class="font-md"><strong>1,043</strong>
+          <h4 class="font-md"><strong><%= @user.slides_count %></strong>
             <br>
-            <small>Slides</small></h4>
+            <small>幻灯片</small></h4>
           <br>
-          <h4 class="font-md"><strong>1,543</strong>
+          <h4 class="font-md"><strong><%= @user.follower_ids.count %></strong>
             <br>
-            <small>Followers</small></h4>
+            <small>关注数</small></h4>
           <br>
-          <h4 class="font-md"><strong>419</strong>
+          <h4 class="font-md"><strong><%= @user.followed_ids.count %></strong>
             <br>
-            <small>Connections</small></h4>
+            <small>粉丝</small></h4>
         </div>
       </div>
       <div class="col-sm-6">
-        <h1>John <span class="semi-bold">Doe</span>
+        <h1><%= user_name_tag(@user, :link =>false) %></span>
           <br>
-          <small> CEO, SmartAdmin</small></h1>
+          <small><%= render_user_level_tag(@user) %></small></h1>
 
         <ul class="list-unstyled">
           <li>
             <p class="text-muted">
-              <i class="fa fa-phone"></i>&nbsp;&nbsp;(<span class="txt-color-darken">313</span>) <span class="txt-color-darken">464</span> - <span class="txt-color-darken">6473</span>
+              <i class="fa fa-envelope"></i>&nbsp;&nbsp;<%= @user.email_public ? auto_link(@user.email) : "未公开" %>
             </p>
           </li>
           <li>
             <p class="text-muted">
-              <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">ceo@smartadmin.com</a>
+              <i class="fa fa-home"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= location_name_tag(@user.location) if @user.location %></span>
             </p>
           </li>
           <li>
             <p class="text-muted">
-              <i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken">john12</span>
+              <i class="fa fa-building-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= @user.company %></span>
             </p>
           </li>
           <li>
             <p class="text-muted">
-              <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">Free after <a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Create an Appointment">4:30 PM</a></span>
+              <i class="fa fa-bullhorn"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= render_user_tagline(@user) %></span>
             </p>
           </li>
         </ul>
         <br>
         <p class="font-md">
-          <i>A little about me...</i>
+          <i>个人介绍</i>
         </p>
         <p>
-
-          Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-          cumque nihil impedit quo minus id quod maxime placeat facere
-
+          <%= @user.bio.blank? ? "暂无" : auto_link(simple_format(@user.bio)) %>
         </p>
         <br>
-        <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
+        <!-- <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a> -->
         <br>
         <br>
 
       </div>
       <div class="col-sm-3">
-        <h1><small>Connections</small></h1>
+        <h1><small>Ta的关注</small></h1>
         <ul class="list-inline friends-list">
-          <li><img src="img/avatars/1.png" alt="friend-1">
-          </li>
-          <li><img src="img/avatars/2.png" alt="friend-2">
-          </li>
-          <li><img src="img/avatars/3.png" alt="friend-3">
-          </li>
-          <li><img src="img/avatars/4.png" alt="friend-4">
-          </li>
-          <li><img src="img/avatars/5.png" alt="friend-5">
-          </li>
-          <li><img src="img/avatars/male.png" alt="friend-6">
-          </li>
-          <li>
-            <a href="javascript:void(0);">413 more</a>
-          </li>
+          <% count=0 %>
+          <% @following.each do |item| %>
+              <% break if count >= 7 %>
+              <li><%= user_avatar_tag(item, 35, :link => true) %></li>
+              <% count +=1 %>
+          <% end %>
+          <% if @following.count >=7 %>
+              <li>
+                <a href="<%= following_user_path %>"> 查看全部</a>
+              </li>
+          <% end %>
         </ul>
 
-        <h1><small>Recent visitors</small></h1>
+        <h1><small>粉丝</small></h1>
         <ul class="list-inline friends-list">
-          <li><img src="img/avatars/male.png" alt="friend-1">
-          </li>
-          <li><img src="img/avatars/female.png" alt="friend-2">
-          </li>
-          <li><img src="img/avatars/female.png" alt="friend-3">
-          </li>
+          <% count=0 %>
+          <% @followers.each do |item| %>
+              <% break if count >= 7 %>
+              <li><%= user_avatar_tag(item, 35, :link => true) %></li>
+              <% count +=1 %>
+          <% end %>
+          <% if @followers.count >=7 %>
+              <li>
+                <a href="<%= followers_user_path %>"> 查看全部</a>
+              </li>
+          <% end %>
         </ul>
 
       </div>
@@ -231,109 +214,9 @@
 
           </div>
           <div class="tab-pane fade" id="a2">
-
-            <div class="alert alert-info fade in">
-              <button class="close" data-dismiss="alert">
-                ×
-              </button>
-              <i class="fa-fw fa fa-info"></i>
-              <strong>51 new members </strong>joined today!
-            </div>
-
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/female.png"><a href="javascript:void(0);">Jenn Wilson</a>
-              <div class="email">
-                travis@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Marshall Hitt</a>
-              <div class="email">
-                marshall@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Joe Cadena</a>
-              <div class="email">
-                joe@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Mike McBride</a>
-              <div class="email">
-                mike@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Travis Wilson</a>
-              <div class="email">
-                travis@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Marshall Hitt</a>
-              <div class="email">
-                marshall@company.com
-              </div>
-            </div>
-            <div class="user" title="Joe Cadena joe@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Joe Cadena</a>
-              <div class="email">
-                joe@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Mike McBride</a>
-              <div class="email">
-                mike@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Marshall Hitt</a>
-              <div class="email">
-                marshall@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);">Joe Cadena</a>
-              <div class="email">
-                joe@company.com
-              </div>
-            </div>
-            <div class="user" title="email@company.com">
-              <img src="img/avatars/male.png"><a href="javascript:void(0);"> Mike McBride</a>
-              <div class="email">
-                mike@company.com
-              </div>
-            </div>
-
-            <div class="text-center">
-              <ul class="pagination pagination-sm">
-                <li class="disabled">
-                  <a href="javascript:void(0);">Prev</a>
-                </li>
-                <li class="active">
-                  <a href="javascript:void(0);">1</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);">2</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);">3</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);">...</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);">99</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);">Next</a>
-                </li>
-              </ul>
-            </div>
-
-          </div><!-- end tab -->
+            收藏的ppt
+          </div>
+          <!-- end tab -->
         </div>
 
       </div>

@@ -4,7 +4,7 @@ module UsersHelper
   # 生成用户 login 的链接，user 参数可接受 user 对象或者 字符串的 login
   def user_name_tag(user, options = {})
     return "匿名" if user.blank?
-
+    link = options[:link] || false
     if (user.class == "".class)
       login = user
       name = login
@@ -20,8 +20,11 @@ module UsersHelper
 
     name ||= login
     options['data-name'] = name
-
-    link_to(login, user_path(login.downcase), options)
+    if link
+      link_to(login, user_path(login.downcase), options)
+    else
+      raw login
+    end
   end
 
   def user_avatar_width_for_size(size)
@@ -46,24 +49,25 @@ module UsersHelper
 
   def user_avatar_tag(user, size = :normal, opts = {})
     link = opts[:link] || false
+    alt = opts[:alt] || false
     custom_class = opts[:class] || ''
     width = user_avatar_width_for_size(size)
 
     if user.blank?
       # hash = Digest::MD5.hexdigest("") => d41d8cd98f00b204e9800998ecf8427e
-      return image_tag("avatar/#{size}.png", :class => "uface #{custom_class}")
+      return image_tag("avatar/#{size}.png", :class => "#{custom_class}")
     end
 
     if user[:avatar].blank?
       default_url = asset_path("avatar/#{size}.png")
       img_src = "#{Setting.gravatar_proxy}/avatar/#{user.email_md5}.png"
-      img = image_tag(img_src, :class => "uface #{custom_class}", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag(img_src, :class => "#{custom_class}", :style => "width:#{width}px;height:#{width}px;")
     else
-      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "uface #{custom_class}", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "#{custom_class}", :style => "width:#{width}px;height:#{width}px;")
     end
 
     if link
-      raw %(<a href="#{user_path(user.login)}">#{img}</a>)
+      raw %(<a alt="#{alt}" href="#{user_path(user.login)}">#{img}</a>)
     else
       raw img
     end
@@ -88,13 +92,13 @@ module UsersHelper
 
   def render_user_level_tag(user)
     if admin?(user)
-      content_tag(:span, t("common.admin_user"), :class => "label-warning role btn btn-sm")
+      content_tag(:span, t("common.admin_user"), :class => "label label-warning")
     elsif wiki_editor?(user)
-      content_tag(:span, t("common.vip_user"), :class => "label-success role btn btn-sm")
+      content_tag(:span, t("common.vip_user"), :class => "label label-success")
     elsif user.newbie?
-      content_tag(:span, t("common.newbie_user"), :class => "label-default role btn btn-sm")
+      content_tag(:span, t("common.newbie_user"), :class => "label label-default")
     else
-      content_tag(:span, t("common.normal_user"), :class => "label-default role btn btn-sm")
+      content_tag(:span, t("common.normal_user"), :class => "label label-info")
     end
   end
 
