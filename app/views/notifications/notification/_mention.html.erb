@@ -10,17 +10,17 @@
       <%= user_avatar_tag(reply.user, :normal) %>
     </td>
     <td>
-      <h3>
-      <span class="user">
+      <div>
+
         <%= user_name_tag(reply.user) %>
-      </span>
+
         在
         <%= slide_title_tag(slide) %>
         提及你：
         <% if !notification.read? %>
             <span class="new label label-warning">新</span>
         <% end %>
-      </h3>
+      </div>
       <%- if reply.present? -%>
           <div class="body md_body">
             <%= sanitize_reply reply.body_html %>
@@ -35,17 +35,17 @@
       <%= user_avatar_tag(slide.user, :normal) %>
     </td>
     <td>
-      <h3>
-      <span class="user">
+      <div>
+
         <%= user_name_tag(slide.user) %>
-      </span>
+
         在
         <%= slide_title_tag(slide) %>
         提及你：
         <% if !notification.read? %>
             <span class="new label warning">新</span>
         <% end %>
-      </h3>
+      </div>
       <%- if slide.present? -%>
           <div class="body md_body">
             <%= sanitize_slide slide.body_html %>
