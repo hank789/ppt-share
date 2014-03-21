@@ -77,6 +77,7 @@ MakeSlide::Application.routes.draw do
       get :collections
       get :slides
       get :slides_popular
+      get :favorite_slides
       get :following
       get :followers
     end

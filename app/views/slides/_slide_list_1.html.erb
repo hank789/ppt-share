@@ -1,0 +1,30 @@
+<div class="col-xs-2 col-sm-1">
+  <time class="icon">
+    <strong><%= slide.created_at.year %></strong>
+    <span><%= slide.created_at.month.to_s + "/" + slide.created_at.day.to_s %></span>
+  </time>
+</div>
+
+<div class="col-xs-10 col-sm-11">
+  <div class="col-xs-5 col-sm-6">
+     <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
+  </div>
+  <div class="col-xs-5 col-sm-5">
+    <h6 class="no-margin"><%= link_to(raw("#{slide.title.length >= 41 ? slide.title[0,40] + "..." : slide.title}"), slide_path(slide), :title => slide.title) %></h6><br>
+    <ul class="list-inline font-xs">
+      <li><p class="text-muted"><i class="fa fa-comment"></i> <%= slide.replies_count %></p></li>
+      <li><p class="text-muted"><i class="fa fa-eye"></i> <%= slide.hits %></p></li>
+
+      <li><p class="text-muted"><i class="fa fa-heart"></i> <%= slide.likes_count %></p></li>
+
+      <li><p class="text-muted"><i class="fa fa-cloud-download"></i> <%= slide.downloads %></p></li>
+    </ul>
+    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" if slide.user.id == current_user.id %>
+  </div>
+</div>
+
+<div class="col-sm-12">
+
+  <hr>
+
+</div>

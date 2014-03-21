@@ -1,8 +1,8 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections, :slides_popular]
+  before_filter :require_user, :only => [:auth_unbind, :home, :show, :slides, :collections, :slides_popular, :favorite_slides]
   before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :slides, :likes, :collections, :slides_popular]
+  before_filter :find_user, :only => [:show, :slides, :likes, :collections, :slides_popular, :favorite_slides]
   caches_action :index, :expires_in => 2.hours, :layout => false
 
   def index
@@ -12,14 +12,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    @slides_recent = @user.slides.recent_update.paginate(:page => params[:page], :per_page => 20)
-    @slides_fav = @user.slides.recent_update.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
+    @slides = @user.slides.recent_update.paginate(:page => params[:page], :per_page => 20)
     #关注
     @following = User.find(@user.follower_ids)
     #粉丝
     @followers = User.find(@user.followed_ids)
     drop_breadcrumb(@user.login, user_path(@user.login))
 
+  end
+
+  def favorite_slides
+    @slides = @user.slides.recent_update.where(:_id.in => @user.favorite_slide_ids).paginate(:page => params[:page], :per_page => 20)
+    #关注
+    @following = User.find(@user.follower_ids)
+    #粉丝
+    @followers = User.find(@user.followed_ids)
+    drop_breadcrumb(@user.login, user_path(@user.login))
+    render :action => "show"
   end
 
   def slides
