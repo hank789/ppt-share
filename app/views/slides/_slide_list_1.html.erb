@@ -10,7 +10,7 @@
      <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
   </div>
   <div class="col-xs-5 col-sm-5">
-    <h6 class="no-margin"><%= link_to(raw("#{slide.title.length >= 41 ? slide.title[0,40] + "..." : slide.title}"), slide_path(slide), :title => slide.title) %></h6><br>
+    <h6 class="no-margin"><%= link_to(raw("#{truncate(slide.title, :length => 40)}"), slide_path(slide), :title => slide.title) %></h6><br>
     <ul class="list-inline font-xs">
       <li><p class="text-muted"><i class="fa fa-comment"></i> <%= slide.replies_count %></p></li>
       <li><p class="text-muted"><i class="fa fa-eye"></i> <%= slide.hits %></p></li>
