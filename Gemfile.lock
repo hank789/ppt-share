@@ -114,7 +114,7 @@ GEM
     cookiejar (0.3.0)
     culerity (0.2.15)
     daemons (1.1.9)
-    dalli (1.1.1)
+    dalli (2.7.0)
     database_cleaner (1.2.0)
     descendants_tracker (0.0.3)
     devise (3.0.1)
@@ -435,7 +435,7 @@ DEPENDENCIES
   chunky_png (= 1.2.8)
   coffee-rails (~> 4.0.0)
   cookiejar (= 0.3.0)
-  dalli (= 1.1.1)
+  dalli (~> 2.7.0)
   database_cleaner
   devise (= 3.0.1)
   devise-encryptable (= 0.1.2)

@@ -90,7 +90,7 @@ gem 'garelic', '0.0.2'
 
 gem "god"
 
-gem 'dalli', '1.1.1'
+gem 'dalli', '~> 2.7.0'
 gem 'eventmachine', '1.0.3'
 gem "puma", "2.6.0"
 
