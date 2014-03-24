@@ -1,10 +1,11 @@
 <% content_for :sitemap do %>
     <span class="current">设置</span>
 <% end %>
-<table class="table table-bordered table-striped table-condensed">
+<table class="table table-bordered">
   <tr>
     <th>key</th>
     <th>desc</th>
+    <th>value</th>
     <th></th>
   </tr>
 
@@ -12,7 +13,8 @@
       <tr>
         <td><%= site_config.key %></td>
         <td><%= t("site_config.#{site_config.key}") %></td>
-        <td><%= link_to '', edit_cpanel_site_config_path(site_config), :class => "icon small_edit" %></td>
+        <td><%= site_config.value %></td>
+        <td><%= link_to '修改', edit_cpanel_site_config_path(site_config), :class => "btn btn-sm btn-primary" %></td>
       </tr>
   <% end %>
 </table>

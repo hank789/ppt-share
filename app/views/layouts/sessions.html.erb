@@ -22,7 +22,11 @@
     <!-- PLACE YOUR LOGO HERE -->
     <span id="logo"> <img src="<%= asset_path("logo.png") %>" alt="MakeSlide"> </span>
     </div>
+    <% if SiteConfig.allow_register == "true" %>
     <span id="login-header-space"><a href="<%= new_user_registration_path %>" class="btn btn-success">注册</a> </span>
+    <% else %>
+    <span id="login-header-space">*目前暂未开放注册，只提供内部邀请.</span>
+    <% end %>
 </header>
 
 <div id="main" role="main">

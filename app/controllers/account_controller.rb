@@ -1,7 +1,7 @@
 # coding: utf-8
 class AccountController < Devise::RegistrationsController
   protect_from_forgery
-
+  before_filter :check_allow_register
   def edit
     @user = current_user
     # 首次生成用户 Token
@@ -39,5 +39,12 @@ class AccountController < Devise::RegistrationsController
     resource.soft_delete
     sign_out_and_redirect("/login")
     set_flash_message :notice, :destroyed
+  end
+
+  protected
+  def check_allow_register
+    if SiteConfig.allow_register != "true"
+      redirect_to(new_user_session_url)
+    end
   end
 end
