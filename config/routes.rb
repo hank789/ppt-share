@@ -8,6 +8,7 @@ MakeSlide::Application.routes.draw do
   devise_for :users, :path => "account", :controllers => {
       :registrations => :account,
       :sessions => :sessions,
+      invitations: "users/invitations",
       :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
@@ -64,7 +65,9 @@ MakeSlide::Application.routes.draw do
 
   require 'sidekiq/web'
   # ...
-  mount Sidekiq::Web, at: '/sidekiq'
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   # WARRING! 请保持 User 的 routes 在所有路由的最后，以便于可以让用户名在根目录下面使用，而又不影响到其他的 routes
   # 比如 http://makeslide.com/huacnlee

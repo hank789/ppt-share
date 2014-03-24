@@ -57,7 +57,9 @@ module UsersHelper
       # hash = Digest::MD5.hexdigest("") => d41d8cd98f00b204e9800998ecf8427e
       return image_tag("avatar/#{size}.png", :class => "#{custom_class}")
     end
-
+    if(user.class == 1.class)
+      user= User.find(user);
+    end
     if user[:avatar].blank?
       default_url = asset_path("avatar/#{size}.png")
       img_src = "#{Setting.gravatar_proxy}/avatar/#{user.email_md5}.png"

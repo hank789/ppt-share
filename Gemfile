@@ -30,8 +30,9 @@ gem 'mongoid_auto_increment_id', "0.6.2"
 gem 'mongoid_rails_migrations', '1.0.0'
 
 # 用户系统
-gem 'devise', '3.0.1'
+gem 'devise', '3.2.4'
 gem 'devise-encryptable', '0.1.2'
+gem 'devise_invitable', '~> 1.3.4'
 
 # 分页
 gem 'will_paginate', '3.0.4'

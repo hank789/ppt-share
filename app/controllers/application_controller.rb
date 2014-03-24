@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
   end
 
   def recent_slides
-    return nil if current_user.blank?
+    return [] if current_user.blank?
     @recent_slides ||= current_user.slides.recent_update.limit(10)
   end
 

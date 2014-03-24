@@ -11,7 +11,7 @@ class User
   include ActsAsTaggable::Tagger
   extend OmniauthCallbacks
 
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   field :email, :type => String, :default => ""
@@ -61,6 +61,15 @@ class User
   field :private_token
   field :favorite_slide_ids, :type => Array, :default => []
   field :like_slide_ids, :type => Array, :default => []
+  # 邀请
+  field :invitation_token, type: String
+  field :invitation_created_at, type: Time
+  field :invitation_sent_at, type: Time
+  field :invitation_accepted_at, type: Time
+  field :invitation_limit, type: Integer
+
+  index( {invitation_token: 1}, {:background => true} )
+  index( {invitation_by_id: 1}, {:background => true} )
 
   mount_uploader :avatar, AvatarUploader
 
@@ -378,6 +387,7 @@ class User
     user = User.find_by_id(uid)
     user.push(followed_ids: self.id)
     user.create_activity :follow, owner: self, recipient: user
+    Notification::UserFollow.create :user_id => uid, :follower_id => self.id
     true
   end
   # 取消关注用户

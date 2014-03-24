@@ -1,0 +1,15 @@
+    <td class="face">
+      <%= user_avatar_tag(notification.follower_id, :normal) %>
+    </td>
+    <td>
+      <div>
+
+        <%= user_name_tag(notification.follower_id, :link => true) %>
+
+        关注了你
+        <% if !notification.read? %>
+            <span class="new label label-warning">新</span>
+        <% end %>
+      </div>
+    </td>
+
