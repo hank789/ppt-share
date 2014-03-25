@@ -11,7 +11,7 @@
           <%= t("common.last_by")%> <%= user_name_tag(slide.last_reply_user_login, :link => true) %> <%= sanitize t("common.reply_at", :time => timeago(slide.replied_at))%>
       <% end %></small><br>
     <br><br>
-    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" if slide.user.id == current_user.id %>
+    <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" if current_user && slide.user.id == current_user.id %>
   </div>
   <div class="col-sm-3">
     <ul class="list-unstyled">
