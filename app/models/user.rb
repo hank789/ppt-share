@@ -197,7 +197,7 @@ class User
   after_create :send_welcome_mail
 
   def send_welcome_mail
-    UserMailer.delay.welcome(self.id)
+    UserMailer.delay.welcome(self.id) unless self.invitation_token.present?
   end
 
   # 保存用户所在城市

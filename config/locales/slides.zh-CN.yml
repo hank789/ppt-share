@@ -10,5 +10,6 @@
     create_slide_description: "只能上传PowerPoint、PDF文件，上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表上传完成。"
     update_slide_success: "幻灯片项目信息更新成功"
     upload_slide: "上传幻灯片"
+    no_replies: "暂无回复"
     slide_list:
       hot_slide: "热门幻灯片"

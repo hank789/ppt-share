@@ -1,21 +1,15 @@
 # coding: utf-8
 class SlidesController < ApplicationController
 
-  load_and_authorize_resource :only => [:new, :edit, :create, :update, :destroy, :favorite, :follow, :unfollow, :suggest, :unsuggest]
+  load_and_authorize_resource :only => [:new, :edit, :create, :update, :destroy, :favorite, :suggest, :unsuggest]
 
   before_filter :set_menu_active
-  caches_action :feed, :node_feed, :expires_in => 1.hours
   before_filter :init_base_breadcrumb
 
   def index
     @slides = Slide.last_actived.includes(:user).paginate(:page => params[:page], :per_page => 15)
     set_seo_meta("#{t("menu.slides")}", "#{Setting.app_name}#{t("menu.slides")}")
     drop_breadcrumb(t("slides.slide_list.hot_slide"))
-  end
-
-  def feed
-    @slides = Slide.recent.without_body.limit(20).includes(:user, :last_reply_user)
-    render :layout => false
   end
 
 
@@ -74,6 +68,7 @@ class SlidesController < ApplicationController
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
     @replies = @slide.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
+    @user = @slide.user
     # TODO
     if current_user
       # 找出用户 like 过的 Reply，给 JS 处理 like 功能的状态
@@ -85,12 +80,12 @@ class SlidesController < ApplicationController
       @has_followed = @slide.follower_ids.include?(current_user.id)
       # 是否收藏
       @has_favorited = current_user.favorite_slide_ids.include?(@slide.id)
+    else
+      render layout: "unauthenticated"
     end
     set_seo_meta("#{@slide.title} &raquo; #{t("menu.slides")}")
-    #drop_breadcrumb("#{@node.try(:name)}", node_slides_path(@node.try(:id)))
-    drop_breadcrumb "幻灯片"
-
-    fresh_when(:etag => [@slide, @has_followed, @has_favorited, @replies, @show_raw])
+    drop_breadcrumb @slide.title
+    fresh_when(:etag => [@slide, @has_favorited, @replies, @show_raw])
   end
 
   def attachs
@@ -167,18 +162,6 @@ class SlidesController < ApplicationController
     render :text => "1"
   end
 
-  def follow
-    @slide = Slide.find(params[:id])
-    @slide.push_follower(current_user.id)
-    render :text => "1"
-  end
-
-  def unfollow
-    @slide = Slide.find(params[:id])
-    @slide.pull_follower(current_user.id)
-    render :text => "1"
-  end
-
   def suggest
     @slide = Slide.find(params[:id])
     @slide.update_attributes(excellent: 1)
@@ -204,13 +187,6 @@ class SlidesController < ApplicationController
   end
 
   private
-
-  def init_list_sidebar
-    if !fragment_exist? "slide/init_list_sidebar/hot_nodes"
-      @hot_nodes = Node.hots.limit(10)
-    end
-    set_seo_meta(t("menu.slides"))
-  end
 
   def slide_params
     params.require(:slide).permit(:title, :body, :attach_id, :private)

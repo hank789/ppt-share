@@ -1,0 +1,129 @@
+<div class="well well-light well-sm no-margin no-padding">
+
+<div class="row">
+
+  <div class="col-sm-12">
+    <div class="carousel profile-carousel">
+      <div class="air air-bottom-right padding-10">
+        <%= user_follow_tag(@user) %>
+        <% if admin? %>
+            &nbsp;<%= link_to "后台修改", edit_cpanel_user_path(@user), class: 'btn btn-sm btn-default' %>
+        <% end %>
+        <% if current_user.id == @user.id %>
+            &nbsp;<a href="<%= edit_user_registration_path %>" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-pencil"></i> <%= t("menu.edit_account_path") %></a>
+        <% end %>
+
+      </div>
+      <div class="air air-top-left padding-10">
+        <h4 class="txt-color-white font-md"><%= Time.now.strftime("%a,%m/%d/%Y") %></h4>
+      </div>
+
+      <div class="carousel-inner">
+          <img src="<%= asset_path("demo/s1.jpg") %>" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+
+    <div class="row">
+
+      <div class="col-sm-3 profile-pic">
+        <%= user_avatar_tag(@user, 100, :link => false) %>
+        <div class="padding-10">
+          <h4 class="font-md"><strong><%= @user.slides_count %></strong>
+            <br>
+            <small>幻灯片</small></h4>
+          <br>
+          <h4 class="font-md"><strong><%= @user.follower_ids.count %></strong>
+            <br>
+            <small>关注数</small></h4>
+          <br>
+          <h4 class="font-md"><strong><%= @user.followed_ids.count %></strong>
+            <br>
+            <small>粉丝</small></h4>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h1><%= user_name_tag(@user, :link =>false) %></span>
+          <br>
+          <small><%= render_user_level_tag(@user) %></small></h1>
+
+        <ul class="list-unstyled">
+          <li>
+            <p class="text-muted">
+              <i class="fa fa-envelope"></i>&nbsp;&nbsp;<%= @user.email_public ? auto_link(@user.email) : "未公开" %>
+            </p>
+          </li>
+          <li>
+            <p class="text-muted">
+              <i class="fa fa-home"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= location_name_tag(@user.location) if @user.location %></span>
+            </p>
+          </li>
+          <li>
+            <p class="text-muted">
+              <i class="fa fa-building-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= @user.company %></span>
+            </p>
+          </li>
+          <li>
+            <p class="text-muted">
+              <i class="fa fa-bullhorn"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%= render_user_tagline(@user) %></span>
+            </p>
+          </li>
+        </ul>
+        <br>
+        <p class="font-md">
+          <i>个人介绍</i>
+        </p>
+        <p>
+          <%= @user.bio.blank? ? "暂无" : auto_link(simple_format(@user.bio)) %>
+        </p>
+        <br>
+        <!-- <a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a> -->
+        <br>
+        <br>
+
+      </div>
+      <div class="col-sm-3">
+        <h1><small>Ta的关注</small></h1>
+        <ul class="list-inline friends-list">
+          <% count=0 %>
+          <% @following.each do |item| %>
+              <% break if count >= 7 %>
+              <li><%= user_avatar_tag(item, 35, :link => true) %></li>
+              <% count +=1 %>
+          <% end %>
+          <% if @following.count >=7 %>
+              <li>
+                <a href="<%= following_user_path %>"> 查看全部</a>
+              </li>
+          <% end %>
+        </ul>
+
+        <h1><small>粉丝</small></h1>
+        <ul class="list-inline friends-list">
+          <% count=0 %>
+          <% @followers.each do |item| %>
+              <% break if count >= 7 %>
+              <li><%= user_avatar_tag(item, 35, :link => true) %></li>
+              <% count +=1 %>
+          <% end %>
+          <% if @followers.count >=7 %>
+              <li>
+                <a href="<%= followers_user_path %>"> 查看全部</a>
+              </li>
+          <% end %>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- end row -->
+
+</div>

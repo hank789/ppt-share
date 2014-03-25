@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render_page_title %>
+  <%= stylesheet_link_tag "front" %>
+  <%= yield :styles %>
+  <meta charset="utf-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+  <meta name="keywords" content="<%= @meta_keywords %>"/>
+  <meta name="description" content="<%= @meta_description %>"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>"/>
+  <%= raw SiteConfig.custom_head_html %>
+  <%= csrf_meta_tag %>
+  <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
+</head>
+<body data-offset="50" data-controller-name="<%= controller_name %>" id="login">
+
+<!-- HEADER -->
+<header id="header">
+  <div id="logo-group">
+    <!-- PLACE YOUR LOGO HERE -->
+    <span id="logo"> <img src="<%= asset_path("logo.png") %>" alt="MakeSlide"> </span>
+  </div>
+  <% if SiteConfig.allow_register == "true" %>
+      <span id="login-header-space"><a href="<%= new_user_registration_path %>" class="btn btn-success">注册</a> </span>
+  <% else %>
+      <span id="login-header-space">*目前暂未开放注册，只提供内部邀请.</span>
+  <% end %>
+</header>
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+<!-- MAIN CONTENT -->
+<div id="content">
+  <%= notice_message %>
+  <%= yield %>
+</div>
+<!-- END MAIN CONTENT -->
+
+</div>
+<!-- END MAIN PANEL -->
+
+<%= javascript_include_tag "applazy", "data-turbolinks-track" => true %>
+<%= yield :scripts %>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<%= Setting.google_analytics_key %>']);
+    _gaq.push(['_setSiteSpeedSampleRate', 100]);
+    _gaq.push(['_trackPageview']);
+
+    <%= Garelic::Timing %>
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</body>
+</html>

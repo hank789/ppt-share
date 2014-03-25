@@ -27,6 +27,7 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def after_accept_path_for(resource)
     resource.push_follower(resource.invited_by_id)
+    UserMailer.delay.welcome(resource.id)
     edit_user_registration_path
   end
 
