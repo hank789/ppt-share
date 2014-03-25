@@ -48,7 +48,7 @@ var ExistMsg = 0,
         //Messagebox Sound
 
         // SmallBox Sound
-        if (isIE8orlower() == 0) {
+        if (isIE8orlower() == 0 && false) {
             var audioElement = document.createElement('audio');
             audioElement.setAttribute('src', $.sound_path + 'messagebox.mp3');
             $.get();
@@ -235,7 +235,7 @@ var BigBoxes = 0;
             icon: undefined,
             number: undefined,
             color: undefined,
-            sound: true,
+            sound: false,
             timeout: undefined,
             colortime: 1500,
             colors: undefined
@@ -417,7 +417,7 @@ var SmallBoxes = 0,
             content: "",
             icon: undefined,
             iconSmall: undefined,
-            sound: true,
+            sound: false,
             color: undefined,
             timeout: undefined,
             colortime: 1500,

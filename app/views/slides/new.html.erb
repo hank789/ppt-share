@@ -1,31 +1,23 @@
 <!-- row -->
 <div class="row">
   <div class="col-sm-12">
-      <h1 class="text-center">分享是一种美德！</h1>
-      <h2 class="text-center">
-        <small>文件拖拽到下框、或点击框体后选择文件，即可完成上传。</small>
-      </h2>
-
-  </div>
-</div>
-<!-- end row -->
-
-<!-- row -->
-<div class="row">
-  <div class="col-sm-12">
        <div class="row">
          <!-- upload row -->
-          <div id="carousel_tag" class="col-sm-12 col-md-12">
+          <div id="carousel_tag" class="col-sm-12 col-md-12 col-lg-6">
             <div class="no-margin no-padding">
 
               <div class="row">
 
                 <div class="col-sm-12">
                   <%= simple_form_for Attach.new, :url => attachs_path, :html => {id: "uploadDropzone", :class => "dropzone", :multipart => true} do |f| %>
+                      <h2 id="dropzone_description" class="text-center">
+                        <small>文件拖拽到下框、或点击框体后选择文件，即可完成上传。</small><br>
+                        <small>目前支持的上传文件格式有：PowerPoint、PDF。</small>
+                      </h2>
                       <script type="text/javascript">
                           $(function() {
                               Dropzone.autoDiscover = false;
-                              $('#upload_editor').hide();
+                              $('#slide_upload_form_submit').attr("disabled",true);
                               if(document.querySelector("form#uploadDropzone")){
                               var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
 
@@ -33,15 +25,15 @@
                                   if (data) {
                                       $('#slide_attach_id').val(data);
                                       var cclass = "fa fa-spinner fa-spin";
-                                  } else var cclass = "fa fa-bolt";
-                                  $('#upload_editor').show();
-                                  $('#carousel_tag').attr('class', 'col-sm-12 col-md-12 col-lg-4');
-                                  $('#slide_form').attr('class', 'col-sm-12 col-md-12 col-lg-8');
+                                      $('#slide_upload_form_submit').attr("disabled",false);
+                                  } else {
+
+                                  }
                                   myDropzone.disable();
-                                  //$('#carousel_tag').html("<div class='document_thumb'><i class='" + cclass + "'></i></div>");
+
                               });
                               myDropzone.on("sending", function (file, xhr, formData) {
-                                  $('#carousel_tag').attr('class', 'col-sm-12 col-md-12 col-lg-4');
+
                                   formData.append('filetype', file.type);
                                   formData.append("filesize", file.size); // Will send the filesize along with the file as POST data.
                               });
@@ -49,12 +41,7 @@
                           });
                       </script>
                   <% end %>
-                  <p class="alert alert-warning">
-                    上传速度取决于文件的大小，如果文件较大，请耐心等待。右侧出现信息输入框时，代表文件上传完成。
-                  </p>
-                  <p class="alert alert-warning">
-                    目前支持的上传文件格式有：PowerPoint、PDF。
-                  </p>
+
                 </div>
               </div>
               </div>
@@ -62,7 +49,7 @@
           </div>
          <!-- end upload row -->
          <!-- upload form row -->
-         <div id="slide_form" class="col-sm-12 col-md-12">
+         <div id="slide_form" class="col-sm-12 col-md-12 col-lg-6">
            <div class="no-margin no-padding">
 
              <div class="row">
