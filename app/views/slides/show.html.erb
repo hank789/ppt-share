@@ -128,7 +128,7 @@ $(document).ready(function () {
                     <!-- /#分享，修改，喜欢，下载-->
                     <div class="padding-10">
                         <h6>分享：</h6>
-                        <%= social_share_button_tag h("#{@slide.title} via: @#{Setting.twitter_id} ") %>
+                        <%= social_share_button_tag h("#{@slide.title} via: @#{Setting.app_name} ") %>
                       <br>
                       <% if owner?(@slide) or admin? %>
                           <%= link_to raw("<i class='fa fa-pencil'></i> 修改项目信息"), edit_slide_url(@slide.id), class: "btn btn-sm btn-default" %>

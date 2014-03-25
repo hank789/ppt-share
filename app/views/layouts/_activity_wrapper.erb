@@ -34,7 +34,7 @@
   <ul>
     <li class="message">
       <%= user_avatar_tag(a.owner,:normal) %>
-	    <span class="message-text" style="min-height:50px;"> <%= user_name_tag(a.owner,:class => "username") %> <%= content_for(:action) %><br><%= yield %></span>
+	    <span class="message-text" style="min-height:50px;"> <%= user_name_tag(a.owner) %> <%= content_for(:action) %><br><%= yield %></span>
       <ul class="list-inline font-xs">
         <li>
           <a href="javascript:void(0);" class="text-info"><i class="fa fa-reply"></i> 取消关注</a>

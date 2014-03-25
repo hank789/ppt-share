@@ -9,7 +9,7 @@ class SlidesController < ApplicationController
   def index
     @slides = Slide.last_actived.includes(:user).paginate(:page => params[:page], :per_page => 15)
     set_seo_meta("#{t("menu.slides")}", "#{Setting.app_name}#{t("menu.slides")}")
-    drop_breadcrumb(t("slides.slide_list.hot_slide"))
+    drop_breadcrumb(t("slides.slide_list.all"))
   end
 
 
@@ -23,14 +23,14 @@ class SlidesController < ApplicationController
   end
 
   def recent
-    @slides = Slide.recent.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15, :total_entries => 1500)
+    @slides = Slide.recent.fields_for_list.includes(:user).paginate(:page => params[:page], :per_page => 15)
     drop_breadcrumb(t("slides.slide_list.recent"))
     set_seo_meta([t("slides.slide_list.recent"), t("menu.slides")].join(" &raquo; "))
     render :action => "index"
   end
 
   def excellent
-    @slides = Slide.excellent.recent.fields_for_list.includes(:user).paginate(page: params[:page], per_page: 15, total_entries: 500)
+    @slides = Slide.excellent.recent.fields_for_list.includes(:user).paginate(page: params[:page], per_page: 15)
     drop_breadcrumb(t("slides.slide_list.excellent"))
     set_seo_meta([t("slides.slide_list.excellent"), t("menu.slides")].join(" &raquo; "))
     render :action => "index"
@@ -70,7 +70,7 @@ class SlidesController < ApplicationController
     @replies = @slide.replies.unscoped.without_body.asc(:_id).paginate(:page => params[:page], :per_page => @per_page)
     @user = @slide.user
     # 相关
-    tags_objects = ActsAsTaggable::Tag.where(:name.in => @slide.tags, "tagged.object_class" => "Slide" ).all.to_a
+    tags_objects = ActsAsTaggable::Tag.where(:name.in => @slide.tags, "tagged.object_class" => "Slide" ).limit(6).to_a
     @slides_releated = Array.new
 
     for tags_arr in tags_objects do

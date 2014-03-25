@@ -12,4 +12,6 @@
     upload_slide: "上传幻灯片"
     no_replies: "暂无回复"
     slide_list:
-      hot_slide: "热门幻灯片"
+      all: "全部"
+      recent: "最近"
+      popular: "流行"

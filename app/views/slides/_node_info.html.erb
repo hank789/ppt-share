@@ -1,19 +1,5 @@
-<% if !node.blank? %>
-    <div>
-      <h2><%= node.name %></h2>
-      <span class="total">共有 <%= render_node_slides_count(node) %> 组幻灯片</span>
-
-      <div class="feed">
-        <%= link_to("#{content_tag(:span, "", :class => "icon share_icons_rss")}".html_safe, feed_node_slides_url, :title => "#{node.name} Feed") %>
-      </div>
-    </div>
-    <div class="desc">
-      <%= simple_format(node.summary) %>
-    </div>
-<% else %>
-    <ul class="nav nav-tabs">
-      <li<%= " class=active" if action_name == "index" %>><%= link_to "Activated Sort", slides_path %></li>
-      <li<%= " class=active" if action_name == "popular" %>><%= link_to raw("<i class='icon small_liked'></i> Popular Sort"), popular_slides_path, class: "popular" %></li>
-      <li<%= " class=active" if action_name == "recent" %>><%= link_to "Recently Post", recent_slides_path %></li>
-    </ul>
-<% end %>
+<ul class="nav nav-tabs">
+  <li<%= " class=active" if action_name == "index" %>><%= link_to "全部", slides_path %></li>
+  <li<%= " class=active" if action_name == "popular" %>><%= link_to raw("<i class='icon small_liked'></i> 流行"), popular_slides_path, class: "popular" %></li>
+  <li<%= " class=active" if action_name == "recent" %>><%= link_to "最近上传", recent_slides_path %></li>
+</ul>
