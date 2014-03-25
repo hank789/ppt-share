@@ -4,22 +4,25 @@
     <%= render_cell :slides, :carousel_simple, :attach_id => slide.attach_id %>
   </div>
   <div class="col-sm-6">
-    <h4 class="title"><%= link_to(raw("#{truncate(slide.title, :length => 40)}"), slide_path(slide), :title => slide.title) %></h4>
+    <h4 class="title">
+      <%= link_to(raw("#{truncate(slide.title, :length => 40)}"), slide_path(slide), :title => slide.title) %>
+    </h4>
     <small><%= user_name_tag(slide.user, :link => true) %> 于 <%= timeago(slide.created_at) %> 发布 <% if !slide.last_reply_user_login.blank? %>•
           <%= t("common.last_by")%> <%= user_name_tag(slide.last_reply_user_login, :link => true) %> <%= sanitize t("common.reply_at", :time => timeago(slide.replied_at))%>
       <% end %></small><br>
-    <small><% if slide.excellent? %>
-          <div>
-            <i class="fa fa-thumbs-up fa-2x"></i> 此幻灯片已被设为精华！
-            <% if admin? %>
-                <%= link_to "取消精华", unsuggest_slide_path(slide.id), method: "delete" %>
-            <% end %>
-          </div>
-      <% end %></small><br><br>
+    <br><br>
     <%= link_to raw("<i class='fa fa-pencil'></i> 编辑信息"), edit_slide_url(slide.id), class: "btn btn-sm btn-default" if slide.user.id == current_user.id %>
   </div>
   <div class="col-sm-3">
     <ul class="list-unstyled">
+      <% if slide.excellent? %>
+      <li class="pull-right">
+        <a href="javascript:void(0);" rel="tooltip" data-placement="bottom" data-original-title="此幻灯片已被设为推荐"><i class="fa fa-thumbs-up fa-2x"></i></a>
+        <% if admin? %>
+            <%= link_to "取消精华", unsuggest_slide_path(slide.id), method: "delete" %>
+        <% end %>
+      </li>
+      <% end %>
     <li><p class="text-muted"><i class="fa fa-comment"></i> <%= slide.replies_count %></p></li>
     <li><p class="text-muted"><i class="fa fa-eye"></i> <%= slide.hits %></p></li>
 
