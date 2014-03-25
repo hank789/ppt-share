@@ -5,6 +5,7 @@ MakeSlide::Application.routes.draw do
   root :to => "home#index"
   get "home/releated_a" => "home#releated_a", :path => "releated_a", as: "home_releated_a"
   get "home/follow_a" => "home#follow_a", :path => "follow_a", as: "home_follow_a"
+  get "home/explore" => "home#explore", :path => "explore", as: "home_explore"
   devise_for :users, :path => "account", :controllers => {
       :registrations => :account,
       :sessions => :sessions,

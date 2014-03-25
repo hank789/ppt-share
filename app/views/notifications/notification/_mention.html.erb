@@ -12,7 +12,7 @@
     <td>
       <div>
 
-        <%= user_name_tag(reply.user) %>
+        <%= user_name_tag(reply.user, :link => true) %>
 
         在
         <%= slide_title_tag(slide) %>
@@ -37,7 +37,7 @@
     <td>
       <div>
 
-        <%= user_name_tag(slide.user) %>
+        <%= user_name_tag(slide.user, :link => true) %>
 
         在
         <%= slide_title_tag(slide) %>

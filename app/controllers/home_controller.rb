@@ -14,6 +14,10 @@ class HomeController < ApplicationController
     @activities = PublicActivity::Activity.desc(:created_at).where(:key.ne => "reply.mention").where(:owner_id.in => current_user.follower_ids).paginate(:page => params[:page], :per_page => 20)
     render :action => "index"
   end
+  # 发现
+  def explore
+    drop_breadcrumb("发现")
+  end
 
   def api
     drop_breadcrumb("API", root_path)
