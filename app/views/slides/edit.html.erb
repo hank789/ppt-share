@@ -1,21 +1,39 @@
-<div class="container">
-  <div class="basic-page-top">
-    <h2>
-      幻灯片编辑
-      <span class="pull-right">
-        <a class="btn btn-sm btn-danger">删除此幻灯片</a>
-      </span>
-    </h2>
-  </div>
-
-  <div class="basic-page box">
+<!-- row -->
+<div class="row">
+  <div class="col-sm-12">
     <div class="row">
-      <div class="col-md-6">
-        <%= render_cell :slides, :carousel, :attach_id => @slide.attach_id %>
+      <!-- upload row -->
+      <div id="carousel_tag" class="col-sm-12 col-md-12 col-lg-6">
+        <div class="no-margin no-padding">
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <%= render_cell :slides, :carousel, :attach_id => @slide.attach_id %>
+
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-md-6">
-        <%= render 'form' %>
+      <!-- end upload row -->
+      <!-- upload form row -->
+      <div id="slide_form" class="col-sm-12 col-md-12 col-lg-6">
+        <div class="no-margin no-padding">
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <%= render 'form' %>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- end upload form row -->
     </div>
+
   </div>
 </div>
+<!-- end row -->
+
+

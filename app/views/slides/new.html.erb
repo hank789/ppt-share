@@ -17,8 +17,9 @@
                       <script type="text/javascript">
                           $(function() {
                               Dropzone.autoDiscover = false;
+
                               $('#slide_upload_form_submit').attr("disabled",true);
-                              if(document.querySelector("form#uploadDropzone")){
+                              if(document.querySelector("form#uploadDropzone") && Dropzone.instances.length==0){
                               var myDropzone = new Dropzone("form#uploadDropzone", { url: "<%= attachs_path %>", maxFilesize: 100, maxFiles: 1, acceptedFiles: ".ppt,.pptx,.pdf", dictResponseError: "Error uploading file!"});
 
                               myDropzone.on("success", function (file, data) {
