@@ -1,0 +1,8 @@
+<% content_for :sitemap do %>
+  <a href="<%= cpanel_slides_path %>"><%= t("cpanel.menu.slides")%></a> &gt; <span class="current"><%= t("common.edit")%></span>
+<% end %>
+<h1>Editing slide</h1>
+
+<%= render 'form' %>
+
+

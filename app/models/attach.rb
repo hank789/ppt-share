@@ -32,11 +32,4 @@ class Attach
     DocsplitWorker.perform_async(self.id)
   end
 
-  def check_slide_file
-    attaches=Attach.where(:photo_count => 0).all
-    attaches.each do |item|
-      DocsplitWorker.perform_async(item.id)
-    end
-  end
-
 end

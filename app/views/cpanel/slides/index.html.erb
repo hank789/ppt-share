@@ -1,0 +1,53 @@
+<% content_for :sitemap do %>
+  <span class="current"><%= t("cpanel.menu.slides")%></span>
+<% end %>
+共有未完成转化的幻灯片 <%= @attachs.count %> 组
+<% if @attachs.count >=1  %>
+    <%= link_to "开始转化", convert_to_img_cpanel_slides_path, 'data-confirm' => 'Are you sure?', :method => :post, :class => "btn btn-sm btn-primary" %>
+<% end %>
+<h1><%= t("cpanel.slide_list")%></h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td style="width:300px">Title</td>
+    <td>User</td>
+    <td>Replies</td>
+    <td>at</td>
+    <td style="width:100px"></td>
+  </tr>
+
+<% @slides.each do |slide| %>
+  <tr class="<%= 'deleted' if !slide.deleted_at.blank? %>">
+    <td class="first"><%= slide.id %></td>
+    <td>
+      <%= truncate(slide.title,:length => 30) %>
+    </td>
+    <td><%= slide.user.login if slide.user %></td>
+    <td><%= slide.replies_count %></td>
+    <td>
+      <% if slide.deleted_at.blank? %>
+        <%= l slide.created_at,:format => :short %>
+      <% else %>
+        <%= link_to slide.who_deleted, user_path(slide.who_deleted) if not slide.who_deleted.blank? %> 删除于 <br />
+        <%= l slide.deleted_at,:format => :short %>
+      <% end %>
+    </td>
+    <td>
+      <% if !slide.suggested_at.blank? %>
+        <%= link_to t("common.un_top"), unsuggest_cpanel_slide_path(slide), 'data-confirm' => 'Are you sure?', :method => :post %>
+      <% else %>
+        <%= link_to t("common.place_top"), suggest_cpanel_slide_path(slide), 'data-confirm' => 'Are you sure?', :method => :post %>
+      <% end %>
+      <%= link_to "修改", edit_cpanel_slide_path(slide), :class => "fa fa_pencil" %>
+      <% if slide.deleted_at.blank? %>
+        <%= link_to "删除", cpanel_slide_path(slide), 'data-confirm' => 'Are you sure?', :method => :delete, :class => "fa fa_trash-o" %>
+      <% else %>
+        <%= link_to t("common.undelete"), undestroy_cpanel_slide_path(slide), 'data-confirm' => 'Are you sure?', :method => :post %>
+      <% end %>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @slides %>

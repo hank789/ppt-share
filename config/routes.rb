@@ -56,6 +56,16 @@ MakeSlide::Application.routes.draw do
     resources :replies
     resources :users
     resources :photos
+    resources :slides do
+      member do
+        post :suggest
+        post :unsuggest
+        post :undestroy
+      end
+      collection do
+        post :convert_to_img
+      end
+    end
     resources :locations
   end
 
