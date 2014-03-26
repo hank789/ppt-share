@@ -27,7 +27,9 @@
       </tr>
   <% end %>
 </table>
-<%= will_paginate @users %>
+<div class="pagination">
+<%= will_paginate @users,:inner_window => 2, container: false %>
+</div>
 <br/>
 
 <%= link_to 'New User', new_cpanel_user_path %>

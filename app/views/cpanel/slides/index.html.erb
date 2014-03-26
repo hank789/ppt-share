@@ -3,6 +3,11 @@
 <% end %>
 共有未完成转化的幻灯片 <%= @attachs.count %> 组
 <% if @attachs.count >=1  %>
+    <br>幻灯片ID号：
+    <% @attachs.each do |attach| %>
+      <%= attach.slide.id %>,
+    <% end %>
+    <br>
     <%= link_to "开始转化", convert_to_img_cpanel_slides_path, 'data-confirm' => 'Are you sure?', :method => :post, :class => "btn btn-sm btn-primary" %>
 <% end %>
 <h1><%= t("cpanel.slide_list")%></h1>
@@ -50,4 +55,6 @@
   </tr>
 <% end %>
 </table>
+<div class="pagination">
 <%= will_paginate @slides %>
+</div>

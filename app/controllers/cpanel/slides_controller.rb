@@ -16,7 +16,7 @@ class Cpanel::SlidesController < Cpanel::ApplicationController
     attaches.each do |item|
       DocsplitWorker.perform_async(item.id)
     end
-    render :action => "index"
+    redirect_to(cpanel_slides_url)
   end
 
   def new
