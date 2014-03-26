@@ -18,7 +18,7 @@ class AvatarUploader < BaseUploader
 
   def filename
     if super.present?
-      "avatar/#{model.id}.#{file.extension.downcase}"
+      "avatar/#{model.id}/#{Time.now.strftime("%Y%m%d%H%M%S")}.#{file.extension.downcase}"
     end
   end
 
