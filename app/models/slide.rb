@@ -56,7 +56,7 @@ class Slide
   index :excellent => -1
 
   validates_presence_of :user_id, :title, :body
-  validates_uniqueness_of :title, :scope => [:user_id]
+  # validates_uniqueness_of :title, :scope => [:user_id]
 
   counter :hits, :default => 0
   counter :downloads, :default => 0

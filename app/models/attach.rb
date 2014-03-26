@@ -10,6 +10,8 @@ class Attach
   field :file_size
   field :file_type
   field :original_filename
+  # 转化完成图片数量， 0为未完成转化，
+  field :photo_count, type: Integer, default: 0
 
   index :cache_id => 1
 
@@ -28,6 +30,13 @@ class Attach
 
   def docsplit
     DocsplitWorker.perform_async(self.id)
+  end
+
+  def check_slide_file
+    attaches=Attach.where(:photo_count => 0).all
+    attaches.each do |item|
+      DocsplitWorker.perform_async(item.id)
+    end
   end
 
 end

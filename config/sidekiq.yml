@@ -3,8 +3,12 @@
 ---
 :verbose: false
 :pidfile: ./tmp/pids/sidekiq.pid  
-:logfile: ./log/sidekiq.log  
-:concurrency: 5
+:logfile: ./log/sidekiq.log
+:timeout: 300
+development:
+  :concurrency: 6
+production:
+  :concurrency: 50
 :queues:
   - [a, 5]
   - [b, 3]

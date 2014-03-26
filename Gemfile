@@ -51,7 +51,7 @@ gem "omniauth-github", "~> 1.1.0"
 gem "cancan", "~> 1.6.10"
 
 # Redis 命名空间
-gem 'redis-namespace', '~> 1.2.1'
+gem 'redis-namespace', '~> 1.4.1'
 
 # 将一些数据存放入 Redis
 gem "redis-objects", "0.5.2"
@@ -69,7 +69,7 @@ gem "settingslogic", "~> 2.0.9"
 gem "cells", '~> 3.8.8'
 
 # 队列
-gem "sidekiq", "~> 2.13.1"
+gem "sidekiq", "~> 2.17.7"
 gem "cookiejar", "0.3.0"
 gem 'faye-rails', '1.0.0'
 gem 'faye', '0.8.3'

@@ -29,4 +29,9 @@ class AttachsController < ApplicationController
     #render :text => box.to_s
   end
 
+  def check_status
+    attach = Attach.find((params[:id]))
+    render :text => attach.photo_count
+  end
+
 end

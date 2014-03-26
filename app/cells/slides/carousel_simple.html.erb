@@ -1,10 +1,7 @@
-<% if @attach.nil? || @attach.photos.blank? %>
-    <i class="<%= if @attach.nil?
-                    'fa fa-bolt'
-                  else
-                    'fa fa-spinner fa-spin'
-                  end %> icon-large">
-    </i>
+<% if @attach.photos.blank? %>
+    <div>
+      <%= image_tag asset_path("load_large.gif"), :class => "img-responsive img-thumbnail" %> 正在转化中，请稍后...
+    </div>
 <% else %>
     <% @photos.each do |item| %>
         <%= image_tag item.image, :class => "img-responsive img-thumbnail", :style => "width:100%;" %>

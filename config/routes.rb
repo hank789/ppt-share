@@ -40,6 +40,7 @@ MakeSlide::Application.routes.draw do
     resources :replies
   end
 
+  post "attachs/:id/check_status" => "attachs#check_status"
   resources :attachs, :except => :index do
 
   end
