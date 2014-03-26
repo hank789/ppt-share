@@ -1,6 +1,6 @@
 <% if @attach.photos.blank? %>
     <div>
-      <%= image_tag asset_path("load_large.gif"), :class => "img-responsive img-thumbnail" %> 正在转化中，请稍后...
+      <%= image_tag asset_path("load_large.gif"), :class => "img-responsive img-thumbnail", :style => "width:100%;" %>
     </div>
 <% else %>
     <% @photos.each do |item| %>

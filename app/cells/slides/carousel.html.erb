@@ -1,6 +1,6 @@
 <% if @attach.photos.blank? %>
     <div>
-      <%= image_tag asset_path("load_large.gif"), :class => "img-responsive img-thumbnail" %> 正在转化中，请稍后...
+      <%= image_tag asset_path("load_large.gif"), :width => "100%", :class => "img-responsive img-thumbnail" %>
       <script type="text/javascript">
         function check_status(data){
           $.ajax({
