@@ -56,5 +56,5 @@
 <% end %>
 </table>
 <div class="pagination">
-<%= will_paginate @slides %>
+<%= will_paginate @slides,:inner_window => 2, container: false %>
 </div>

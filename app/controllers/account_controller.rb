@@ -2,18 +2,22 @@
 class AccountController < Devise::RegistrationsController
   protect_from_forgery
   before_filter :check_allow_register
+  layout "application"
   def edit
     @user = current_user
     # 首次生成用户 Token
     @user.update_private_token if @user.private_token.blank?
     drop_breadcrumb "账户设置"
-    render layout: "application"
   end
 
   def update
     super
   end
-
+# GET /resource/sign_up
+  def new
+    build_resource({})
+    render layout: "account"
+  end
   # POST /resource
   def create
     build_resource(sign_up_params)
@@ -31,7 +35,7 @@ class AccountController < Devise::RegistrationsController
       end
     else
       clean_up_passwords resource
-      respond_with resource
+      render layout: "account", :action => "new"
     end
   end
 
@@ -40,7 +44,6 @@ class AccountController < Devise::RegistrationsController
     sign_out_and_redirect("/login")
     set_flash_message :notice, :destroyed
   end
-
   protected
   def check_allow_register
     if SiteConfig.allow_register != "true"

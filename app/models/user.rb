@@ -84,7 +84,7 @@ class User
   has_many :replies, :dependent => :destroy
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
-  has_many :photos
+  has_many :images
 
   attr_accessor :password_confirmation
   ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
