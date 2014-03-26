@@ -3,7 +3,7 @@ class Cpanel::SlidesController < Cpanel::ApplicationController
 
   def index
     @slides = Slide.unscoped.desc(:_id).includes(:user).paginate :page => params[:page], :per_page => 30
-    @attachs = Attach.unscoped.desc(:_id).where(:photo_count => 0)
+    @attachs = Attach.unscoped.desc(:_id).where(:photo_count => 0).where(:slide_id.gt => 0)
   end
 
   def show
@@ -12,7 +12,7 @@ class Cpanel::SlidesController < Cpanel::ApplicationController
   end
 
   def convert_to_img
-    attaches=Attach.where(:photo_count => 0).all
+    attaches=Attach.where(:photo_count => 0).where(:slide_id.gt => 0).all
     attaches.each do |item|
       DocsplitWorker.perform_async(item.id)
     end
